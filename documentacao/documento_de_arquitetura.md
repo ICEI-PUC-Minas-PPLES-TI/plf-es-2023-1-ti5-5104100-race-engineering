@@ -1,19 +1,25 @@
-# TITULO DO PROJETO
+# RACE ENGINEERING 
 
 
-**Nome completo do Aluno 1, email do aluno 1**
+**Ian Marcel de Campos Ferreira, ian.ferreira@sga.pucminas.br**
 
-**Nome completo do Aluno 2, email do aluno 2**
+**Joey Clapton Maciel Barbosa Santos, jcmbsantos@sga.pucminas.br**
 
-**Nome completo do Aluno 3, email do aluno 3**
+**Lorrayne Reis Silva, lorrayne.silva.1220819@sga.pucminas.br**
+
+**Vitor José Lara Bastos, vitor.bastos@sga.pucminas.br**
+
+**Vitor de Souza Xavier, vitor.xavier@sga.pucminas.br**
+
+**Octávio Oliveira Rocha, octavio.rocha@sga.pucminas.br**
 
 ---
 
 Professores:
 
-**Prof. Nome do Prof 1**
+**Cleiton Silva Tavares**
 
-**Prof. Nome do Prof 2**
+**Aline Norberta de Brito**
 
 
 ---
@@ -23,9 +29,14 @@ _Curso de Engenharia de Software, Unidade Praça da Liberdade_
 _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Minas Gerais (PUC MINAS), Belo Horizonte – MG – Brasil_
 
 ---
+<div align="justify"
+**Resumo**. 
 
-_**Resumo**. Escrever aqui o resumo. O resumo deve contextualizar rapidamente o trabalho, descrever seu objetivo e, ao final, 
-mostrar algum resultado relevante do trabalho (até 10 linhas)._
+Dado a necessidade do controle pistas,pilotos, voltas, entre outros para o gerenciamento estratégico de uma corrida de carros, muitos engenheiros de pista recorrem a planilhas de Excel ou mesmo de modo mais arcaico a papeis manuscritos para o monitoramento dessas. Tais fatores colocam em cheque a possibilidade de planilhas falharem ao serem utilizadas durante as corridas, comprometendo a performance do piloto e até mesmo podendo afetar o ganho de pontos em um campeonato. Não obstante, tais métodos corroboram para uma maior dificuldade de obtenção de controle sobre os dados pós-corrida para futuras consultas, ademais engenheiros mecânicos e pilotos muitas vezes só necessitam saber a despeito de informações relacionais que os tangenciem e não o todo ocorrente, o que promove nesses, confusão a respeito da quantidade informacional transpassada.
+
+Assim, este projeto visa a entrega de soluções de gerenciamento de corridas, fomentando o fornecimento de informações com 3 visões diferentes: pilotos, engenheiro de pista e engenheiros mecânicos, dado que cada um dos citados apresentam necessidades distintas durante uma corrida. Logo, será provido a exibição de informações sobre atuação da corrida com diferentes *views*, informações previsionais de clima, visualização de performance, informações de tempo e voltas decorrentes e o provisionamento de um chat para a comunicação dos envolvidos. Possibilitando assim, um gerenciamento ágil e efetivo, que promove a minimização de erros de atuação humana e o facilitamento da validação e monitoração em ambiente pré e pós-corridas.
+     
+ </div>
 
 ---
 
@@ -34,7 +45,7 @@ mostrar algum resultado relevante do trabalho (até 10 linhas)._
 | **Data** | **Autor** | **Descrição** | **Versão** |
 | --- | --- | --- | --- |
 | **[dd/mm/aaaa]** | [Nome do autor] | [Descrever as principais alterações realizadas no documento, evidenciando as seções ou capítulos alterados] | [X] |
-| | | | |
+| **23/02/2023**| Lorrayne Reis| Cabeçalho inicial e resumo | 1.0 |
 | | | | |
 
 ## SUMÁRIO
