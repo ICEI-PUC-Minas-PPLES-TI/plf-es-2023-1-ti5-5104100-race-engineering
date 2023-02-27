@@ -104,11 +104,13 @@ _Enumere os requisitos funcionais previstos para a sua aplicação. Concentre-se
 
 | **ID** | **Descrição** | **Prioridade** |
 | --- | --- | --- |
-| RF001 | | |
-| RF002 | | |
-| | | |
-| | | |
-| | | |
+| RF001 | O mecanico deve conseguir consultar a performace do pneu|Essencial |
+| RF002 |O Usuario deve poder cadastrar uma corrida | Essencial |
+| RF003 |O Analista deve ser capaz de consultar o tempo das voltas | Essencial |
+| RF004 |O Analista deve conseguir inserir os dados e calculos das corridas |Desejável |
+| RF005 |O Sistema deve mostar o clima para a devida localidade | Desejável|
+| RF006 |O Usuario deve ser capaz de trocar mensagens pelo chat | Opcional|
+
 
 Obs: acrescente mais linhas, se necessário.
 
@@ -118,8 +120,9 @@ _Enumere os requisitos não-funcionais previstos para a sua aplicação. Entre o
 
 | **ID** | **Descrição** |
 | --- | --- |
-| RNF001 | |
-| RNF002 | |
+| RNF001 | O sistema deve autenticar e validar os usuários para ter acesso às suas devidas funcionalidades|
+| RNF002 | O tempo de resposta das consultas deve ser inferior a 5 segundos.|
+| RNF003 | O sistema deve possuir armazenamento local no mobile com o SQLite|
 | | |
 | | |
 | | |
