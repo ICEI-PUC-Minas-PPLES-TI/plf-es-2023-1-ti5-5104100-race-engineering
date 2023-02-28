@@ -199,11 +199,12 @@ Obs: substitua esta imagem por outra, adequada ao seu projeto (cada arquitetura 
 
 ## 3.1. Visão de Negócio (Funcionalidades)
 
-_Apresente uma lista simples com as funcionalidades previstas no projeto (escopo do produto)._
-
-1. O sistema deve...
-2. O sistema deve...
-3. ...
+1. O sistema deve prover acesso aos pilotos, mecânicos e analista
+2. O sistema deve permitir cadastro de corridas
+3. O sistema deve permitir a consulta de dados da corrida
+4. O sistema deve permitir o cadastro de dados da corrida
+5. O sistema deve fazer cálculos baseados nos dados da corrida e gerar informações baseadas no dados
+6. O sistema deve prover um chat para comunicação dos usuário
 
 Obs: a quantidade e o escopo das funcionalidades deve ser negociado com os professores/orientadores do trabalho.
 
