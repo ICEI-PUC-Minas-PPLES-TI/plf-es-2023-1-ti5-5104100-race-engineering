@@ -163,12 +163,13 @@ Obs: acrescente mais linhas, se necessário.
 
 ## 2.3. Restrições Arquiteturais
 
-_Enumere as restrições arquiteturais. Lembre-se de que as restrições arquiteturais geralmente não são consideradas requisitos uma vez que limitam a solução candidata. Os requisitos não impõem restrição, mas precisam ser satisfeitos._
+As restrições impostas ao projeto que afetam sua arquitetura são:
 
-As restrições impostas ao projeto que afetam sua arquitetura são (por exemplo):
-
-- O software deverá ser desenvolvido em Python/Django;
-- A comunicação da API deve seguir o padrão RESTful.
+- A camada de apresentação front-end deverá ser desenvolvida usando o framework Next.js;
+- A aplicação backend deverá utilizar NodeJS com o ORM Sequelize;
+- A aplicação mobile deverá utilizar Flutter com Postgresql;
+- As aplicações mobile, back-end e front-end deverão estar em ambientes na nuvem;
+- Não deverá ser usado o firebase como arquitetura de mensageria;
 
 ## 2.4. Mecanismos Arquiteturais
 
