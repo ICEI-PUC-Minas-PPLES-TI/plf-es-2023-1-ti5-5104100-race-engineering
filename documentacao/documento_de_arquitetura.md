@@ -47,6 +47,7 @@ Assim, este projeto visa a entrega de soluções de gerenciamento de corridas, f
 | **[dd/mm/aaaa]** | [Nome do autor] | [Descrever as principais alterações realizadas no documento, evidenciando as seções ou capítulos alterados] | [X] |
 | **23/02/2023**| Lorrayne Reis| Cabeçalho inicial e resumo | 1.0 |
 | **27/02/2023**| Ian Marcel| Requisitos Funcionais e Não Funcionais | 2.1 e 2.2 |
+| **28/02/2023**| Lorrayne Reis| Sessão Apresentação Completa | 1.0 |
 | | | | |
 
 ## SUMÁRIO
@@ -79,20 +80,50 @@ Assim, este projeto visa a entrega de soluções de gerenciamento de corridas, f
 <a name="apresentacao"></a>
 # 1. Apresentação
 
-_Faça uma introdução ao projeto, apresentando o contexto onde o projeto se situa. É importante deixar claro para o leitor os aspectos que configuram o problema que será apresentado na sequência. Apresente, se possível, números reais que demonstram a relevância do problema apresentado._
+<div align="justify"
+
+*Porsche Carrera Cup* é uma competição automobilística que utiliza apenas *Porsche Carrera* preparados para as pistas, o Brasil passou a ter seu campeonato com 2005. Essa é inteiramente organizada por uma única empresa, possibilitando igualdade de preparação para todos os competidores. O piloto não tem qualquer preocupação com a preparação dos automóveis, ele precisa apenas chegar ao autódromo e correr. 
+
+Nas corridas de *Endurance* são 60 pilotos, distribuídos em 30 carros disputando provas de 300 km e 500 km compostos de três etapas. As duas primeiras corridas são disputadas em duplas e duram 300 km ou 2h45min (o que acontecer primeiro). A prova final, de 500 km, distribui mais pontos e pode ser disputada em trio ou dupla. As etapas acontecem em diferentes pistas e partes do país, com competidores pontuando individualmente no campeonato de Endurance, conforme seus resultados em cada etapa, mas uma dupla pode ser campeã em conjunto. Nas duas primeiras corridas, as vitórias valem 68 pontos. Na terceira, 116. 
+
+Cada time é responsável por definir sua estratégia de revezamento, trocas de pneus e reabastecimento durante as paradas no *box*. Nas provas de 300 km há três *pit-stops* obrigatórios com tempo mínimo de 6 minutos cada. Na prova de 500 km são cinco *pits* obrigatórios. Não é permitido trocar pneu e reabastecer simultaneamente. Cada piloto tem que realizar uma quilometragem mínima para validar o resultado do carro. No Velocitta o mínimo corresponde a 36 voltas, em Goiânia são 32 e, em Interlagos 48 (para tripulações competindo em duplas) ou 32 (para os trios). O *quali* acontece com quatro sessões de 10 minutos e todos os pilotos necessariamente têm que ir para a pista nas duas primeiras etapas.  
+
+Na etapa de 500 km, no caso de tripulações com três pilotos, participam do *quali* os competidores de maior e menor *BOP*. *BoP* (*Balance of Performance*) equalizam os carros com lastros distribuídos de acordo com o repertório e idade dos pilotos e determinam também deduções de tempo nas paradas obrigatórias para revezamento dos pilotos. Os carros aceleram separadamente no treino de formação do *grid* de largada. Primeiro registram voltas os competidores de menor *BOP*, na sessão seguinte, os de maior *BOP*. O *grid* é apurado pela média das melhores voltas de cada piloto. Se houver empate na média, leva vantagem o carro que tiver registrado a melhor passagem em termos absolutos. 
 
 
 ## 1.1. Problema
 
-_Nesse momento você deve apresentar o problema que a sua aplicação deve resolver. No entanto, não é a hora de comentar sobre a aplicação._
+A problemática se instaura na grande quantidade de informações a serem rastreadas e mantidas no pré, durante e pós-corrida para definição de estratégias e *performance*. Logo, é necessário um controle de corridas, pilotos, *laps* e consumo de combustível, em sua maioria realizado via planilhas de Excel ou em papel de modo arcaico. Diversos engenheiros afirmam que as planilhas já falharam durante corridas, comprometendo performance e levando a perda de pontos em campeonato. Outra problemática em dominância se demonstra na não absorção de informações ou baixo entendimentos de Engenheiro Mecânico e Pilotos ao se perderem nas informações fornecidas pelas planilhas, além de necessitarem algumas vezes de apenas informações referenciais de sua atuação e não possuírem uma visão única para tal. Ademais, durante corrida o Engenheiro de pista quando ocorre a troca de pilotos do carro, precisa passar informações constantemente ao piloto que saiu do carro sobre sua performance, o que leva a perda de tempo com piloto principal que está no carro atuando.
 
 ## 1.2. Objetivos do trabalho
 
-_Aqui você deve descrever os objetivos do trabalho indicando que o objetivo geral é apresentar a descrição do projeto arquitetural da aplicação escolhida. Apresente também os objetivos específicos do projeto, descrevendo onde você vai concentrar sua atenção na descrição arquitetural, ou seja, os pontos onde você vai aprofundar no seu trabalho._
+O objetivo central do trabalho se concentra em desenvolver um *software* com as duas problemáticas principais demonstradas no tópico anterior: gerenciamento total de corridas e visões de *performance* diferentes. Para isso serão desenvolvidas uma aplicação *mobile* e uma *web* com o intuito de focalizar o processo de diferentes *views* atendendo necessidades de todas as partes interessadas. Objetivando uma aplicação que vise possibilitar o gerenciamento de informações por parte do Engenheiro de Pista, oferecendo informações previsionais de clima, permitindo visualização de performance ao piloto, demonstrando informações de tempo e voltas decorrentes e provendo um *chat* entre os envolvidos. Os pontos principais aprofundados se concentram na atualização de informações em tempo real a todos os desenvolvidos, o armazenamento de informações e o *chat* para comunicação. 
+ 
 
 ## 1.3. Definições e Abreviaturas
 
-Coloque aqui as definições, siglas e abreviaturas utilizadas no trabalho._
+*Porsche Carrera Cup* – Corridas realizadas com o carro Porsche Carrera. 
+
+*Porsche Carrera* – *Porsche* utilizado nas corridas que possui pequenas alterações para ser utilizado em pistas. 
+
+Corridas de *Endurance* – Corridas de longa duração ou com maior duração que as corridas *Porsche Sprint*. 
+
+*Box* - Local no autódromo destinado a alocamento de uma equipe durante a corrida.
+
+*Laps* - Voltas realizadas pelos pilotos no circuito.
+
+Estratégia de revezamento - Estratégia calculada para definir quantas voltas o piloto principal vai fazer no carro e quantas voltas o piloto secundário vai realizar no objetivo de obter maior *performance*. 
+
+*Pit-stops* - Paragem durante uma corrida na área das boxes onde se encontram as equipes e seus mecânicos, para que durante a corrida os pilotos possam trocar de pneus, fazer o reabastecimento de combustível dos seus veículos ou realizar a troca entre pilotos. 
+
+*Quali* - O "*Quali*" vem de "*Qualifying*", que em inglês quer dizer "Qualificação" ou "Classificação". E, como a ordem numérica sugere, são as fases do treino de classificação que define o *grid* de largada na corrida. 
+
+*BOP* -  *Balance of Performance* , equalizam os carros com lastros distribuídos de acordo com o repertório e idade dos pilotos e determinam também deduções de tempo nas paradas obrigatórias para revezamento dos pilotos. 
+
+*Grid* de largada – Local onde todos os carros se reúnem com definição marcada  e de posição de classificação para o começo da corrida.
+
+*Performance* - Realizar, completar, executar ou efetivar. 
+ </div>
 
 <a name="requisitos"></a>
 # 2. Requisitos
