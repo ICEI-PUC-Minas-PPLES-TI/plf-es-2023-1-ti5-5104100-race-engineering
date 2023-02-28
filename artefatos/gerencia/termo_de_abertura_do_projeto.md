@@ -91,30 +91,32 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
 ## 3. ESTIMATIVA DE PRAZO
 
 
-**3.1 Prazo previsto (horas):** 9999
-
-**3.2 Data prevista de início:  **\_\_\_\_\_ /\_\_\_\_\_ /\_\_\_\_\_ 
-**3.3 Data prevista de término: **\_\_\_\_\_ /\_\_\_\_\_ /\_\_\_\_\_ 
+**3.1 Prazo previsto (horas): 50
+**3.2 Data prevista de início:  01/03/2023 
+**3.3 Data prevista de término: 14/06/2023
 
 ## 4. ESTIMATIVA DE CUSTO
 
 | Item de custo | Qtd. horas | Valor / hora  | Valor total |
 | --- | --- | --- | --- |
-| **4.1 Recursos Humanos** **(especifique):** |  |  |  |
-| **4.2 Hardware (especifique):** |  |  |  |
+| **4.1 Recursos Humanos** **(especifique):  |50| N/A | N/A  |
+| **4.2 Hardware (especifique):** | N/A  | N/A | N/A |
 | **4.3 Rede e serviços de hospedagem:** |  |  |  |
-| **4.4 Software de terceiros:** |  |  |  |
-| **4.5 Serviços e treinamento:** |  |  |  |
-| **4.6 Total Geral:** |  |  |  |
+| **4.3 Postgres:** | 700 | 0 | 0 |
+| **4.4 Software de terceiros:** | N/A  | N/A | N/A |
+| **4.5 Serviços e treinamento:** | N/A| N/A |  N/A|
+| **4.6 Total Geral:** | 750 | 0 | 0 |
 
 ## 5. PARTES INTERESSADAS
 
 | Nome | Papel no projeto | Assinatura |
 | --- | --- | --- |
-|     |     |     |
-|     |     |     |
-|     |     |     |
-|     |     |     |
+|Ian Marcel de Campos Ferreira|Scrum Master|     |
+|Joey Clapton Maciel Barbosa Santos|Arquiteto de Software|     |
+|Lorrayne Reis Silva|Product Owner|     |
+|Octávio Oliveira Rocha|Desenvolvedor Web|     |
+|Vitor de Souza Xavier|Desenvolvedor Mobile|     |
+|Vitor José Lara Bastos|DevOps|   |
 
 **Observações:**
 
