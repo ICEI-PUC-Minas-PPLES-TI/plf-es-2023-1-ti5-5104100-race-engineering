@@ -1,35 +1,53 @@
-# Ata de Reunião Semanal - Nome do Projeto
+# Ata de Reunião Kickoff - Race Engineering
 
 ## Informações
-**Data/hora:** data, hora  
-**Local:** local da reunião  
-**Motivo da reunião:** motivo da reunião  
-**Secretário:** responsável pela ata  
+**Data/hora:** 26/02/2023, 10:45
+
+**Local:** Teams
+
+**Motivo da reunião:** Reunião para definição do objetivo concreto do projeto 
+
+**Secretário:** Lorrayne Reis
 
 ## Participantes
 Estiveram presentes na reunião:
-- Nome completo da pessoa A
-- Nome completo da pessoa B
-- Nome completo da pessoa C
+- Ian Marcel de Campos Ferreira
+- Joey Clapton Maciel Barbosa Santos
+- Lorrayne Reis Silva
+- Vitor José Lara Bastos
+- Octávio Oliveira Rocha
+
 
 ## Pauta
 
 Item | Descrição
 ---- | ----
-Item de Agenda 1 | • <br>• <br>• <br>• <br>• 
-Item de Agenda 2 | • <br>• <br>• <br>• <br>• 
+1.1 | • Discussão de tópicos do Termo de Abertura de Projeto (TAP);<br>•Contextualizar o objetivo do projeto. 
+1.2 | • Refinamento dos requisitos.
+1.3 | • Discussão de alternativas de arquitetura *back-end*.
+
 
 ## Notas e Decisões
 Item | Quem | Anotações |
 ---- | ---- | ---- |
-item | quem | anotações |
+2.1 | Equipe | Desenvolvimento das demais documentações: Documento de arquitetura e Estrutura analítica do projeto. |
+2.2 | Equipe | Tarefas distribuída para a equipe. |
+2.3 | Equipe | Definição de fluxo da aplicação. |
+2.4 | Equipe | Estudar alternativa de ferramenta *back-end*. |
 
 
 ## Ações e pendências
 | Feito (S/N)? | Item | Responsável | Data para solução |
 | ---- | ---- | ---- | ---- |
-| | item | quem | data |
+| S | 1| Equipe | 26/02/2023 |
+| N | 2.1 | Equipe | 01/03/2023 |
+| N | 2.2 | Lorrayne Reis Silva | 26/02/2023 |
+| N | 2.3 | Equipe | 26/02/2023 |
+| N | 2.4 | Joey Clapton | 01/03/2023 |
 
 ## Outras notas e informações
-N/A
+
+**Evidência de reunião**
+
+
 
