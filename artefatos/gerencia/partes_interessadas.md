@@ -7,17 +7,17 @@ Lorrayne Reis Silva
 
 **Membros:**
 
-Ian Marcel de Campos Ferreira, 998725@sga.pucminas.br
+Ian Marcel de Campos Ferreira, ian.ferreira@sga.pucminas.br
 
-Joey Clapton Maciel Barbosa Santos, 1234839@sga.pucminas.br
+Joey Clapton Maciel Barbosa Santos, jcmbsantos@sga.pucminas.br
 
-Lorrayne Reis Silva, 1220819@sga.pucminas.br
+Lorrayne Reis Silva, lorrayne.silva.1220819@sga.pucminas.br
 
-Octávio Oliveira Rocha, 1140496@sga.pucminas.br
+Octávio Oliveira Rocha, octavio.rocha@sga.pucminas.br
 
-Vitor de Souza Xavier, 1070943@sga.pucminas.br
+Vitor de Souza Xavier, vitor.xavier@sga.pucminas.br
 
-Vitor José Lara Bastos, 1065165@sga.pucminas.br
+Vitor José Lara Bastos, vitor.bastos@sga.pucminas.br
 
 ---
 
@@ -40,12 +40,12 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
 
 | Nome | Posição / Cargo | Papel no Projeto | Email | Telefone
 | --- | --- | --- | --- | --- |
-| Ian Marcel de Campos Ferreira  | Scrum Master  | Gerencia da equipe, documentos e desenvolvimento  | 998725@sga.pucminas.br  | 31 99108-0373
-| Joey Clapton Maciel Barbosa Santos  | Arquiteto de Software  | Organização do projeto  | 1234839@sga.pucminas.br  | 31 99381-4531
-| Lorrayne Reis Silva  | Product Owner  | Gerência do Backlog e apoio no desenvolvimento  | 1220819@sga.pucminas.br  | 31 97520-9457
-| Octávio Oliveira Rocha  | Desenvolvedor Web  | Desenvolvimento do back-end da aplicação  | 1140496@sga.pucminas.br  | 31 9234-7077
-| Vitor de Souza Xavier  | Desenvolvedor Mobile  | Desenvolvimento do back-end da aplicação  | 1070943@sga.pucminas.br  | 31 99102-4051
-| Vitor José Lara Bastos  | DevOps  | Gerência da Infraestrutura e apoio no desenvolvimento  | 1065165@sga.pucminas.br  | 31 99666-6120
+| Ian Marcel de Campos Ferreira  | Scrum Master  | Gerencia da equipe, documentos e desenvolvimento  | ian.ferreira@sga.pucminas.br  | 31 99108-0373
+| Joey Clapton Maciel Barbosa Santos  | Arquiteto de Software  | Organização do projeto  | jcmbsantos@sga.pucminas.br  | 31 99381-4531
+| Lorrayne Reis Silva  | Product Owner  | Gerência do Backlog e apoio no desenvolvimento  | lorrayne.silva.1220819@sga.pucminas.br  | 31 97520-9457
+| Octávio Oliveira Rocha  | Desenvolvedor Web  | Desenvolvimento do back-end da aplicação  | octavio.rocha@sga.pucminas.br  | 31 9234-7077
+| Vitor de Souza Xavier  | Desenvolvedor Mobile  | Desenvolvimento do back-end da aplicação  | vitor.xavier@sga.pucminas.br  | 31 99102-4051
+| Vitor José Lara Bastos  | DevOps  | Gerência da Infraestrutura e apoio no desenvolvimento  | vitor.bastos@sga.pucminas.br  | 31 99666-6120
 
 ## Avaliação
 
