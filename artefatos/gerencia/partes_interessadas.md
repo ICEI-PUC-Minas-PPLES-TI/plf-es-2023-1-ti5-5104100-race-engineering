@@ -42,9 +42,9 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
 | --- | --- | --- | --- | --- |
 | Ian Marcel de Campos Ferreira  | Scrum Master  | Gerenciamneto da equipe, documentações e apoio ao desenvolvimento  | 998725@sga.pucminas.br  | 31 99108-0373
 | Joey Clapton Maciel Barbosa Santos  | Arquiteto de Software  | Organização do projeto  | 1234839@sga.pucminas.br  | 31 99381-4531
-| Lorrayne Reis Silva  | Product Owner  |   | 1220819@sga.pucminas.br  | +55 31 97520-9457
+| Lorrayne Reis Silva  | Product Owner  |   | 1220819@sga.pucminas.br  | 31 97520-9457
 | Octávio Oliveira Rocha  | Desenvolvedor Web  | Desenvolvimento do back-end da aplicação  | 1140496@sga.pucminas.br  | 31 9234-7077
-| Vitor de Souza Xavier  |   |   | 1070943@sga.pucminas.br  | 99102-4051
+| Vitor de Souza Xavier  |   |   | 1070943@sga.pucminas.br  | 31 99102-4051
 | Vitor José Lara Bastos  |   |   | 1065165@sga.pucminas.br  | 31 99666-6120
 
 ## Avaliação
