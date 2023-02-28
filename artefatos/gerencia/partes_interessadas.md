@@ -1,18 +1,32 @@
-# Registro das Partes Interessadas - PROJETO
+# Registro das Partes Interessadas - Race Engineering
 
 
 **Gerentes de Projeto:**
 
-Nome completo do Aluno 1, email do aluno 1
-Nome completo do Aluno 2, email do aluno 2
-Nome completo do Aluno 3, email do aluno 3
+Lorrayne Reis Silva
+
+**Membros:**
+
+Ian Marcel de Campos Ferreira, 998725@sga.pucminas.br
+
+Joey Clapton Maciel Barbosa Santos, 1234839@sga.pucminas.br
+
+Lorrayne Reis Silva, 1220819@sga.pucminas.br
+
+Octávio Oliveira Rocha, 1140496@sga.pucminas.br
+
+Vitor de Souza Xavier, 1070943@sga.pucminas.br
+
+Vitor José Lara Bastos, 1065165@sga.pucminas.br
 
 ---
 
 **Professores:**
 
-Prof. Nome do Prof 1
-Prof. Nome do Prof 2
+Cleiton Silva Tavares
+
+
+Aline Norberta de Brito
 
 ---
 
