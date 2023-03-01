@@ -179,13 +179,13 @@ _Visão geral dos mecanismos que compõem a arquitetura do sosftware baseando-se
 
 | **Análise** | **Design** | **Implementação** |
 | --- | --- | --- |
-| Persistência | | |
-| Front end | | |
-| Back end | | |
-| Integração | | |
-| Log do sistema | | |
-| Teste de Software | | |
-| Deploy | | |
+| Persistência | ORM | Hibernate |
+| Front end | API| Next.js|
+| Back end |API |NodeJS com o ORM Sequelize |
+| Integração | API |ORM Sequelize |
+| Log do sistema | Web services| Node.js |
+| Teste de Software | API| Postman|
+| Deploy | API| Node.js |
 
 <a name="modelagem"></a>
 # 3. Modelagem e projeto arquitetural
