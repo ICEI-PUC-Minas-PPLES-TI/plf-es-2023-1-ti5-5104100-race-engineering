@@ -47,7 +47,7 @@ Assim, este projeto visa a entrega de soluções de gerenciamento de corridas, f
 | --- | --- | --- | --- |
 | **[dd/mm/aaaa]** | [Nome do autor] | [Descrever as principais alterações realizadas no documento, evidenciando as seções ou capítulos alterados] | [X] |
 | **23/02/2023**| Lorrayne Reis| Cabeçalho inicial e resumo | 1.0 |
-| **27/02/2023**| Ian Marcel| Requisitos Funcionais e Não Funcionais | 2.1 e 2.2 |
+| **27/02/2023**| Ian Marcel| Requisitos Funcionais e Não Funcionais | 1.0 |
 | **28/02/2023**| Lorrayne Reis| Sessão Apresentação Completa | 1.0 |
 | | | | |
 
