@@ -49,7 +49,7 @@ Assim, este projeto visa a entrega de soluções de gerenciamento de corridas, f
 | **23/02/2023**| Lorrayne Reis| Cabeçalho inicial e resumo | 1.0 |
 | **27/02/2023**| Ian Marcel| Requisitos Funcionais e Não Funcionais | 1.0 |
 | **28/02/2023**| Lorrayne Reis| Sessão Apresentação Completa | 1.0 |
-| **01/30/2023**| Vítor José| Modelagem e projeto arquitetural | 1.0 |
+| **01/03/2023**| Vítor José| Modelagem e projeto arquitetural | 1.0 |
 | **01/03/2023** | Joey Clapton | Mecanismos arquiteturais e Visão de negócio| 1.0 |
 | | | | |
 
