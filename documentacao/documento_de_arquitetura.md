@@ -184,7 +184,7 @@ _Visão geral dos mecanismos que compõem a arquitetura do sosftware baseando-se
 | Back end |API |NodeJS com o ORM Sequelize |
 | Integração | API |ORM Sequelize |
 | Log do sistema | Web services| Node.js |
-| Teste de Software | API| Postman|
+| Teste de Software | API| Postman.|
 | Deploy | API| Node.js |
 
 <a name="modelagem"></a>
