@@ -212,27 +212,58 @@ Obs: a quantidade e o escopo das funcionalidades deve ser negociado com os profe
 
 ### Descrição resumida dos Casos de Uso / Histórias de Usuário
 
-_Nesta seção, os casos de uso devem ser resumidos. Esse detalhamento pode ser na forma de um texto sintético ou, alternativamente, você pode optar por descrever estórias de usuários seguindo os métodos ágeis. Neste caso a seção deve chamar &quot;Histórias de usuários&quot;. Lembre-se das características de qualidade das estórias de usuários, ou seja, o que é preciso para descrever boas histórias de usuários._
+### Casos de uso:
 
-Exemplos de resumo de Casos de Uso:
+#### UC01 – Consulta de dados da corrida
 
-#### UC01 – NOME DO CASO DE USO 01
+| **Descrição**             | Eu como usuário visualizar dados da corrida          |
+| ------------------------- | ---------------------------------------------------- |
+| **Atores**                | Mecânico                                             |
+| **Prioridade**            | Alta                                                 |
+| **Requisitos associados** | RF001                                                |
+| **Fluxo Principal**       | Fazer login no sistema e consultar dados da corrida |
 
-| **Descrição** | |
-| --- | --- |
-| **Atores** | |
-| **Prioridade** | |
-| **Requisitos associados** | |
-| **Fluxo Principal** | |
+#### UC02 – Cadastro de corrida
+| **Descrição**             | Eu como usuário quero poder cadastrar uma corrida       |
+| ------------------------- | ---------------------------------------------------- |
+| **Atores**                | Usuario                                             |
+| **Prioridade**            | Alta                                                 |
+| **Requisitos associados** | RF002                                                |
+| **Fluxo Principal**       | Fazer login no sistema e cadastrar uma corrida |
 
-#### UC02 – NOME DO CASO DE USO 02
+#### UC03 – Consulta de tempo de volta da corrida
 
-| **Descrição** | |
-| --- | --- |
-| **Atores** | |
-| **Prioridade** | |
-| **Requisitos associados** | |
-| **Fluxo Principal** | |
+| **Descrição**             | Eu como usuário visualizar o tempo de cada volta da corrida        |
+| ------------------------- | ---------------------------------------------------- |
+| **Atores**                | Analista                                             |
+| **Prioridade**            | Alta                                                 |
+| **Requisitos associados** | RF003                                                |
+| **Fluxo Principal**       | Fazer login no sistema e consultar dados das voltas |
+
+#### UC04 – Cadastro de dados da corrida
+| **Descrição**             | Eu como usuário quero poder cadastrar dados da corrida       |
+| ------------------------- | ---------------------------------------------------- |
+| **Atores**                | Analista                                             |
+| **Prioridade**            | Média                                                 |
+| **Requisitos associados** | RF004                                                |
+| **Fluxo Principal**       | Fazer login no sistema e cadastrar dados da corrida |
+
+#### UC05 – Consultar clima de uma localidade
+| **Descrição**             | Eu como usuário quero poder visualizar o clima de uma localidade    |
+| ------------------------- | ---------------------------------------------------- |
+| **Atores**                | Analista                                             |
+| **Prioridade**            | Média                                                 |
+| **Requisitos associados** | RF005                                               |
+| **Fluxo Principal**       | Fazer login no sistema e consultar o clima de uma localidade|
+
+#### UC06 – Troca de mensagens por chat
+| **Descrição**             | Eu como usuário quero poder trocar mensagens com outros usuários via chat    |
+| ------------------------- | ---------------------------------------------------- |
+| **Atores**                | Usuário                                             |
+| **Prioridade**            | Baixa                                                 |
+| **Requisitos associados** | RF006                                               |
+| **Fluxo Principal**       | Fazer login no sistema e enviar/receber mensagens via chat|
+
 
 Exemplos de Histórias de Usuário:
 
