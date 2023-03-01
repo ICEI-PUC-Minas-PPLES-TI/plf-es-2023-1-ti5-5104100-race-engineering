@@ -49,6 +49,7 @@ Assim, este projeto visa a entrega de soluções de gerenciamento de corridas, f
 | **23/02/2023**| Lorrayne Reis| Cabeçalho inicial e resumo | 1.0 |
 | **27/02/2023**| Ian Marcel| Requisitos Funcionais e Não Funcionais | 1.0 |
 | **28/02/2023**| Lorrayne Reis| Sessão Apresentação Completa | 1.0 |
+| **01/30/2023**| Vítor José| Modelagem e projeto arquitetural | 1.0 |
 | | | | |
 
 ## SUMÁRIO
@@ -192,7 +193,14 @@ _Visão geral dos mecanismos que compõem a arquitetura do sosftware baseando-se
 
 _Apresente uma visão geral da solução proposta para o projeto e explique brevemente esse diagrama de visão geral, de forma textual. Esse diagrama não precisa seguir os padrões da UML, e deve ser completo e tão simples quanto possível, apresentando a macroarquitetura da solução._
 
-![Visão Geral da Solução](imagens/visao.png "Visão Geral da Solução")
+Para solucionar o problema proposto, difiniu-se a estratégia arquitetural que se baseia na utlização do React para o desenvolvimento web e Flutter para o mobile, ambos sendo ultizados no Fornt-End e se encaixando no Client Layer. Entrando na Application Layer, a linguagem Node.Js será abordada para o desenvolvimento do Back-End e o protocolo que garantirá uma comunicação rápida e eficiente será o gRPC com Rest API, que garantirá uma economia de tempo e recursos dentro do presente sistema distrtibuído.
+A comunicação entre o Cliente Layer e a Application layer será feita por meio de requests usando o protocolo HTTP, tendo como intermediário entre estas duas aplicações o Software Middleware, que trará uma melhor eficiência, simplificará a manutenção do sistema através de seus serviços de integração, segurança e gerenciamento de rede.
+
+![Diagrama de visão geral](imagens/arquitetura1.png "Diagrama de visão geral")
+
+**Figura 1 - Diagrama de visão geral**
+
+Obs: substitua esta imagem por outra, adequada ao seu projeto (cada arquitetura é única).
 
 **Figura 1 - Visão Geral da Solução (fonte: https://medium.com)**
 
