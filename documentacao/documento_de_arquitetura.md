@@ -264,14 +264,13 @@ Obs: a quantidade e o escopo das funcionalidades deve ser negociado com os profe
 | **Requisitos associados** | RF006                                               |
 | **Fluxo Principal**       | Fazer login no sistema e enviar/receber mensagens via chat|
 
-
-Exemplos de Histórias de Usuário:
-
-- Como Fulano eu quero poder convidar meus amigos para que a gente possa se reunir...
-
-- Como Cicrano eu quero poder organizar minhas tarefas diárias, para que...
-
-- Como gerente eu quero conseguir entender o progresso do trabalho do meu time, para que eu possa ter relatórios periódicos dos nossos acertos e falhas.
+### Histórias de usuário
+- Como mecânico quero poder visualizar dados da corrida
+- Como usuário que poder cadastrar uma corrida
+- Como analista quero poder visualizar o tempo de cada volta da corrida
+- Como analista quero poder cadastrar dados de um corrida
+- Como analista quero poder visualizar o clima de uma localidade
+- Como usuário quero poder trocar mensagens com outros usuários por chat
 
 ## 3.2. Visão Lógica
 
