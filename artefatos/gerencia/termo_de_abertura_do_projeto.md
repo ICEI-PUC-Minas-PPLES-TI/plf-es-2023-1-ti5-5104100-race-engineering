@@ -103,7 +103,7 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
 | **4.1 Recursos Humanos** **(especifique):  |50| N/A | N/A  |
 | **4.2 Hardware (especifique):** | N/A  | N/A | N/A |
 | **4.3 Rede e serviços de hospedagem:** |  |  |  |
-| **4.3 Postgres:** | 700 | 0 | 0 |
+| **4.3.1 Postgres:** | 700 | 0 | 0 |
 | **4.4 Software de terceiros:** | N/A  | N/A | N/A |
 | **4.5 Serviços e treinamento:** | N/A| N/A |  N/A|
 | **4.6 Total Geral:** | 750 | 0 | 0 |
