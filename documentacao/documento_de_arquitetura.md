@@ -269,7 +269,7 @@ Obs: a quantidade e o escopo das funcionalidades deve ser negociado com os profe
 - Como usuário que poder cadastrar uma corrida
 - Como analista quero poder visualizar o tempo de cada volta da corrida
 - Como analista quero poder cadastrar dados de um corrida
-- Como analista quero poder visualizar o clima de uma localidade
+- Como analista quero poder visualizar o clima de uma localidade para prever mudanças no planejamento da corrida
 - Como usuário quero poder trocar mensagens com outros usuários por chat
 
 ## 3.2. Visão Lógica
