@@ -7,11 +7,12 @@
 
 **Lorrayne Reis Silva, lorrayne.silva.1220819@sga.pucminas.br**
 
-**Vitor José Lara Bastos, vitor.bastos@sga.pucminas.br**
+**Octávio Oliveira Rocha, octavio.rocha@sga.pucminas.br**
 
 **Vitor de Souza Xavier, vitor.xavier@sga.pucminas.br**
 
-**Octávio Oliveira Rocha, octavio.rocha@sga.pucminas.br**
+**Vítor José Lara Bastos, vitor.bastos@sga.pucminas.br**
+
 
 ---
 
