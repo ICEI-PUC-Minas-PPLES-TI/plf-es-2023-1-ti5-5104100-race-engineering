@@ -1,4 +1,7 @@
+<div align="justify">
+
 # Registro das Partes Interessadas - Race Engineering
+
 
 
 **Gerentes de Projeto:**
@@ -30,9 +33,9 @@ Aline Norberta de Brito
 
 ---
 
-_Curso de Engenharia de Software, Unidade Praça da Liberdade_
+Curso de Engenharia de Software, Unidade Praça da Liberdade
 
-_Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Minas Gerais (PUC MINAS), Belo Horizonte – MG – Brasil_
+Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Minas Gerais (PUC MINAS), Belo Horizonte – MG – Brasil
 
 ---
 
@@ -40,10 +43,10 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
 
 | Nome | Posição / Cargo | Papel no Projeto | Email | Telefone
 | --- | --- | --- | --- | --- |
-| Ian Marcel de Campos Ferreira  | Scrum Master  | Gerencia da equipe, documentos e desenvolvimento  | ian.ferreira@sga.pucminas.br  | 31 99108-0373
-| Joey Clapton Maciel Barbosa Santos  | Arquiteto de Software  | Organização do projeto  | jcmbsantos@sga.pucminas.br  | 31 99381-4531
-| Lorrayne Reis Silva  | Product Owner  | Gerência do Backlog e apoio no desenvolvimento  | lorrayne.silva.1220819@sga.pucminas.br  | 31 97520-9457
-| Octávio Oliveira Rocha  | Desenvolvedor Web  | Desenvolvimento do back-end da aplicação  | octavio.rocha@sga.pucminas.br  | 31 9234-7077
+| Ian Marcel de Campos Ferreira  | Desenvolvedor | Acompanhamento das ferramentas de versionamento e apoio ao desenvolvimento | ian.ferreira@sga.pucminas.br  | 31 99108-0373
+| Joey Clapton Maciel Barbosa Santos  | Arquiteto de Software e Dev Mobile| Organização do projeto e apoio ao desenvolvimento mobile  | jcmbsantos@sga.pucminas.br  | 31 99381-4531
+| Lorrayne Reis Silva  | Scrum Master e Dev Web  | Gerenciamneto da equipe, documentações e apoio ao desenvolvimento *web*  | lorrayne.silva.1220819@sga.pucminas.br  | 31 97520-9457
+| Octávio Oliveira Rocha  | Desenvolvedor Web  | Desenvolvimento da aplicação  | octavio.rocha@sga.pucminas.br  | 31 9234-7077
 | Vitor de Souza Xavier  | Desenvolvedor Mobile  | Desenvolvimento do back-end da aplicação  | vitor.xavier@sga.pucminas.br  | 31 99102-4051
 | Vitor José Lara Bastos  | DevOps  | Gerência da Infraestrutura e apoio no desenvolvimento  | vitor.bastos@sga.pucminas.br  | 31 99666-6120
 
@@ -51,10 +54,13 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
 
 | Nome | Expectativas | Influência | Importância / Poder | Apoio | Observações |
 | --- | --- | --- | --- | --- | --- |
-|   | Aterfatos da projeção da arquitetura do software | Média | Média | Apoiador |
-|   | Software implementado como um aplicativo móvel com arquitetura distribuída e funcionalidades de tempo real | Alta | Alta | Apoiador |
-|   | Software implementado como um aplicativo móvel com arquitetura distribuída e funcionalidades de tempo real | Média | Média | Apoiador |
-|   | Software implementado como um aplicativo móvel com arquitetura distribuída e funcionalidades de tempo real | Alta | Alta | Apoiador |
-|   | Software implementado como um aplicativo móvel com arquitetura distribuída e funcionalidades de tempo real | Média | Média | Apoiador |
-|   | Artefatos de gerenciamento de projeto | Alta | Alta | Apoiador |
-|   | Software implantando nos computadores do estabelecimento com os requisitos solicitados implementados | Alta | Alta | Apoiador |
+| Joey Clapton  | Aterfatos da projeção da arquitetura do software | Média | Média | Apoiador |
+| Joey Clapton   | Software implementado como um aplicativo móvel com arquitetura distribuída e funcionalidades de tempo real | Alta | Alta | Apoiador |
+| Ian Marcel  | Software implementado como um aplicativo móvel com arquitetura distribuída e funcionalidades de tempo real | Média | Média | Apoiador |
+| Vitor de Souza  | Software implementado como um aplicativo móvel com arquitetura distribuída e funcionalidades de tempo real | Alta | Alta | Apoiador |
+| Vitor José | Software implementado como um aplicativo móvel com arquitetura distribuída e funcionalidades de tempo real | Média | Média | Apoiador |
+| Lorrayne Reis  | Artefatos de gerenciamento de projeto | Alta | Alta | Apoiador |
+|  Lorrayne Reis | Software implantando em  utilização web, com os requisitos propostos | Alta | Alta | Apoiador |
+|  Octávio Oliveira | Software implantando em  utilização web, com os requisitos propostos | Alta | Alta | Apoiador |
+  
+ </div>
