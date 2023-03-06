@@ -53,6 +53,7 @@ Assim, este projeto visa a entrega de soluções de gerenciamento de corridas, f
 | **01/03/2023** | Joey Clapton | Mecanismos arquiteturais e Visão de negócio| 1.0 |
 | **05/03/2023**| Lorrayne| Alteração Requisitos Funcionais e Não Funcionais | 1.1 |
 | **05/03/2023**| Lorrayne| Alteração restrição arquitetural | 1.1 |
+|**06/03/2023** | Lorrayne Reis | Mecanismos arquiteturais e Visão de negócio| 1.1 |
 | | | | |
 
 ## SUMÁRIO
@@ -155,8 +156,8 @@ _Esta seção descreve os requisitos comtemplados nesta descrição arquitetural
 | RF014 | Após acessar o aplicativo o usuário deve ser capaz de alterar ou complementar suas informações de perfil | Obrigatório
 | RF015 | Após acessar o aplicativo o usuário deve ser capaz de marcar como principal uma corrida | Obrigatório
 | RF016 | Após acessar a plataforma Web o usuário deve ser capaz de aplicar filtros e pesquisar determinada corrida | Obrigatório
-| RF017 | Após acessar a plataforma Web o usuário deve estar apto a receber notificações | Desejável
-| RF018|O Após acessar o aplicativo móvel o deve ser capaz de trocar mensagens pelo chat | Opcional|
+| RF017 | Após acessar a plataforma Web o usuário deve estar apto a receber notificações | Opicional
+| RF018|O Após acessar o aplicativo móvel o deve ser capaz de trocar mensagens pelo chat | Obrigatório|
 | RF019 | Após acessar a plataforma Web o usuário deve ser capaz de visualizar informação climática | Obrigatório
 | RF020 | Após acessar a plataforma Web o usuário deve ser capaz de inserir dados informacionais sobre a corrida | Obrigatório
 | RF021 | Após acessar a plataforma Web o usuário deve ser capaz de salvar dados inseridos | Obrigatório
@@ -210,9 +211,6 @@ As restrições impostas ao projeto que afetam sua arquitetura são:
 
 ## 2.4. Mecanismos Arquiteturais
 
-_Visão geral dos mecanismos que compõem a arquitetura do sosftware baseando-se em três estados: (1) análise, (2) design e (3) implementação. Em termos de Análise devem ser listados os aspectos gerais que compõem a arquitetura do software como: persistência, integração com sistemas legados, geração de logs do sistema, ambiente de front end, tratamento de exceções, formato dos testes, formato de distribuição/implantação (deploy), entre outros. Em Design deve-se identificar o padrão tecnológico a seguir para cada mecanismo identificado na análise. Em Implementação, deve-se identificar o produto a ser utilizado na solução.
- Ex: Análise (Persistência), Design (ORM), Implementação (Hibernate)._
-
 | **Análise** | **Design** | **Implementação** |
 | --- | --- | --- |
 | Persistência | ORM | Hibernate |
@@ -225,6 +223,7 @@ _Visão geral dos mecanismos que compõem a arquitetura do sosftware baseando-se
 
 <a name="modelagem"></a>
 # 3. Modelagem e projeto arquitetural
+<div align="justify">
 
 Para solucionar o problema proposto, difiniu-se a estratégia arquitetural que se baseia na utlização do React para o desenvolvimento web e Flutter para o mobile, ambos sendo ultizados no Fornt-End e se encaixando no Client Layer. Entrando na Application Layer, a linguagem Node.Js será abordada para o desenvolvimento do Back-End e o protocolo que garantirá uma comunicação rápida e eficiente será o gRPC com Rest API, que garantirá uma economia de tempo e recursos dentro do presente sistema distrtibuído.
 A comunicação entre o Cliente Layer e a Application layer será feita por meio de requests usando o protocolo HTTP, tendo como intermediário entre estas duas aplicações o Software Middleware, que trará uma melhor eficiência, simplificará a manutenção do sistema através de seus serviços de integração, segurança e gerenciamento de rede.
@@ -232,6 +231,8 @@ A comunicação entre o Cliente Layer e a Application layer será feita por meio
 ![Diagrama de visão geral](imagens/arquitetura1.png "Diagrama de visão geral")
 
 **Figura 1 - Diagrama de visão geral**
+	
+<div>
 
 
 ## 3.1. Visão de Negócio (Funcionalidades)
@@ -255,7 +256,7 @@ Obs: a quantidade e o escopo das funcionalidades deve ser negociado com os profe
 | ------------------------- | ---------------------------------------------------- |
 | **Atores**                | Mecânico                                             |
 | **Prioridade**            | Alta                                                 |
-| **Requisitos associados** | RF001                                                |
+| **Requisitos associados** | RF006, RF016                                              |
 | **Fluxo Principal**       | Fazer login no sistema e consultar dados da corrida |
 
 #### UC02 – Cadastro de corrida
@@ -263,16 +264,16 @@ Obs: a quantidade e o escopo das funcionalidades deve ser negociado com os profe
 | ------------------------- | ---------------------------------------------------- |
 | **Atores**                | Usuario                                             |
 | **Prioridade**            | Alta                                                 |
-| **Requisitos associados** | RF002                                                |
+| **Requisitos associados** | RF005                                               |
 | **Fluxo Principal**       | Fazer login no sistema e cadastrar uma corrida |
 
 #### UC03 – Consulta de tempo de volta da corrida
 
 | **Descrição**             | Eu como usuário visualizar o tempo de cada volta da corrida        |
 | ------------------------- | ---------------------------------------------------- |
-| **Atores**                | Analista                                             |
+| **Atores**                | Piloto                                           |
 | **Prioridade**            | Alta                                                 |
-| **Requisitos associados** | RF003                                                |
+| **Requisitos associados** | RF024                                               |
 | **Fluxo Principal**       | Fazer login no sistema e consultar dados das voltas |
 
 #### UC04 – Cadastro de dados da corrida
@@ -296,7 +297,7 @@ Obs: a quantidade e o escopo das funcionalidades deve ser negociado com os profe
 | ------------------------- | ---------------------------------------------------- |
 | **Atores**                | Usuário                                             |
 | **Prioridade**            | Baixa                                                 |
-| **Requisitos associados** | RF006                                               |
+| **Requisitos associados** | RF018                                              |
 | **Fluxo Principal**       | Fazer login no sistema e enviar/receber mensagens via chat|
 
 ### Histórias de usuário
