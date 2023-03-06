@@ -52,6 +52,7 @@ Assim, este projeto visa a entrega de soluções de gerenciamento de corridas, f
 | **01/03/2023**| Vítor José| Modelagem e projeto arquitetural | 1.0 |
 | **01/03/2023** | Joey Clapton | Mecanismos arquiteturais e Visão de negócio| 1.0 |
 | **05/03/2023**| Lorrayne| Alteração Requisitos Funcionais e Não Funcionais | 1.1 |
+| **05/03/2023**| Lorrayne| Alteração restrição arquitetural | 1.1 |
 | | | | |
 
 ## SUMÁRIO
@@ -186,11 +187,11 @@ Obs: acrescente mais linhas, se necessário.
 | RNF011|O software deve fornecer taxa de ocorrência de falha de 2/1.000
 | RNF012| O software deve fazer backup de dados a cada 24 horas
 | RNF013| O software deve fornecer resposta de erro com 3 segundos
+| RNF014|O software deve processar no mínimo 6 transações por segundo
+| RNF015|O software deve efetuar leitura de dados 5 vezes por segundo, como condição mínima.
+| RNF016|Apenas pessoas que tenham sido autenticadas por um componente de controle acesso e autenticação poderão visualizar informações
+|RNF017|Todas as comunicações externas entre o servidor de dados do software e usuários devem ser criptografadas
 
-
-
-
-Obs: acrescente mais linhas, se necessário.
 
 ## 2.3. Restrições Arquiteturais
 
@@ -201,6 +202,11 @@ As restrições impostas ao projeto que afetam sua arquitetura são:
 - A aplicação mobile deverá utilizar Flutter com Postgresql;
 - As aplicações mobile, back-end e front-end deverão estar em ambientes na nuvem;
 - Não deverá ser usado o firebase como arquitetura de mensageria;
+- O aplicativo será funcional em dispositivos celulares Android e IOS os quais devem ter acesso a internet;
+- O frontend deve ser desenvolvido para consumir diferentes serviços de APIs diferentes, portanto um módulo não pode interferir no outro;
+- O serviço de autenticação de usuários será fornecido por uma API externa.
+
+
 
 ## 2.4. Mecanismos Arquiteturais
 
