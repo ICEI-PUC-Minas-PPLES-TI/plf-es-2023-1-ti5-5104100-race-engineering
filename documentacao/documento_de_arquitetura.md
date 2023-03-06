@@ -51,6 +51,7 @@ Assim, este projeto visa a entrega de soluções de gerenciamento de corridas, f
 | **28/02/2023**| Lorrayne Reis| Sessão Apresentação Completa | 1.0 |
 | **01/03/2023**| Vítor José| Modelagem e projeto arquitetural | 1.0 |
 | **01/03/2023** | Joey Clapton | Mecanismos arquiteturais e Visão de negócio| 1.0 |
+| **05/03/2023**| Lorrayne| Alteração Requisitos Funcionais e Não Funcionais | 1.1 |
 | | | | |
 
 ## SUMÁRIO
@@ -134,33 +135,55 @@ Estratégia de revezamento - Estratégia calculada para definir quantas voltas o
 _Esta seção descreve os requisitos comtemplados nesta descrição arquitetural, divididos em dois grupos: funcionais e não funcionais._
 
 ## 2.1. Requisitos Funcionais
-
-_Enumere os requisitos funcionais previstos para a sua aplicação. Concentre-se nos requisitos funcionais que sejam críticos para a definição arquitetural. Lembre-se de listar todos os requisitos que são necessários para garantir cobertura arquitetural. Esta seção deve conter uma lista de requisitos ainda sem modelagem. Na coluna Prioridade utilize uma escala (do mais prioritário para o menos): Essencial, Desejável, Opcional._
-
 | **ID** | **Descrição** | **Prioridade** |
 | --- | --- | --- |
-| RF001 | O mecanico deve conseguir consultar a performace do pneu|Essencial |
-| RF002 |O Usuario deve poder cadastrar uma corrida | Essencial |
-| RF003 |O Analista deve ser capaz de consultar o tempo das voltas | Essencial |
-| RF004 |O Analista deve conseguir inserir os dados e calculos das corridas |Desejável |
-| RF005 |O Sistema deve mostar o clima para a devida localidade | Desejável|
-| RF006 |O Usuario deve ser capaz de trocar mensagens pelo chat | Opcional|
+| RF001 | O usuário deve ser capaz de realizar cadastro na plataforma Web| Obrigatório
+| RF002 | O usuário deve ser capaz de acessar a plataforma Web através de email e senha anteriormente cadastrados | Obrigatório
+| RF003 | Após acessar a plataforma Web o usuário deve ler e confirmar que está em acordo com os termos de uso | Opcional
+| RF004 | Após acessar a plataforma Web o usuário deve ser capaz de cadastrar uma corrida | Obrigatório
+| RF005 | Após acessar a plataforma Web o usuário deve ser capaz de cadastrar sua corrida com as informações necessárias | Obrigatório
+| RF006 | Após acessar a plataforma Web o usuário deve ser capaz de visualizar os locais e corridas registradas | Obrigatório
+| RF007 | Após acessar a plataforma Web o usuário deve ser capaz de alterar ou complementar suas informações de perfil | Obrigatório
+| RF008 | Após acessar a plataforma Web o usuário deve ser capaz de marcar uma corrida como principal  | Obrigatório
+| RF008 | Após acessar a plataforma Web o usuário deve ser capaz de associar pilotos e mecânicos a uma corrida  | Obrigatório
+| RF009 | Após acessar a plataforma Web o usuário deve ser capaz de pesquisar determinado corrida registrada | Obrigatório
+| RF010 | O usuário deve ser capaz de realizar login no aplicativo | Obrigatório
+| RF011 | O usuário deve ser capaz de acessar o aplicativo através de email e senha anteriormente cadastrados | Obrigatório
+| RF012 | Após acessar o aplicativo o usuário deve ser capaz de alterar a sua senha de registro | Obrigatório
+| RF013 | Após acessar o aplicativo o usuário deve ser capaz de visualizar as corridas a ele associadas | Obrigatório
+| RF014 | Após acessar o aplicativo o usuário deve ser capaz de alterar ou complementar suas informações de perfil | Obrigatório
+| RF015 | Após acessar o aplicativo o usuário deve ser capaz de marcar como principal uma corrida | Obrigatório
+| RF016 | Após acessar a plataforma Web o usuário deve ser capaz de aplicar filtros e pesquisar determinada corrida | Obrigatório
+| RF017 | Após acessar a plataforma Web o usuário deve estar apto a receber notificações | Desejável
+| RF018|O Após acessar o aplicativo móvel o deve ser capaz de trocar mensagens pelo chat | Opcional|
+| RF019 | Após acessar a plataforma Web o usuário deve ser capaz de visualizar informação climática | Obrigatório
+| RF020 | Após acessar a plataforma Web o usuário deve ser capaz de inserir dados informacionais sobre a corrida | Obrigatório
+| RF021 | Após acessar a plataforma Web o usuário deve ser capaz de salvar dados inseridos | Obrigatório
+| RF022 | Após acessar a plataforma Web o usuário deve ser capaz de enviar mensagens via chat | Obrigatório
+| RF023 | Após acessar o aplicativo o  mecânico deve conseguir consultar informações sobre os pneus em corrida |Essencial |
+| RF024 | Após acessar o aplicativo o  piloto deve conseguir consultar informações referentes ao número de voltas |Essencial |
+
+
 
 
 Obs: acrescente mais linhas, se necessário.
 
 ## 2.2. Requisitos Não-Funcionais
 
-_Enumere os requisitos não-funcionais previstos para a sua aplicação. Entre os requisitos não funcionais, inclua todos os requisitos que julgar importante do ponto de vista arquitetural ou seja os requisitos que terão impacto na definição da arquitetura. Os requisitos devem ser descritos de forma completa e preferencialmente quantitativa._
 
 | **ID** | **Descrição** |
 | --- | --- |
 | RNF001 | O sistema deve autenticar e validar os usuários para ter acesso às suas devidas funcionalidades|
-| RNF002 | O tempo de resposta das consultas deve ser inferior a 5 segundos.|
+| RNF002 | O tempo de resposta das consultas deve ser inferior a 5 segundos|
 | RNF003 | O sistema deve possuir armazenamento local no mobile com o SQLite|
-| | |
-| | |
-| | |
+| RNF004| O software deve ser compátivel com os sistemas Android e IOS|
+| RNF002| A versão web da aplicação deve operar corretamente nos seguintes navegadores: Google Chrome, Edge e Firefox|
+| RNF003| O usuário deve estar autenticado para utilizar os serviços|
+| RNF004| A plataforma só pode utilizar os dados do usuário mediante autorização|
+| RNF005| Deve ser intuitiva para usuários leigos|
+| RNF006| O sistema deve estar disponível nas modalidades mobile e web|
+| RNF007| O sistema deve estar disponível para interação com o usuário 24 horas e sete dias na semana (24/7).
+| RNF007| O serviço de chat do software terá uma disponibilidade de 999/1.000
 
 Obs: acrescente mais linhas, se necessário.
 
