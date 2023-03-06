@@ -173,17 +173,22 @@ Obs: acrescente mais linhas, se necessário.
 
 | **ID** | **Descrição** |
 | --- | --- |
-| RNF001 | O sistema deve autenticar e validar os usuários para ter acesso às suas devidas funcionalidades|
-| RNF002 | O tempo de resposta das consultas deve ser inferior a 5 segundos|
-| RNF003 | O sistema deve possuir armazenamento local no mobile com o SQLite|
-| RNF004| O software deve ser compátivel com os sistemas Android e IOS|
-| RNF002| A versão web da aplicação deve operar corretamente nos seguintes navegadores: Google Chrome, Edge e Firefox|
-| RNF003| O usuário deve estar autenticado para utilizar os serviços|
-| RNF004| A plataforma só pode utilizar os dados do usuário mediante autorização|
-| RNF005| Deve ser intuitiva para usuários leigos|
-| RNF006| O sistema deve estar disponível nas modalidades mobile e web|
-| RNF007| O sistema deve estar disponível para interação com o usuário 24 horas e sete dias na semana (24/7).
-| RNF007| O serviço de chat do software terá uma disponibilidade de 999/1.000
+| RNF001 | O tempo de resposta das consultas deve ser inferior a 5 segundos|
+| RNF002| O sistema deve possuir armazenamento local no mobile com o SQLite|
+| RNF003| O software deve ser compátivel com os sistemas Android e IOS|
+| RNF004| A versão web da aplicação deve operar corretamente nos seguintes navegadores: Google Chrome, Edge e Firefox|
+| RNF005| O usuário deve estar autenticado com 3 segundos|
+| RNF006| A plataforma só pode utilizar os dados do usuário mediante autorização|
+| RNF007| Deve ser intuitiva para usuários leigos|
+| RNF008| O sistema deve estar disponível para interação com o usuário 24 horas e sete dias na semana (24/7).
+| RNF009| O serviço de chat do software terá uma disponibilidade de 999/1.000
+| RNF010|O software deve oferecer tempo de resposta de 2 segundos após solicitação
+| RNF011|O software deve fornecer taxa de ocorrência de falha de 2/1.000
+| RNF012| O software deve fazer backup de dados a cada 24 horas
+| RNF013| O software deve fornecer resposta de erro com 3 segundos
+
+
+
 
 Obs: acrescente mais linhas, se necessário.
 
