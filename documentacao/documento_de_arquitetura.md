@@ -325,16 +325,19 @@ Obs: Acrescente uma breve descrição sobre o diagrama apresentado na Figura 3.
 
 ![Visão Geral da Solução](imagens/components.jpg "Visão Geral da Solução")
 
-![Diagrama de componentes](imagens/componentes.png "Diagrama de componentes")
-
-**Figura 3 – Diagrama de Componentes (exemplo). Fonte: o próprio autor.**
+**Figura 3 – Diagrama de Componentes. Fonte: o próprio autor.**
 
 _Apresente uma descrição detalhada dos artefatos que constituem o diagrama de implantação._
 
-Ex: conforme diagrama apresentado na Figura X, as entidades participantes da solução são:
+- Componente Home: tela onde irá conter todas as infomações sobre o usuário
+- Componente Analyst screen: tela com os dados do analista
+- Componente Ride screen: tela com os dados do piloto
+- Componente Mechanical screen: tela com os dados do mecânico
+- Componente Auth: telas que utilização do serviço de autenticação do usuário
+- Componente Login: tela para login do usuário no sistema
+- Componente Register: tela para registro do usuário no sistema
+- Componente Database: entidade para persistência de dados
 
-- **Componente 1** - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nunc magna, accumsan eget porta a, tincidunt sed mauris. Suspendisse orci nulla, sagittis a lorem laoreet, tincidunt imperdiet ipsum. Morbi malesuada pretium suscipit.
-- **Componente 2** - Praesent nec nisi hendrerit, ullamcorper tortor non, rutrum sem. In non lectus tortor. Nulla vel tincidunt eros.
 
 ## 3.3. Modelo de dados (opcional)
 
