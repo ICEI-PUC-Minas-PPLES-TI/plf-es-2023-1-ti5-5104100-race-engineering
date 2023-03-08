@@ -319,12 +319,6 @@ _Apresente os artefatos que serão utilizados descrevendo em linhas gerais as mo
 
 **Figura 2 – Diagrama de classes. Fonte: o próprio autor.**
 
-Obs: Acrescente uma breve descrição sobre o diagrama apresentado na Figura 3.
-
-### Diagrama de componentes
-
-![Visão Geral da Solução](imagens/components.jpg "Visão Geral da Solução")
-	
 Entidade: 
 - User: usuário do sistema que representa uma entidade abstrata
 - Analyst: usuário do tipo analista representando uma instância da entidade User
@@ -335,6 +329,10 @@ Entidade:
 - Race: entidade que contém todas as informações da corrida
 - Lap: entidade que contém as informações das voltas
 - Circuit: entidade que contém as informações do cirtuito em que se realizarão as provas
+
+### Diagrama de componentes
+
+![Visão Geral da Solução](imagens/components.jpg "Visão Geral da Solução")
 
 **Figura 3 – Diagrama de Componentes. Fonte: o próprio autor.**
 
