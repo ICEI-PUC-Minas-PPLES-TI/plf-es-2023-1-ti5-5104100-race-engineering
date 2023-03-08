@@ -314,16 +314,27 @@ _Apresente os artefatos que serão utilizados descrevendo em linhas gerais as mo
 
 ### Diagrama de Classes
 
-![Diagrama de classes](imagens/classes.gif "Diagrama de classes")
+![Diagrama de classes](imagens/classes.png "Diagrama de classes")
 
 
-**Figura 2 – Diagrama de classes (exemplo). Fonte: o próprio autor.**
+**Figura 2 – Diagrama de classes. Fonte: o próprio autor.**
 
 Obs: Acrescente uma breve descrição sobre o diagrama apresentado na Figura 3.
 
 ### Diagrama de componentes
 
 ![Visão Geral da Solução](imagens/components.jpg "Visão Geral da Solução")
+	
+Entidade: 
+- User: usuário do sistema que representa uma entidade abstrata
+- Analyst: usuário do tipo analista representando uma instância da entidade User
+- Mechanic: usuário do tipo mecânico representando uma instância da entidade User
+- Driver: usuário do tipo piloto representando uma instância da entidade User
+- Team: equipes responsáveis que irão participar das provas
+- Car: são os carros das equipes que disputarão as provas
+- Race: entidade que contém todas as informações da corrida
+- Lap: entidade que contém as informações das voltas
+- Circuit: entidade que contém as informações do cirtuito em que se realizarão as provas
 
 **Figura 3 – Diagrama de Componentes. Fonte: o próprio autor.**
 
