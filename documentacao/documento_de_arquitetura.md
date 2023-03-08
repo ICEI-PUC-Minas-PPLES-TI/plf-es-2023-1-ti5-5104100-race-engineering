@@ -323,7 +323,7 @@ Obs: Acrescente uma breve descrição sobre o diagrama apresentado na Figura 3.
 
 ### Diagrama de componentes
 
-![Visão Geral da Solução](imagens/Diagrama components tis.png "Visão Geral da Solução")
+![Visão Geral da Solução](imagens/components.jpg "Visão Geral da Solução")
 
 ![Diagrama de componentes](imagens/componentes.png "Diagrama de componentes")
 
