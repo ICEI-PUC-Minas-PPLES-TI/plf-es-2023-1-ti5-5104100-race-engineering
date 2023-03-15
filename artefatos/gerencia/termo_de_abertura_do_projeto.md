@@ -86,7 +86,7 @@ Pelo fato do controle de corridas em diferentes pistas serem realizados via plan
 
 - Realização de manutenção pós entrega;
 - Parceria com empresa Porsche;
-- Fornecimento de manual de usabilidade; 
+- Fornecimento de manual de uso; 
 
 
 **2.3 Resultados / serviços / produtos a serem entregues**
@@ -112,7 +112,7 @@ Pelo fato do controle de corridas em diferentes pistas serem realizados via plan
 
 **3.2 Data prevista de início:** 28/02/2023 
 
-**3.3 Data prevista de término:** 19/07/2023
+**3.3 Data prevista de término:** 20/06/2023
 
 ## 4. ESTIMATIVA DE CUSTO
 
