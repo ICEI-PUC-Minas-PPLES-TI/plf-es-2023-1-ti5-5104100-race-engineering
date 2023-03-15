@@ -157,10 +157,10 @@ _Esta seção descreve os requisitos comtemplados nesta descrição arquitetural
 | RF015 | Após acessar o aplicativo o usuário deve ser capaz de marcar como principal uma corrida | Obrigatório
 | RF016 | Após acessar a plataforma Web o usuário deve ser capaz de aplicar filtros e pesquisar determinada corrida | Obrigatório
 | RF017 | Após acessar a plataforma Web o usuário deve estar apto a receber notificações | Opicional
-| RF018|O Após acessar o aplicativo móvel o deve ser capaz de trocar mensagens pelo chat | Obrigatório|
+| RF018 | Após acessar o aplicativo móvel o deve ser capaz de trocar mensagens pelo chat | Obrigatório|
 | RF019 | Após acessar a plataforma Web o usuário deve ser capaz de visualizar informação climática | Obrigatório
 | RF020 | Após acessar a plataforma Web o usuário deve ser capaz de inserir dados informacionais sobre a corrida | Obrigatório
-| RF021 | Após acessar a plataforma Web o usuário deve ser capaz de salvar dados inseridos | Obrigatório
+| RF021 | Após acessar a plataforma Web o usuário deve ser capaz de salvar dados da corrida | Obrigatório
 | RF022 | Após acessar a plataforma Web o usuário deve ser capaz de enviar mensagens via chat | Obrigatório
 | RF023 | Após acessar o aplicativo o  mecânico deve conseguir consultar informações sobre os pneus em corrida |Essencial |
 | RF024 | Após acessar o aplicativo o  piloto deve conseguir consultar informações referentes ao número de voltas |Essencial |
@@ -176,22 +176,20 @@ Obs: acrescente mais linhas, se necessário.
 | **ID** | **Descrição** |
 | --- | --- |
 | RNF001 | O tempo de resposta das consultas deve ser inferior a 5 segundos|
-| RNF002| O sistema deve possuir armazenamento local no mobile com o SQLite|
-| RNF003| O software deve ser compátivel com os sistemas Android e IOS|
-| RNF004| A versão web da aplicação deve operar corretamente nos seguintes navegadores: Google Chrome, Edge e Firefox|
-| RNF005| O usuário deve estar autenticado com 3 segundos|
-| RNF006| A plataforma só pode utilizar os dados do usuário mediante autorização|
-| RNF007| Deve ser intuitiva para usuários leigos|
-| RNF008| O sistema deve estar disponível para interação com o usuário 24 horas e sete dias na semana (24/7).
-| RNF009| O serviço de chat do software terá uma disponibilidade de 999/1.000
-| RNF010|O software deve oferecer tempo de resposta de 2 segundos após solicitação
-| RNF011|O software deve fornecer taxa de ocorrência de falha de 2/1.000
-| RNF012| O software deve fazer backup de dados a cada 24 horas
-| RNF013| O software deve fornecer resposta de erro com 3 segundos
-| RNF014|O software deve processar no mínimo 6 transações por segundo
-| RNF015|O software deve efetuar leitura de dados 5 vezes por segundo, como condição mínima.
-| RNF016|Apenas pessoas que tenham sido autenticadas por um componente de controle acesso e autenticação poderão visualizar informações
-|RNF017|Todas as comunicações externas entre o servidor de dados do software e usuários devem ser criptografadas
+| RNF002 | O sistema deve possuir armazenamento local no mobile com o SQLite|
+| RNF003 | O software deve ser compátivel com os sistemas Android e IOS|
+| RNF004 | A versão web da aplicação deve operar corretamente nos seguintes navegadores: Google Chrome, Edge e Firefox|
+| RNF005 | O usuário deve estar autenticado com 3 segundos|
+| RNF006 | A plataforma só pode utilizar os dados do usuário mediante autorização|
+| RNF007 | O sistema deve estar disponível para interação com o usuário 24 horas e sete dias na semana (24/7).
+| RNF008 | O serviço de chat do software terá uma disponibilidade de 999/1.000
+| RNF009 | O software deve oferecer tempo de resposta de 2 segundos após solicitação
+| RNF010 | O software deve fornecer taxa de ocorrência de falha de 2/1.000
+| RNF011 | O software deve fazer backup de dados com tamanho maximo de 10GB, a cada 24 horas
+| RNF012 | O software deve fornecer resposta de erro com 3 segundos
+| RNF013 | O software deve processar no mínimo 6 transações por segundo
+| RNF014 | Apenas pessoas que tenham sido autenticadas por um componente de controle acesso e autenticação poderão visualizar informações
+| RNF015 | Todas as comunicações externas entre o servidor de dados do software e usuários devem ser criptografadas
 
 
 ## 2.3. Restrições Arquiteturais
