@@ -139,32 +139,31 @@ _Esta seção descreve os requisitos comtemplados nesta descrição arquitetural
 ## 2.1. Requisitos Funcionais
 | **ID** | **Descrição** | **Prioridade** |
 | --- | --- | --- |
-| RF001 | O usuário deve ser capaz de realizar cadastro na plataforma Web| Obrigatório
-| RF002 | O usuário deve ser capaz de acessar a plataforma Web através de email e senha anteriormente cadastrados | Obrigatório
-| RF003 | Após acessar a plataforma Web o usuário deve ler e confirmar que está em acordo com os termos de uso | Opcional
-| RF004 | Após acessar a plataforma Web o usuário deve ser capaz de cadastrar uma corrida | Obrigatório
-| RF005 | Após acessar a plataforma Web o usuário deve ser capaz de cadastrar sua corrida com as informações necessárias | Obrigatório
-| RF006 | Após acessar a plataforma Web o usuário deve ser capaz de visualizar os locais e corridas registradas | Obrigatório
-| RF007 | Após acessar a plataforma Web o usuário deve ser capaz de alterar ou complementar suas informações de perfil | Obrigatório
-| RF008 | Após acessar a plataforma Web o usuário deve ser capaz de marcar uma corrida como principal  | Obrigatório
-| RF008 | Após acessar a plataforma Web o usuário deve ser capaz de associar pilotos e mecânicos a uma corrida  | Obrigatório
-| RF009 | Após acessar a plataforma Web o usuário deve ser capaz de pesquisar determinado corrida registrada | Obrigatório
-| RF010 | O usuário deve ser capaz de realizar login no aplicativo | Obrigatório
-| RF011 | O usuário deve ser capaz de acessar o aplicativo através de email e senha anteriormente cadastrados | Obrigatório
-| RF012 | Após acessar o aplicativo o usuário deve ser capaz de alterar a sua senha de registro | Obrigatório
-| RF013 | Após acessar o aplicativo o usuário deve ser capaz de visualizar as corridas a ele associadas | Obrigatório
-| RF014 | Após acessar o aplicativo o usuário deve ser capaz de alterar ou complementar suas informações de perfil | Obrigatório
-| RF015 | Após acessar o aplicativo o usuário deve ser capaz de marcar como principal uma corrida | Obrigatório
-| RF016 | Após acessar a plataforma Web o usuário deve ser capaz de aplicar filtros e pesquisar determinada corrida | Obrigatório
-| RF017 | Após acessar a plataforma Web o usuário deve estar apto a receber notificações | Opicional
-| RF018 | Após acessar o aplicativo móvel o deve ser capaz de trocar mensagens pelo chat | Obrigatório|
-| RF019 | Após acessar a plataforma Web o usuário deve ser capaz de visualizar informação climática | Obrigatório
-| RF020 | Após acessar a plataforma Web o usuário deve ser capaz de inserir dados informacionais sobre a corrida | Obrigatório
-| RF021 | Após acessar a plataforma Web o usuário deve ser capaz de salvar dados da corrida | Obrigatório
-| RF022 | Após acessar a plataforma Web o usuário deve ser capaz de enviar mensagens via chat | Obrigatório
-| RF023 | Após acessar o aplicativo o  mecânico deve conseguir consultar informações sobre os pneus em corrida |Essencial |
-| RF024 | Após acessar o aplicativo o  piloto deve conseguir consultar informações referentes ao número de voltas |Essencial |
-
+| RF001 | O sistema deve permitir que o usuário realize o cadastro na plataforma Web | Obrigatório
+| RF002 | O sistema deve permitir que o usuário acesse a plataforma Web utilizando o e-mail e senha cadastrados anteriormente | Obrigatório
+| RF003 | O sistema deve permitir que o usuário leia e confirme os termos de uso após acessar a plataforma Web | Opcional
+| RF004 | O sistema deve permitir que o usuário cadastre uma corrida após acessar a plataforma Web | Obrigatório
+| RF005 | O sistema deve permitir que o usuário cadastre uma corrida com todas as informações necessárias após acessar a plataforma Web | Obrigatório
+| RF006 | O sistema deve permitir que o usuário visualize as corridas e os locais registrados após acessar a plataforma Web | Obrigatório
+| RF007 | O sistema deve permitir que o usuário altere ou complemente suas informações de perfil após acessar a plataforma Web | Obrigatório
+| RF008 | O sistema deve permitir que o usuário marque uma corrida como principal após acessar a plataforma Web  | Obrigatório
+| RF009 | O sistema deve permitir que o usuário associe pilotos e mecânicos a uma corrida após acessar a plataforma Web | Obrigatório
+| RF010 | O sistema deve permitir que o usuário pesquise uma corrida registrada após acessar a plataforma Web | Obrigatório
+| RF011 | O sistema deve permitir que o usuário faça o login no aplicativo | Obrigatório
+| RF012 | O sistema deve permitir que o usuário acesse o aplicativo utilizando o e-mail e senha cadastrados anteriormente | Obrigatório
+| RF013 | O sistema deve permitir que o usuário altere sua senha de registro após acessar o aplicativo | Obrigatório
+| RF014 | O sistema deve permitir que o usuário visualize as corridas associadas a ele após acessar o aplicativo | Obrigatório
+| RF015 | O sistema deve permitir que o usuário altere ou complemente suas informações de perfil após acessar o aplicativo | Obrigatório
+| RF016 | O sistema deve permitir que o usuário marque uma corrida como principal após acessar o aplicativo | Obrigatório
+| RF017 | O sistema deve permitir que o usuário aplique filtros e pesquise uma determinada corrida após acessar a plataforma Web | Obrigatório
+| RF018 | O sistema deve permitir que o usuário receba notificações após acessar a plataforma Web | Opcional
+| RF019 | O sistema deve permitir que o usuário troque mensagens através do chat após acessar o aplicativo móvel | Obrigatório|
+| RF020 | O sistema deve permitir que o usuário visualize informações climáticas após acessar a plataforma Web | Obrigatório
+| RF021 | O sistema deve permitir que o usuário insira dados informativos sobre a corrida após acessar a plataforma Web | Obrigatório
+| RF022 | O sistema deve permitir que o usuário salve os dados da corrida após acessar a plataforma Web | Obrigatório
+| RF023 | O sistema deve permitir que o usuário envie mensagens através do chat após acessar a plataforma Web | Obrigatório
+| RF024 | O sistema deve permitir que o mecânico consulte informações sobre os pneus durante a corrida após acessar o aplicativo | Essencial
+| RF025 | O sistema deve permitir que o piloto consulte informações sobre o número de voltas após acessar o aplicativo | Essencial
 
 
 
