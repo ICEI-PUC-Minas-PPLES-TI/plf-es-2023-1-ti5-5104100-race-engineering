@@ -1,6 +1,6 @@
 <div align="justify">
 
-# Termo de Abertura de Projeto (TAP) no.: 0001
+# Termo de Abertura de Projeto (TAP) no : 0001
 
 **Nome da empresa:** RACE ENGINEERING
 
@@ -63,14 +63,14 @@ Pelo fato do controle de corridas em diferentes pistas serem realizados via plan
 
 - Mercado de *software* para este tipo de produto está rem crescente demanda;
 - Facilitar gerenciamento de corridas, beneficiando os usários com praticidade;
-- Facilitar armazenamento de informações para o pré e pós corrida;
+- Facilitar armazenamento de informações para o pré e pós corrida.
 
 
 **1.7 Qualidade esperada do produto final (requisitos de qualidade):**
 
 - Atender as criterios de usabilidade;
 - Bom desempenho;
-- Excelência nos serviços, agregando valor para os usuários;
+- Excelência nos serviços, agregando valor para os usuários.
 
 
 ## **2. ESCOPO PRELIMINAR E PREMISSAS** |
@@ -79,14 +79,14 @@ Pelo fato do controle de corridas em diferentes pistas serem realizados via plan
 
 - Criação e exbibição de diferentes views para usuários em acordância a sua atuação em equipe;
 - Ambiente de comunicação para os usuários;
-- Utilização de fornecimento temporal climático;
+- Utilização de fornecimento temporal climático.
 
 
 **2.2 O que não será feito no projeto (contra-escopo)**
 
 - Realização de manutenção pós entrega;
 - Parceria com empresa Porsche;
-- Fornecimento de manual de uso; 
+- Fornecimento de manual de uso.
 
 
 **2.3 Resultados / serviços / produtos a serem entregues**
@@ -103,7 +103,7 @@ Pelo fato do controle de corridas em diferentes pistas serem realizados via plan
 - Registro da Declaração de Escopo;
 - Registro Estrutura analítica do projeto;
 - Especificação dos requisitos;
-- Distribuição das tarefa conforme cronograma;
+- Distribuição das tarefa conforme cronograma.
 
 
 ## 3. ESTIMATIVA DE PRAZO
