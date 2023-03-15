@@ -332,7 +332,7 @@ Entidade:
 
 ### Diagrama de componentes
 
-![Visão Geral da Solução](imagens/components.jpg "Visão Geral da Solução")
+![Visão Geral da Solução](imagens/componentes.jpg "Visão Geral da Solução")
 
 **Figura 3 – Diagrama de Componentes. Fonte: o próprio autor.**
 
