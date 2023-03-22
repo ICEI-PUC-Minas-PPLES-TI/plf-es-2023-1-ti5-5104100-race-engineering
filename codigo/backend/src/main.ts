@@ -3,6 +3,8 @@ import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
+import { enableSwaggerConfig } from '@/common/config/enable-swagger.config';
+import { HttpExceptionFilter } from '@/common/filters/http-exception.filter';
 
 async function bootstrap() {
   const app: NestExpressApplication = await NestFactory.create(AppModule);
@@ -11,7 +13,9 @@ async function bootstrap() {
 
   app.set('trust proxy', 1);
   app.enableCors();
+  app.useGlobalFilters(new HttpExceptionFilter());
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
+  enableSwaggerConfig(app);
 
   await app.listen(port, () => {
     console.log('[WEB]', `http://localhost:${port}`);
