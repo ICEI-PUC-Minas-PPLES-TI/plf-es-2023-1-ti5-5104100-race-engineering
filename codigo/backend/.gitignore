@@ -41,3 +41,6 @@ docker-compose.test.yml
 
 # ENVIRONMENT
 .env
+
+# DOCKER
+.docker/dbdata

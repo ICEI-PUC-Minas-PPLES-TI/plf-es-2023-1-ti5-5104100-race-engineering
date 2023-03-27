@@ -1,10 +1,10 @@
-import { Exclude } from 'class-transformer';
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
+import { Exclude } from 'class-transformer';
 
-@Entity()
+@Entity('users')
 export class User extends BaseEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   public id!: number;
 
   @Column({ type: 'varchar' })
@@ -21,4 +21,10 @@ export class User extends BaseEntity {
 
   @Column({ type: 'timestamp', nullable: true, default: null })
   public lastLoginAt: Date | null;
+
+  @Column({ type: 'timestamp', default: 'now()' })
+  public createdAt: Date;
+
+  @Column({ type: 'timestamp', default: 'now()' })
+  public updatedAt: Date;
 }
