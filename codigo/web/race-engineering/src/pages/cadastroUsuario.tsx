@@ -23,7 +23,7 @@ export default function cadastroUsuario(){
               <h1 className={styles.titulo} >Cadastrar Usuario</h1>
               </div>
 
-            <form className={styles.form}>
+            <form className={styles.form} action="/add" method="POST">
              
                 <div>
                     <input type="text" placeholder='EMAIL' name='email'></input>
