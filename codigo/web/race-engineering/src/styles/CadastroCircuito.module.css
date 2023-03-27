@@ -1,0 +1,28 @@
+
+.form {
+    width: 25%;
+    height: 400px;
+    margin: 2em 0;
+    margin-left: 500px;
+  }
+
+   .box{
+    padding: 10px;
+    
+  }
+ 
+   .titulo{
+    padding: auto;
+    margin-left: 500px;
+   }
+ 
+   .logo{
+    margin-left: 600px;
+   }
+
+  .botao{
+    margin: 10px;
+    
+  } 
+
+  
