@@ -27,6 +27,10 @@ export class CreateUsers1679942182442 implements MigrationInterface {
             type: 'varchar',
           },
           {
+            name: 'userType',
+            type: 'varchar',
+          },
+          {
             name: 'lastLoginAt',
             type: 'timestamp with time zone',
             default: 'CURRENT_TIMESTAMP',

@@ -1,6 +1,13 @@
 import { Trim } from 'class-sanitizer';
-import { IsEmail, IsOptional, IsString, MinLength } from 'class-validator';
+import {
+  IsEmail,
+  IsEnum,
+  IsOptional,
+  IsString,
+  MinLength,
+} from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { UserType } from '@/api/user/user.entity';
 
 export class RegisterDto {
   @IsString()
@@ -17,6 +24,11 @@ export class RegisterDto {
   @MinLength(8)
   @ApiProperty({ type: 'string', example: 'password' })
   public readonly password: string;
+
+  @IsString()
+  @IsEnum(UserType)
+  @ApiProperty({ type: 'string', example: 'DRIVER', enum: UserType })
+  public readonly userType: string;
 }
 
 export class LoginDto {
