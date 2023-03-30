@@ -40,4 +40,4 @@ Item | Quem | Anotações |
 
 **Evidência de reunião**
 
-![print-reuniao](imagens/2023-03-06-Evidencia-Reuniao.png "06/03/2023")
+![print-reuniao](/documentacao/imagens/2023-03-06-Evidencia-Reuniao.jpeg "06/03/2023")
