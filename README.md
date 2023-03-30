@@ -10,9 +10,9 @@ No intuito de agilizar processos tecnológicos referentes a formulação de estr
 * Ian Marcel de Campos Ferreira
 * Joey Clapton Maciel Barbosa Santos
 * Lorrayne Reis Silva
-* Vitor José Lara Bastos
-* Vitor de Souza Xavier
 * Octávio Oliveira Rocha
+* Vitor de Souza Xavier
+* Vítor José Lara Bastos
 
 ## Orientadores
 
