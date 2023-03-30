@@ -40,7 +40,4 @@ Item | Quem | Anotações |
 
 **Evidência de reunião**
 
-(imagens/2023-03-06-Evidencia-Reuniao.png "06/03/2023")
-
-
-![print-reuniao](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2023-1-ti5-5104100-race-engineering/blob/main/artefatos/atas/2023-03-06-Evidencia-Reuniao.jpeg)
+![print-reuniao](imagens/2023-03-06-Evidencia-Reuniao.png "06/03/2023")
