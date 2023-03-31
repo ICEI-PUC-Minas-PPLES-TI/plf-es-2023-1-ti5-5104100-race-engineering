@@ -180,7 +180,7 @@ Obs: acrescente mais linhas, se necessário.
 | RNF004 | A versão web da aplicação deve operar corretamente nos seguintes navegadores: Google Chrome, Edge e Firefox|
 | RNF005 | O usuário deve estar autenticado com 3 segundos|
 | RNF006 | A plataforma só pode utilizar os dados do usuário mediante autorização|
-| RNF007 | O sistema deve estar disponível para interação com o usuário 24 horas e sete dias na semana (24/7).
+| RNF007 | O sistema deve estar disponível para uso durante pelo menos 99,5% do tempo em um período de 30 dias consecutivos, excluindo períodos de manutenção programada.
 | RNF008 | O serviço de chat do software terá uma disponibilidade de 999/1.000
 | RNF009 | O software deve oferecer tempo de resposta de 2 segundos após solicitação
 | RNF010 | O software deve fornecer taxa de ocorrência de falha de 2/1.000
@@ -210,13 +210,15 @@ As restrições impostas ao projeto que afetam sua arquitetura são:
 
 | **Análise** | **Design** | **Implementação** |
 | --- | --- | --- |
-| Persistência | ORM | Hibernate |
-| Front end | API| Next.js|
-| Back end |API |NodeJS com o ORM Sequelize |
-| Integração | API |ORM Sequelize |
-| Log do sistema | Web services| Node.js |
-| Teste de Software | API| Postman.|
-| Deploy | API| Node.js |
+| **Análise** | **Design** | **Implementação** |
+| --- | --- | --- |
+| Persistência | ORM Hibernate | Utiliza o Hibernate para mapear objetos de software para registros em um banco de dados relacional. |
+| Front end | API com Next.js | Criação de API com o framework Next.js para facilitar a criação de aplicações web.|
+| Back end | API com Node.js e ORM Sequelize | Criação de API com a linguagem Node.js e ORM Sequelize para a manipulação de dados no banco de dados. |
+| Integração | API com ORM Sequelize | Utilização de APIs com o ORM Sequelize para integração de diferentes partes do sistema. |
+| Log do sistema | Web services com Node.js | Implementação de web services com Node.js para registro de logs do sistema. |
+| Teste de Software | API com Postman | Teste de software realizado por meio do Postman, que é uma plataforma para testes de APIs. |
+| Deploy | API com Node.js | Deploy da aplicação realizado por meio da API com Node.js. |
 
 <a name="modelagem"></a>
 # 3. Modelagem e projeto arquitetural

@@ -1,4 +1,4 @@
-# Ata de Reunião - Race Engineering
+# Ata de Reunião Kickoff - Race Engineering
 
 ## Informações
 **Data/hora:** 05/03/2023, 16:00  
@@ -40,5 +40,4 @@ Item | Quem | Anotações |
 
 **Evidência de reunião**
 
-
-![print-reuniao](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2023-1-ti5-5104100-race-engineering/blob/main/artefatos/atas/2023-03-06-Evidencia-Reuniao.jpeg)
+![print-reuniao](/documentacao/imagens/2023-03-06-Evidencia-Reuniao.jpeg "06/03/2023")
