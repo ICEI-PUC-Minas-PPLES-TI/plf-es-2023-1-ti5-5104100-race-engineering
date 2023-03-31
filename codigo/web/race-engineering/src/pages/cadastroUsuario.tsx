@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import styles from '../styles/CadastroUsuario.module.css'
+import styles from '../styles/Cadastro.module.css'
 import logo from "../imgs/costs_logo.png"
 import Image from 'next/image'
 export default function cadastroUsuario(){

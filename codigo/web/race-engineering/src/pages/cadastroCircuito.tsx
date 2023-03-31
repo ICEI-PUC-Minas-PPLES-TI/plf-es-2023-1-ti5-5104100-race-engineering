@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import styles from '../styles/CadastroCircuito.module.css'
+import styles from '../styles/Cadastro.module.css'
 import logo from "../imgs/costs_logo.png"
 import Image from 'next/image'
 export default function cadastroCircuito(){
