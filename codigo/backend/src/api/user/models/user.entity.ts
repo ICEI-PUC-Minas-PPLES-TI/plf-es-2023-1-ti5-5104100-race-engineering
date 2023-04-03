@@ -9,9 +9,9 @@ export enum UserType {
   Analyst = 'ANALYST',
 }
 
-@Entity('users')
+@Entity('User')
 export class User extends BaseEntity {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn('increment')
   public id!: number;
 
   @Column({ type: 'varchar', nullable: true })

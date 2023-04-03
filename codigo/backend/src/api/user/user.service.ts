@@ -8,6 +8,7 @@ import { User } from './user.entity';
 export class UserService {
   @InjectRepository(User)
   private readonly repository: Repository<User>;
+  // TODO: Change Entity pattern from Active Record to Data Mapper, with implementations of repositories
 
   public async updateName(body: UpdateNameDto, req: IRequest): Promise<User> {
     const user: User = <User>req.user;

@@ -23,7 +23,6 @@ const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
         entities: ['dist/**/*.entity.{ts,js}'],
         migrations: ['dist/shared/typeorm/migrations/*.{ts,js}'],
         migrationsTableName: 'typeorm_migrations',
-        autoLoadEntities: true,
         synchronize: false, // never use TRUE in production!
       }),
       inject: [ConfigService],

@@ -8,7 +8,7 @@ const data: any = dotenv.parse(fs.readFileSync(envFilePath));
 
 export const config: DataSourceOptions = {
   type: 'postgres',
-  host: data.DATABASE_HOST,
+  host: 'db',
   port: data.DATABASE_PORT,
   database: data.DATABASE_NAME,
   username: data.DATABASE_USER,
