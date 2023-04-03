@@ -23,7 +23,7 @@ export default function cadastroCorrida(){
 
               
 
-            <form className={styles.form} action="/add" method="POST">
+            <form className={styles.form} action="/races" method="POST">
                  
               <div>
                 <h1 className={styles.titulo} >Cadastrar Corrida</h1>
