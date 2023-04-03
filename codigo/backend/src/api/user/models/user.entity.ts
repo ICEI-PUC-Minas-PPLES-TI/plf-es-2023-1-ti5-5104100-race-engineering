@@ -1,6 +1,15 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  Index,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { Exclude } from 'class-transformer';
+import { Driver } from '@/api/driver/models/driver.entity';
+import { Race } from '@/api/race/models/race.entity';
 
 export enum UserType {
   Driver = 'DRIVER',
@@ -9,33 +18,43 @@ export enum UserType {
   Analyst = 'ANALYST',
 }
 
-@Entity('User')
+@Index('User_pkey', ['id'], { unique: true })
+@Entity('User', { schema: 'public' })
 export class User extends BaseEntity {
   @PrimaryGeneratedColumn('increment')
-  public id!: number;
+  id!: number;
 
   @Column({ type: 'varchar', nullable: true })
   @ApiProperty({ type: 'string', example: 'John Doe' })
-  public name: string | null;
+  name: string | null;
 
   @Column({ type: 'varchar' })
   @ApiProperty({ type: 'string', example: 'john@email.com' })
-  public email!: string;
+  email!: string;
 
   @Exclude()
   @Column({ type: 'varchar' })
-  public password!: string;
+  password!: string;
 
   @Column({ type: 'varchar', nullable: false })
   @ApiProperty({ type: 'string', example: 'DRIVER', enum: UserType })
-  public userType!: string;
+  userType!: string;
 
   @Column({ type: 'timestamp', nullable: true, default: null })
-  public lastLoginAt: Date | null;
+  lastLoginAt: Date | null;
 
   @Column({ type: 'timestamp', default: 'now()' })
-  public createdAt: Date;
+  createdAt: Date;
 
   @Column({ type: 'timestamp', default: 'now()' })
-  public updatedAt: Date;
+  updatedAt: Date;
+
+  @OneToMany(() => Driver, (driver) => driver.user)
+  drivers: Driver[];
+
+  @OneToMany(() => Race, (race) => race.analyst)
+  analystRaces: Race[];
+
+  @OneToMany(() => Race, (race) => race.mechanic)
+  mechanicRaces: Race[];
 }

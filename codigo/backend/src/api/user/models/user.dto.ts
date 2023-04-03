@@ -1,5 +1,5 @@
 import { IsOptional, IsString } from 'class-validator';
-import { User } from '@/api/user/user.entity';
+import { User } from '@/api/user/models/user.entity';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class UpdateNameDto {

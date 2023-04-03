@@ -9,8 +9,8 @@ import {
   Inject,
 } from '@nestjs/common';
 import { JwtAuthGuard } from '@/api/user/auth/auth.guard';
-import { IRequest, UpdateNameDto } from './user.dto';
-import { User } from './user.entity';
+import { IRequest, UpdateNameDto } from './models/user.dto';
+import { User } from './models/user.entity';
 import { UserService } from './user.service';
 import { ApiBody, ApiOkResponse } from '@nestjs/swagger';
 

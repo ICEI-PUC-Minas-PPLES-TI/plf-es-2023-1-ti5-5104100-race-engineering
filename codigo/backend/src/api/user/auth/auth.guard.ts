@@ -1,7 +1,7 @@
 import { Injectable, ExecutionContext } from '@nestjs/common';
 import { AuthGuard as Guard, IAuthGuard } from '@nestjs/passport';
 import { Request } from 'express';
-import { User } from '@/api/user/user.entity';
+import { User } from '@/api/user/models/user.entity';
 
 interface IRequest extends Request {
   user: User;

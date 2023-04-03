@@ -7,7 +7,7 @@ import {
   MinLength,
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { UserType } from '@/api/user/user.entity';
+import { UserType } from '@/api/user/models/user.entity';
 
 export class RegisterDto {
   @IsString()

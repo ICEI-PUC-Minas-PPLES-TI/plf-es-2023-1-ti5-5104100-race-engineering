@@ -8,11 +8,11 @@ import {
   UseGuards,
   Req,
 } from '@nestjs/common';
-import { User } from '@/api/user/user.entity';
+import { User } from '@/api/user/models/user.entity';
 import { RegisterDto, LoginDto } from './models/auth.dto';
 import { JwtAuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
-import { IRequest } from '@/api/user/user.dto';
+import { IRequest } from '@/api/user/models/user.dto';
 import {
   ApiBody,
   ApiConflictResponse,
