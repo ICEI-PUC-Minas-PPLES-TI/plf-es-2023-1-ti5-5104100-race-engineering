@@ -31,6 +31,6 @@ export class CircuitService {
   }
 
   async remove(id: number) {
-    return `This action removes a #${id} circuit`;
+    return `This action removes a #${id} circuit`;;
   }
 }
