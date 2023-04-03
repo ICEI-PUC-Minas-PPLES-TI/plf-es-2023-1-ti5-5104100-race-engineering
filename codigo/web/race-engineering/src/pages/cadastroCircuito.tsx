@@ -21,7 +21,7 @@ export default function cadastroCircuito(){
 
                     
 
-                    <form className={styles.form}>
+                    <form className={styles.form} action="/circuit" method="POST">
                     
                         <div>
                             <h1 className={styles.titulo} >Cadastrar Circuito</h1>

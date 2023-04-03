@@ -24,7 +24,7 @@ export default function cadastroUsuario(){
                 
                 
 
-                <form className={styles.form} action="/add" method="POST">
+                <form className={styles.form} action="/auth/register" method="POST">
 
                 <div>
                 <h1 className={styles.titulo} >Cadastro de  Usuario</h1>
