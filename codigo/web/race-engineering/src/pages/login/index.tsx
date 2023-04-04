@@ -1,19 +1,28 @@
+/* eslint-disable react/no-children-prop */
 import { useRouter } from "next/router";
 import { useState } from "react";
 
+import UserForm from "@/components/user-fields/user-fields";
+import { EmailIcon, LockIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
   FormControl,
   FormLabel,
   Input,
+  InputGroup,
+  InputLeftElement,
+  InputRightElement,
+  Stack,
   VStack,
 } from "@chakra-ui/react";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [show, setShow] = useState(false);
   const router = useRouter();
+  const handleClick = () => setShow(!show);
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -22,24 +31,9 @@ const LoginPage = () => {
 
   return (
     <VStack spacing={4} align="stretch" maxWidth={500}>
-      <FormControl id="email" width={380}>
-        <FormLabel>Email</FormLabel>
-        <Input
-          type="email"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-          placeholder="Digite seu email"
-        />
-      </FormControl>
-      <FormControl id="password">
-        <FormLabel>Senha</FormLabel>
-        <Input
-          type="password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-          placeholder="Digite sua senha"
-        />
-      </FormControl>
+      <Stack spacing={4} width={380}>
+        <UserForm />
+      </Stack>
       <Box display="flex" width="100%">
         <Button
           colorScheme="messenger"
