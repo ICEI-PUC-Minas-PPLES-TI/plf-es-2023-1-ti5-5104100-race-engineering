@@ -1,13 +1,20 @@
+/* eslint-disable react/no-children-prop */
 import { useRouter } from "next/router";
 import { useState } from "react";
 
+import UserForm from "@/components/user-fields/user-fields";
+import { EmailIcon, LockIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
   FormControl,
   FormLabel,
   Input,
+  InputGroup,
+  InputLeftElement,
+  InputRightElement,
   Select,
+  Stack,
   VStack,
 } from "@chakra-ui/react";
 
@@ -19,6 +26,9 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [typeUser, setTypeUser] = useState("");
   const [selected, setSelected] = useState("");
+  const [show, setShow] = useState(false);
+
+  const handleClick = () => setShow(!show);
 
   const handleChange = (event: any) => {
     setSelected(event.target.value);
@@ -37,58 +47,43 @@ const LoginPage = () => {
       justifyContent="center"
       alignItems="center"
     >
-      <VStack spacing={4} align="stretch" maxWidth={500}>
-        <FormControl id="email" width={380}>
-          <FormLabel>Email</FormLabel>
-          <Input
-            type="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            placeholder="Digite seu email"
-          />
-        </FormControl>
-        <FormControl id="password">
-          <FormLabel>Senha</FormLabel>
-          <Input
-            type="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-            placeholder="Digite sua senha"
-          />
-        </FormControl>
-        <FormControl id="password">
-          <FormLabel>Tipo de usuário</FormLabel>
-          <Select value={selected} onChange={handleChange}>
-            {options.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </Select>
-        </FormControl>
+      <Box background={"white"} padding={8} width={480}>
+        <VStack spacing={4}>
+          <UserForm />
+          <FormControl id="userType">
+            <Select value={selected} onChange={handleChange}>
+              <option hidden>Tipo de usuário</option>
+              {options.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </Select>
+          </FormControl>
 
-        <Box display="flex" width="100%">
-          <Button
-            colorScheme="messenger"
-            variant="ghost"
-            onClick={() => {
-              router.back();
-            }}
-            width="50%"
-            mr="3"
-          >
-            Voltar
-          </Button>
-          <Button
-            colorScheme="messenger"
-            onClick={handleSubmit}
-            width="50%"
-            ml="3"
-          >
-            Cadastrar
-          </Button>
-        </Box>
-      </VStack>
+          <Box display="flex" width="100%">
+            <Button
+              colorScheme="messenger"
+              variant="ghost"
+              onClick={() => {
+                router.push("/");
+              }}
+              width="50%"
+              mr="3"
+            >
+              Voltar
+            </Button>
+            <Button
+              colorScheme="messenger"
+              onClick={handleSubmit}
+              width="50%"
+              ml="3"
+            >
+              Cadastrar
+            </Button>
+          </Box>
+        </VStack>
+      </Box>
     </Box>
   );
 };
