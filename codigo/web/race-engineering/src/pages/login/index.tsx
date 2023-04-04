@@ -17,6 +17,13 @@ import {
   VStack,
 } from "@chakra-ui/react";
 
+type Form = {
+  name: string;
+  email: string;
+  password: string;
+  type: string;
+};
+
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

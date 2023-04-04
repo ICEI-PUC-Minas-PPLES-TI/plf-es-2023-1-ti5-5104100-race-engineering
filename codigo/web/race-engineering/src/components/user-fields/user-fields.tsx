@@ -4,16 +4,12 @@ import { useState } from "react";
 
 import { EmailIcon, LockIcon } from "@chakra-ui/icons";
 import {
-  Box,
   Button,
-  FormControl,
-  FormLabel,
   Input,
   InputGroup,
   InputLeftElement,
   InputRightElement,
   Stack,
-  VStack,
 } from "@chakra-ui/react";
 
 const UserFields = () => {
