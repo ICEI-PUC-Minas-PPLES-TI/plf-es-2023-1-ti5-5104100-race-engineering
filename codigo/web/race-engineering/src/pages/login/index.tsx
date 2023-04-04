@@ -44,17 +44,11 @@ const LoginPage = () => {
     api
       .post("/register", data)
       .then(() => {
-        toast({
-          title: "Cadastro realizado com sucesso",
-          status: "success",
-          duration: 3000,
-          isClosable: true,
-          position: "top-right",
-        });
+        router.push("/home-logged");
       })
       .catch((err) => {
         toast({
-          title: "Erro ao fazer cadastro, tente novamente",
+          title: "Erro ao fazer login, tente novamente",
           status: "error",
           duration: 3000,
           isClosable: true,

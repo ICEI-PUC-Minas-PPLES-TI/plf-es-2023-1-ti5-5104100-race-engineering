@@ -62,14 +62,21 @@ const RegisterPage = () => {
 
   const onSubmit = handleSubmit((data, event) => {
     api
-      .post("/login", data)
+      .post("/register", data)
       .then(() => {
         event?.target?.reset();
-        router.push("/home-logged");
+        toast({
+          title: "Cadastro realizado com sucesso",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+          position: "top-right",
+        });
+        router.push("/");
       })
       .catch((err) => {
         toast({
-          title: "Erro ao fazer login, tente novamente",
+          title: "Erro ao fazer cadastro, tente novamente",
           status: "error",
           duration: 3000,
           isClosable: true,
