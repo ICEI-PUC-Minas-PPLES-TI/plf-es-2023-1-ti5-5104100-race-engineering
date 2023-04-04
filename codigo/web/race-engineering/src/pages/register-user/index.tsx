@@ -32,8 +32,21 @@ type Register = {
   type: string;
 };
 
-const LoginPage = () => {
-  const options = ["MECHANIC", "DRIVER", "ANALIST"];
+const RegisterPage = () => {
+  const options = [
+    {
+      label: "Analyst",
+      id: "ANALYST",
+    },
+    {
+      label: "Piloto",
+      id: "DRIVER",
+    },
+    {
+      label: "Mecânico",
+      id: "MECHANIC",
+    },
+  ];
   const router = useRouter();
   const { register, handleSubmit } = useForm<Register>();
   const toast = useToast();
@@ -49,20 +62,14 @@ const LoginPage = () => {
 
   const onSubmit = handleSubmit((data, event) => {
     api
-      .post("/register", data)
+      .post("/login", data)
       .then(() => {
         event?.target?.reset();
-        toast({
-          title: "Cadastro realizado com sucesso",
-          status: "success",
-          duration: 3000,
-          isClosable: true,
-          position: "top-right",
-        });
+        router.push("/home-logged");
       })
       .catch((err) => {
         toast({
-          title: "Erro ao fazer cadastro, tente novamente",
+          title: "Erro ao fazer login, tente novamente",
           status: "error",
           duration: 3000,
           isClosable: true,
@@ -84,10 +91,10 @@ const LoginPage = () => {
           <CardHeader>
             <Heading as="h2" size="md">
               <Highlight
-                query="Cadastro"
+                query="Criar"
                 styles={{ px: "1", py: "1", bg: "gray.100" }}
               >
-                Cadastro de usuário
+                Criar nova conta
               </Highlight>
             </Heading>
           </CardHeader>
@@ -153,8 +160,8 @@ const LoginPage = () => {
                 >
                   <option hidden>Tipo de usuário</option>
                   {options.map((option) => (
-                    <option key={option} value={option}>
-                      {option}
+                    <option key={option.id} value={option.id}>
+                      {option.label}
                     </option>
                   ))}
                 </Select>
@@ -184,4 +191,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
