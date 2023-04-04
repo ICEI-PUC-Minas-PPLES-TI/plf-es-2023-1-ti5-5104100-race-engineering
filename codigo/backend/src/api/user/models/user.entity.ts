@@ -41,12 +41,15 @@ export class User extends BaseEntity {
   userType!: string;
 
   @Column({ type: 'timestamp', nullable: true, default: null })
+  @ApiProperty({ type: 'string', example: '2021-01-01T00:00:00.000Z' })
   lastLoginAt: Date | null;
 
   @Column({ type: 'timestamp', default: 'now()' })
+  @ApiProperty({ type: 'string', example: '2021-01-01T00:00:00.000Z' })
   createdAt: Date;
 
   @Column({ type: 'timestamp', default: 'now()' })
+  @ApiProperty({ type: 'string', example: '2021-01-01T00:00:00.000Z' })
   updatedAt: Date;
 
   @OneToMany(() => Driver, (driver) => driver.user)
