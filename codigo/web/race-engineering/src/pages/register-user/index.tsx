@@ -35,7 +35,7 @@ type Register = {
 const RegisterPage = () => {
   const options = [
     {
-      label: "Analyst",
+      label: "Analista",
       id: "ANALYST",
     },
     {
