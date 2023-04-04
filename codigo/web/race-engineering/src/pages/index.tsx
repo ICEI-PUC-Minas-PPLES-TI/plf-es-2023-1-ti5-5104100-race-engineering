@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import NextLink from 'next/link';
 
+
 import styles from '@/styles/Home.module.css';
 import { Box, Link } from '@chakra-ui/react';
 

@@ -18,15 +18,11 @@
     "bootstrap": "^5.2.3",
     "eslint": "8.36.0",
     "eslint-config-next": "13.2.4",
-    "next": "^13.2.4",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-
     "framer-motion": "^10.10.0",
     "next": "13.2.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-
+    "reactstrap": "^9.1.8",
     "typescript": "5.0.2"
   }
 }
