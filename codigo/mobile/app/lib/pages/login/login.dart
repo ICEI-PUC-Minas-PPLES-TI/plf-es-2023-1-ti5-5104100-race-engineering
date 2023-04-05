@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:app/pages/register/register.dart';
 import 'package:app/pages/admin/admin.dart';
-
+import 'package:motion_toast/motion_toast.dart';
+import 'package:motion_toast/resources/arrays.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
 
   @override
-  State<LoginView> createState() =>
-      _LoginView();
+  State<LoginView> createState() => _LoginView();
 }
 
 class _LoginView extends State<LoginView> {
@@ -31,6 +31,18 @@ class _LoginView extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
+    setState(() {
+
+      Future.delayed(Duration.zero, (){
+        MotionToast.success(
+          title: Text("Cadastro realizado com sucesso"),
+          description: Text(""),
+          width: 250,
+          height: 60,
+          position:  MotionToastPosition.top,
+        ).show(context);
+      });
+    });
     return CupertinoPageScaffold(
         navigationBar: const CupertinoNavigationBar(
           middle: Text('Login'),
@@ -70,7 +82,8 @@ class _LoginView extends State<LoginView> {
                                 onPressed: () {
                                   Navigator.push(
                                     context,
-                                    CupertinoPageRoute(builder: (context) => RegisterView()),
+                                    CupertinoPageRoute(
+                                        builder: (context) => RegisterView()),
                                   );
                                 },
                                 child: const Text('Cadastro'),
@@ -82,7 +95,8 @@ class _LoginView extends State<LoginView> {
                                 onPressed: () {
                                   Navigator.push(
                                     context,
-                                    CupertinoPageRoute(builder: (context) => AdminView()),
+                                    CupertinoPageRoute(
+                                        builder: (context) => AdminView()),
                                   );
                                 },
                                 child: const Text('Login'),
@@ -94,8 +108,7 @@ class _LoginView extends State<LoginView> {
                     ),
                   ],
                 ),
-              )
-          ),
+              )),
         ));
   }
 }

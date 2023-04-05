@@ -1,6 +1,8 @@
+import 'package:app/pages/admin/admin.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:motion_toast/motion_toast.dart';
 
 import 'package:app/pages/login/login.dart';
 
@@ -27,10 +29,7 @@ void _onSubmit() async {
 
   if (response.statusCode == 201) {
     // Formulário enviado com sucesso
-    print("deu certo");
   } else {
-    print("deu erro");
-
     // Ocorreu um erro ao enviar o formulário
   }
 }
@@ -116,7 +115,6 @@ class _RegisterView extends State<RegisterView> {
                       child: CupertinoTextField(
                         controller: _email,
                         placeholder: "Email",
-                        obscureText: true,
                       ),
                     ),
                     Padding(
@@ -170,26 +168,26 @@ class _RegisterView extends State<RegisterView> {
                       children: [
                         Expanded(
                             child: Padding(
-                                padding: const EdgeInsets.only(
+                              padding: const EdgeInsets.only(
                                   top: 0,
                                   bottom: 82,
                                   left: 0,
                                   right: 0
+                              ),
+                              child: CupertinoButton.filled(
+                                onPressed: () {
+                                  _onSubmit();
+                                  Navigator.push(
+                                    context,
+                                    CupertinoPageRoute(
+                                        builder: (context) => LoginView()),
+                                  );
+                                },
+                                child: const Text(
+                                  'Fazer cadastro',
+                                  textAlign: TextAlign.center,
                                 ),
-                                child: CupertinoButton.filled(
-                                  onPressed: () {
-                                    // Navigator.push(
-                                    //   context,
-                                    //   CupertinoPageRoute(
-                                    //       builder: (context) => LoginView()),
-                                    // );
-                                    _onSubmit();
-                                  },
-                                  child: const Text(
-                                    'Fazer cadastro',
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
+                              ),
                             )
                         ),
                       ],

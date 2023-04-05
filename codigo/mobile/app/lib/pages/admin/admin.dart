@@ -1,11 +1,22 @@
 import 'package:flutter/cupertino.dart';
 
+import 'package:motion_toast/motion_toast.dart';
+import 'package:motion_toast/resources/arrays.dart';
 
-class AdminView extends StatelessWidget {
+class AdminView extends StatefulWidget {
   const AdminView({super.key});
 
   @override
+  State<AdminView> createState() =>
+      _AdminView();
+}
+
+class _AdminView extends State<AdminView> {
+
+  @override
   Widget build(BuildContext context) {
+
+
     return CupertinoTabScaffold(
       tabBar: CupertinoTabBar(
         items: const <BottomNavigationBarItem>[
