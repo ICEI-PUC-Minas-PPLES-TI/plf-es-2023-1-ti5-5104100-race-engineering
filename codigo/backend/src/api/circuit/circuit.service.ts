@@ -1,5 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { CreateCircuitDto, UpdateCircuitDto } from './models/circuit.dto';
+import {
+  CreateCircuitDto,
+  ListedCircuit,
+  UpdateCircuitDto,
+} from './models/circuit.dto';
 import { Circuit } from '@/api/circuit/models/circuit.entity';
 
 @Injectable()
@@ -18,8 +22,13 @@ export class CircuitService {
     return await Circuit.save(circuit);
   }
 
-  async findAll() {
-    return `This action returns all circuit`;
+  async findAll(): Promise<ListedCircuit[]> {
+    const circuits = await Circuit.find();
+    return circuits.map((circuit) => ({
+      id: circuit.id,
+      name: circuit.name,
+      local: circuit.local,
+    }));
   }
 
   async findOne(id: number) {
