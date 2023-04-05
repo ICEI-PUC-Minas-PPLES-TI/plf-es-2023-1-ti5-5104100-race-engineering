@@ -24,7 +24,16 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Race Engineering API built with [NestJS](https://github.com/nestjs/nest).
+
+Swagger documentation is available at http://localhost:8000/api-docs
+
+## Running with Docker
+Docker must be installed locally.
+
+```bash
+$ docker-compose up
+```
 
 ## Installation
 
