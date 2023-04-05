@@ -10,11 +10,16 @@ import {
   ClassSerializerInterceptor,
 } from '@nestjs/common';
 import { CircuitService } from './circuit.service';
-import { CreateCircuitDto, UpdateCircuitDto } from './models/circuit.dto';
+import {
+  CreateCircuitDto,
+  ListedCircuit,
+  UpdateCircuitDto,
+} from './models/circuit.dto';
 import { Circuit } from '@/api/circuit/models/circuit.entity';
-import { ApiBody, ApiOkResponse } from '@nestjs/swagger';
+import { ApiBody, ApiOkResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
 
-@Controller('circuit')
+@Controller('circuits')
+@ApiTags('Circuits')
 export class CircuitController {
   constructor(private readonly circuitService: CircuitService) {}
 
@@ -27,12 +32,14 @@ export class CircuitController {
   }
 
   @Get()
-  findAll() {
+  @ApiResponse({ type: [ListedCircuit], description: 'Successful operation' })
+  private async findAll(): Promise<ListedCircuit[]> {
     return this.circuitService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  @ApiResponse({ type: Circuit, description: 'Successful operation' })
+  private async findOne(@Param('id') id: string): Promise<Circuit> {
     return this.circuitService.findOne(+id);
   }
 

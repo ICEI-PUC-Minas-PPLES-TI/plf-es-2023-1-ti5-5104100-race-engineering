@@ -21,3 +21,14 @@ export class CreateCircuitDto {
 }
 
 export class UpdateCircuitDto extends PartialType(CreateCircuitDto) {}
+
+export class ListedCircuit {
+  @ApiProperty({ type: 'number', example: 1 })
+  id: number;
+
+  @ApiProperty({ type: 'string', example: 'Circuit of the Americas' })
+  name: string;
+
+  @ApiProperty({ type: 'string', example: 'Austin, Texas' })
+  local: string;
+}
