@@ -12,3 +12,11 @@ export class UpdateNameDto {
 export interface IRequest extends Request {
   user: User;
 }
+
+export class ListedUser {
+  @ApiProperty({ type: 'number', example: 1 })
+  id: number;
+
+  @ApiProperty({ type: 'string', example: 'John Doe' })
+  name: string;
+}
