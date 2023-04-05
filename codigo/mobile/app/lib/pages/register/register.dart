@@ -13,20 +13,24 @@ class RegisterView extends StatefulWidget {
       _RegisterView();
 }
 
-_void onSubmit() async {
-  final url = Uri.parse('http://localhost:3001');
+void _onSubmit() async {
+  final url = Uri.parse('http://localhost:3002/register');
   final headers = {'Content-Type': 'application/json'};
   final body = jsonEncode({
     'name': 'John Doe',
     'email': 'john.doe@example.com',
-    'message': 'Hello, World!',
+    'password': '123123131312',
+    'type': 'DRIVER'
   });
 
   final response = await http.post(url, headers: headers, body: body);
 
-  if (response.statusCode == 200) {
+  if (response.statusCode == 201) {
     // Formulário enviado com sucesso
+    print("deu certo");
   } else {
+    print("deu erro");
+
     // Ocorreu um erro ao enviar o formulário
   }
 }
@@ -174,11 +178,12 @@ class _RegisterView extends State<RegisterView> {
                                 ),
                                 child: CupertinoButton.filled(
                                   onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      CupertinoPageRoute(
-                                          builder: (context) => LoginView()),
-                                    );
+                                    // Navigator.push(
+                                    //   context,
+                                    //   CupertinoPageRoute(
+                                    //       builder: (context) => LoginView()),
+                                    // );
+                                    _onSubmit();
                                   },
                                   child: const Text(
                                     'Fazer cadastro',
