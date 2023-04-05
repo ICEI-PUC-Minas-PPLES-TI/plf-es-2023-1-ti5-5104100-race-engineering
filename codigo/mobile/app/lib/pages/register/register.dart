@@ -13,6 +13,24 @@ class RegisterView extends StatefulWidget {
       _RegisterView();
 }
 
+_void onSubmit() async {
+  final url = Uri.parse('http://localhost:3001');
+  final headers = {'Content-Type': 'application/json'};
+  final body = jsonEncode({
+    'name': 'John Doe',
+    'email': 'john.doe@example.com',
+    'message': 'Hello, World!',
+  });
+
+  final response = await http.post(url, headers: headers, body: body);
+
+  if (response.statusCode == 200) {
+    // Formulário enviado com sucesso
+  } else {
+    // Ocorreu um erro ao enviar o formulário
+  }
+}
+
 class _RegisterView extends State<RegisterView> {
   late TextEditingController _email;
   late TextEditingController _password;
