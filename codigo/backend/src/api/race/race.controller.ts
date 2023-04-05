@@ -14,9 +14,10 @@ import { RaceService } from './race.service';
 import { CreateRaceDTO, UpdateRaceDto } from './models/race.dto';
 import { UserService } from '@/api/user/user.service';
 import { Race } from '@/api/race/models/race.entity';
-import { ApiBody, ApiOkResponse } from '@nestjs/swagger';
+import { ApiBody, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 
-@Controller('race')
+@Controller('races')
+@ApiTags('Races')
 export class RaceController {
   @Inject(UserService)
   private readonly userService: UserService;
