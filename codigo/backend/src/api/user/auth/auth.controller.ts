@@ -18,10 +18,12 @@ import {
   ApiConflictResponse,
   ApiNotFoundResponse,
   ApiOkResponse,
+  ApiTags,
 } from '@nestjs/swagger';
 import { AuthResponse } from '@/api/user/auth/models/auth.interface';
 
 @Controller('auth')
+@ApiTags('Authentication')
 export class AuthController {
   @Inject(AuthService)
   private readonly service: AuthService;
