@@ -8,6 +8,7 @@ import { HttpExceptionFilter } from '@/common/filters/http-exception.filter';
 
 async function bootstrap() {
   const app: NestExpressApplication = await NestFactory.create(AppModule);
+  app.setGlobalPrefix('api');
   const config: ConfigService = app.get(ConfigService);
   const port: number = config.get<number>('PORT');
 
@@ -18,7 +19,7 @@ async function bootstrap() {
   enableSwaggerConfig(app);
 
   await app.listen(port, () => {
-    console.log('[WEB]', `http://localhost:${port}`);
+    console.log('[API]', `http://localhost:${port}`);
   });
 }
 
