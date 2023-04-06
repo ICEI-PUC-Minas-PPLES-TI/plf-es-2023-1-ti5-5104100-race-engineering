@@ -34,12 +34,9 @@ import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
         <Box display={{ base: "none", md: "flex" }} alignItems="center">
         <Stack direction="row" spacing={6}>
         <Link href="/">Home</Link>
-        <Link href="/about">Corridas</Link>
-        <Link href="/services">Tempo</Link>
-        <Link href="/contact">Pilotos</Link>
-        <Link href="/contact">Mecânicos</Link>
+        <Link href="/about">Races</Link>
+        <Link href="/services">Climate</Link>
         <Link href="/contact">Chat</Link>
-        <Link href="/contact">Logout</Link>
 
         </Stack>
         </Box>
