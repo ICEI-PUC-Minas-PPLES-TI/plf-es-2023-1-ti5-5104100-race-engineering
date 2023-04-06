@@ -27,5 +27,5 @@ export class Team {
   cars: Car[];
 
   @OneToMany(() => Driver, (driver) => driver.team)
-  drivers: Driver[];
+  drivers: Driver[];;
 }

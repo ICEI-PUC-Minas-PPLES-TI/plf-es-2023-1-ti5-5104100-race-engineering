@@ -23,6 +23,6 @@ export class DriverService {
   }
 
   async remove(id: number) {
-    return `This action removes a #${id} driver`;
+    return `This action removes a #${id} driver`;;
   }
 }
