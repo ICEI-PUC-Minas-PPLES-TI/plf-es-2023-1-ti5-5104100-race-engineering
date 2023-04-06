@@ -77,7 +77,6 @@ import {
           <Stack direction={'row'} spacing={6}>
             <Link href={'#'}>Home</Link>
             <Link href={'#'}>Races</Link>
-            <Link href={'#'}>Climate</Link>
             <Link href={'#'}>Chat</Link>
           </Stack>
         </Container>

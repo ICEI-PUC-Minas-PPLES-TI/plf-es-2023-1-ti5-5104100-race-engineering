@@ -13,14 +13,16 @@ import { useRouter } from "next/router";
 //import Hero from '@/components/Hero';
 
 import { Box, Link ,Image, HStack, Heading, Button, Center, Tag, Stack, CardBody, CardFooter, Card} from '@chakra-ui/react';
-
+import CaptionCarosel from "./carousel";
 
 export default function Home() {
   const router=useRouter()
   return (
 
-    <>
     
+
+    <>
+    <CaptionCarosel/>
       
     <Center bg='gray.100'  margin='10x'> 
       <Box>
@@ -37,13 +39,14 @@ export default function Home() {
     src='https://www.porschegt3cup.com.br/wp-content/uploads/2020/07/Porsche-Mobil1-Supercup-abre-na-%C3%81ustria-a-temporada-mais-compacta-de-sua-hist%C3%B3ria.jpg'
     alt='Racing'
   />
+  
   <Stack>
     <CardBody>
       <Heading size='md'>Corridas</Heading>
 
     </CardBody>
 
-    <CardFooter>
+    <CardFooter >
       <Button variant='solid'  onClick={() => {
                 router.push("/register-user");
               }} colorScheme='blue'>
@@ -53,7 +56,6 @@ export default function Home() {
   </Stack>
 </Card>
 
-{/* Card para clima, card para dashboard , card pilotos, card mecanicos, retirar do menu pilotos e mecanicos */}
 
 <Card 
   direction={{ base: 'column', sm: 'row' }}

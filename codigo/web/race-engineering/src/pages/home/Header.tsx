@@ -1,10 +1,14 @@
 import Link from 'next/link'
-import { Box, Flex, Spacer, Button, IconButton, useDisclosure,Stack, Collapse, Icon } from "@chakra-ui/react"
+import { Box, Flex, Spacer, Button, IconButton,Menu, useDisclosure, Image , Stack, Collapse, Icon, MenuButton, MenuGroup, MenuItem, MenuDivider, MenuList } from "@chakra-ui/react"
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 
 
 
     const Header = () => {
+
+        
+
+
           const { isOpen, onToggle } = useDisclosure()
         
          const MenuToggle = ({ toggle }:any) => {
@@ -16,18 +20,17 @@ import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
             }
         
           return (
-        <Box bg="white" px={4}>
+        <Box bg="white" px={8}>
         <Flex h={16} alignItems="center" justifyContent="space-between">
-        <IconButton
-                  size="md"
-                  
-                  aria-label="Open menu"
-                  display={{ md: "none" }}
-                  onClick={onToggle}
-                />
+        <Image
+  borderRadius='full'
+  boxSize='100px'
+ src='https://bit.ly/dan-abramov' // Perguntar sobre como adicionar imagem 
+//   src="../imgs/Logo-corrida.png"
+  alt='Logo'
+/>
         <Box>
         <Link href="/">
-        <Icon  boxSize={10} />
         </Link>
         </Box>
         <Spacer />
@@ -35,8 +38,24 @@ import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
         <Stack direction="row" spacing={6}>
         <Link href="/">Home</Link>
         <Link href="/about">Races</Link>
-        <Link href="/services">Climate</Link>
         <Link href="/contact">Chat</Link>
+
+        <Menu>
+  <MenuButton as={Button} colorScheme='blue'>
+    Profile
+  </MenuButton>
+  <MenuList>
+    <MenuGroup title='Profile'>
+      <MenuItem>My Account</MenuItem>
+      <MenuItem>History </MenuItem>
+    </MenuGroup>
+    <MenuDivider />
+    <MenuGroup title='Settings'>
+      <MenuItem></MenuItem>
+      <MenuItem>Logout</MenuItem>
+    </MenuGroup>
+  </MenuList>
+</Menu>
 
         </Stack>
         </Box>
@@ -47,11 +66,10 @@ import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
         
               <Collapse in={isOpen} animateOpacity>
         <Box pb={4} display={{ md: "none" }}>
-        <Stack as={Box} mt={4} spacing={4} direction="column" align="center">
+        <Stack as={Box} mt={4} spacing={4} direction="column" align="none">
         <Link href="/">Home</Link>
-        <Link href="/about">About</Link>
-        <Link href="/services">Services</Link>
-        <Link href="/contact">Contact</Link>
+        <Link href="/about">Races</Link>
+        <Link href="/services">Climate</Link>
         </Stack>
         </Box>
         </Collapse>
