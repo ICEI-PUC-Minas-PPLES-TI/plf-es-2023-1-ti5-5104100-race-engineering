@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Box,
   IconButton,
@@ -8,13 +8,13 @@ import {
   Text,
   Container,
   Button,
-  
-} from '@chakra-ui/react';
+  withDefaultSize,
+} from "@chakra-ui/react";
 // Here we have used react-icons package for the icons
-import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi';
+import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi";
 // And react-slick as our Carousel Lib
-import Slider from 'react-slick';
-import { useRouter } from 'next/router';
+import Slider from "react-slick";
+import { useRouter } from "next/router";
 
 // Settings for the slider
 const settings = {
@@ -30,48 +30,42 @@ const settings = {
 };
 
 export default function CaptionCarousel() {
-    const router=useRouter()
+  const router = useRouter();
   // As we have used custom buttons, we need a reference variable to
   // change the state
   const [slider, setSlider] = React.useState<Slider | null>(null);
 
   // These are the breakpoints which changes the position of the
   // buttons as the screen size changes
-  const top = useBreakpointValue({ base: '90%', md: '50%' });
-  const side = useBreakpointValue({ base: '30%', md: '40px' });
+  const top = useBreakpointValue({ base: "50%", md: "50%" });
+  const side = useBreakpointValue({ base: "30%", md: "40px" });
 
   // This list contains all the data for carousels
   // This can be static or loaded from a server
   const cards = [
     {
-//         <Button variant='solid'  onClick={() => {
-//             router.push("/register-user");
-//           }} colorScheme='blue'>
-//     Cadastrar Corrida
-//   </Button>
-      title: 'Check race location weather',
-      image:
-        'https://p2.trrsf.com/image/fget/cf/940/0/images.terra.com/2022/11/08/2062464617-20211114094929-scaled.jpg',
-       
+      //         <Button variant='solid'  onClick={() => {
+      //             router.push("/register-user");
+      //           }} colorScheme='blue'>
+      //     Cadastrar Corrida
+      //   </Button>
+      title: "Check race location weather",
     },
     {
-      title: 'Define a race as main',
-      image:
-        'https://vaiquetotevendo.com.br/wp-content/uploads/2023/03/PORSCHE-GT3-CUP-2023-Treinos-Interlagos-QUINTA-5-.jpg',
+      title: "Define a race as main",
     },
     {
-      title: 'Calculate the strategy of a race',
-      image:
-        'https://www.autoracing.com.br/wp-content/uploads/2020/03/Porsche-Cup-2020.jpg',
+      title: "Calculate the strategy of a race",
     },
   ];
 
   return (
     <Box
-      position={'relative'}
-      height={'600px'}
-      width={'full'}
-      overflow={'hidden'}>
+      position={"relative"}
+      height={"300px"}
+      width={"full"}
+      overflow={"hidden"}
+    >
       {/* CSS files for react-slick */}
       <link
         rel="stylesheet"
@@ -91,9 +85,10 @@ export default function CaptionCarousel() {
         position="absolute"
         left={side}
         top={top}
-        transform={'translate(0%, -50%)'}
+        transform={"translate(0%, -50%)"}
         zIndex={2}
-        onClick={() => slider?.slickPrev()}>
+        onClick={() => slider?.slickPrev()}
+      >
         <BiLeftArrowAlt size="40px" />
       </IconButton>
       {/* Right Icon */}
@@ -103,9 +98,10 @@ export default function CaptionCarousel() {
         position="absolute"
         right={side}
         top={top}
-        transform={'translate(0%, -50%)'}
+        transform={"translate(0%, -50%)"}
         zIndex={2}
-        onClick={() => slider?.slickNext()}>
+        onClick={() => slider?.slickNext()}
+      >
         <BiRightArrowAlt size="40px" />
       </IconButton>
       {/* Slider */}
@@ -113,27 +109,44 @@ export default function CaptionCarousel() {
         {cards.map((card, index) => (
           <Box
             key={index}
-            height={'6xl'}
+            height={"6xl"}
             position="relative"
             backgroundPosition="center"
             backgroundRepeat="no-repeat"
             backgroundSize="cover"
-            backgroundImage={`url(${card.image})`}>
+            // backgroundImage={`url(${card.image})`}
+          >
             {/* This is the block you need to change, to customize the caption */}
-            <Container size="container.lg" height="600px" position="relative">
+            <Container size="container.lg" height="400px" position="relative">
               <Stack
                 spacing={6}
-                w={'full'}
-                maxW={'lg'}
+                w={"full"}
+                maxW={"lg"}
                 position="absolute"
                 top="50%"
-                transform="translate(0, -50%)">
-                <Heading fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }} textAlign="left" color="White">
+                transform="translate(0, -50%)"
+              >
+                <Heading
+                  fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }}
+                  textAlign="start"
+                  color="Black"
+                >
                   {card.title}
                 </Heading>
-                <Text fontSize={{ base: 'md', lg: 'lg' }} color="GrayText">
-                
-                </Text>
+                <Button
+                  variant="solid"
+                  onClick={() => {
+                    router.push("/register-user");
+                  }}
+                  colorScheme="blue"
+                >
+                  Cadastrar Corrida
+                </Button>
+                <Text
+                  align="start"
+                  fontSize={{ base: "md", lg: "lg" }}
+                  color="Black"
+                ></Text>
               </Stack>
             </Container>
           </Box>
