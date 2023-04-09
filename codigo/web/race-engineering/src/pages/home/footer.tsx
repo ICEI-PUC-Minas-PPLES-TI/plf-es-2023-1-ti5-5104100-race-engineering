@@ -20,7 +20,7 @@ const Logo = (props: any) => {
   return (
     <Image
       borderRadius="full"
-      boxSize="120px"
+      boxSize="100px"
       //src="https://bit.ly/dan-abramov" // Perguntar sobre como adicionar imagem
       src="./images/Logo-corrida.png"
       alt="Logo"
