@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 import 'package:app/pages/login/login.dart';
+import 'package:app/pages/home/home.dart';
 
 void main() => runApp(const CupertinoTextFieldApp());
 
@@ -9,9 +10,9 @@ class CupertinoTextFieldApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CupertinoApp(
+    return CupertinoApp(
       theme: CupertinoThemeData(brightness: Brightness.light),
-      home: LoginView(),
+      home: HomeView(),
     );
   }
 }
