@@ -1,14 +1,13 @@
+import 'package:app/pages/home/components/body.dart';
+import 'package:app/pages/home/components/footer.dart';
+import 'package:app/pages/login/components/header.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:app/pages/login/login.dart';
 import 'package:app/pages/register/register.dart';
-import 'package:app/pages/admin/admin.dart';
-import 'package:motion_toast/motion_toast.dart';
-import 'package:motion_toast/resources/arrays.dart';
 
 class LoginView extends StatefulWidget {
-  const LoginView({super.key});
-
   @override
-  State<LoginView> createState() => _LoginView();
+  _LoginView createState() => _LoginView();
 }
 
 class _LoginView extends State<LoginView> {
@@ -31,84 +30,96 @@ class _LoginView extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    setState(() {
-
-      Future.delayed(Duration.zero, (){
-        MotionToast.success(
-          title: Text("Cadastro realizado com sucesso"),
-          description: Text(""),
-          width: 250,
-          height: 60,
-          position:  MotionToastPosition.top,
-        ).show(context);
-      });
-    });
     return CupertinoPageScaffold(
-        navigationBar: const CupertinoNavigationBar(
-          middle: Text('Login'),
+      navigationBar: CupertinoNavigationBar(
+        middle: Text('Login'),
+        leading: GestureDetector(
+          child: Icon(
+            CupertinoIcons.back,
+            color: CupertinoColors
+                .darkBackgroundGray, // Define a cor da seta de voltar
+          ),
+          onTap: () {
+            Navigator.of(context).pop(); // Comportamento de voltar
+          },
         ),
-        child: SafeArea(
-          child: Center(
-              child: Padding(
-                padding: EdgeInsets.all(16),
+      ),
+      child: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Expanded(
+                flex: 5,
+                child: Padding(
+                    padding: const EdgeInsets.all(16), child: Header())),
+            Expanded(
+                flex: 3,
+                child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      children: [
+                        CupertinoFormRow(
+                            prefix: Text("Email "),
+                            child: CupertinoTextFormFieldRow(
+                              controller: _email,
+                              placeholder: "Insira seu email",
+                            )),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        CupertinoFormRow(
+                            prefix: Text("Senha"),
+                            child: CupertinoTextFormFieldRow(
+                              controller: _password,
+                              placeholder: "Insira sua senha",
+                              obscureText: true,
+                            )),
+
+                      ],
+                    ))),
+            Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Padding(
-                      padding:
-                      EdgeInsets.only(top: 0, bottom: 8, left: 0, right: 0),
-                      child: CupertinoTextField(
-                        controller: _email,
-                        placeholder: "Email",
+                    SizedBox(
+                      width: double.infinity, // largura igual à tela
+                      child: CupertinoButton(
+                        color: CupertinoColors.darkBackgroundGray,
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            CupertinoPageRoute(
+                                builder: (context) => LoginView()),
+                          );
+                        },
+                        child: const Text('Fazer login'),
                       ),
                     ),
-                    Padding(
-                      padding:
-                      EdgeInsets.only(top: 8, bottom: 16, left: 0, right: 0),
-                      child: CupertinoTextField(
-                        controller: _password,
-                        placeholder: "Senha",
-                        obscureText: true,
-                      ),
-                    ),
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Expanded(
-                              child: CupertinoButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    CupertinoPageRoute(
-                                        builder: (context) => RegisterView()),
-                                  );
-                                },
-                                child: const Text('Cadastro'),
-                              ),
-                            ),
-                            const SizedBox(width: 8),
-                            Expanded(
-                              child: CupertinoButton.filled(
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    CupertinoPageRoute(
-                                        builder: (context) => AdminView()),
-                                  );
-                                },
-                                child: const Text('Login'),
-                              ),
-                            ),
-                          ],
+                    SizedBox(height: 16),
+                    SizedBox(
+                      width: double.infinity, // largura igual à tela
+                      child: CupertinoButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            CupertinoPageRoute(
+                                builder: (context) => RegisterView()),
+                          );
+                        },
+                        child: Text(
+                          'Criar conta',
+                          style: CupertinoTheme.of(context)
+                              .textTheme
+                              .navTitleTextStyle,
                         ),
-                      ],
+                      ),
                     ),
                   ],
-                ),
-              )),
-        ));
+                ))
+          ],
+        ),
+      ),
+    );
   }
 }

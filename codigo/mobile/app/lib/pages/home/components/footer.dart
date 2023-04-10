@@ -16,10 +16,10 @@ class Footer extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                CupertinoPageRoute(builder: (context) => const LoginView()),
+                CupertinoPageRoute(builder: (context) => LoginView()),
               );
             },
-            child: Text('Fazer login'),
+            child: Text('Login'),
           ),
         ),
         SizedBox(height: 16),
@@ -29,7 +29,7 @@ class Footer extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                CupertinoPageRoute(builder: (context) => const RegisterView()),
+                CupertinoPageRoute(builder: (context) => RegisterView()),
               );
             },
             child: Text(
