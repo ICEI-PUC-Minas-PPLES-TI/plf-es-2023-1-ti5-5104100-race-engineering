@@ -31,8 +31,5 @@ export class ListedCircuit {
 
   @ApiProperty({ type: 'string', example: 'Austin, Texas' })
   local: string;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 1e034a9159edcfa71fff6e9d6862c98ac7cb97dc
+
