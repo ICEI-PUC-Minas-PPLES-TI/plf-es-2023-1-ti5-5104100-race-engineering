@@ -5,21 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4c4a502c-b19e-4505-95bc-bb87637afc44" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/lib/pages/login/backup.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/lib/pages/login/components/header.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/lib/pages/register/back.up" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/lib/pages/register/components/header.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/lib/pages/register/components/footer.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ios/Flutter/Debug.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/app/ios/Flutter/Debug.xcconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ios/Flutter/Release.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/app/ios/Flutter/Release.xcconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/app/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ios/Runner.xcworkspace/contents.xcworkspacedata" beforeDir="false" afterPath="$PROJECT_DIR$/app/ios/Runner.xcworkspace/contents.xcworkspacedata" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/lib/pages/home/components/footer.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/pages/home/components/footer.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/lib/pages/home/home.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/pages/home/home.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/lib/pages/admin/admin.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/pages/admin/admin.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/lib/pages/login/login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/pages/login/login.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/lib/pages/races/races.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/pages/races/races.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/lib/pages/register/register.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/pages/register/register.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/lib/shared/validators/email.validator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/shared/validators/email.validator.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/lib/shared/validators/form_field.validator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/shared/validators/form_field.validator.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/app/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/app/pubspec.yaml" afterDir="false" />
     </list>
@@ -37,19 +31,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "cidr.known.project.marker": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "io.flutter.reload.alreadyRun": "true",
-    "last_opened_file_path": "/Users/joeyclapton/dev/puc/plf-es-2023-1-ti5-5104100-race-engineering/codigo/mobile/app/lib/pages/register",
-    "settings.editor.selected.configurable": "Errors",
-    "show.migrate.to.gradle.popup": "false"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/joeyclapton/dev/puc/plf-es-2023-1-ti5-5104100-race-engineering/codigo/mobile/app/lib/pages/register&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/lib/pages/register" />

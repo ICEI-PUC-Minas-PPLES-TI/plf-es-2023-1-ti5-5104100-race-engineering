@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import 'package:motion_toast/motion_toast.dart';
-import 'package:motion_toast/resources/arrays.dart';
+import 'package:app/pages/races/races.dart';
 
 class AdminView extends StatefulWidget {
   const AdminView({super.key});
@@ -21,20 +20,16 @@ class _AdminView extends State<AdminView> {
       tabBar: CupertinoTabBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.star_fill),
-            label: 'Favourites',
+            icon: Icon(CupertinoIcons.car_detailed),
+            label: 'Corridas',
           ),
           BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.clock_solid),
-            label: 'Recents',
+            icon: Icon(CupertinoIcons.clock_fill),
+            label: 'Voltas',
           ),
           BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.person_alt_circle_fill),
-            label: 'Contacts',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.circle_grid_3x3_fill),
-            label: 'Keypad',
+            label: 'Perfil',
           ),
         ],
       ),
@@ -42,7 +37,12 @@ class _AdminView extends State<AdminView> {
         return CupertinoTabView(
           builder: (BuildContext context) {
             return Center(
-              child: Text('Content of tab $index'),
+              child: ListView.builder(
+                itemCount: 2, // quantidade de cards na tela
+                itemBuilder: (context, index) {
+                  return RacesView();
+                },
+              ),
             );
           },
         );

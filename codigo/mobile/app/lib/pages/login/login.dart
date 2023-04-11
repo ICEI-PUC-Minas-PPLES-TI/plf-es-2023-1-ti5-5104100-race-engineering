@@ -1,18 +1,43 @@
-import 'package:app/pages/home/components/body.dart';
-import 'package:app/pages/home/components/footer.dart';
 import 'package:app/pages/login/components/header.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:app/pages/login/login.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:alert/alert.dart';
+
+import 'package:app/shared/validators/email.validator.dart';
+import 'package:app/shared/validators/form_field.validator.dart';
 import 'package:app/pages/register/register.dart';
+import 'package:app/pages/admin/admin.dart';
+import 'package:app/pages/register/components/footer.dart';
 
 class LoginView extends StatefulWidget {
   @override
   _LoginView createState() => _LoginView();
 }
 
+void _onSubmit(String email, String password) async {
+  final url = Uri.parse('http://localhost:8000/api/auth/login');
+  final headers = {'Content-Type': 'application/json'};
+  final body = jsonEncode({
+    'email': email,
+    'password': password,
+  });
+
+  final response = await http.post(url, headers: headers, body: body);
+
+  final isStatusSuccess =
+      response.statusCode == 200 || response.statusCode == 201;
+  if (isStatusSuccess) {
+    // Formulário enviado com sucesso
+  } else {
+    Alert(message: 'Usuário não encontrado 😔').show();
+  }
+}
+
 class _LoginView extends State<LoginView> {
-  late TextEditingController _email;
-  late TextEditingController _password;
+  late TextEditingController _email = TextEditingController();
+  late TextEditingController _password = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -26,6 +51,13 @@ class _LoginView extends State<LoginView> {
     _email.dispose();
     _password.dispose();
     super.dispose();
+  }
+
+  void _handleLogin() {
+    String email = _email.text;
+    String password = _password.text;
+
+    _onSubmit(email, password);
   }
 
   @override
@@ -45,6 +77,8 @@ class _LoginView extends State<LoginView> {
         ),
       ),
       child: SafeArea(
+          child: Form(
+        key: _formKey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -63,6 +97,15 @@ class _LoginView extends State<LoginView> {
                             child: CupertinoTextFormFieldRow(
                               controller: _email,
                               placeholder: "Insira seu email",
+                              validator: (value) {
+                                FieldValidator.getEmptyValuesMessage(
+                                    value!, 'email');
+
+                                if (!EmailValidator.isValid(value!)) {
+                                  return 'Insira um email válido';
+                                }
+                                return null;
+                              },
                             )),
                         const SizedBox(
                           height: 8,
@@ -73,8 +116,13 @@ class _LoginView extends State<LoginView> {
                               controller: _password,
                               placeholder: "Insira sua senha",
                               obscureText: true,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Preencha o campo de senha';
+                                }
+                                return null;
+                              },
                             )),
-
                       ],
                     ))),
             Padding(
@@ -83,22 +131,25 @@ class _LoginView extends State<LoginView> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(
-                      width: double.infinity, // largura igual à tela
+                      width: double.infinity,
                       child: CupertinoButton(
                         color: CupertinoColors.darkBackgroundGray,
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            CupertinoPageRoute(
-                                builder: (context) => LoginView()),
-                          );
+                          if (_formKey.currentState!.validate()) {
+                            _handleLogin();
+                            Navigator.push(
+                              context,
+                              CupertinoPageRoute(
+                                  builder: (context) => AdminView()),
+                            );
+                          }
                         },
                         child: const Text('Fazer login'),
                       ),
                     ),
                     SizedBox(height: 16),
                     SizedBox(
-                      width: double.infinity, // largura igual à tela
+                      width: double.infinity,
                       child: CupertinoButton(
                         onPressed: () {
                           Navigator.push(
@@ -119,7 +170,7 @@ class _LoginView extends State<LoginView> {
                 ))
           ],
         ),
-      ),
+      )),
     );
   }
 }

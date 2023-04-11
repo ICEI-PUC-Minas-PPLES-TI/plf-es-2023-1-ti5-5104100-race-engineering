@@ -1,6 +1,6 @@
-class FormFieldValidator {
+class FieldValidator {
 
-  static String getEmptyValuesMessage(String value, String field) {
+  static String? getEmptyValuesMessage(String value, String field) {
     if (value.isEmpty) {
       return 'Preencha o campo $field';
     }
