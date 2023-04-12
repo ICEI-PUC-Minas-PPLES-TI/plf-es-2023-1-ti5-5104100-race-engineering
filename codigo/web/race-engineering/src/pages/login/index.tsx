@@ -24,16 +24,14 @@ import {
   useToast,
 } from "@chakra-ui/react";
 
-type Register = {
-  name: string;
+type Login = {
   email: string;
   password: string;
-  type: string;
 };
 
 const LoginPage = () => {
   const router = useRouter();
-  const { register, handleSubmit } = useForm<Register>();
+  const { register, handleSubmit } = useForm<Login>();
   const toast = useToast();
 
   const [show, setShow] = useState(false);
@@ -42,9 +40,9 @@ const LoginPage = () => {
 
   const onSubmit = handleSubmit((data, event) => {
     api
-      .post("/register", data)
+      .post("/auth/login", data)
       .then(() => {
-        router.push("/home-logged");
+        router.push("/home");
       })
       .catch((err) => {
         toast({

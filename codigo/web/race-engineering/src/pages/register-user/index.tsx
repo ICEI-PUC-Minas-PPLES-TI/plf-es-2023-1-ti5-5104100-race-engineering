@@ -29,7 +29,7 @@ type Register = {
   name: string;
   email: string;
   password: string;
-  type: string;
+  userType: string;
 };
 
 const RegisterPage = () => {
@@ -62,9 +62,11 @@ const RegisterPage = () => {
 
   const onSubmit = handleSubmit((data, event) => {
     api
-      .post("/register", data)
+      .post("/auth/register", data)
       .then(() => {
         event?.target?.reset();
+        router.push("/");
+
         toast({
           title: "Cadastro realizado com sucesso",
           status: "success",
@@ -72,7 +74,6 @@ const RegisterPage = () => {
           isClosable: true,
           position: "top-right",
         });
-        router.push("/");
       })
       .catch((err) => {
         toast({
@@ -162,7 +163,7 @@ const RegisterPage = () => {
               <InputGroup id="userType">
                 <Select
                   value={selected}
-                  {...register("type")}
+                  {...register("userType")}
                   onChange={handleChange}
                 >
                   <option hidden>Tipo de usuário</option>
