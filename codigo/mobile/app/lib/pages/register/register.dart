@@ -1,6 +1,8 @@
+import 'package:alert/alert.dart';
 import 'package:app/pages/admin/admin.dart';
 import 'package:app/pages/home/components/body.dart';
 import 'package:app/pages/home/components/footer.dart';
+import 'package:app/pages/login/login.dart';
 import 'package:app/pages/register/components/header.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
@@ -14,27 +16,6 @@ class RegisterView extends StatefulWidget {
 
 }
 
-void _onSubmit(BuildContext context) async {
-  final url = Uri.parse('http://localhost:8000/auth/register');
-  final headers = {'Content-Type': 'application/json'};
-  final body = jsonEncode({
-    'name': 'John Doe',
-    'email': 'john.doe@example.com',
-    'password': '123123131312',
-    'type': 'DRIVER'
-  });
-
-  final response = await http.post(url, headers: headers, body: body);
-
-  final isStatusSuccess = response.statusCode == 200 || response.statusCode == 201;
-
-  if (isStatusSuccess) {
-    // Formulário enviado com sucesso
-  } else {
-    // Ocorreu um erro ao enviar o formulário
-  }
-}
-
 class _RegisterView extends State<RegisterView> {
   late TextEditingController _email;
   late TextEditingController _password;
@@ -45,8 +26,22 @@ class _RegisterView extends State<RegisterView> {
   static const List<String> _userTypes = <String>[
     'Analista',
     'Piloto',
-    'Mecânico'
   ];
+
+  String convertString(String input) {
+    final Map<String, String> mappings = {
+      'ANALYST': 'Analista',
+      'DRIVER': 'Piloto',
+    };
+
+    for (var entry in mappings.entries) {
+      if (entry.value == input) {
+        return entry.key;
+      }
+    }
+
+    return input;
+  }
 
   @override
   void initState() {
@@ -63,6 +58,40 @@ class _RegisterView extends State<RegisterView> {
     _name.dispose();
 
     super.dispose();
+  }
+
+  void  _handleRegister(){
+    String name = _name.text;
+    String email = _email.text;
+    String password = _password.text;
+    String userType = convertString(_userTypes[_selectedUserType]);
+
+    _onSubmit(name, email, password, userType);
+  }
+
+  _onSubmit(String name, String email, String password, String userType) async {
+    final url = Uri.parse('http://localhost:8000/api/auth/register');
+    final headers = {'Content-Type': 'application/json'};
+    final body = jsonEncode({
+      'name': name,
+      'email': email,
+      'password': password,
+      'userType': userType
+    });
+
+    final response = await http.post(url, headers: headers, body: body);
+
+    final isStatusSuccess = response.statusCode == 200 || response.statusCode == 201;
+    final userExists = response.statusCode == 409;
+
+    if(userExists) {
+      Alert(message: 'Desculpe, esse usuário já está cadastrado no sistema 😔').show();
+    } else if(response.statusCode == 404) {
+      Alert(message: 'Erro ao fazer cadastro, tente novamente 😉').show();
+    } else {
+      Alert(message: 'Usuário cadastrado com sucesso 🥰').show();
+    }
+
   }
 
 
@@ -121,7 +150,6 @@ class _RegisterView extends State<RegisterView> {
                             child: CupertinoTextFormFieldRow(
                               controller: _name,
                               placeholder: "Insira seu nome completo",
-                              obscureText: true,
                             )),
                         const SizedBox(
                           height: 8,
@@ -191,12 +219,12 @@ class _RegisterView extends State<RegisterView> {
                       child: CupertinoButton(
                         color: CupertinoColors.darkBackgroundGray,
                         onPressed: () {
-                          // _onSubmit(context);
+                          _handleRegister();
                           Navigator.push(
                             context,
                             CupertinoPageRoute(
-                                builder: (context) => AdminView()),
-                          );
+                                builder: (context) => LoginView(),
+                          ));
                         },
                         child: Text(
                           'Criar conta',

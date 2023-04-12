@@ -39,6 +39,7 @@ dependencies:
   motion_toast: ^2.6.6
   cherry_toast: ^1.2.0
   alert: ^2.0.1
+  cupertino_radio_choice: ^1.0.2
 
 dev_dependencies:
   flutter_test:
