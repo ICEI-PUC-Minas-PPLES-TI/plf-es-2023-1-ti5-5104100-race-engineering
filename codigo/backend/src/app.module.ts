@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+
+import { ApiModule } from './api/app.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { getEnvPath } from './common/helper/env.helper';
-import { ApiModule } from './api/api.module';
 
 const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
 
