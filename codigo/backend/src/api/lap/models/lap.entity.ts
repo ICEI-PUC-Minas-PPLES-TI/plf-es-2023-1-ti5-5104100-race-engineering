@@ -9,7 +9,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Race } from '../race/models/race.entity';
+import { Race } from '../../race/models/race.entity';
 
 @Index('Lap_pkey', ['id'], { unique: true })
 @Entity('Lap', { schema: 'public' })

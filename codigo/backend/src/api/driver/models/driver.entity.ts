@@ -13,7 +13,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Team } from '../../entities/team.entity';
+import { Team } from '@/api/team/models/team.entity';
 import { User } from '../../user/models/user.entity';
 import { Race } from '../../race/models/race.entity';
 

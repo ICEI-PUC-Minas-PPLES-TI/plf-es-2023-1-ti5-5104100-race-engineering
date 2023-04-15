@@ -12,7 +12,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Lap } from '../../entities/lap.entity';
+import { Lap } from '@/api/lap/models/lap.entity';
 import { User } from '../../user/models/user.entity';
 import { Circuit } from '../../circuit/models/circuit.entity';
 import { Driver } from '../../driver/models/driver.entity';

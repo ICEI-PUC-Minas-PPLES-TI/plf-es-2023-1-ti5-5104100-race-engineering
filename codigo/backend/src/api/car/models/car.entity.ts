@@ -4,21 +4,24 @@ import {
   DeleteDateColumn,
   Entity,
   Index,
-  OneToMany,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Car } from './car.entity';
-import { Driver } from '../driver/models/driver.entity';
+import { Team } from '@/api/team/models/team.entity';
 
-@Index('Team_pkey', ['id'], { unique: true })
-@Entity('Team', { schema: 'public' })
-export class Team {
+@Index('Car_pkey', ['id'], { unique: true })
+@Entity('Car', { schema: 'public' })
+export class Car {
   @PrimaryGeneratedColumn({ type: 'integer', name: 'id' })
   id: number;
 
-  @Column('text', { name: 'category', nullable: true })
-  category: string | null;
+  @Column('numeric', { name: 'totalFuel', nullable: true })
+  totalFuel: number | null;
+
+  @Column('numeric', { name: 'currentFuel', nullable: true })
+  currentFuel: number | null;
 
   @CreateDateColumn({ name: 'createdAt', type: 'timestamp', default: 'now()' })
   createdAt: Date | null;
@@ -29,9 +32,7 @@ export class Team {
   @DeleteDateColumn({ name: 'deletedAt', type: 'timestamp', default: null })
   deletedAt: Date | null;
 
-  @OneToMany(() => Car, (car) => car.team)
-  cars: Car[];
-
-  @OneToMany(() => Driver, (driver) => driver.team)
-  drivers: Driver[];
+  @ManyToOne(() => Team, (team) => team.cars)
+  @JoinColumn([{ name: 'teamId', referencedColumnName: 'id' }])
+  team: Team;
 }
