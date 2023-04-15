@@ -9,7 +9,7 @@ import { CircuitService } from '@/api/circuit/circuit.service';
 import { DriverService } from '@/api/driver/driver.service';
 import { Driver } from '@/api/driver/models/driver.entity';
 import { Race } from '@/api/race/models/race.entity';
-import { User, UserType } from '@/api/user/models/user.entity';
+import { User, Role } from '@/api/user/models/user.entity';
 
 @Injectable()
 export class RaceService {
@@ -32,7 +32,7 @@ export class RaceService {
 
     const circuit = await this.circuitService.findOne(circuitId);
 
-    const analyst = await this.userService.findOne(analystId, UserType.Analyst);
+    const analyst = await this.userService.findOne(analystId, Role.Analyst);
 
     const foundMechanics = await this.findMechanics(mechanics);
     const foundDrivers = await this.findDrivers(drivers);
@@ -87,7 +87,7 @@ export class RaceService {
     for (let i = 0; i < mechanics.length; i++) {
       const foundMechanic = await this.userService.findOne(
         mechanics[i].id,
-        UserType.Mechanic,
+        Role.Mechanic,
       );
       foundMechanics.push(foundMechanic);
     }

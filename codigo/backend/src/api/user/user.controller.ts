@@ -10,14 +10,15 @@ import {
   Get,
 } from '@nestjs/common';
 import { IRequest, ListedUser, UpdateNameDto } from './models/user.dto';
-import { User } from './models/user.entity';
+import { Role, User } from './models/user.entity';
 import { UserService } from './user.service';
 import { ApiBody, ApiOkResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { AuthGuard } from '@nestjs/passport';
+import { Roles } from '@/api/user/auth/guards/role.decorator';
+import { JwtGuard } from '@/api/user/auth/guards/auth.guard';
+import { RoleGuard } from '@/api/user/auth/guards/role.guard';
 
 @Controller('users')
 @ApiTags('Users')
-@UseGuards(AuthGuard('jwt'))
 export class UserController {
   @Inject(UserService)
   private readonly service: UserService;
@@ -33,18 +34,24 @@ export class UserController {
     return this.service.updateName(body, req);
   }
 
+  @Roles(Role.Admin, Role.Driver)
+  @UseGuards(JwtGuard, RoleGuard)
   @Get('drivers')
   @ApiResponse({ type: [ListedUser], description: 'Successful operation' })
   async listDrivers(): Promise<ListedUser[]> {
     return this.service.listDrivers();
   }
 
+  @Roles(Role.Admin, Role.Mechanic)
+  @UseGuards(JwtGuard, RoleGuard)
   @Get('mechanics')
   @ApiResponse({ type: [ListedUser], description: 'Successful operation' })
   async listMechanics(): Promise<ListedUser[]> {
     return await this.service.listMechanics();
   }
 
+  @Roles(Role.Admin, Role.Analyst)
+  @UseGuards(JwtGuard, RoleGuard)
   @Get('analysts')
   @ApiResponse({ type: [ListedUser], description: 'Successful operation' })
   async listAnalysts(): Promise<ListedUser[]> {

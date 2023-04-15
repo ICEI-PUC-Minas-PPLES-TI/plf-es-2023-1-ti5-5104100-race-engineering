@@ -6,7 +6,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User, UserType } from '@/api/user/models/user.entity';
+import { User, Role } from '@/api/user/models/user.entity';
 import { Repository } from 'typeorm';
 import { RegisterDto, LoginDto } from './models/auth.dto';
 import { AuthHelper } from './auth.helper';
@@ -22,7 +22,7 @@ export class AuthService {
   private readonly helper: AuthHelper;
 
   public async register(body: RegisterDto): Promise<User | never> {
-    const { name, email, password, userType }: RegisterDto = body;
+    const { name, email, password, role }: RegisterDto = body;
     let user: User = await this.userRepository.findOne({ where: { email } });
 
     if (user) {
@@ -31,7 +31,7 @@ export class AuthService {
       });
     }
 
-    if (!Object.values(UserType).includes(userType as unknown as UserType)) {
+    if (!Object.values(Role).includes(role as unknown as Role)) {
       throw new BadRequestException({
         message: 'The user type is not valid',
       });
@@ -41,13 +41,13 @@ export class AuthService {
     user.name = name;
     user.email = email;
     user.password = this.helper.encodePassword(password);
-    user.userType = userType;
+    user.role = role;
     user.createdAt = new Date();
     user.updatedAt = new Date();
 
     const userCreated = await this.userRepository.save(user);
 
-    if (userType === UserType.Driver) {
+    if (role === Role.Driver) {
       const driver = new Driver();
       driver.user = userCreated;
       await Driver.save(driver);

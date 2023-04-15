@@ -8,6 +8,7 @@ import {
   JoinTable,
   ManyToMany,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -16,9 +17,9 @@ import { Exclude } from 'class-transformer';
 import { Driver } from '@/api/driver/models/driver.entity';
 import { Race } from '@/api/race/models/race.entity';
 
-export enum UserType {
-  Driver = 'DRIVER',
+export enum Role {
   Admin = 'ADMIN',
+  Driver = 'DRIVER',
   Mechanic = 'MECHANIC',
   Analyst = 'ANALYST',
 }
@@ -42,24 +43,28 @@ export class User extends BaseEntity {
   password!: string;
 
   @Column({ type: 'varchar', nullable: false })
-  @ApiProperty({ type: 'string', example: 'DRIVER', enum: UserType })
-  userType!: string;
+  @ApiProperty({ type: 'string', example: 'DRIVER', enum: Role })
+  role!: string;
 
+  @Exclude()
   @Column({ type: 'timestamp', nullable: true, default: null })
   @ApiProperty({ type: 'string', example: '2021-01-01T00:00:00.000Z' })
   lastLoginAt: Date | null;
 
+  @Exclude()
   @CreateDateColumn({ name: 'createdAt', type: 'timestamp', default: 'now()' })
   createdAt: Date | null;
 
+  @Exclude()
   @UpdateDateColumn({ name: 'updatedAt', type: 'timestamp', default: 'now()' })
   updatedAt: Date | null;
 
+  @Exclude()
   @DeleteDateColumn({ name: 'deletedAt', type: 'timestamp', default: null })
   deletedAt: Date | null;
 
-  @OneToMany(() => Driver, (driver) => driver.user)
-  drivers: Driver[];
+  @OneToOne(() => Driver, (driver) => driver.user)
+  driver: Driver;
 
   @OneToMany(() => Race, (race) => race.analyst)
   analystRaces: Race[];

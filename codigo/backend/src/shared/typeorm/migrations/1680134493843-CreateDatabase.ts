@@ -10,7 +10,7 @@ export class CreateDatabase1680134493843 implements MigrationInterface {
         "name" text,
         "email" text,
         "password" text,
-        "userType" text,
+        "role" text,
         "lastLoginAt" timestamptz,
         "createdAt" timestamptz,
         "updatedAt" timestamptz,

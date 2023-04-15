@@ -10,6 +10,7 @@ import {
   ManyToMany,
   ManyToOne,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -54,7 +55,7 @@ export class Driver extends BaseEntity {
   @JoinColumn([{ name: 'teamId', referencedColumnName: 'id' }])
   team: Team;
 
-  @ManyToOne(() => User, (user) => user.drivers)
+  @OneToOne(() => User, (user) => user.driver)
   @JoinColumn([{ name: 'userId', referencedColumnName: 'id' }])
   user: User;
 
