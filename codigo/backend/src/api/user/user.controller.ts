@@ -13,7 +13,7 @@ import { IRequest, ListedUser, UpdateNameDto } from './models/user.dto';
 import { Role, User } from './models/user.entity';
 import { UserService } from './user.service';
 import { ApiBody, ApiOkResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { Roles } from '@/api/user/auth/guards/role.decorator';
+import { Roles } from '@/api/user/auth/decorators/role.decorator';
 import { JwtGuard } from '@/api/user/auth/guards/auth.guard';
 import { RoleGuard } from '@/api/user/auth/guards/role.guard';
 

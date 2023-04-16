@@ -17,7 +17,10 @@ export class UserService {
   }
 
   async findOne(id: number, role?): Promise<User> {
-    const user = await User.findOne({ where: { id, role } });
+    const user = await User.findOne({
+      where: { id, role },
+      relations: ['driver', 'analystRaces', 'mechanicRaces'],
+    });
     if (!user)
       throw new NotFoundException({
         message: 'User not found or invalid UserType!',

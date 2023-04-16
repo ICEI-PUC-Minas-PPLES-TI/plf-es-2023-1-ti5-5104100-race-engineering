@@ -9,18 +9,23 @@ import {
   Inject,
   UseInterceptors,
   ClassSerializerInterceptor,
-  Query,
+  UseGuards,
 } from '@nestjs/common';
-import { RaceService } from './race.service';
-import { CreateRaceDTO, UpdateRaceDto } from './models/race.dto';
-import { UserService } from '@/api/user/user.service';
-import { Race } from '@/api/race/models/race.entity';
 import {
   ApiBody,
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiTags,
 } from '@nestjs/swagger';
+import { RaceService } from './race.service';
+import { CreateRaceDTO, UpdateRaceDto } from './models/race.dto';
+import { UserService } from '@/api/user/user.service';
+import { Race } from '@/api/race/models/race.entity';
+import { JwtGuard } from '@/api/user/auth/guards/auth.guard';
+import { RoleGuard } from '@/api/user/auth/guards/role.guard';
+import { Roles } from '@/api/user/auth/decorators/role.decorator';
+import { Role, User } from '@/api/user/models/user.entity';
+import { CurrentUser } from '@/api/user/auth/decorators/user.decorator';
 
 @Controller('races')
 @ApiTags('Races')
@@ -30,6 +35,8 @@ export class RaceController {
   @Inject(RaceService)
   private readonly raceService: RaceService;
 
+  @Roles(Role.Admin)
+  @UseGuards(JwtGuard, RoleGuard)
   @Post()
   @ApiBody({ type: CreateRaceDTO })
   @ApiOkResponse({ description: 'The race was created successfully' })
@@ -40,28 +47,14 @@ export class RaceController {
   }
 
   @Get()
-  findAll() {
-    return this.raceService.findAllRaces();
+  @UseGuards(JwtGuard)
+  private findAll(@CurrentUser() user: User) {
+    return this.raceService.findAllRaces(user);
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.raceService.findOneRace(+id);
-  }
-
-  @Get('driver/:id')
-  public async findByDriver(@Query('id') id: number): Promise<Race[]> {
-    return this.raceService.findByDriver(id);
-  }
-
-  @Get('mechanic/:id')
-  public async findByMechanic(@Query('id') id: number): Promise<Race[]> {
-    return this.raceService.findByMechanic(id);
-  }
-
-  @Get('analyst/:id')
-  public async findByAnalyst(@Query('id') id: number): Promise<Race[]> {
-    return this.raceService.findByAnalyst(id);
   }
 
   @Patch(':id')

@@ -51,25 +51,36 @@ export class RaceService {
     return await Race.save(race);
   }
 
-  async findAllRaces() {
-    return await Race.find();
+  async findAllRaces(user: User): Promise<Race[]> {
+    const foundUser = await this.userService.findOne(user.id);
+    console.log(foundUser);
+    switch (user.role) {
+      case Role.Driver:
+        return await this.findByDriver(foundUser.driver.id);
+      case Role.Mechanic:
+        return await this.findByMechanic(foundUser.id);
+      case Role.Analyst:
+        return await this.findByAnalyst(foundUser.id);
+      case Role.Admin:
+        return await Race.find();
+    }
   }
 
   async findOneRace(id: number) {
     return await Race.findOne({ where: { id } });
   }
 
-  async findByDriver(id: number): Promise<Race[]> {
+  private async findByDriver(id: number): Promise<Race[]> {
     const driver = await this.driverService.findOne(id);
     return driver.races;
   }
 
-  async findByMechanic(id: number): Promise<Race[]> {
+  private async findByMechanic(id: number): Promise<Race[]> {
     const mechanic = await this.userService.findOne(id);
     return mechanic.mechanicRaces;
   }
 
-  async findByAnalyst(id: number): Promise<Race[]> {
+  private async findByAnalyst(id: number): Promise<Race[]> {
     const analyst = await this.userService.findOne(id);
     return analyst.analystRaces;
   }

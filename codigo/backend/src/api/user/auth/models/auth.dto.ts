@@ -8,7 +8,7 @@ import {
   MinLength,
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { Role } from '@/api/user/models/user.entity';
+import { Role, User } from '@/api/user/models/user.entity';
 
 export class RegisterDto {
   @IsString()
@@ -43,4 +43,8 @@ export class LoginDto {
   @IsString()
   @ApiProperty({ type: 'string', example: 'password' })
   public readonly password: string;
+}
+
+export interface AuthRequest extends Request {
+  user: User;
 }
