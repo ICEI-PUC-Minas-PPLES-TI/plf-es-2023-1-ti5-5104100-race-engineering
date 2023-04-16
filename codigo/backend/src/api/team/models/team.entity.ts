@@ -13,7 +13,7 @@ import {
 import { Car } from '../../car/models/car.entity';
 import { Driver } from '../../driver/models/driver.entity';
 import { Exclude } from 'class-transformer';
-import { Race } from '../../../../entities/Race';
+import { Race } from '@/api/race/models/race.entity';
 
 @Index('Team_pkey', ['id'], { unique: true })
 @Entity('Team', { schema: 'public' })
