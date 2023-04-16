@@ -4,12 +4,12 @@ import {
   Post,
   Body,
   Patch,
-  Param,
   Delete,
   Inject,
   UseInterceptors,
   ClassSerializerInterceptor,
   UseGuards,
+  Query,
 } from '@nestjs/common';
 import {
   ApiBody,
@@ -47,23 +47,23 @@ export class RaceController {
   }
 
   @Get()
+  findOne(@Query('id') id: string) {
+    return this.raceService.findOneRace(+id);
+  }
+
+  @Get()
   @UseGuards(JwtGuard)
   private findAll(@CurrentUser() user: User) {
     return this.raceService.findAllRaces(user);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.raceService.findOneRace(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateRaceDto: UpdateRaceDto) {
+  @Patch()
+  update(@Query('id') id: string, @Body() updateRaceDto: UpdateRaceDto) {
     return this.raceService.updateRace(+id, updateRaceDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
+  @Delete()
+  remove(@Query('id') id: string) {
     return this.raceService.removeRace(+id);
   }
 }

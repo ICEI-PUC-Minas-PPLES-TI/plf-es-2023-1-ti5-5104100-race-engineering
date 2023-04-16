@@ -82,8 +82,27 @@ export class RaceService {
     return analyst.analystRaces;
   }
 
-  updateRace(id: number, updateRaceDto: UpdateRaceDto) {
-    return `This action updates a #${id} race`;
+  async updateRace(id: number, updateRaceDto: UpdateRaceDto) {
+    const race = await this.findOneRace(id);
+    const {
+      startDate,
+      endDate,
+      totalLaps,
+      circuitId,
+      analystId,
+      mechanics,
+      drivers,
+    } = updateRaceDto;
+
+    if (startDate) race.startDate = startDate;
+    if (endDate) race.endDate = endDate;
+    if (totalLaps) race.totalLaps = totalLaps;
+    if (circuitId) race.circuit = await this.circuitService.findOne(circuitId);
+    if (analystId) race.analyst = await this.userService.findOne(analystId);
+    if (mechanics) race.mechanics = await this.findMechanics(mechanics);
+    if (drivers) race.drivers = await this.findDrivers(drivers);
+
+    return await Race.save(race);
   }
 
   removeRace(id: number) {

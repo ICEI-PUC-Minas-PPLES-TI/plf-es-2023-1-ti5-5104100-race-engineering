@@ -16,6 +16,7 @@ import { ApiBody, ApiOkResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Roles } from '@/api/user/auth/decorators/role.decorator';
 import { JwtGuard } from '@/api/user/auth/guards/auth.guard';
 import { RoleGuard } from '@/api/user/auth/guards/role.guard';
+import { CurrentUser } from '@/api/user/auth/decorators/user.decorator';
 
 @Controller('users')
 @ApiTags('Users')
@@ -32,6 +33,13 @@ export class UserController {
     @Req() req: IRequest,
   ): Promise<User> {
     return this.service.updateName(body, req);
+  }
+
+  @UseGuards(JwtGuard)
+  @Get('me')
+  @ApiResponse({ type: User, description: 'Successful operation' })
+  async getMe(@CurrentUser() user: User): Promise<User> {
+    return user;
   }
 
   @Roles(Role.Admin, Role.Driver)
