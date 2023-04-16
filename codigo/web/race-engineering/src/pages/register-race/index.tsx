@@ -40,7 +40,8 @@ type Register = {
   totalLaps: number;
   analystId: number;
   circuitId: number;
-  mechanicId: string; //Dps Faz igual ao drivers
+  // mechanicId: string;
+  mechanics: Array<string>;
   drivers: Array<string>; //Verificar  OK
 };
 
@@ -96,7 +97,8 @@ const RegisterPage = () => {
   //Esse const onSubmit Pode Deixar (Talvez so mudar o caminho do post OU talvez nem precise)
   const onSubmit = handleSubmit((data, event) => {
     api
-      .post("/register", data)
+      // .post("/register", data)
+      .post("/races", data)
       .then(() => {
         event?.target?.reset();
         toast({
@@ -154,10 +156,11 @@ const RegisterPage = () => {
                   onChange={handleChange}
                 >
                   <option hidden>Selecione o(s) Corredores</option>
-                  {/* No lugar de options vai ser Drivers 
+                  {/* No lugar de options vai ser Drivers --->SO TROCAR -->TENTA 
                     E no lugar de label vai ser NOme MAS 
                       FALTA O OTAVIO COLOCAR ISSO NO BANCO DE DADOS
                        O JOEY FALOU Q VAI FAZER ESSE SELECT*/}
+
                   {options.map((option) => (
                     <option key={option.id} value={option.id}>
                       {option.label}
@@ -173,7 +176,7 @@ const RegisterPage = () => {
               <InputGroup id="mechanicType">
                 <Select
                   value={selected}
-                  {...register("mechanicId")} //fica de olho se o otavio trocar
+                  {...register("mechanics")}
                   onChange={handleChange}
                 >
                   <option hidden>Selecione o(s) Mecanicos</option>
@@ -190,15 +193,13 @@ const RegisterPage = () => {
             {/* COLOCAR MAIS UM BOX PARA TIMES(FALTA TA NO BACKEND ANTES) */}
             <Box w="100%" marginTop="4">
               <FormLabel>Selecione o(s) Times</FormLabel>
-              {/* Pode Manter o id  Mas acho q tem q trocar  #############*/}
               <InputGroup id="mechanicType">
                 <Select
                   value={selected}
-                  {...register("mechanicId")} //AINDA N TEM(falta o otavio colocar)
+                  {...register("mechanics")}
                   onChange={handleChange}
                 >
                   <option hidden>Selecione o(s) Times</option>
-                  {/*O mesmo q falei no select de cima */}
                   {options.map((option) => (
                     <option key={option.id} value={option.id}>
                       {option.label}
@@ -242,7 +243,6 @@ const RegisterPage = () => {
             <Button
               colorScheme="messenger"
               variant="ghost"
-              //   indo pra pagina home Apos passar pela PagiNA "cadastro com sucesso por 3s"
               onClick={() => {
                 router.push("/");
               }}

@@ -29,7 +29,8 @@ type Register = {
   name: string;
   email: string;
   password: string;
-  userType: string;
+  // userType: string;
+  role:string;
 };
 
 const RegisterPage = () => {
@@ -160,10 +161,11 @@ const RegisterPage = () => {
             </Box>
             <Box w="100%" marginTop="4">
               <FormLabel>Tipo de usuário</FormLabel>
-              <InputGroup id="userType">
+              <InputGroup id="role">
                 <Select
                   value={selected}
-                  {...register("userType")}
+                  // {...register("userType")}
+                  {...register("role")}
                   onChange={handleChange}
                 >
                   <option hidden>Tipo de usuário</option>
