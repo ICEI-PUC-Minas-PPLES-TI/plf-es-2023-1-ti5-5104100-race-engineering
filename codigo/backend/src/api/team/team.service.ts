@@ -1,18 +1,25 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTeamDto, UpdateTeamDto } from './models/team.dto';
+import { Team } from '@/api/team/models/team.entity';
 
 @Injectable()
 export class TeamService {
-  create(createTeamDto: CreateTeamDto) {
-    return 'This action adds a new team';
+  async create(createTeamDto: CreateTeamDto): Promise<Team> {
+    const team = new Team();
+    team.name = createTeamDto.name;
+    team.category = createTeamDto.category;
+    return await Team.save(team);
   }
 
-  findAll() {
-    return `This action returns all team`;
+  async findAll(): Promise<Team[]> {
+    return await Team.find({ relations: ['drivers', 'cars'] });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} team`;
+  async findOne(id: number) {
+    return await Team.findOne({
+      where: { id },
+      relations: ['drivers', 'cars'],
+    });
   }
 
   update(id: number, updateTeamDto: UpdateTeamDto) {

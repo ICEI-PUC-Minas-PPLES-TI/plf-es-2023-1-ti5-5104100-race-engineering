@@ -17,6 +17,7 @@ import {
 import { Team } from '@/api/team/models/team.entity';
 import { User } from '../../user/models/user.entity';
 import { Race } from '../../race/models/race.entity';
+import { Exclude } from 'class-transformer';
 
 @Index('Driver_pkey', ['id'], { unique: true })
 @Entity('Driver', { schema: 'public' })
@@ -42,12 +43,15 @@ export class Driver extends BaseEntity {
   @Column('numeric', { name: 'totalRaceKm', nullable: true })
   totalRaceKm: number | null;
 
+  @Exclude()
   @CreateDateColumn({ name: 'createdAt', type: 'timestamp', default: 'now()' })
   createdAt: Date | null;
 
+  @Exclude()
   @UpdateDateColumn({ name: 'updatedAt', type: 'timestamp', default: 'now()' })
   updatedAt: Date | null;
 
+  @Exclude()
   @DeleteDateColumn({ name: 'deletedAt', type: 'timestamp', default: null })
   deletedAt: Date | null;
 

@@ -6,27 +6,31 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { TeamService } from './team.service';
 import { CreateTeamDto, UpdateTeamDto } from './models/team.dto';
+import { ApiTags } from '@nestjs/swagger';
+import { Team } from '@/api/team/models/team.entity';
 
-@Controller('team')
+@Controller('teams')
+@ApiTags('Teams')
 export class TeamController {
   constructor(private readonly teamService: TeamService) {}
 
   @Post()
-  create(@Body() createTeamDto: CreateTeamDto) {
+  private create(@Body() createTeamDto: CreateTeamDto): Promise<Team> {
     return this.teamService.create(createTeamDto);
   }
 
   @Get()
-  findAll() {
-    return this.teamService.findAll();
+  private findOne(@Query('id') id: string): Promise<Team> {
+    return this.teamService.findOne(+id);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.teamService.findOne(+id);
+  @Get()
+  private findAll(): Promise<Team[]> {
+    return this.teamService.findAll();
   }
 
   @Patch(':id')

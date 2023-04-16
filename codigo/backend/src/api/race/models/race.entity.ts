@@ -6,6 +6,7 @@ import {
   Entity,
   Index,
   JoinColumn,
+  JoinTable,
   ManyToMany,
   ManyToOne,
   OneToMany,
@@ -16,6 +17,8 @@ import { Lap } from '@/api/lap/models/lap.entity';
 import { User } from '../../user/models/user.entity';
 import { Circuit } from '../../circuit/models/circuit.entity';
 import { Driver } from '../../driver/models/driver.entity';
+import { Exclude } from 'class-transformer';
+import { Team } from '@/api/team/models/team.entity';
 
 @Index('Race_pkey', ['id'], { unique: true })
 @Entity('Race', { schema: 'public' })
@@ -32,12 +35,15 @@ export class Race extends BaseEntity {
   @Column('integer', { name: 'totalLaps', nullable: true })
   totalLaps: number | null;
 
+  @Exclude()
   @CreateDateColumn({ name: 'createdAt', type: 'timestamp', default: 'now()' })
   createdAt: Date | null;
 
+  @Exclude()
   @UpdateDateColumn({ name: 'updatedAt', type: 'timestamp', default: 'now()' })
   updatedAt: Date | null;
 
+  @Exclude()
   @DeleteDateColumn({ name: 'deletedAt', type: 'timestamp', default: null })
   deletedAt: Date | null;
 
@@ -61,4 +67,13 @@ export class Race extends BaseEntity {
 
   @ManyToMany(() => Driver, (driver) => driver.races)
   drivers: Driver[];
+
+  @ManyToMany(() => Team, (team) => team.races)
+  @JoinTable({
+    name: 'Race_Team',
+    joinColumns: [{ name: 'raceId', referencedColumnName: 'id' }],
+    inverseJoinColumns: [{ name: 'teamId', referencedColumnName: 'id' }],
+    schema: 'public',
+  })
+  teams: Team[];
 }

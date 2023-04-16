@@ -11,6 +11,7 @@ import {
 } from 'typeorm';
 import { Race } from '../../race/models/race.entity';
 import { ApiProperty } from '@nestjs/swagger';
+import { Exclude } from 'class-transformer';
 
 @Index('Circuit_pkey', ['id'], { unique: true })
 @Entity('Circuit', { schema: 'public' })
@@ -35,12 +36,15 @@ export class Circuit extends BaseEntity {
   @ApiProperty({ type: 'number', example: 0.5 })
   safetyMargin: number | null;
 
+  @Exclude()
   @CreateDateColumn({ name: 'createdAt', type: 'timestamp', default: 'now()' })
   createdAt: Date | null;
 
+  @Exclude()
   @UpdateDateColumn({ name: 'updatedAt', type: 'timestamp', default: 'now()' })
   updatedAt: Date | null;
 
+  @Exclude()
   @DeleteDateColumn({ name: 'deletedAt', type: 'timestamp', default: null })
   deletedAt: Date | null;
 
