@@ -45,15 +45,12 @@ export class RaceService {
     race.analyst = analyst;
     race.mechanics = foundMechanics;
     race.drivers = foundDrivers;
-    race.createdAt = new Date();
-    race.updatedAt = new Date();
 
     return await Race.save(race);
   }
 
   async findAllRaces(user: User): Promise<Race[]> {
     const foundUser = await this.userService.findOne(user.id);
-    console.log(foundUser);
     switch (user.role) {
       case Role.Driver:
         return await this.findByDriver(foundUser.driver.id);

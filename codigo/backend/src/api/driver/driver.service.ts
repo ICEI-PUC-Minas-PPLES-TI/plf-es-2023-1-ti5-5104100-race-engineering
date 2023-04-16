@@ -13,7 +13,10 @@ export class DriverService {
   }
 
   public async findOne(id: number) {
-    const driver = await Driver.findOne({ where: { id } });
+    const driver = await Driver.findOne({
+      where: { id },
+      relations: ['races'],
+    });
     if (!driver) throw new NotFoundException('Driver not found');
     return driver;
   }

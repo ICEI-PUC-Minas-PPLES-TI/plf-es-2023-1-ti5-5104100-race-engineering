@@ -4,8 +4,6 @@ import { AuthRequest } from '@/api/user/auth/models/auth.dto';
 export const CurrentUser = createParamDecorator(
   (data: unknown, ctx: ExecutionContext) => {
     const request = ctx.switchToHttp().getRequest<AuthRequest>();
-    const user = request.user;
-    console.log(user);
-    return user;
+    return request.user;
   },
 );
