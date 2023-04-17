@@ -7,7 +7,7 @@ import 'package:app/pages/register/components/header.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
+import 'package:app/services/http/http.dart';
 
 
 class RegisterView extends StatefulWidget {
@@ -21,6 +21,8 @@ class _RegisterView extends State<RegisterView> {
   late TextEditingController _password;
   late TextEditingController _name;
   int _selectedUserType = 0;
+
+  Request request = Request();
 
   static const double _kItemExtent = 32.0;
   static const List<String> _userTypes = <String>[
@@ -70,28 +72,26 @@ class _RegisterView extends State<RegisterView> {
   }
 
   _onSubmit(String name, String email, String password, String userType) async {
-    final url = Uri.parse('http://localhost:8000/api/auth/register');
-    final headers = {'Content-Type': 'application/json'};
-    final body = jsonEncode({
+    const ENDPOINT = '/auth/register';
+    final body = {
       'name': name,
       'email': email,
       'password': password,
       'userType': userType
-    });
+    };
 
-    final response = await http.post(url, headers: headers, body: body);
+    final response = await request.create(ENDPOINT, body);
 
-    final isStatusSuccess = response.statusCode == 200 || response.statusCode == 201;
     final userExists = response.statusCode == 409;
+    final userCreated = response.statusCode == 201;
 
     if(userExists) {
       Alert(message: 'Desculpe, esse usuário já está cadastrado no sistema 😔').show();
-    } else if(response.statusCode == 404) {
-      Alert(message: 'Erro ao fazer cadastro, tente novamente 😉').show();
-    } else {
+    } else if(userCreated) {
       Alert(message: 'Usuário cadastrado com sucesso 🥰').show();
+    } else {
+      Alert(message: 'Erro ao fazer cadastro, tente novamente 😉').show();
     }
-
   }
 
 

@@ -5,16 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4c4a502c-b19e-4505-95bc-bb87637afc44" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/lib/pages/register/components/footer.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/assets/gradient.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/lib/pages/laps/laps.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/lib/pages/login/components/footer.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/lib/services/http/http.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/lib/pages/admin/admin.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/pages/admin/admin.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/lib/pages/login/login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/pages/login/login.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/lib/pages/races/races.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/pages/races/races.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/lib/pages/register/register.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/pages/register/register.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/lib/shared/validators/email.validator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/shared/validators/email.validator.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/lib/shared/validators/form_field.validator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/shared/validators/form_field.validator.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/app/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/app/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,6 +22,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2NLZqOEX8ri7EzUdmCqlPb2qT4P" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -49,6 +50,9 @@
       <recent name="$PROJECT_DIR$/app/lib/pages/register" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/assets" />
+      <recent name="$PROJECT_DIR$/app" />
+      <recent name="$PROJECT_DIR$/app/lib/assets" />
       <recent name="$PROJECT_DIR$/app/lib/pages/login/components" />
     </key>
   </component>
