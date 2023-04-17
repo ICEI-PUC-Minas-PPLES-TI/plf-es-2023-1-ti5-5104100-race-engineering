@@ -28,7 +28,6 @@ export default function Home() {
   if (loading) {
     return <Spinner />;
   } else {
-    // ### Css pelo chat gpt ele faz certo mas vai comparando (ex: o form acho q tem um so dele)
     return (
       <div className={styles["background"]}>
         <Head>
