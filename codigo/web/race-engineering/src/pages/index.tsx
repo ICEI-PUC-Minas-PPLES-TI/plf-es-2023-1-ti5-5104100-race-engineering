@@ -20,16 +20,12 @@ export default function Index() {
   return (
 
     <> 
-
-    
-    
       <Header />
    
       <Home/>
 
       <Logo/>
               
-
       {/* <Hero /> */}
     
       {/* <Box height="100vh" width="100%">
@@ -44,7 +40,6 @@ export default function Index() {
         </Box>
       </Box> */}
 
-      
     </>
   );
 }
