@@ -6,9 +6,10 @@ import { useForm } from "react-hook-form";
 import UserForm from "@/components/user-fields/user-fields";
 import api from "@/services/api";
 import { AtSignIcon, EmailIcon, LockIcon } from "@chakra-ui/icons";
-// import Select from 'react-select'; //######PRO MULTIPLIE SELECT
-// import AsyncSelect from 'react-select/async';//######PRO MULTIPLIE SELECT
-//Dai no lugar de usar Select usa AsyncSelect
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
+import {options} from './option-mock'
+
 
 import {
   Box,
@@ -25,7 +26,6 @@ import {
   InputGroup,
   InputLeftElement,
   InputRightElement,
-  Select,
   useToast,
 } from "@chakra-ui/react";
 
@@ -48,32 +48,15 @@ type Register = {
 const RegisterPage = () => {
   //Esse const options é pro select
   //Vai mudar algo pq vai vir do BD dos corredores e mecanicos ja cadastradros
-  const options = [
-    {
-      label: "Analista",
-      id: "ANALYST",
-    },
-    {
-      label: "Piloto",
-      id: "DRIVER",
-    },
-    {
-      label: "Mecânico",
-      id: "MECHANIC",
-    },
-  ];
+  const animatedComponents = makeAnimated();
+
   const router = useRouter();
   const { register, handleSubmit } = useForm<Register>();
   const toast = useToast();
 
-  const [selected, setSelected] = useState("");
   const [show, setShow] = useState(false);
 
   const handleClick = () => setShow(!show);
-
-  const handleChange = (event: any) => {
-    setSelected(event.target.value);
-  };
 
   // BACKEND
   const [drivers, setDrivers] = useState([]);
@@ -145,27 +128,16 @@ const RegisterPage = () => {
           <CardBody>
             <Box w="100%" marginTop="4">
               <FormLabel>Selecione o(s) Corredores</FormLabel>
-              <InputGroup id="racerType">
-                {/* const MyComponent = () => ( */}
-                {/* <Select options={options} /> */}
-                {/* ) */}
-                {/* ###############Multiplies Select */}
+              <InputGroup id="racerType" w="100%">
                 <Select
-                  value={selected}
-                  {...register("drivers")} //tava type Acho q troquei certo
-                  onChange={handleChange}
-                >
-                  <option hidden>Selecione o(s) Corredores</option>
-                  {/* No lugar de options vai ser Drivers
-                    E no lugar de label vai ser NOme MAS 
-                      */}
+                    closeMenuOnSelect={false}
+                    components={animatedComponents}
+                    isMulti
+                    options={options}
+                    onChange={handleSelectChange}
+                    value={selectedDrivers}
 
-                  {options.map((option) => (
-                    <option key={option.id} value={option.id}>
-                      {option.label}
-                    </option>
-                  ))}
-                </Select>
+                />
               </InputGroup>
             </Box>
 
@@ -173,19 +145,7 @@ const RegisterPage = () => {
               <FormLabel>Selecione o(s) Mecanicos</FormLabel>
               {/* Pode Manter o id  Mas acho q tem q trocar  #############*/}
               <InputGroup id="mechanicType">
-                <Select
-                  value={selected}
-                  {...register("mechanics")}
-                  onChange={handleChange}
-                >
-                  <option hidden>Selecione o(s) Mecanicos</option>
-                  {/*O mesmo q falei no select de cima */}
-                  {options.map((option) => (
-                    <option key={option.id} value={option.id}>
-                      {option.label}
-                    </option>
-                  ))}
-                </Select>
+
               </InputGroup>
             </Box>
 
@@ -193,18 +153,7 @@ const RegisterPage = () => {
             <Box w="100%" marginTop="4">
               <FormLabel>Selecione o(s) Times</FormLabel>
               <InputGroup id="mechanicType">
-                <Select
-                  value={selected}
-                  {...register("mechanics")}
-                  onChange={handleChange}
-                >
-                  <option hidden>Selecione o(s) Times</option>
-                  {options.map((option) => (
-                    <option key={option.id} value={option.id}>
-                      {option.label}
-                    </option>
-                  ))}
-                </Select>
+
               </InputGroup>
             </Box>
 
