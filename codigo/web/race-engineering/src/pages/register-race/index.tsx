@@ -1,33 +1,19 @@
 /* eslint-disable react/no-children-prop */
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-
-import UserForm from "@/components/user-fields/user-fields";
-import api from "@/services/api";
-import { AtSignIcon, EmailIcon, LockIcon } from "@chakra-ui/icons";
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
-import {options} from './option-mock'
 
-
+import UserForm from '@/components/user-fields/user-fields';
+import api from '@/services/api';
+import { AtSignIcon, EmailIcon, LockIcon } from '@chakra-ui/icons';
 import {
-  Box,
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  FormControl,
-  FormLabel,
-  Heading,
-  Highlight,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  InputRightElement,
-  useToast,
-} from "@chakra-ui/react";
+    Box, Button, Card, CardBody, CardFooter, CardHeader, FormControl, FormLabel, Heading, Highlight,
+    Input, InputGroup, InputLeftElement, InputRightElement, useToast
+} from '@chakra-ui/react';
+
+import { options } from './option-mock';
 
 type Register = {
   name: string;
@@ -55,6 +41,7 @@ const RegisterPage = () => {
   const toast = useToast();
 
   const [show, setShow] = useState(false);
+  const [selectedDrivers, setSelectedDrivers] = useState([]);
 
   const handleClick = () => setShow(!show);
 
@@ -104,6 +91,14 @@ const RegisterPage = () => {
       });
   });
 
+  const handleSelectChange = (selectedOption: any) => {
+    if (selectedOption && selectedOption.length > 2) {
+      // Se mais de 2 opções forem selecionadas, mantenha apenas as 2 primeiras
+      selectedOption = selectedOption.slice(0, 2);
+    }
+    setSelectedDrivers(selectedOption);
+  };
+
   return (
     <Box
       height="100vh"
@@ -128,15 +123,15 @@ const RegisterPage = () => {
           <CardBody>
             <Box w="100%" marginTop="4">
               <FormLabel>Selecione o(s) Corredores</FormLabel>
-              <InputGroup id="racerType" w="100%">
+              <InputGroup id="drivers" w="100%">
                 <Select
-                    closeMenuOnSelect={false}
-                    components={animatedComponents}
-                    isMulti
-                    options={options}
-                    onChange={handleSelectChange}
-                    value={selectedDrivers}
-
+                  closeMenuOnSelect={false}
+                  components={animatedComponents}
+                  isMulti
+                  options={options}
+                  onChange={handleSelectChange}
+                  value={selectedDrivers}
+                  placeholder="Selecione os corredores"
                 />
               </InputGroup>
             </Box>
@@ -144,17 +139,13 @@ const RegisterPage = () => {
             <Box w="100%" marginTop="4">
               <FormLabel>Selecione o(s) Mecanicos</FormLabel>
               {/* Pode Manter o id  Mas acho q tem q trocar  #############*/}
-              <InputGroup id="mechanicType">
-
-              </InputGroup>
+              <InputGroup id="mechanicType"></InputGroup>
             </Box>
 
             {/* COLOCAR MAIS UM BOX PARA TIMES(FALTA TA NO BACKEND ANTES) */}
             <Box w="100%" marginTop="4">
               <FormLabel>Selecione o(s) Times</FormLabel>
-              <InputGroup id="mechanicType">
-
-              </InputGroup>
+              <InputGroup id="mechanicType"></InputGroup>
             </Box>
 
             <Box w="100%" marginY="4">
