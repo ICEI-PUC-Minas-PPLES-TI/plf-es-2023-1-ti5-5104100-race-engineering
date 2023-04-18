@@ -156,10 +156,9 @@ const RegisterPage = () => {
                   onChange={handleChange}
                 >
                   <option hidden>Selecione o(s) Corredores</option>
-                  {/* No lugar de options vai ser Drivers --->SO TROCAR -->TENTA 
+                  {/* No lugar de options vai ser Drivers
                     E no lugar de label vai ser NOme MAS 
-                      FALTA O OTAVIO COLOCAR ISSO NO BANCO DE DADOS
-                       O JOEY FALOU Q VAI FAZER ESSE SELECT*/}
+                      */}
 
                   {options.map((option) => (
                     <option key={option.id} value={option.id}>
