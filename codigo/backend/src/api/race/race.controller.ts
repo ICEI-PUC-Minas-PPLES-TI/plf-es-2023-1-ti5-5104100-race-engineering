@@ -47,14 +47,14 @@ export class RaceController {
   }
 
   @Get()
-  findOne(@Query('id') id: string) {
-    return this.raceService.findOneRace(+id);
-  }
-
-  @Get()
   @UseGuards(JwtGuard)
   private findAll(@CurrentUser() user: User) {
     return this.raceService.findAllRaces(user);
+  }
+
+  @Get(':id')
+  findOne(@Query('id') id: string) {
+    return this.raceService.findOneRace(+id);
   }
 
   @Patch()

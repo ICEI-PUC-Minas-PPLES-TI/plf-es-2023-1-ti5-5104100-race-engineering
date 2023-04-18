@@ -24,6 +24,8 @@ const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
         migrations: ['dist/shared/typeorm/migrations/*.{ts,js}'],
         migrationsTableName: 'typeorm_migrations',
         synchronize: false, // never use TRUE in production!
+        // seeds: ['dist/shared/typeorm/seeding/*.{ts,js}'],
+        // factories: ['dist/shared/typeorm/factories/*.{ts,js}'],
       }),
       inject: [ConfigService],
     }),
