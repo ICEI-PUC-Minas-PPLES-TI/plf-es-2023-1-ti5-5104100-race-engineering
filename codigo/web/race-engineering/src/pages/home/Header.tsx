@@ -27,7 +27,7 @@ const Header = () => {
   const MenuToggle = ({ toggle }: any) => {
     return (
       <Box display={{ base: "block", md: "none" }} onClick={toggle}>
-              {isOpen ? <CloseIcon /> : <HamburgerIcon />}
+        {isOpen ? <CloseIcon /> : <HamburgerIcon />}
       </Box>
     );
   };
@@ -35,13 +35,47 @@ const Header = () => {
   return (
     <Box bg="white" px={8}>
       <Flex h={16} alignItems="center" justifyContent="space-between">
-        <Image
-          borderRadius="full"
-          boxSize="100px"
-          src="./images/Logo-corrida.png" // Perguntar sobre como adicionar imagem
-          //   src="../imgs/Logo-corrida.png"
-          alt="Logo"
-        />
+
+        <Stack direction="row" spacing={4}>
+          <Stack direction="column" alignItems="center" spacing={2}>
+            <Image
+              borderRadius={0}
+              boxSize="40px"
+              src="./images/cadastro-corrida.png"
+              alt="Logo"
+              onClick={() => router.push("/register-race")}
+              cursor="pointer"
+            />
+            <Box fontWeight="bold" fontSize="70%">Cadastrar corridas</Box>
+          </Stack>
+
+          <Stack direction="column" alignItems="center" spacing={2}>
+            <Image
+              borderRadius={0}
+              boxSize="40px"
+              src="./images/lista-corridas.png"
+              alt="Logo"
+              onClick={() => router.push("/corridasCadastradas")}
+              cursor="pointer"
+            />
+            <Box fontWeight="bold" fontSize="70%">Lista de Corridas</Box>
+          </Stack>
+
+          <Stack direction="column" alignItems="center" spacing={2}>
+            <Image
+              borderRadius={0}
+              boxSize="40px"
+              src="./images/clima.png"
+              alt="Logo"
+              onClick={() => router.push("/register-race")}
+              cursor="pointer"
+            />
+            <Box fontWeight="bold" fontSize="70%">Clima</Box>
+          </Stack>
+
+        </Stack>
+        
+
         <Box>
           <Link href="/"></Link>
         </Box>
@@ -96,7 +130,7 @@ const Header = () => {
         </Box>
         <MenuToggle toggle={onToggle} />
       </Flex>
-             {" "}
+      {" "}
       <Collapse in={isOpen} animateOpacity>
         <Box pb={4} display={{ md: "none" }}>
           <Stack as={Box} mt={4} spacing={4} direction="column" align="none">

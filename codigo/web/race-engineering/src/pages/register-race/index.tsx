@@ -1,33 +1,19 @@
 /* eslint-disable react/no-children-prop */
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
 
-import UserForm from "@/components/user-fields/user-fields";
-import api from "@/services/api";
-import { AtSignIcon, EmailIcon, LockIcon } from "@chakra-ui/icons";
-// import Select from 'react-select'; //######PRO MULTIPLIE SELECT
-// import AsyncSelect from 'react-select/async';//######PRO MULTIPLIE SELECT
-//Dai no lugar de usar Select usa AsyncSelect
-
+import UserForm from '@/components/user-fields/user-fields';
+import api from '@/services/api';
+import { AtSignIcon, EmailIcon, LockIcon } from '@chakra-ui/icons';
 import {
-  Box,
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  FormControl,
-  FormLabel,
-  Heading,
-  Highlight,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  InputRightElement,
-  Select,
-  useToast,
-} from "@chakra-ui/react";
+    Box, Button, Card, CardBody, CardFooter, CardHeader, FormControl, FormLabel, Heading, Highlight,
+    Input, InputGroup, InputLeftElement, InputRightElement, useToast
+} from '@chakra-ui/react';
+
+import { options } from './option-mock';
 
 type Register = {
   name: string;
@@ -48,32 +34,16 @@ type Register = {
 const RegisterPage = () => {
   //Esse const options é pro select
   //Vai mudar algo pq vai vir do BD dos corredores e mecanicos ja cadastradros
-  const options = [
-    {
-      label: "Analista",
-      id: "ANALYST",
-    },
-    {
-      label: "Piloto",
-      id: "DRIVER",
-    },
-    {
-      label: "Mecânico",
-      id: "MECHANIC",
-    },
-  ];
+  const animatedComponents = makeAnimated();
+
   const router = useRouter();
   const { register, handleSubmit } = useForm<Register>();
   const toast = useToast();
 
-  const [selected, setSelected] = useState("");
   const [show, setShow] = useState(false);
+  const [selectedDrivers, setSelectedDrivers] = useState([]);
 
   const handleClick = () => setShow(!show);
-
-  const handleChange = (event: any) => {
-    setSelected(event.target.value);
-  };
 
   // BACKEND
   const [drivers, setDrivers] = useState([]);
@@ -121,6 +91,14 @@ const RegisterPage = () => {
       });
   });
 
+  const handleSelectChange = (selectedOption: any) => {
+    if (selectedOption && selectedOption.length > 2) {
+      // Se mais de 2 opções forem selecionadas, mantenha apenas as 2 primeiras
+      selectedOption = selectedOption.slice(0, 2);
+    }
+    setSelectedDrivers(selectedOption);
+  };
+
   return (
     <Box
       height="100vh"
@@ -145,68 +123,29 @@ const RegisterPage = () => {
           <CardBody>
             <Box w="100%" marginTop="4">
               <FormLabel>Selecione o(s) Corredores</FormLabel>
-              <InputGroup id="racerType">
-                {/* const MyComponent = () => ( */}
-                {/* <Select options={options} /> */}
-                {/* ) */}
-                {/* ###############Multiplies Select */}
+              <InputGroup id="drivers" w="100%">
                 <Select
-                  value={selected}
-                  {...register("drivers")} //tava type Acho q troquei certo
-                  onChange={handleChange}
-                >
-                  <option hidden>Selecione o(s) Corredores</option>
-                  {/* No lugar de options vai ser Drivers --->SO TROCAR -->TENTA 
-                    E no lugar de label vai ser NOme MAS 
-                      FALTA O OTAVIO COLOCAR ISSO NO BANCO DE DADOS
-                       O JOEY FALOU Q VAI FAZER ESSE SELECT*/}
-
-                  {options.map((option) => (
-                    <option key={option.id} value={option.id}>
-                      {option.label}
-                    </option>
-                  ))}
-                </Select>
+                  closeMenuOnSelect={false}
+                  components={animatedComponents}
+                  isMulti
+                  options={options}
+                  onChange={handleSelectChange}
+                  value={selectedDrivers}
+                  placeholder="Selecione os corredores"
+                />
               </InputGroup>
             </Box>
 
             <Box w="100%" marginTop="4">
               <FormLabel>Selecione o(s) Mecanicos</FormLabel>
               {/* Pode Manter o id  Mas acho q tem q trocar  #############*/}
-              <InputGroup id="mechanicType">
-                <Select
-                  value={selected}
-                  {...register("mechanics")}
-                  onChange={handleChange}
-                >
-                  <option hidden>Selecione o(s) Mecanicos</option>
-                  {/*O mesmo q falei no select de cima */}
-                  {options.map((option) => (
-                    <option key={option.id} value={option.id}>
-                      {option.label}
-                    </option>
-                  ))}
-                </Select>
-              </InputGroup>
+              <InputGroup id="mechanicType"></InputGroup>
             </Box>
 
             {/* COLOCAR MAIS UM BOX PARA TIMES(FALTA TA NO BACKEND ANTES) */}
             <Box w="100%" marginTop="4">
               <FormLabel>Selecione o(s) Times</FormLabel>
-              <InputGroup id="mechanicType">
-                <Select
-                  value={selected}
-                  {...register("mechanics")}
-                  onChange={handleChange}
-                >
-                  <option hidden>Selecione o(s) Times</option>
-                  {options.map((option) => (
-                    <option key={option.id} value={option.id}>
-                      {option.label}
-                    </option>
-                  ))}
-                </Select>
-              </InputGroup>
+              <InputGroup id="mechanicType"></InputGroup>
             </Box>
 
             <Box w="100%" marginY="4">
