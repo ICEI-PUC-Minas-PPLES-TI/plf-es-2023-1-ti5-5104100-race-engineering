@@ -91,7 +91,7 @@ export default function Home() {
             <Button
               variant="solid"
               onClick={() => {
-                router.push("/register-user");
+                router.push("/circuit");
               }}
               colorScheme="blue"
             >
