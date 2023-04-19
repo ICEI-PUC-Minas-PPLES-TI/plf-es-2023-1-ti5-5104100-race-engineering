@@ -10,6 +10,7 @@ import {
   ClassSerializerInterceptor,
   UseGuards,
   Query,
+  Param,
 } from '@nestjs/common';
 import {
   ApiBody,
@@ -35,9 +36,9 @@ export class RaceController {
   @Inject(RaceService)
   private readonly raceService: RaceService;
 
+  @Post()
   @Roles(Role.Admin)
   @UseGuards(JwtGuard, RoleGuard)
-  @Post()
   @ApiBody({ type: CreateRaceDTO })
   @ApiOkResponse({ description: 'The race was created successfully' })
   @ApiNotFoundResponse({ description: 'The driver or mechanic does not exist' })
@@ -47,17 +48,17 @@ export class RaceController {
   }
 
   @Get()
-  findOne(@Query('id') id: string) {
-    return this.raceService.findOneRace(+id);
-  }
-
-  @Get()
   @UseGuards(JwtGuard)
   private findAll(@CurrentUser() user: User) {
     return this.raceService.findAllRaces(user);
   }
 
-  @Patch()
+  @Get(':id')
+  private findOne(@Param('id') id: string) {
+    return this.raceService.findOneRace(+id);
+  }
+
+  @Patch(':id')
   update(@Query('id') id: string, @Body() updateRaceDto: UpdateRaceDto) {
     return this.raceService.updateRace(+id, updateRaceDto);
   }
