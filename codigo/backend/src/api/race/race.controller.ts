@@ -42,7 +42,6 @@ export class RaceController {
   @ApiBody({ type: CreateRaceDTO })
   @ApiOkResponse({ description: 'The race was created successfully' })
   @ApiNotFoundResponse({ description: 'The driver or mechanic does not exist' })
-  @UseInterceptors(ClassSerializerInterceptor)
   private create(@Body() createRaceDto: CreateRaceDTO): Promise<Race> {
     return this.raceService.createRace(createRaceDto);
   }
