@@ -1,31 +1,37 @@
-import { Injectable, NotFoundException, UseGuards } from '@nestjs/common';
-import { CreateDriverDto, UpdateDriverDto } from './models/driver.dto';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { EditDriverDTO } from './models/driver.dto';
 import { Driver } from '@/api/driver/models/driver.entity';
 
 @Injectable()
 export class DriverService {
-  async create(createDriverDto: CreateDriverDto) {
-    return 'This action adds a new driver';
-  }
-
   async findAll() {
     return await Driver.find();
   }
 
-  public async findOne(id: number) {
+  public async findOneDetailed(id: number) {
     const driver = await Driver.findOne({
       where: { id },
-      relations: ['races'],
+      relations: ['team', 'user', 'firstPlaceRaces', 'races'],
     });
     if (!driver) throw new NotFoundException('Driver not found');
     return driver;
   }
 
-  async update(id: number, updateDriverDto: UpdateDriverDto) {
-    return `This action updates a #${id} driver`;
+  async update(id: number, updateDriverDto: EditDriverDTO) {
+    const driver = await this.findOne(id);
+    driver.isActive = updateDriverDto.isActive || driver.isActive;
+    driver.nationality = updateDriverDto.nationality || driver.nationality;
+    return await Driver.save(driver);
   }
 
   async remove(id: number) {
-    return `This action removes a #${id} driver`;
+    const driver = await this.findOne(id);
+    await Driver.softRemove(driver);
+  }
+
+  async findOne(id: number) {
+    const driver = await Driver.findOne({ where: { id } });
+    if (!driver) throw new NotFoundException('Driver not found');
+    return driver;
   }
 }

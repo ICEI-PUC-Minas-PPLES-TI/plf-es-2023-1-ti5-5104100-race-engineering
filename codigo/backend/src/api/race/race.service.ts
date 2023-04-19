@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import {
   CreateRaceDTO,
   SelectDriverDTO,
@@ -64,11 +64,13 @@ export class RaceService {
   }
 
   async findOneRace(id: number) {
-    return await Race.findOne({ where: { id } });
+    const race = await Race.findOne({ where: { id } });
+    if (!race) throw new NotFoundException({ message: 'Race not found' });
+    return race;
   }
 
   private async findByDriver(id: number): Promise<Race[]> {
-    const driver = await this.driverService.findOne(id);
+    const driver = await this.driverService.findOneDetailed(id);
     return driver.races;
   }
 
@@ -124,7 +126,9 @@ export class RaceService {
   private async findDrivers(drivers: SelectDriverDTO[]): Promise<Driver[]> {
     const foundDrivers: Driver[] = [];
     for (let i = 0; i < drivers.length; i++) {
-      const foundDriver = await this.driverService.findOne(drivers[i].id);
+      const foundDriver = await this.driverService.findOneDetailed(
+        drivers[i].id,
+      );
       foundDrivers.push(foundDriver);
     }
     return foundDrivers;
