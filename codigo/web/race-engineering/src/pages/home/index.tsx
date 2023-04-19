@@ -2,34 +2,41 @@ import { Inter } from "next/font/google";
 import Head from "next/head";
 //import Image from 'next/image';
 import NextLink from "next/link";
-
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 
+import api from "@/services/api";
 //import Layout  from '@/components/Layout';
-
 //import Hero from '@/components/Hero';
-
 import {
   Box,
-  Link,
-  Image,
-  HStack,
-  Heading,
   Button,
-  Center,
-  Tag,
-  Stack,
-  CardBody,
-  Text,
-  CardFooter,
   Card,
+  CardBody,
+  CardFooter,
   CardHeader,
+  Center,
+  Heading,
+  HStack,
+  Image,
+  Link,
   SimpleGrid,
+  Stack,
+  Tag,
+  Text,
 } from "@chakra-ui/react";
+
 import CaptionCarosel from "./carousel";
 
 export default function Home() {
   const router = useRouter();
+
+  useEffect(() => {
+    api.get("/users/drivers").then((r) => {
+      console.log(r);
+    });
+  });
+
   return (
     <>
       <CaptionCarosel />
