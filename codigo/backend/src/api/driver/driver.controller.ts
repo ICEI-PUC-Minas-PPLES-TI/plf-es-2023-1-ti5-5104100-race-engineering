@@ -8,18 +8,13 @@ import {
   Delete,
 } from '@nestjs/common';
 import { DriverService } from './driver.service';
-import { CreateDriverDto, UpdateDriverDto } from './models/driver.dto';
+import { EditDriverDTO } from './models/driver.dto';
 import { ApiTags } from '@nestjs/swagger';
 
 @Controller('drivers')
 @ApiTags('Drivers')
 export class DriverController {
   constructor(private readonly driverService: DriverService) {}
-
-  @Post()
-  create(@Body() createDriverDto: CreateDriverDto) {
-    return this.driverService.create(createDriverDto);
-  }
 
   @Get()
   findAll() {
@@ -28,11 +23,11 @@ export class DriverController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.driverService.findOne(+id);
+    return this.driverService.findOneDetailed(+id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateDriverDto: UpdateDriverDto) {
+  update(@Param('id') id: string, @Body() updateDriverDto: EditDriverDTO) {
     return this.driverService.update(+id, updateDriverDto);
   }
 
