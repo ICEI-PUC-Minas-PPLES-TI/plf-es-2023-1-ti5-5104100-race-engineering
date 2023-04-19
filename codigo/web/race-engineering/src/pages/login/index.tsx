@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
-import UserForm from "@/components/user-fields/user-fields";
+import { useAuth } from "@/context/AuthContext";
 import api from "@/services/api";
 import { AtSignIcon, EmailIcon, LockIcon } from "@chakra-ui/icons";
 import {
@@ -31,6 +31,8 @@ type Login = {
 
 const LoginPage = () => {
   const router = useRouter();
+  const { authenticate } = useAuth();
+
   const { register, handleSubmit } = useForm<Login>();
   const toast = useToast();
 
@@ -41,7 +43,11 @@ const LoginPage = () => {
   const onSubmit = handleSubmit((data, event) => {
     api
       .post("/auth/login", data)
-      .then(() => {
+      .then((response) => {
+        const { data } = response;
+
+        authenticate(data);
+
         router.push("/home");
       })
       .catch((err) => {
