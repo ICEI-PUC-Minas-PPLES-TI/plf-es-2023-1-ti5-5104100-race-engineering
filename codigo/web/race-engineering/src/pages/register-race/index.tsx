@@ -65,11 +65,13 @@ const RegisterPage = () => {
     (async () => {
       const { data: drivers } = await api.get("/drivers");
       // const response = JSON.parse(drivers.list);
-      // const { data: mecanicos } = await api.get('/users/mechanics');
+      // const { data: mechanics } = await api.get("/users/mechanics");
       // const { data: analistas } =await api.get('/users/analysts');
       // const { data: circuitos } = await api.get('/circuits');
       setDrivers(drivers.list);
+      // setDrivers(mechanics.list); //CRIEI ESSA  ################
       console.log(drivers);
+      // console.log(mechanics); //CRIEI ESSA ############
     })();
 
     return () => {
