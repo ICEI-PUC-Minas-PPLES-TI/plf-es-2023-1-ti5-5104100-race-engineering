@@ -64,7 +64,7 @@ const Header = () => {
               boxSize="40px"
               src="./images/lista-corridas.png"
               alt="Logo"
-              onClick={() => router.push("/corridasCadastradas")}
+              onClick={() => router.push("/list-race")}
               cursor="pointer"
             />
             <Box fontWeight="bold" fontSize="70%">

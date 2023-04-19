@@ -76,7 +76,7 @@ export default function SmallCentered() {
       >
         <Logo />
         <Stack direction={"row"} spacing={6}>
-          <Link href={"#"}>Home</Link>
+          <Link href={"/"}>Home</Link>
           <Link href={"#"}>Races</Link>
           <Link href={"#"}>Chat</Link>
         </Stack>
