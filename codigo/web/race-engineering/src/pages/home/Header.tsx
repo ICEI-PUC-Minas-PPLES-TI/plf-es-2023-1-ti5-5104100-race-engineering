@@ -1,24 +1,25 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
+
+import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
 import {
   Box,
-  Flex,
-  Spacer,
   Button,
-  IconButton,
-  Menu,
-  useDisclosure,
-  Image,
-  Stack,
   Collapse,
+  Flex,
   Icon,
+  IconButton,
+  Image,
+  Menu,
   MenuButton,
+  MenuDivider,
   MenuGroup,
   MenuItem,
-  MenuDivider,
   MenuList,
+  Spacer,
+  Stack,
+  useDisclosure,
 } from "@chakra-ui/react";
-import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
-import { useRouter } from "next/router";
 
 const Header = () => {
   const router = useRouter();
@@ -33,10 +34,16 @@ const Header = () => {
   };
 
   return (
-    <Box bg="white" px={8}>
-      <Flex h={16} alignItems="center" justifyContent="space-between">
-
-        <Stack direction="row" spacing={4}>
+    <Box bg="white" px={8} height="100vh">
+      <Flex
+        h={16}
+        alignItems="center"
+        direction="column"
+        justifyContent="space-between"
+        height="100vh"
+        padding="32px 0"
+      >
+        <Stack direction="column" spacing={4}>
           <Stack direction="column" alignItems="center" spacing={2}>
             <Image
               borderRadius={0}
@@ -46,7 +53,9 @@ const Header = () => {
               onClick={() => router.push("/register-race")}
               cursor="pointer"
             />
-            <Box fontWeight="bold" fontSize="70%">Cadastrar corridas</Box>
+            <Box fontWeight="bold" fontSize="70%">
+              Cadastrar corridas
+            </Box>
           </Stack>
 
           <Stack direction="column" alignItems="center" spacing={2}>
@@ -58,7 +67,9 @@ const Header = () => {
               onClick={() => router.push("/corridasCadastradas")}
               cursor="pointer"
             />
-            <Box fontWeight="bold" fontSize="70%">Lista de Corridas</Box>
+            <Box fontWeight="bold" fontSize="70%">
+              Lista de Corridas
+            </Box>
           </Stack>
 
           <Stack direction="column" alignItems="center" spacing={2}>
@@ -70,76 +81,34 @@ const Header = () => {
               onClick={() => router.push("/register-race")}
               cursor="pointer"
             />
-            <Box fontWeight="bold" fontSize="70%">Clima</Box>
+            <Box fontWeight="bold" fontSize="70%">
+              Clima
+            </Box>
           </Stack>
-
         </Stack>
-        
-
-        <Box>
-          <Link href="/"></Link>
-        </Box>
-        <Spacer />
         <Box display={{ base: "none", md: "flex" }} alignItems="center">
-          <Stack direction="row" spacing={6}>
-            <Button
-              variant="ghost"
-              onClick={() => {
-                router.push("/register-user");
-              }}
-              colorScheme="blue"
-            >
-              Home
-            </Button>
-            <Button
-              variant="ghost"
-              onClick={() => {
-                router.push("/register-user");
-              }}
-              colorScheme="blue"
-            >
-              Corridas
-            </Button>
-            <Button
-              variant="ghost"
-              onClick={() => {
-                router.push("/register-user");
-              }}
-              colorScheme="blue"
-            >
-              Chat
-            </Button>
-
+          <Stack direction="column" spacing={6}>
             <Menu>
-              <MenuButton as={Button} colorScheme="messenger">
-                Profile
-              </MenuButton>
+              <MenuButton
+                as={IconButton}
+                aria-label="Options"
+                icon={<HamburgerIcon />}
+                variant="outline"
+              />
               <MenuList>
-                <MenuGroup title="Profile">
-                  <MenuItem>My Account</MenuItem>
-                  <MenuItem>History </MenuItem>
+                <MenuGroup title="Perfil">
+                  <MenuItem>Meu dados</MenuItem>
+                  <MenuItem>Histórico</MenuItem>
                 </MenuGroup>
                 <MenuDivider />
-                <MenuGroup title="Settings">
-                  <MenuItem></MenuItem>
+                <MenuGroup title="Configurações">
                   <MenuItem>Logout</MenuItem>
                 </MenuGroup>
               </MenuList>
             </Menu>
           </Stack>
         </Box>
-        <MenuToggle toggle={onToggle} />
       </Flex>
-      {" "}
-      <Collapse in={isOpen} animateOpacity>
-        <Box pb={4} display={{ md: "none" }}>
-          <Stack as={Box} mt={4} spacing={4} direction="column" align="none">
-            <Link href="/">Home</Link>
-            <Link href="/about">Races</Link>
-            <Link href="/services">Climate</Link>
-          </Stack>
-        </Box>
-      </Collapse>
     </Box>
   );
 };
