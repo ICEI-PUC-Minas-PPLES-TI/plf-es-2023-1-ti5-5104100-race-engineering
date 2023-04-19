@@ -42,7 +42,10 @@ export class Team extends BaseEntity {
   @OneToMany(() => Car, (car) => car.team)
   cars: Car[];
 
-  @OneToMany(() => Driver, (driver) => driver.team)
+  @OneToMany(() => Driver, (driver) => driver.team, {
+    onDelete: 'CASCADE',
+    cascade: true,
+  })
   drivers: Driver[];
 
   @ManyToMany(() => Race, (race) => race.teams)

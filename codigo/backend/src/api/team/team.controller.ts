@@ -9,7 +9,7 @@ import {
   Query,
 } from '@nestjs/common';
 import { TeamService } from './team.service';
-import { CreateTeamDto, UpdateTeamDto } from './models/team.dto';
+import { AddDriverDTO, CreateTeamDto, UpdateTeamDto } from './models/team.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { Team } from '@/api/team/models/team.entity';
 
@@ -24,13 +24,21 @@ export class TeamController {
   }
 
   @Get()
-  private findOne(@Query('id') id: string): Promise<Team> {
-    return this.teamService.findOne(+id);
-  }
-
-  @Get()
   private findAll(): Promise<Team[]> {
     return this.teamService.findAll();
+  }
+
+  @Get(':id')
+  private findOne(@Param('id') id: string): Promise<Team> {
+    return this.teamService.findOneDetailed(+id);
+  }
+
+  @Patch(':teamId/add-driver/:driverId')
+  private addDriver(
+    @Param('teamId') teamId: string,
+    @Param('driverId') driverId: string,
+  ): Promise<Team> {
+    return this.teamService.addDriver(teamId, driverId);
   }
 
   @Patch(':id')
