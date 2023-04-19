@@ -50,6 +50,8 @@ export class AuthService {
     if (role === Role.Driver) {
       const driver = new Driver();
       driver.user = userCreated;
+      driver.createdAt = new Date();
+      driver.updatedAt = new Date();
       await Driver.save(driver);
     }
     return userCreated;

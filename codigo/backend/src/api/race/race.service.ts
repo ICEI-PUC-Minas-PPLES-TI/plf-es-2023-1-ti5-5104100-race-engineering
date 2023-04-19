@@ -10,6 +10,8 @@ import { DriverService } from '@/api/driver/driver.service';
 import { Driver } from '@/api/driver/models/driver.entity';
 import { Race } from '@/api/race/models/race.entity';
 import { User, Role } from '@/api/user/models/user.entity';
+import { TeamService } from '@/api/team/team.service';
+import { Team } from '@/api/team/models/team.entity';
 
 @Injectable()
 export class RaceService {
@@ -17,6 +19,7 @@ export class RaceService {
     public readonly userService: UserService,
     public readonly circuitService: CircuitService,
     public readonly driverService: DriverService,
+    public readonly teamService: TeamService,
   ) {}
 
   async createRace(createRaceDto: CreateRaceDTO) {
@@ -28,14 +31,16 @@ export class RaceService {
       analystId,
       mechanics,
       drivers,
+      teams,
     } = createRaceDto;
 
     const circuit = await this.circuitService.findOne(circuitId);
 
-    const analyst = await this.userService.findOne(analystId, Role.Analyst);
+    const analyst = await this.userService.findOne(analystId);
 
     const foundMechanics = await this.findMechanics(mechanics);
     const foundDrivers = await this.findDrivers(drivers);
+    const foundTeams = await this.findTeams(teams);
 
     const race = new Race();
     race.startDate = startDate;
@@ -45,6 +50,7 @@ export class RaceService {
     race.analyst = analyst;
     race.mechanics = foundMechanics;
     race.drivers = foundDrivers;
+    race.teams = foundTeams;
 
     return await Race.save(race);
   }
@@ -132,5 +138,14 @@ export class RaceService {
       foundDrivers.push(foundDriver);
     }
     return foundDrivers;
+  }
+
+  private async findTeams(teams: SelectDriverDTO[]): Promise<Team[]> {
+    const foundTeams: Team[] = [];
+    for (let i = 0; i < teams.length; i++) {
+      const foundTeam = await this.teamService.findOne(teams[i].id);
+      foundTeams.push(foundTeam);
+    }
+    return foundTeams;
   }
 }

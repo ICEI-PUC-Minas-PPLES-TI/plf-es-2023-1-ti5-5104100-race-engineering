@@ -63,13 +63,16 @@ const RegisterPage = () => {
 
   useEffect(() => {
     (async () => {
-      const { data: drivers } = await api.get("/drivers");
+      const { data: drivers } = await api.get("/users/drivers");
       // const response = JSON.parse(drivers.list);
-      // const { data: mecanicos } = await api.get('/users/mechanics');
-      // const { data: analistas } =await api.get('/users/analysts');
-      // const { data: circuitos } = await api.get('/circuits');
-      setDrivers(drivers.list);
-      console.log(drivers);
+      const { data: mechanics } = await api.get("/users/mechanics");
+      // const { data: analistas } = await api.get("/users/analysts");
+      const { data: circuitos } = await api.get("/circuits");
+
+      setDrivers(drivers); //N PRECISAVA  DO LIST
+      // setDrivers(mechanics); //CRIEI ESSA  ################
+      console.log(drivers); //TA OK
+      console.log(mechanics); //TESTAR
     })();
 
     return () => {
@@ -158,7 +161,7 @@ const RegisterPage = () => {
                   closeMenuOnSelect={false}
                   components={animatedComponents}
                   isMulti
-                  options={options}
+                  options={drivers}
                   onChange={handleSelectChange}
                   value={selectedDrivers}
                   placeholder="Selecione os corredores"
