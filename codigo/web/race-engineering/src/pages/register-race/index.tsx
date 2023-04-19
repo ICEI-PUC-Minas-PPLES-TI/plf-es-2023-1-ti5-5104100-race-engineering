@@ -1,19 +1,32 @@
 /* eslint-disable react/no-children-prop */
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import Select from 'react-select';
-import makeAnimated from 'react-select/animated';
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import Select from "react-select";
+import makeAnimated from "react-select/animated";
 
-import UserForm from '@/components/user-fields/user-fields';
-import api from '@/services/api';
-import { AtSignIcon, EmailIcon, LockIcon } from '@chakra-ui/icons';
+import UserForm from "@/components/user-fields/user-fields";
+import api from "@/services/api";
+import { AtSignIcon, EmailIcon, LockIcon } from "@chakra-ui/icons";
 import {
-    Box, Button, Card, CardBody, CardFooter, CardHeader, FormControl, FormLabel, Heading, Highlight,
-    Input, InputGroup, InputLeftElement, InputRightElement, useToast
-} from '@chakra-ui/react';
+  Box,
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  FormControl,
+  FormLabel,
+  Heading,
+  Highlight,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  InputRightElement,
+  useToast,
+} from "@chakra-ui/react";
 
-import { options } from './option-mock';
+import { options } from "./option-mock";
 
 type Register = {
   name: string;
@@ -32,8 +45,6 @@ type Register = {
 };
 
 const RegisterPage = () => {
-  //Esse const options é pro select
-  //Vai mudar algo pq vai vir do BD dos corredores e mecanicos ja cadastradros
   const animatedComponents = makeAnimated();
 
   const router = useRouter();
@@ -42,6 +53,8 @@ const RegisterPage = () => {
 
   const [show, setShow] = useState(false);
   const [selectedDrivers, setSelectedDrivers] = useState([]);
+  const [selectedMechanics, setSelectedMechanics] = useState([]); //CRIEI ESSA
+  const [selectedTimes, setSelectedTimes] = useState([]); //CRIEI ESSA
 
   const handleClick = () => setShow(!show);
 
@@ -64,7 +77,6 @@ const RegisterPage = () => {
     };
   }, []);
 
-  //Esse const onSubmit Pode Deixar (Talvez so mudar o caminho do post OU talvez nem precise)
   const onSubmit = handleSubmit((data, event) => {
     api
       // .post("/register", data)
@@ -97,6 +109,24 @@ const RegisterPage = () => {
       selectedOption = selectedOption.slice(0, 2);
     }
     setSelectedDrivers(selectedOption);
+  };
+
+  //##########CRIEI EESSE METODO
+  const handleSelectChangeMechanics = (selectedOption: any) => {
+    if (selectedOption && selectedOption.length > 2) {
+      // Se mais de 2 opções forem selecionadas, mantenha apenas as 2 primeiras
+      selectedOption = selectedOption.slice(0, 2);
+    }
+    setSelectedMechanics(selectedOption);
+  };
+
+  //##########CRIEI EESSE METODO
+  const handleSelectChangeTimes = (selectedOption: any) => {
+    if (selectedOption && selectedOption.length > 2) {
+      // Se mais de 2 opções forem selecionadas, mantenha apenas as 2 primeiras
+      selectedOption = selectedOption.slice(0, 2);
+    }
+    setSelectedTimes(selectedOption);
   };
 
   return (
@@ -138,14 +168,38 @@ const RegisterPage = () => {
 
             <Box w="100%" marginTop="4">
               <FormLabel>Selecione o(s) Mecanicos</FormLabel>
-              {/* Pode Manter o id  Mas acho q tem q trocar  #############*/}
-              <InputGroup id="mechanicType"></InputGroup>
+              {/* Pode Manter o id(pq n tem nada haver com o back)  Mas acho q tem q trocar  #############*/}
+              <InputGroup id="mechanics" w="100%">
+                <Select
+                  closeMenuOnSelect={false}
+                  components={animatedComponents}
+                  isMulti
+                  options={options}
+                  // onChange={handleSelectChange}
+                  onChange={handleSelectChangeMechanics}
+                  // value={selectedDrivers}
+                  value={selectedMechanics}
+                  placeholder="Selecione os mecanicos"
+                />
+              </InputGroup>
             </Box>
 
             {/* COLOCAR MAIS UM BOX PARA TIMES(FALTA TA NO BACKEND ANTES) */}
             <Box w="100%" marginTop="4">
               <FormLabel>Selecione o(s) Times</FormLabel>
-              <InputGroup id="mechanicType"></InputGroup>
+              <InputGroup id="times" w="100%">
+                <Select
+                  closeMenuOnSelect={false}
+                  components={animatedComponents}
+                  isMulti
+                  options={options}
+                  // onChange={handleSelectChange}
+                  onChange={handleSelectChangeTimes}
+                  // value={selectedDrivers}
+                  value={selectedTimes}
+                  placeholder="Selecione os Times"
+                />
+              </InputGroup>
             </Box>
 
             <Box w="100%" marginY="4">
@@ -157,7 +211,6 @@ const RegisterPage = () => {
                 />
                 <Input
                   type="date"
-                  //   placeholder="Digite seu email"
                   {...register("startDate", { required: true })}
                 />
               </InputGroup>
