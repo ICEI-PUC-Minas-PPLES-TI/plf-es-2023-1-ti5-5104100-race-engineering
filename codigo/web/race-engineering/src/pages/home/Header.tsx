@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { IconName } from "react-icons/ri";
 
 import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
 import {
@@ -34,7 +35,7 @@ const Header = () => {
   };
 
   return (
-    <Box bg="white" px={8} height="100vh">
+    <Box bg="white" px={8} height="100vh" className="sidebar">
       <Flex
         h={16}
         alignItems="center"

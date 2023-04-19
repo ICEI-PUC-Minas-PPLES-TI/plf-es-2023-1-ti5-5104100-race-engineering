@@ -41,7 +41,7 @@ export default function Index() {
           flex-flexDirection="column"
           alignItems="center"
         >
-          <Box w="10vw">
+          <Box w="10vw" className="sidebar-container">
             <Header />
           </Box>
 
