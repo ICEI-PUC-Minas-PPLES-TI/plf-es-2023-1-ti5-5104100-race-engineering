@@ -39,9 +39,8 @@ type Register = {
   totalLaps: number;
   analystId: number;
   circuitId: number;
-  // mechanicId: string;
   mechanics: Array<string>;
-  drivers: Array<string>; //Verificar  OK
+  drivers: Array<string>;
 };
 
 const RegisterPage = () => {
@@ -60,6 +59,7 @@ const RegisterPage = () => {
 
   // BACKEND
   const [drivers, setDrivers] = useState([]);
+  const [mechanics, setMechanics] = useState([]); //CRIEI ESSA
 
   useEffect(() => {
     (async () => {
@@ -167,7 +167,6 @@ const RegisterPage = () => {
               />
             </Box>
 
-            {/* COLOCAR MAIS UM BOX PARA TIMES(FALTA TA NO BACKEND ANTES) */}
             <Box w="100%" marginTop="4">
               <FormLabel>Selecione o(s) Times</FormLabel>
               <Select

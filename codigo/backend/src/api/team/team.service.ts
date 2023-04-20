@@ -55,15 +55,6 @@ export class TeamService {
   async addDriver(teamId: string, driverId: string): Promise<Team> {
     const team = await this.findOneDetailed(+teamId);
     const driver = await this.driverService.findOneDetailed(+driverId);
-
-    // validate if driver is already in team
-    const driverInTeam = team.id === driver.team.id;
-    if (driverInTeam) {
-      throw new BadRequestException({
-        message: 'Driver is already in this team',
-      });
-    }
-
     team.drivers.push(driver);
     return await Team.save(team);
   }
