@@ -27,6 +27,8 @@ void _onSubmit(String email, String password) async {
 
   final isStatusSuccess =
       response.statusCode == 200 || response.statusCode == 201;
+
+  print(response.statusCode);
   if (isStatusSuccess) {
     // Formulário enviado com sucesso
   } else {
@@ -66,7 +68,7 @@ class _LoginView extends State<LoginView> {
       navigationBar: CupertinoNavigationBar(
         middle: Text('Login'),
         leading: GestureDetector(
-          child: Icon(
+          child: const Icon(
             CupertinoIcons.back,
             color: CupertinoColors
                 .darkBackgroundGray, // Define a cor da seta de voltar
