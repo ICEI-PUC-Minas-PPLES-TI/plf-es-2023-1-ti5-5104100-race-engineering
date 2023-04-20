@@ -39,9 +39,8 @@ type Register = {
   totalLaps: number;
   analystId: number;
   circuitId: number;
-  // mechanicId: string;
   mechanics: Array<string>;
-  drivers: Array<string>; //Verificar  OK
+  drivers: Array<string>;
 };
 
 const RegisterPage = () => {
@@ -60,19 +59,19 @@ const RegisterPage = () => {
 
   // BACKEND
   const [drivers, setDrivers] = useState([]);
+  const [mechanics, setMechanics] = useState([]); //CRIEI ESSA
 
   useEffect(() => {
     (async () => {
       const { data: drivers } = await api.get("/users/drivers");
-      // const response = JSON.parse(drivers.list);
       const { data: mechanics } = await api.get("/users/mechanics");
-      // const { data: analistas } = await api.get("/users/analysts");
       const { data: circuitos } = await api.get("/circuits");
+      //FALTA O DE TIME (Acho q fica no lugar de circuits)-->MAS N CADASTRAMOS TIME ?
 
       setDrivers(drivers); //N PRECISAVA  DO LIST
-      // setDrivers(mechanics); //CRIEI ESSA  ################
+      setMechanics(mechanics); //CRIEI ESSA
       console.log(drivers); //TA OK
-      console.log(mechanics); //TESTAR
+      console.log(mechanics); //TA OK
     })();
 
     return () => {
@@ -82,7 +81,6 @@ const RegisterPage = () => {
 
   const onSubmit = handleSubmit((data, event) => {
     api
-      // .post("/register", data)
       .post("/races", data)
       .then(() => {
         event?.target?.reset();
@@ -117,7 +115,6 @@ const RegisterPage = () => {
   //##########CRIEI EESSE METODO
   const handleSelectChangeMechanics = (selectedOption: any) => {
     if (selectedOption && selectedOption.length > 2) {
-      // Se mais de 2 opções forem selecionadas, mantenha apenas as 2 primeiras
       selectedOption = selectedOption.slice(0, 2);
     }
     setSelectedMechanics(selectedOption);
@@ -126,7 +123,6 @@ const RegisterPage = () => {
   //##########CRIEI EESSE METODO
   const handleSelectChangeTimes = (selectedOption: any) => {
     if (selectedOption && selectedOption.length > 2) {
-      // Se mais de 2 opções forem selecionadas, mantenha apenas as 2 primeiras
       selectedOption = selectedOption.slice(0, 2);
     }
     setSelectedTimes(selectedOption);
@@ -171,23 +167,21 @@ const RegisterPage = () => {
 
             <Box w="100%" marginTop="4">
               <FormLabel>Selecione o(s) Mecanicos</FormLabel>
-              {/* Pode Manter o id(pq n tem nada haver com o back)  Mas acho q tem q trocar  #############*/}
               <InputGroup id="mechanics" w="100%">
                 <Select
                   closeMenuOnSelect={false}
                   components={animatedComponents}
                   isMulti
-                  options={options}
+                  // options={options}
+                  options={mechanics}
                   // onChange={handleSelectChange}
                   onChange={handleSelectChangeMechanics}
-                  // value={selectedDrivers}
                   value={selectedMechanics}
                   placeholder="Selecione os mecanicos"
                 />
               </InputGroup>
             </Box>
 
-            {/* COLOCAR MAIS UM BOX PARA TIMES(FALTA TA NO BACKEND ANTES) */}
             <Box w="100%" marginTop="4">
               <FormLabel>Selecione o(s) Times</FormLabel>
               <InputGroup id="times" w="100%">
@@ -198,7 +192,6 @@ const RegisterPage = () => {
                   options={options}
                   // onChange={handleSelectChange}
                   onChange={handleSelectChangeTimes}
-                  // value={selectedDrivers}
                   value={selectedTimes}
                   placeholder="Selecione os Times"
                 />
