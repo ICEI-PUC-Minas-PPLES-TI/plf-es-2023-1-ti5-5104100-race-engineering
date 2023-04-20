@@ -4,21 +4,28 @@ import styles from "../styles/weather.module.css";
 
 const Weather = ({ data }) => {
   console.log(data);
+
   return (
+
     <div className={styles.weather}>
       {/* Top */}
+
       <div className={styles.top}>
+
         <div className={styles.icon}>
+
           <Image
             src={`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
             alt="/"
             width="100"
             height="100"
           />
+
           <p className={styles.text2xl}>{data.weather[0].main}</p>
         </div>
         <p className={styles.text9xl}>{data.main.temp.toFixed(0)}&#176;</p>
       </div>
+
       {/* Bottom */}
       <div className={styles.bottom}>
         <p
@@ -39,7 +46,7 @@ const Weather = ({ data }) => {
             <p className={styles.fontBold + " " + styles.text2xl}>
               {data.main.humidity}%
             </p>
-            <p className={styles.textXl}>Humidade</p>
+            <p className={styles.textXl}>Umidade</p>
           </div>
           <div className={styles.bottomItem}>
             <p className={styles.fontBold + " " + styles.text2xl}>
