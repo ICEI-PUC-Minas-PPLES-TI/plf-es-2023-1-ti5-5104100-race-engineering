@@ -20,7 +20,7 @@ async function bootstrap() {
   enableSwaggerConfig(app);
 
   await app.listen(port, () => {
-    console.log('[API]', `http://localhost:${port}`);
+    console.log(`Server listening on http://localhost:${port} 🚀`);
   });
 }
 
