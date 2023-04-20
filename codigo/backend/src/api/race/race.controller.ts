@@ -62,7 +62,7 @@ export class RaceController {
     return this.raceService.updateRace(+id, updateRaceDto);
   }
 
-  @Delete()
+  @Delete(':id')
   remove(@Param('id') id: string) {
     return this.raceService.removeRace(+id);
   }
