@@ -67,7 +67,7 @@ export default function Home() {
               variant="solid"
               onClick={() => {
                 // router.push("/register-user");
-                router.push("/create-circuit");
+                router.push("/register-race");
               }}
               colorScheme="whiteAlpha"
               w="50%"
