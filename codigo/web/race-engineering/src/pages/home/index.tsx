@@ -1,13 +1,5 @@
-import { Inter } from "next/font/google";
-import Head from "next/head";
-//import Image from 'next/image';
-import NextLink from "next/link";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 
-import api from "@/services/api";
-//import Layout  from '@/components/Layout';
-//import Hero from '@/components/Hero';
 import {
   Box,
   Button,
@@ -15,27 +7,20 @@ import {
   CardBody,
   CardFooter,
   CardHeader,
-  Center,
   Heading,
-  HStack,
-  Image,
-  Link,
+  Highlight,
   SimpleGrid,
-  Stack,
-  Tag,
   Text,
 } from "@chakra-ui/react";
-
-import CaptionCarosel from "./carousel";
 
 export default function Home() {
   const router = useRouter();
 
-  useEffect(() => {
-    api.get("/users/drivers").then((r) => {
-      console.log(r);
-    });
-  });
+  // useEffect(() => {
+  //   api.get("/users/drivers").then((r) => {
+  //     console.log(r);
+  //   });
+  // });
 
   return (
     <Box>
@@ -50,100 +35,170 @@ export default function Home() {
         marginTop="10"
         marginBottom="10"
       >
-        <Card align="center">
+        <Card
+          align="center"
+          backgroundImage="./images/gradient-black.png"
+          maxHeight="250px"
+        >
           <CardHeader>
-            <Heading size="md"> Corridas</Heading>
+            <Heading color="#ffffff" size="md">
+              Corridas
+            </Heading>
           </CardHeader>
           <CardBody>
-            <Image
-              objectFit="cover"
-              maxW={{ base: "100%", sm: "200px" }}
-              src="https://www.porschegt3cup.com.br/wp-content/uploads/2020/07/Porsche-Mobil1-Supercup-abre-na-%C3%81ustria-a-temporada-mais-compacta-de-sua-hist%C3%B3ria.jpg"
-              alt="Racing"
-            />
+            <Text color="#ffffff" align="center">
+              Gerencie corridas com facilidade: liste, crie, edite ou remova
+              corridas conforme necessário.
+            </Text>
           </CardBody>
-          <CardFooter>
+          <CardFooter w="100%">
+            <Button
+              variant="solid"
+              onClick={() => {
+                router.push("/register-race");
+              }}
+              colorScheme="whiteAlpha"
+              w="50%"
+              mr="2"
+            >
+              Listar
+            </Button>
             <Button
               variant="solid"
               onClick={() => {
                 // router.push("/register-user");
                 router.push("/register-race");
               }}
-              colorScheme="blue"
+              colorScheme="whiteAlpha"
+              w="50%"
+              ml="2"
             >
-              Cadastrar Corrida
+              Cadastrar
             </Button>
           </CardFooter>
         </Card>
-        <Card align="center">
+        <Card
+          align="center"
+          backgroundImage="./images/gradient-red.png"
+          maxHeight="250px"
+        >
           <CardHeader>
-            <Heading size="md">Circuito</Heading>
+            <Heading color="#ffffff" size="md">
+              Circuitos
+            </Heading>
           </CardHeader>
           <CardBody>
-            <Image
-              objectFit="cover"
-              maxW={{ base: "100%", sm: "200px" }}
-              src="http://www.goinfra.go.gov.br/arquivos/Aut%C3%B3dromo_de_Goi%C3%A2nia_Foto_Marin.jpg"
-              alt="Racing"
-            />
+            <Text color="#ffffff" align="center">
+              Gerencie os circuitos com facilidade: liste, crie, edite ou remova
+              corridas conforme necessário.
+            </Text>
           </CardBody>
-          <CardFooter>
+          <CardFooter w="100%">
             <Button
               variant="solid"
               onClick={() => {
-                router.push("/register-user");
+                router.push("/create-circuit");
               }}
-              colorScheme="blue"
+              colorScheme="whiteAlpha"
+              w="50%"
+              mr="2"
             >
-              Cadastrar Circuito
+              Listar
+            </Button>
+            <Button
+              variant="solid"
+              onClick={() => {
+                router.push("/create-circuit");
+              }}
+              colorScheme="whiteAlpha"
+              w="50%"
+              ml="2"
+            >
+              Cadastrar
             </Button>
           </CardFooter>
         </Card>
-        <Card align="center">
+        <Card
+          align="center"
+          backgroundImage="./images/gradient-green.png"
+          maxHeight="250px"
+        >
           <CardHeader>
-            <Heading size="md">Pilotos</Heading>
+            <Heading color="#ffffff" size="md">
+              Times
+            </Heading>
           </CardHeader>
           <CardBody>
-            <Image
-              objectFit="cover"
-              maxW={{ base: "100%", sm: "200px" }}
-              src="https://www.porschegt3cup.com.br/wp-content/uploads/2020/05/20180609_victoreleuterio_0237-300x200.jpg"
-              alt="Racing"
-            />
+            <Text color="#ffffff" align="center">
+              Gerencie os times com facilidade: liste, crie, edite ou remova
+              times conforme necessário.
+            </Text>
           </CardBody>
-          <CardFooter>
+          <CardFooter w="100%">
             <Button
               variant="solid"
               onClick={() => {
-                router.push("/register-user");
+                router.push("/register-race");
               }}
-              colorScheme="blue"
+              colorScheme="whiteAlpha"
+              w="50%"
+              mr="2"
             >
-              Vizualizar pilotos
+              Listar
+            </Button>
+            <Button
+              variant="solid"
+              onClick={() => {
+                router.push("/create-team");
+              }}
+              colorScheme="whiteAlpha"
+              w="50%"
+              ml="2"
+            >
+              Cadastrar
             </Button>
           </CardFooter>
         </Card>
-        <Card align="center">
+        <Card
+          align="center"
+          backgroundImage="./images/gradient-purple.png"
+          maxHeight="250px"
+        >
           <CardHeader>
-            <Heading size="md">Mecânicos</Heading>
+            <Heading color="#ffffff" size="md">
+              Mecânicos
+            </Heading>
           </CardHeader>
           <CardBody>
-            <Image
-              objectFit="cover"
-              maxW={{ base: "100%", sm: "200px" }}
-              src="https://cdn-6.motorsport.com/images/amp/6D1Lgp40/s1000/dener-pires-em-interlagos-1.jpg"
-              alt="Racing"
-            />
+            <Text color="#ffffff" align="center">
+              Gerencie os mecânicos com facilidade: liste, crie, edite ou remova
+              corridas conforme necessário.
+            </Text>
           </CardBody>
-          <CardFooter>
+          <CardFooter w="100%">
             <Button
               variant="solid"
               onClick={() => {
-                router.push("/register-user");
+                // router.push("/register-user");
+                router.push("/register-race");
               }}
-              colorScheme="blue"
+              colorScheme="whiteAlpha"
+              w="50%"
+              mr="2"
             >
-              Vizualizar mecânicos
+              Listar
+            </Button>
+            <Button
+              variant="solid"
+              onClick={() => {
+                // router.push("/register-user");
+                router.push("/register-race");
+              }}
+              colorScheme="whiteAlpha"
+              w="50%"
+              ml="2"
+            >
+              Cadastrar
             </Button>
           </CardFooter>
         </Card>

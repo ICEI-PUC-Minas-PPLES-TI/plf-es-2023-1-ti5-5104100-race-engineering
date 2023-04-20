@@ -1,27 +1,23 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { RiChat4Fill, RiSunFill } from "react-icons/ri";
 
 import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
 import {
   Box,
-  Button,
-  Collapse,
   Flex,
-  Icon,
   IconButton,
-  Image,
   Menu,
   MenuButton,
   MenuDivider,
   MenuGroup,
   MenuItem,
   MenuList,
-  Spacer,
   Stack,
   useDisclosure,
 } from "@chakra-ui/react";
 
-const Header = () => {
+const Sidebar = () => {
   const router = useRouter();
   const { isOpen, onToggle } = useDisclosure();
 
@@ -34,7 +30,7 @@ const Header = () => {
   };
 
   return (
-    <Box bg="white" px={8} height="100vh">
+    <Box bg="white" px={8} height="100vh" className="sidebar">
       <Flex
         h={16}
         alignItems="center"
@@ -45,44 +41,18 @@ const Header = () => {
       >
         <Stack direction="column" spacing={4}>
           <Stack direction="column" alignItems="center" spacing={2}>
-            <Image
-              borderRadius={0}
-              boxSize="40px"
-              src="./images/cadastro-corrida.png"
-              alt="Logo"
-              onClick={() => router.push("/register-race")}
-              cursor="pointer"
-            />
+            <RiSunFill />
+
             <Box fontWeight="bold" fontSize="70%">
-              Cadastrar corridas
+              Clima{" "}
             </Box>
           </Stack>
 
           <Stack direction="column" alignItems="center" spacing={2}>
-            <Image
-              borderRadius={0}
-              boxSize="40px"
-              src="./images/lista-corridas.png"
-              alt="Logo"
-              onClick={() => router.push("/list-race")}
-              cursor="pointer"
-            />
-            <Box fontWeight="bold" fontSize="70%">
-              Lista de Corridas
-            </Box>
-          </Stack>
+            <RiChat4Fill />
 
-          <Stack direction="column" alignItems="center" spacing={2}>
-            <Image
-              borderRadius={0}
-              boxSize="40px"
-              src="./images/clima.png"
-              alt="Logo"
-              onClick={() => router.push("/weather3")}
-              cursor="pointer"
-            />
             <Box fontWeight="bold" fontSize="70%">
-              Clima
+              Chat
             </Box>
           </Stack>
         </Stack>
@@ -113,4 +83,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Sidebar;

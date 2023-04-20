@@ -5,8 +5,8 @@ import { useForm } from "react-hook-form";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 
-import UserForm from "@/components/user-fields/user-fields";
 import api from "@/services/api";
+import { dataToSelectOptions } from "@/shared/utils/dataToSelectOptions";
 import { AtSignIcon, EmailIcon, LockIcon } from "@chakra-ui/icons";
 import {
   Box,
@@ -63,20 +63,15 @@ const RegisterPage = () => {
 
   useEffect(() => {
     (async () => {
-      const { data: drivers } = await api.get("/users/drivers");
+      const { data: driversResponse } = await api.get("/users/drivers");
+      // const response = JSON.parse(drivers.list);
       const { data: mechanics } = await api.get("/users/mechanics");
-      const { data: circuitos } = await api.get("/circuits");
-      //FALTA O DE TIME (Acho q fica no lugar de circuits)-->MAS N CADASTRAMOS TIME ?
-
-      setDrivers(drivers); //N PRECISAVA  DO LIST
-      setMechanics(mechanics); //CRIEI ESSA
-      console.log(drivers); //TA OK
-      console.log(mechanics); //TA OK
+      // const { data: analistas } = await api.get("/users/analysts");
+      // const { data: circuitos } = await api.get("/create-circuits");
+      setDrivers(driversResponse);
     })();
 
-    return () => {
-      // Função de limpeza do efeito (opcional)
-    };
+    return () => {};
   }, []);
 
   const onSubmit = handleSubmit((data, event) => {
@@ -104,28 +99,12 @@ const RegisterPage = () => {
       });
   });
 
-  const handleSelectChange = (selectedOption: any) => {
+  const handleSelectChange = (selectedOption: any, callback: any) => {
     if (selectedOption && selectedOption.length > 2) {
-      // Se mais de 2 opções forem selecionadas, mantenha apenas as 2 primeiras
       selectedOption = selectedOption.slice(0, 2);
     }
-    setSelectedDrivers(selectedOption);
-  };
 
-  //##########CRIEI EESSE METODO
-  const handleSelectChangeMechanics = (selectedOption: any) => {
-    if (selectedOption && selectedOption.length > 2) {
-      selectedOption = selectedOption.slice(0, 2);
-    }
-    setSelectedMechanics(selectedOption);
-  };
-
-  //##########CRIEI EESSE METODO
-  const handleSelectChangeTimes = (selectedOption: any) => {
-    if (selectedOption && selectedOption.length > 2) {
-      selectedOption = selectedOption.slice(0, 2);
-    }
-    setSelectedTimes(selectedOption);
+    callback();
   };
 
   return (
@@ -152,50 +131,57 @@ const RegisterPage = () => {
           <CardBody>
             <Box w="100%" marginTop="4">
               <FormLabel>Selecione o(s) Corredores</FormLabel>
-              <InputGroup id="drivers" w="100%">
-                <Select
-                  closeMenuOnSelect={false}
-                  components={animatedComponents}
-                  isMulti
-                  options={drivers}
-                  onChange={handleSelectChange}
-                  value={selectedDrivers}
-                  placeholder="Selecione os corredores"
-                />
-              </InputGroup>
+              <Select
+                closeMenuOnSelect={false}
+                components={animatedComponents}
+                isMulti
+                options={dataToSelectOptions({
+                  list: drivers,
+                  params: { label: "name", value: "id" },
+                })}
+                onChange={(option: any) => {
+                  handleSelectChange(option, () => {
+                    setSelectedDrivers(option);
+                  });
+                }}
+                value={selectedDrivers}
+                placeholder="Selecione os corredores"
+              />
             </Box>
 
             <Box w="100%" marginTop="4">
               <FormLabel>Selecione o(s) Mecanicos</FormLabel>
-              <InputGroup id="mechanics" w="100%">
-                <Select
-                  closeMenuOnSelect={false}
-                  components={animatedComponents}
-                  isMulti
-                  // options={options}
-                  options={mechanics}
-                  // onChange={handleSelectChange}
-                  onChange={handleSelectChangeMechanics}
-                  value={selectedMechanics}
-                  placeholder="Selecione os mecanicos"
-                />
-              </InputGroup>
+              {/* Pode Manter o id(pq n tem nada haver com o back)  Mas acho q tem q trocar  #############*/}
+              <Select
+                closeMenuOnSelect={false}
+                components={animatedComponents}
+                isMulti
+                options={options}
+                onChange={(option: any) => {
+                  handleSelectChange(option, () => {
+                    setSelectedMechanics(option);
+                  });
+                }}
+                value={selectedMechanics}
+                placeholder="Selecione os mecanicos"
+              />
             </Box>
 
             <Box w="100%" marginTop="4">
               <FormLabel>Selecione o(s) Times</FormLabel>
-              <InputGroup id="times" w="100%">
-                <Select
-                  closeMenuOnSelect={false}
-                  components={animatedComponents}
-                  isMulti
-                  options={options}
-                  // onChange={handleSelectChange}
-                  onChange={handleSelectChangeTimes}
-                  value={selectedTimes}
-                  placeholder="Selecione os Times"
-                />
-              </InputGroup>
+              <Select
+                closeMenuOnSelect={false}
+                components={animatedComponents}
+                isMulti
+                options={options}
+                onChange={(option: any) => {
+                  handleSelectChange(option, () => {
+                    setSelectedTimes(option);
+                  });
+                }}
+                value={selectedTimes}
+                placeholder="Selecione os Times"
+              />
             </Box>
 
             <Box w="100%" marginY="4">

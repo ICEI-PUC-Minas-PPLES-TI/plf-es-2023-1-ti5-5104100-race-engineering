@@ -76,7 +76,7 @@ class _RegisterView extends State<RegisterView> {
       'name': name,
       'email': email,
       'password': password,
-      'userType': userType
+      'role': userType
     });
 
     final response = await http.post(url, headers: headers, body: body);

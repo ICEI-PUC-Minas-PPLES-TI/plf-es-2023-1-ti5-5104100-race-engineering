@@ -48,7 +48,7 @@ const LoginPage = () => {
 
         authenticate(data);
 
-        router.push("/home");
+        router.push("/");
       })
       .catch((err) => {
         toast({
