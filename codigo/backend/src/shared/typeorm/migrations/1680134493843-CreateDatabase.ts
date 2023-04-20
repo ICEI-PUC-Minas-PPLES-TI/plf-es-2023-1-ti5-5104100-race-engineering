@@ -68,8 +68,8 @@ export class CreateDatabase1680134493843 implements MigrationInterface {
         "name" text,
         "circuitId" int,
         "analystId" int,
-        "startDate" timestamptz NOT NULL,
-        "endDate" timestamptz NOT NULL,
+        "startDate" timestamptz,
+        "endDate" timestamptz,
         "firstPlaceId" int,
         "totalLaps" int,
         "createdAt" timestamptz,
@@ -107,31 +107,31 @@ export class CreateDatabase1680134493843 implements MigrationInterface {
       
       COMMENT ON COLUMN "Lap"."raceId" IS 'Ao apagar uma Race, realizar um ON DELETE CASCADE';
       
-      ALTER TABLE "Driver" ADD FOREIGN KEY ("userId") REFERENCES "User" ("id");
+      ALTER TABLE "Driver" ADD FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE;
       
-      ALTER TABLE "Driver" ADD FOREIGN KEY ("teamId") REFERENCES "Team" ("id");
+      ALTER TABLE "Driver" ADD FOREIGN KEY ("teamId") REFERENCES "Team" ("id") ON DELETE SET NULL;
       
-      ALTER TABLE "Lap" ADD FOREIGN KEY ("raceId") REFERENCES "Race" ("id");
+      ALTER TABLE "Lap" ADD FOREIGN KEY ("raceId") REFERENCES "Race" ("id") ON DELETE CASCADE;
       
-      ALTER TABLE "Race" ADD FOREIGN KEY ("circuitId") REFERENCES "Circuit" ("id");
+      ALTER TABLE "Race" ADD FOREIGN KEY ("circuitId") REFERENCES "Circuit" ("id") ON DELETE SET NULL;
       
-      ALTER TABLE "Race" ADD FOREIGN KEY ("analystId") REFERENCES "User" ("id");
+      ALTER TABLE "Race" ADD FOREIGN KEY ("analystId") REFERENCES "User" ("id") ON DELETE SET NULL;
       
-      ALTER TABLE "Race" ADD FOREIGN KEY ("firstPlaceId") REFERENCES "Driver" ("id");
+      ALTER TABLE "Race" ADD FOREIGN KEY ("firstPlaceId") REFERENCES "Driver" ("id") ON DELETE SET NULL;
       
-      ALTER TABLE "Race_Team" ADD FOREIGN KEY ("raceId") REFERENCES "Race" ("id");
+      ALTER TABLE "Race_Team" ADD FOREIGN KEY ("raceId") REFERENCES "Race" ("id") ON DELETE CASCADE;
       
-      ALTER TABLE "Race_Team" ADD FOREIGN KEY ("teamId") REFERENCES "Team" ("id");
+      ALTER TABLE "Race_Team" ADD FOREIGN KEY ("teamId") REFERENCES "Team" ("id") ON DELETE CASCADE;
       
-      ALTER TABLE "Race_Driver" ADD FOREIGN KEY ("raceId") REFERENCES "Race" ("id");
+      ALTER TABLE "Race_Driver" ADD FOREIGN KEY ("raceId") REFERENCES "Race" ("id") ON DELETE CASCADE;
       
-      ALTER TABLE "Race_Driver" ADD FOREIGN KEY ("driverId") REFERENCES "Driver" ("id");
+      ALTER TABLE "Race_Driver" ADD FOREIGN KEY ("driverId") REFERENCES "Driver" ("id") ON DELETE CASCADE;
       
-      ALTER TABLE "Race_Mechanic" ADD FOREIGN KEY ("raceId") REFERENCES "Race" ("id");
+      ALTER TABLE "Race_Mechanic" ADD FOREIGN KEY ("raceId") REFERENCES "Race" ("id") ON DELETE CASCADE;
       
-      ALTER TABLE "Race_Mechanic" ADD FOREIGN KEY ("mechanicId") REFERENCES "User" ("id");
+      ALTER TABLE "Race_Mechanic" ADD FOREIGN KEY ("mechanicId") REFERENCES "User" ("id") ON DELETE CASCADE;
       
-      ALTER TABLE "Car" ADD FOREIGN KEY ("teamId") REFERENCES "Team" ("id");
+      ALTER TABLE "Car" ADD FOREIGN KEY ("teamId") REFERENCES "Team" ("id") ON DELETE SET NULL;
     `,
     );
   }
