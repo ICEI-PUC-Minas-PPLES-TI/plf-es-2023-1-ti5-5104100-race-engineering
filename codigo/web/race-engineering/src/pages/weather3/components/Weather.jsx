@@ -2,12 +2,17 @@ import Image from "next/image";
 import React from "react";
 import styles from "../styles/weather.module.css";
 
+
 const Weather = ({ data }) => {
+
   console.log(data);
 
   return (
 
     <div className={styles.weather}>
+
+
+
       {/* Top */}
 
       <div className={styles.top}>
@@ -24,6 +29,10 @@ const Weather = ({ data }) => {
           <p className={styles.text2xl}>{data.weather[0].main}</p>
         </div>
         <p className={styles.text9xl}>{data.main.temp.toFixed(0)}&#176;</p>
+      </div>
+
+      <div class={styles.button}>
+        <a href="/" onclick="event.preventDefault(); window.location.href='/'">Home</a>
       </div>
 
       {/* Bottom */}
@@ -55,9 +64,13 @@ const Weather = ({ data }) => {
             <p className={styles.textXl}>Velocidade de Vento</p>
           </div>
         </div>
+
       </div>
+
     </div>
+
   );
+
 };
 
 export default Weather;
