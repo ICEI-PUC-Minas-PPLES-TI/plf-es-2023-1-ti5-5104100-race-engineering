@@ -11,12 +11,9 @@ const Weather = ({ data }) => {
 
     <div className={styles.weather}>
 
-
-
       {/* Top */}
 
       <div className={styles.top}>
-
         <div className={styles.icon}>
 
           <Image
@@ -25,12 +22,13 @@ const Weather = ({ data }) => {
             width="100"
             height="100"
           />
-
           <p className={styles.text2xl}>{data.weather[0].main}</p>
         </div>
+        
         <p className={styles.text9xl}>{data.main.temp.toFixed(0)}&#176;</p>
       </div>
 
+      {/* Botão retornar para home */}
       <div class={styles.button}>
         <a href="/" onclick="event.preventDefault(); window.location.href='/'">Home</a>
       </div>
@@ -44,6 +42,7 @@ const Weather = ({ data }) => {
         >
           Temperatura em {data.name}
         </p>
+
         <div className={styles.bottomContent}>
           <div className={styles.bottomItem}>
             <p className={styles.fontBold + " " + styles.text2xl}>
@@ -51,26 +50,25 @@ const Weather = ({ data }) => {
             </p>
             <p className={styles.textXl}>Sençação Termica</p>
           </div>
+
           <div className={styles.bottomItem}>
             <p className={styles.fontBold + " " + styles.text2xl}>
               {data.main.humidity}%
             </p>
             <p className={styles.textXl}>Umidade</p>
           </div>
+
           <div className={styles.bottomItem}>
             <p className={styles.fontBold + " " + styles.text2xl}>
               {data.wind.speed.toFixed(0)} KM/H
             </p>
             <p className={styles.textXl}>Velocidade de Vento</p>
+
           </div>
         </div>
-
       </div>
-
     </div>
-
   );
-
 };
 
 export default Weather;
