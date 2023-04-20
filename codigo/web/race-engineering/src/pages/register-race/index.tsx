@@ -67,7 +67,7 @@ const RegisterPage = () => {
       // const response = JSON.parse(drivers.list);
       const { data: mechanics } = await api.get("/users/mechanics");
       // const { data: analistas } = await api.get("/users/analysts");
-      const { data: circuitos } = await api.get("/circuits");
+      const { data: circuitos } = await api.get("/create-circuits");
 
       setDrivers(drivers); //N PRECISAVA  DO LIST
       // setDrivers(mechanics); //CRIEI ESSA  ################

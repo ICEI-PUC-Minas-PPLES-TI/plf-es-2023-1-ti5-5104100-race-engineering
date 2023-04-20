@@ -5,24 +5,19 @@ import { RiChat4Fill, RiSunFill } from "react-icons/ri";
 import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
 import {
   Box,
-  Button,
-  Collapse,
   Flex,
-  Icon,
   IconButton,
-  Image,
   Menu,
   MenuButton,
   MenuDivider,
   MenuGroup,
   MenuItem,
   MenuList,
-  Spacer,
   Stack,
   useDisclosure,
 } from "@chakra-ui/react";
 
-const Header = () => {
+const Sidebar = () => {
   const router = useRouter();
   const { isOpen, onToggle } = useDisclosure();
 
@@ -88,4 +83,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Sidebar;

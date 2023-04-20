@@ -1,13 +1,5 @@
-import { Inter } from "next/font/google";
-import Head from "next/head";
-//import Image from 'next/image';
-import NextLink from "next/link";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 
-import api from "@/services/api";
-//import Layout  from '@/components/Layout';
-//import Hero from '@/components/Hero';
 import {
   Box,
   Button,
@@ -15,18 +7,11 @@ import {
   CardBody,
   CardFooter,
   CardHeader,
-  Center,
   Heading,
-  HStack,
-  Image,
-  Link,
+  Highlight,
   SimpleGrid,
-  Stack,
-  Tag,
   Text,
 } from "@chakra-ui/react";
-
-import CaptionCarosel from "./carousel";
 
 export default function Home() {
   const router = useRouter();
@@ -62,15 +47,14 @@ export default function Home() {
           </CardHeader>
           <CardBody>
             <Text color="#ffffff" align="center">
-              Gerencie suas corridas com facilidade: liste, crie, edite ou
-              remova corridas conforme necessário.
+              Gerencie corridas com facilidade: liste, crie, edite ou remova
+              corridas conforme necessário.
             </Text>
           </CardBody>
           <CardFooter w="100%">
             <Button
               variant="solid"
               onClick={() => {
-                // router.push("/register-user");
                 router.push("/register-race");
               }}
               colorScheme="whiteAlpha"
@@ -83,7 +67,7 @@ export default function Home() {
               variant="solid"
               onClick={() => {
                 // router.push("/register-user");
-                router.push("/register-race");
+                router.push("/create-circuit");
               }}
               colorScheme="whiteAlpha"
               w="50%"
@@ -113,8 +97,7 @@ export default function Home() {
             <Button
               variant="solid"
               onClick={() => {
-                // router.push("/register-user");
-                router.push("/register-race");
+                router.push("/create-circuit");
               }}
               colorScheme="whiteAlpha"
               w="50%"
@@ -125,8 +108,7 @@ export default function Home() {
             <Button
               variant="solid"
               onClick={() => {
-                // router.push("/register-user");
-                router.push("/register-race");
+                router.push("/create-circuit");
               }}
               colorScheme="whiteAlpha"
               w="50%"

@@ -3,6 +3,7 @@ import Head from "next/head";
 //import Image from 'next/image';
 import NextLink from "next/link";
 
+import Sidebar from "@/components/sidebar/Sidebar";
 //import Layout  from '@/components/Layout';
 //import Hero from '@/components/Hero';
 import {
@@ -21,7 +22,6 @@ import {
 } from "@chakra-ui/react";
 
 import Logo from "./home/footer";
-import Header from "./home/Header";
 import Home from "./home/index";
 import LoginPage from "./login";
 
@@ -41,11 +41,11 @@ export default function Index() {
           flex-flexDirection="column"
           alignItems="center"
         >
-          <Box w="10vw" className="sidebar-container">
-            <Header />
+          <Box w="5vw" className="sidebar-container">
+            <Sidebar />
           </Box>
 
-          <Box w="90vw">
+          <Box w="95vw">
             <Home />
           </Box>
         </Box>
