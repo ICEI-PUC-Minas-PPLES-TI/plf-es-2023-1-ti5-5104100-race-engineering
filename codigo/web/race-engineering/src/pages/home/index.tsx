@@ -125,20 +125,19 @@ export default function Home() {
         >
           <CardHeader>
             <Heading color="#ffffff" size="md">
-              Pilotos
+              Times
             </Heading>
           </CardHeader>
           <CardBody>
             <Text color="#ffffff" align="center">
-              Gerencie os pilotos com facilidade: liste, crie, edite ou remova
-              corridas conforme necessário.
+              Gerencie os times com facilidade: liste, crie, edite ou remova
+              times conforme necessário.
             </Text>
           </CardBody>
           <CardFooter w="100%">
             <Button
               variant="solid"
               onClick={() => {
-                // router.push("/register-user");
                 router.push("/register-race");
               }}
               colorScheme="whiteAlpha"
@@ -150,8 +149,7 @@ export default function Home() {
             <Button
               variant="solid"
               onClick={() => {
-                // router.push("/register-user");
-                router.push("/register-race");
+                router.push("/create-team");
               }}
               colorScheme="whiteAlpha"
               w="50%"
