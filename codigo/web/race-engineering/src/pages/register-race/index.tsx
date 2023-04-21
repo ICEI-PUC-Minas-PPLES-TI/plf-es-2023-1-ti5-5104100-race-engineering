@@ -60,15 +60,24 @@ const RegisterPage = () => {
   // BACKEND
   const [drivers, setDrivers] = useState([]);
   const [mechanics, setMechanics] = useState([]); //CRIEI ESSA
+  const [teams, setTeams] = useState([]); //CRIEI ESSA TBM AGORA
 
   useEffect(() => {
     (async () => {
       const { data: driversResponse } = await api.get("/users/drivers");
       // const response = JSON.parse(drivers.list);
-      const { data: mechanics } = await api.get("/users/mechanics");
+      // const { data: mechanics } = await api.get("/users/mechanics"); tava usando essa
+      const { data: mechanicsResponse } = await api.get("/users/mechanics"); //COLOQUEI AGORA
+      const { data: teamsResponse } = await api.get("/teams"); //COLOQUEI AGORA(TESTAR)
+
       // const { data: analistas } = await api.get("/users/analysts");
       // const { data: circuitos } = await api.get("/create-circuits");
       setDrivers(driversResponse);
+      setMechanics(mechanicsResponse); //COLOQUEI AGORA
+      setTeams(teamsResponse); //COLOQUEI AGORA
+
+      // console.log(drivers); //TA OK
+      // console.log(mechanics); //TA OK
     })();
 
     return () => {};
@@ -151,12 +160,14 @@ const RegisterPage = () => {
 
             <Box w="100%" marginTop="4">
               <FormLabel>Selecione o(s) Mecanicos</FormLabel>
-              {/* Pode Manter o id(pq n tem nada haver com o back)  Mas acho q tem q trocar  #############*/}
               <Select
                 closeMenuOnSelect={false}
                 components={animatedComponents}
                 isMulti
-                options={options}
+                options={dataToSelectOptions({
+                  list: mechanics,
+                  params: { label: "name", value: "id" },
+                })}
                 onChange={(option: any) => {
                   handleSelectChange(option, () => {
                     setSelectedMechanics(option);
@@ -173,7 +184,10 @@ const RegisterPage = () => {
                 closeMenuOnSelect={false}
                 components={animatedComponents}
                 isMulti
-                options={options}
+                options={dataToSelectOptions({
+                  list: teams,
+                  params: { label: "name", value: "id" },
+                })}
                 onChange={(option: any) => {
                   handleSelectChange(option, () => {
                     setSelectedTimes(option);
@@ -211,6 +225,21 @@ const RegisterPage = () => {
                 />
               </InputGroup>
             </Box>
+            {/* INCLUSAO DO TOTAL DE VOLTAS */}
+            <Box w="100%" marginY="4">
+              <FormLabel>Total de voltas</FormLabel>
+              <InputGroup>
+                <InputLeftElement
+                  pointerEvents="none"
+                  // children={<EmailIcon color="gray.300" />}
+                />
+                <Input
+                  type="number"
+                  {...register("totalLaps", { required: true })}
+                />
+              </InputGroup>
+            </Box>
+            {/* TESTE */}
           </CardBody>
 
           <CardFooter display="flex" width="100%">
