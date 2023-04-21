@@ -1,12 +1,7 @@
-import {
-  BadRequestException,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateTeamDto, UpdateTeamDto } from './models/team.dto';
 import { Team } from '@/api/team/models/team.entity';
 import { DriverService } from '@/api/driver/driver.service';
-import { Driver } from '@/api/driver/models/driver.entity';
 
 @Injectable()
 export class TeamService {
@@ -40,16 +35,16 @@ export class TeamService {
     return team;
   }
 
-  async update(id: number, updateTeamDto: UpdateTeamDto): Promise<Team> {
+  async update(id: number, body: UpdateTeamDto): Promise<Team> {
     const team = await this.findOneDetailed(id);
-    team.name = updateTeamDto.name || team.name;
-    team.category = updateTeamDto.category || team.category;
+    team.name = body.name || team.name;
+    team.category = body.category || team.category;
     return await Team.save(team);
   }
 
-  async remove(id: number) {
+  async remove(id: number): Promise<Team> {
     const team = await this.findOneDetailed(id);
-    await Team.softRemove(team);
+    return await Team.softRemove(team);
   }
 
   async addDriver(teamId: string, driverId: string): Promise<Team> {

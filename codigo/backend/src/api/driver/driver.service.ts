@@ -17,10 +17,11 @@ export class DriverService {
     return driver;
   }
 
-  async update(id: number, updateDriverDto: EditDriverDTO) {
+  async update(id: number, body: EditDriverDTO) {
     const driver = await this.findOne(id);
-    driver.isActive = updateDriverDto.isActive || driver.isActive;
-    driver.nationality = updateDriverDto.nationality || driver.nationality;
+    driver.number = body.number || driver.number;
+    driver.isActive = body.isActive || driver.isActive;
+    driver.nationality = body.nationality || driver.nationality;
     return await Driver.save(driver);
   }
 
