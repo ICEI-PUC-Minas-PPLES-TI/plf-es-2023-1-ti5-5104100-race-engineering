@@ -40,22 +40,21 @@ const Sidebar = () => {
         padding="32px 0"
       >
         <Stack direction="column" spacing={4}>
-          <Stack direction="column" alignItems="center" spacing={2}>
+          <Stack direction="column" alignItems="center" spacing={2} onClick={() => router.push("/weather3")} cursor="pointer">
             <RiSunFill />
-
             <Box fontWeight="bold" fontSize="70%">
               Clima{" "}
             </Box>
           </Stack>
 
-          <Stack direction="column" alignItems="center" spacing={2}>
+          <Stack direction="column" alignItems="center" spacing={2} onClick={() => router.push("/")} cursor="pointer">
             <RiChat4Fill />
-
             <Box fontWeight="bold" fontSize="70%">
               Chat
             </Box>
           </Stack>
         </Stack>
+
         <Box display={{ base: "none", md: "flex" }} alignItems="center">
           <Stack direction="column" spacing={6}>
             <Menu>
