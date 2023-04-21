@@ -32,7 +32,11 @@ Swagger documentation is available at http://localhost:8000/api-docs
 Docker must be installed locally.
 
 ```bash
+# To start the DB:
 $ docker-compose up
+
+# To start the DB dettached from the terminal:
+$ docker-compose up -d 
 ```
 
 ## Installation
