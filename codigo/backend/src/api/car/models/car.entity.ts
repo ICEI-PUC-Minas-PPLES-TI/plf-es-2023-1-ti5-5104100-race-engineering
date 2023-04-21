@@ -1,4 +1,5 @@
 import {
+  BaseEntity,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
@@ -6,15 +7,17 @@ import {
   Index,
   JoinColumn,
   ManyToOne,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { Team } from '@/api/team/models/team.entity';
 import { Exclude } from 'class-transformer';
+import { Driver } from '@/api/driver/models/driver.entity';
 
 @Index('Car_pkey', ['id'], { unique: true })
 @Entity('Car', { schema: 'public' })
-export class Car {
+export class Car extends BaseEntity {
   @PrimaryGeneratedColumn({ type: 'integer', name: 'id' })
   id: number;
 
@@ -39,4 +42,8 @@ export class Car {
   @ManyToOne(() => Team, (team) => team.cars)
   @JoinColumn([{ name: 'teamId', referencedColumnName: 'id' }])
   team: Team;
+
+  @OneToOne(() => Driver, (driver) => driver.car)
+  @JoinColumn([{ name: 'driverId', referencedColumnName: 'id' }])
+  driver: Driver;
 }

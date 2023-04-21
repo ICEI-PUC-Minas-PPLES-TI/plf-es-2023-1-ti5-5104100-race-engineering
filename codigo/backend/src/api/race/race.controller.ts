@@ -58,12 +58,12 @@ export class RaceController {
   }
 
   @Patch(':id')
-  update(@Query('id') id: string, @Body() updateRaceDto: UpdateRaceDto) {
+  update(@Param('id') id: string, @Body() updateRaceDto: UpdateRaceDto) {
     return this.raceService.updateRace(+id, updateRaceDto);
   }
 
-  @Delete()
-  remove(@Query('id') id: string) {
+  @Delete(':id')
+  remove(@Param('id') id: string) {
     return this.raceService.removeRace(+id);
   }
 }

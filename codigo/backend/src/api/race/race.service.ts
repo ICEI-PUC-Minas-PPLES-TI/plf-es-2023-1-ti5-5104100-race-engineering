@@ -51,6 +51,8 @@ export class RaceService {
     race.mechanics = foundMechanics;
     race.drivers = foundDrivers;
     race.teams = foundTeams;
+    race.createdAt = new Date();
+    race.updatedAt = new Date();
 
     return await Race.save(race);
   }
@@ -113,8 +115,9 @@ export class RaceService {
     return await Race.save(race);
   }
 
-  removeRace(id: number) {
-    return `This action removes a #${id} race`;
+  async removeRace(id: number) {
+    const race = await this.findOneRace(id);
+    return await Race.softRemove(race);
   }
 
   private async findMechanics(mechanics: SelectDriverDTO[]): Promise<User[]> {
