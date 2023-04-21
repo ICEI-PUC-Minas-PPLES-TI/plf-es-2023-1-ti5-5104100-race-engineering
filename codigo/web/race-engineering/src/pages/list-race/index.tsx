@@ -1,47 +1,56 @@
-import Header from "../home/Header";
-import Logo from "../home/footer";
+import { Inter } from "next/font/google";
+import Head from "next/head";
+import NextLink from "next/link";
+import Sidebar from "@/components/sidebar/Sidebar";
+import {
+  Box,
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  Center,
+  Heading,
+  HStack,
+  Image,
+  Link,
+  Stack,
+  Tag,
+} from "@chakra-ui/react";
 
-export default function Home() {
-  const items = [
-    { id: 1, name: "Item 1" },
-    { id: 2, name: "Item 2" },
-    { id: 3, name: "Item 3" },
-    { id: 4, name: "Item 4" },
-    { id: 5, name: "Item 5" },
-    { id: 6, name: "Item 6" },
-    { id: 7, name: "Item 7" },
-    { id: 8, name: "Item 8" },
-    { id: 9, name: "Item 9" },
-  ];
 
-  const renderItems = () => {
-    const rows = [];
-
-    for (let i = 0; i < items.length; i += 3) {
-      const row = (
-        <div key={i} className="row">
-          {items.slice(i, i + 3).map((item) => (
-            <div key={item.id} className="col">
-              <p>{item.name}</p>
-            </div>
-          ))}
-        </div>
-      );
-      rows.push(row);
-    }
-
-    return rows;
-  };
-
+export default function Index() {
   return (
     <>
-      <Header />
+      <Head>
+        <title>Lista de Corridas</title>
+      </Head>
 
-      <div className="container">
-        <div className="row">{renderItems()}</div>
-      </div>
-
-      <Logo />
+      <Box height="100vh" width="100%">
+        <Box
+          height="100%"
+          width="100%"
+          display="flex"
+          justifyContent="center"
+          flex-flexDirection="column"
+          alignItems="center"
+        >
+          <Box w="5vw" className="sidebar-container">
+            <Sidebar />
+          </Box>
+          <Box w="95vw">
+            
+            
+            
+          </Box>
+        </Box>
+      </Box>
     </>
   );
 }
+
+
+
+
+
+
+

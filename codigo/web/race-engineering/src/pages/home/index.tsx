@@ -55,7 +55,7 @@ export default function Home() {
             <Button
               variant="solid"
               onClick={() => {
-                router.push("/register-race");
+                router.push("/list-race");
               }}
               colorScheme="whiteAlpha"
               w="50%"

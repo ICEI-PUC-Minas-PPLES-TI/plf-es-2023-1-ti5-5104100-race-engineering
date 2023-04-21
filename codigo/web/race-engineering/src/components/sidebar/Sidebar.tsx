@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { RiChat4Fill, RiSunFill } from "react-icons/ri";
+import { RiChat4Fill, RiSunFill, RiHome2Fill } from "react-icons/ri";
 
 import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
 import {
@@ -39,7 +39,16 @@ const Sidebar = () => {
         height="100vh"
         padding="32px 0"
       >
+        
         <Stack direction="column" spacing={4}>
+
+        <Stack direction="column" alignItems="center" spacing={2} onClick={() => router.push("/")} cursor="pointer">
+            <RiHome2Fill />
+            <Box fontWeight="bold" fontSize="70%">
+              Home
+            </Box>
+          </Stack>
+          <Stack direction="column" spacing={0}></Stack>
           <Stack direction="column" alignItems="center" spacing={2} onClick={() => router.push("/weather3")} cursor="pointer">
             <RiSunFill />
             <Box fontWeight="bold" fontSize="70%">
