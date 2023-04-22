@@ -97,7 +97,7 @@ export default function Home() {
             <Button
               variant="solid"
               onClick={() => {
-                router.push("/create-circuit");
+                router.push("/list-circuit");
               }}
               colorScheme="whiteAlpha"
               w="50%"
@@ -138,7 +138,7 @@ export default function Home() {
             <Button
               variant="solid"
               onClick={() => {
-                router.push("/register-race");
+                router.push("/list-team");
               }}
               colorScheme="whiteAlpha"
               w="50%"
@@ -180,7 +180,7 @@ export default function Home() {
               variant="solid"
               onClick={() => {
                 // router.push("/register-user");
-                router.push("/register-race");
+                router.push("/list-mechanic");
               }}
               colorScheme="whiteAlpha"
               w="50%"
