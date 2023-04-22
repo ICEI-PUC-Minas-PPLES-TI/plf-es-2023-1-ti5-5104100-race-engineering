@@ -32,31 +32,49 @@ const Sidebar = () => {
   return (
     <Box bg="white" px={8} height="100vh" className="sidebar">
       <Flex
-        h={16}
-        alignItems="center"
         direction="column"
+        alignItems="center"
         justifyContent="space-between"
-        height="100vh"
-        padding="32px 0"
+        h="100vh"
+        p="32px 0"
       >
-        
-        <Stack direction="column" spacing={4}>
-
-        <Stack direction="column" alignItems="center" spacing={2} onClick={() => router.push("/")} cursor="pointer">
+        <Stack direction="column" spacing={6}>
+          <Stack
+            direction="column"
+            alignItems="center"
+            spacing={2}
+            onClick={() => router.push("/")}
+            cursor="pointer"
+          >
             <RiHome2Fill />
             <Box fontWeight="bold" fontSize="70%">
               Home
             </Box>
           </Stack>
+          
+          {/* Espaçamento entre a Home e os demais Icons*/}
           <Stack direction="column" spacing={0}></Stack>
-          <Stack direction="column" alignItems="center" spacing={2} onClick={() => router.push("/weather3")} cursor="pointer">
+
+          <Stack
+            direction="column"
+            alignItems="center"
+            spacing={2}
+            onClick={() => router.push("/weather3")}
+            cursor="pointer"
+          >
             <RiSunFill />
             <Box fontWeight="bold" fontSize="70%">
               Clima{" "}
             </Box>
           </Stack>
 
-          <Stack direction="column" alignItems="center" spacing={2} onClick={() => router.push("/")} cursor="pointer">
+          <Stack
+            direction="column"
+            alignItems="center"
+            spacing={2}
+            onClick={() => router.push("/")}
+            cursor="pointer"
+          >
             <RiChat4Fill />
             <Box fontWeight="bold" fontSize="70%">
               Chat
