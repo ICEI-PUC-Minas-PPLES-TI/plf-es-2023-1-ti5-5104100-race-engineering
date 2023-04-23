@@ -182,13 +182,11 @@ Obs: acrescente mais linhas, se necessário.
 | RNF006 | A plataforma só pode utilizar os dados do usuário mediante autorização|
 | RNF007 | O sistema deve estar disponível para uso durante pelo menos 99,5% do tempo em um período de 30 dias consecutivos, excluindo períodos de manutenção programada.
 | RNF008 | O serviço de chat do software terá uma disponibilidade de 999/1.000
-| RNF009 | O software deve oferecer tempo de resposta de 2 segundos após solicitação
-| RNF010 | O software deve fornecer taxa de ocorrência de falha de 2/1.000
-| RNF011 | O software deve fazer backup de dados com tamanho maximo de 10GB, a cada 24 horas
-| RNF012 | O software deve fornecer resposta de erro com 3 segundos
-| RNF013 | O software deve processar no mínimo 6 transações por segundo
-| RNF014 | Apenas pessoas que tenham sido autenticadas por um componente de controle acesso e autenticação poderão visualizar informações
-| RNF015 | Todas as comunicações externas entre o servidor de dados do software e usuários devem ser criptografadas
+| RNF009 | O software deve fornecer taxa de ocorrência de falha de 2/1.000
+| RNF010 | O software deve fazer backup de dados com tamanho maximo de 10GB, a cada 24 horas
+| RNF011 | O software deve processar no mínimo 6 transações por segundo
+| RNF012 | Apenas pessoas que tenham sido autenticadas por um componente de controle acesso e autenticação poderão visualizar informações
+| RNF013 | Todas as comunicações externas entre o servidor de dados do software e usuários devem ser criptografadas
 
 
 ## 2.3. Restrições Arquiteturais
