@@ -46,7 +46,7 @@ export default function Home() {
             </Heading>
           </CardHeader>
           <CardBody>
-            <Text color="#ffffff" align="center">
+            <Text color="#ffffff" align="center" lineHeight="normal" fontSize={15}>
               Gerencie corridas com facilidade: liste, crie, edite ou remova
               corridas conforme necessário.
             </Text>
@@ -88,7 +88,7 @@ export default function Home() {
             </Heading>
           </CardHeader>
           <CardBody>
-            <Text color="#ffffff" align="center">
+            <Text color="#ffffff" align="center" lineHeight="normal" fontSize={15}>
               Gerencie os circuitos com facilidade: liste, crie, edite ou remova
               corridas conforme necessário.
             </Text>
@@ -129,7 +129,7 @@ export default function Home() {
             </Heading>
           </CardHeader>
           <CardBody>
-            <Text color="#ffffff" align="center">
+            <Text color="#ffffff" align="center" lineHeight="normal" fontSize={15}>
               Gerencie os times com facilidade: liste, crie, edite ou remova
               times conforme necessário.
             </Text>
@@ -170,7 +170,7 @@ export default function Home() {
             </Heading>
           </CardHeader>
           <CardBody>
-            <Text color="#ffffff" align="center">
+            <Text color="#ffffff" align="center" lineHeight="normal" fontSize={15}>
               Gerencie os mecânicos com facilidade: liste, crie, edite ou remova
               corridas conforme necessário.
             </Text>

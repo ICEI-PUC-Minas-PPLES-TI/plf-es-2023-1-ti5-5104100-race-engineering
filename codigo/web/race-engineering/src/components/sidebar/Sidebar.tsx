@@ -38,7 +38,7 @@ const Sidebar = () => {
         h="100vh"
         p="32px 0"
       >
-        <Stack direction="column" spacing={6}>
+        <Stack direction="column" spacing={4}>
           <Stack
             direction="column"
             alignItems="center"
