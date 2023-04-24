@@ -54,7 +54,7 @@ export class RaceService {
     race.createdAt = new Date();
     race.updatedAt = new Date();
 
-    return await Race.save(race);
+    return await race.save();
   }
 
   async findAllRaces(user: User): Promise<Race[]> {
@@ -71,7 +71,7 @@ export class RaceService {
     }
   }
 
-  async findOneRace(id: number) {
+  async findOneDetailed(id: number) {
     const race = await Race.findOne({ where: { id } });
     if (!race) throw new NotFoundException({ message: 'Race not found' });
     return race;
@@ -93,7 +93,7 @@ export class RaceService {
   }
 
   async updateRace(id: number, updateRaceDto: UpdateRaceDto) {
-    const race = await this.findOneRace(id);
+    const race = await this.findOneDetailed(id);
     const {
       startDate,
       endDate,
@@ -111,13 +111,14 @@ export class RaceService {
     if (analystId) race.analyst = await this.userService.findOne(analystId);
     if (mechanics) race.mechanics = await this.findMechanics(mechanics);
     if (drivers) race.drivers = await this.findDrivers(drivers);
+    race.updatedAt = new Date();
 
-    return await Race.save(race);
+    return await race.save();
   }
 
   async removeRace(id: number) {
-    const race = await this.findOneRace(id);
-    return await Race.softRemove(race);
+    const race = await this.findOneDetailed(id);
+    return await race.softRemove();
   }
 
   private async findMechanics(mechanics: SelectDriverDTO[]): Promise<User[]> {

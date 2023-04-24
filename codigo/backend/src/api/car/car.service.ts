@@ -9,7 +9,7 @@ export class CarService {
     // car.name = createCarDto.name;
     car.totalFuel = createCarDto.totalFuel;
     car.currentFuel = createCarDto.currentFuel;
-    return await Car.save(car);
+    return await car.save();
   }
 
   async findAll(): Promise<Car[]> {
@@ -27,11 +27,11 @@ export class CarService {
     // car.name = updateCarDto.name || car.name;
     car.totalFuel = updateCarDto.totalFuel || car.totalFuel;
     car.currentFuel = updateCarDto.currentFuel || car.currentFuel;
-    return await Car.save(car);
+    return await car.save();
   }
 
   async remove(id: number) {
     const car = await this.findOne(id);
-    return await Car.softRemove(car);
+    return await car.softRemove();
   }
 }

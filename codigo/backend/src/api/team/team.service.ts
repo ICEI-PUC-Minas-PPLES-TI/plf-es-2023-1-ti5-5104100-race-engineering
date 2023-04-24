@@ -13,7 +13,7 @@ export class TeamService {
     team.category = createTeamDto.category;
     team.createdAt = new Date();
     team.updatedAt = new Date();
-    return await Team.save(team);
+    return await team.save();
   }
 
   async findAll(): Promise<Team[]> {
@@ -39,18 +39,18 @@ export class TeamService {
     const team = await this.findOneDetailed(id);
     team.name = body.name || team.name;
     team.category = body.category || team.category;
-    return await Team.save(team);
+    return await team.save();
   }
 
   async remove(id: number): Promise<Team> {
     const team = await this.findOneDetailed(id);
-    return await Team.softRemove(team);
+    return await team.softRemove();
   }
 
   async addDriver(teamId: string, driverId: string): Promise<Team> {
     const team = await this.findOneDetailed(+teamId);
     const driver = await this.driverService.findOneDetailed(+driverId);
     team.drivers.push(driver);
-    return await Team.save(team);
+    return await team.save();
   }
 }

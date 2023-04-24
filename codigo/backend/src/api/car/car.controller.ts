@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Inject,
 } from '@nestjs/common';
 import { CarService } from './car.service';
 import { CreateCarDto, UpdateCarDto } from '@/api/car/models/car.dto';
@@ -14,7 +15,8 @@ import { ApiTags } from '@nestjs/swagger';
 @Controller('cars')
 @ApiTags('Cars')
 export class CarController {
-  constructor(private readonly carService: CarService) {}
+  @Inject(CarService)
+  private readonly carService: CarService;
 
   @Post()
   create(@Body() createCarDto: CreateCarDto) {

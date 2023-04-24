@@ -6,8 +6,7 @@ import {
   Patch,
   Param,
   Delete,
-  UseInterceptors,
-  ClassSerializerInterceptor,
+  Inject,
 } from '@nestjs/common';
 import { CircuitService } from './circuit.service';
 import {
@@ -21,12 +20,12 @@ import { ApiBody, ApiOkResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
 @Controller('circuits')
 @ApiTags('Circuits')
 export class CircuitController {
-  constructor(private readonly circuitService: CircuitService) {}
+  @Inject(CircuitService)
+  private readonly circuitService: CircuitService;
 
   @Post()
   @ApiBody({ type: CreateCircuitDto })
   @ApiOkResponse({ description: 'The circuit was created successfully' })
-  @UseInterceptors(ClassSerializerInterceptor)
   private create(@Body() body: CreateCircuitDto): Promise<Circuit | never> {
     return this.circuitService.create(body);
   }

@@ -22,12 +22,12 @@ export class DriverService {
     driver.number = body.number || driver.number;
     driver.isActive = body.isActive || driver.isActive;
     driver.nationality = body.nationality || driver.nationality;
-    return await Driver.save(driver);
+    return await driver.save();
   }
 
   async remove(id: number) {
     const driver = await this.findOne(id);
-    await Driver.softRemove(driver);
+    await driver.softRemove();
   }
 
   async findOne(id: number) {
