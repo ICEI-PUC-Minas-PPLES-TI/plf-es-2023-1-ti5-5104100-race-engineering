@@ -6,10 +6,7 @@ import {
   Patch,
   Delete,
   Inject,
-  UseInterceptors,
-  ClassSerializerInterceptor,
   UseGuards,
-  Query,
   Param,
 } from '@nestjs/common';
 import {
@@ -54,7 +51,7 @@ export class RaceController {
 
   @Get(':id')
   private findOne(@Param('id') id: string) {
-    return this.raceService.findOneRace(+id);
+    return this.raceService.findOneDetailed(+id);
   }
 
   @Patch(':id')

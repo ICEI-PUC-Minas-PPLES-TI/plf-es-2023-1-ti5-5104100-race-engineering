@@ -1,18 +1,19 @@
 import { PartialType } from '@nestjs/mapped-types';
-import { IsNumber } from 'class-validator';
+import { IsNumber, IsString } from 'class-validator';
 import { ApiPropertyOptional } from '@nestjs/swagger';
 
-export class CreateLapDto {}
-
-export class UpdateLapDto extends PartialType(CreateLapDto) {
-  @ApiPropertyOptional({ example: 59.43 })
-  bestTime?: number;
+export class CreateLapDto {
+  @IsNumber()
+  @ApiPropertyOptional({ example: 10 })
+  lapNumber?: number;
 
   @IsNumber()
-  @ApiPropertyOptional({ example: 68.32 })
-  averageTime?: number;
+  @ApiPropertyOptional({ example: 12 })
+  driverId?: number;
 
-  @IsNumber()
-  @ApiPropertyOptional({ example: 68.32 })
-  totalTime: number;
+  @IsString()
+  @ApiPropertyOptional({ example: '00:01:20.345' })
+  lapTime?: string;
 }
+
+export class UpdateLapDto extends PartialType(CreateLapDto) {}

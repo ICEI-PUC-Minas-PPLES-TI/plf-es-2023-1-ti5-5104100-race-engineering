@@ -6,27 +6,34 @@ import {
   Patch,
   Param,
   Delete,
+  Inject,
 } from '@nestjs/common';
 import { LapService } from './lap.service';
 import { CreateLapDto, UpdateLapDto } from './models/lap.dto';
+import { ApiTags } from '@nestjs/swagger';
 
-@Controller('lap')
+@Controller('races/:raceId/laps')
+@ApiTags('Laps')
 export class LapController {
-  constructor(private readonly lapService: LapService) {}
+  @Inject(LapService)
+  private readonly lapService: LapService;
 
   @Post()
-  create(@Body() createLapDto: CreateLapDto) {
-    return this.lapService.create(createLapDto);
+  createLap(
+    @Param('raceId') raceId: string,
+    @Body() createLapDto: CreateLapDto,
+  ) {
+    return this.lapService.createLap(+raceId, createLapDto);
   }
 
   @Get()
-  findAll() {
-    return this.lapService.findAll();
+  findByRace(@Param('raceId') raceId: string) {
+    return this.lapService.findByRaceId(+raceId);
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.lapService.findOne(+id);
+    return this.lapService.findOneDetailed(+id);
   }
 
   @Patch(':id')

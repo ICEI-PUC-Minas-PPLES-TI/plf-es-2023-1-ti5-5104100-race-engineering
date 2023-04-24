@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Inject,
 } from '@nestjs/common';
 import { DriverService } from './driver.service';
 import { EditDriverDTO } from './models/driver.dto';
@@ -14,7 +15,8 @@ import { ApiTags } from '@nestjs/swagger';
 @Controller('drivers')
 @ApiTags('Drivers')
 export class DriverController {
-  constructor(private readonly driverService: DriverService) {}
+  @Inject(DriverService)
+  private readonly driverService: DriverService;
 
   @Get()
   findAll() {

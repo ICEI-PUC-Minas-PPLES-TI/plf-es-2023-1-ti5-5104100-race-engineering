@@ -19,7 +19,7 @@ export class CircuitService {
     circuit.createdAt = new Date();
     circuit.updatedAt = new Date();
 
-    return await Circuit.save(circuit);
+    return await circuit.save();
   }
 
   async findAll(): Promise<ListedCircuit[]> {
@@ -43,11 +43,11 @@ export class CircuitService {
     circuit.local = body.local || circuit.local;
     circuit.trackSize = body.trackSize || circuit.trackSize;
     circuit.safetyMargin = body.safetyMargin || circuit.safetyMargin;
-    return await Circuit.save(circuit);
+    return await circuit.save();
   }
 
   async remove(id: number): Promise<Circuit> {
     const circuit = await this.findOne(id);
-    return await Circuit.softRemove(circuit);
+    return await circuit.softRemove();
   }
 }

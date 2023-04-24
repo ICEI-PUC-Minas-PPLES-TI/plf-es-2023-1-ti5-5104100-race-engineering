@@ -7,16 +7,19 @@ import {
   Param,
   Delete,
   Query,
+  Inject,
 } from '@nestjs/common';
 import { TeamService } from './team.service';
 import { AddDriverDTO, CreateTeamDto, UpdateTeamDto } from './models/team.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { Team } from '@/api/team/models/team.entity';
+import { DriverService } from '@/api/driver/driver.service';
 
 @Controller('teams')
 @ApiTags('Teams')
 export class TeamController {
-  constructor(private readonly teamService: TeamService) {}
+  @Inject(TeamService)
+  private readonly teamService: TeamService;
 
   @Post()
   private create(@Body() createTeamDto: CreateTeamDto): Promise<Team> {
