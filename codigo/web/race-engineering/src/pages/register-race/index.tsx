@@ -7,6 +7,7 @@ import makeAnimated from "react-select/animated";
 
 import api from "@/services/api";
 import { dataToSelectOptions } from "@/shared/utils/dataToSelectOptions";
+import { getIdList } from "@/shared/utils/getIdList";
 import { AtSignIcon, EmailIcon, LockIcon } from "@chakra-ui/icons";
 import {
   Box,
@@ -29,18 +30,14 @@ import {
 import { options } from "./option-mock";
 
 type Register = {
-  name: string;
-  email: string;
-  password: string;
-  type: string;
-
   startDate: string;
   endDate: string;
   totalLaps: number;
   analystId: number;
   circuitId: number;
-  mechanics: Array<string>;
-  drivers: Array<string>;
+  mechanics: Array<any>;
+  drivers: Array<any>;
+  teams: Array<any>;
 };
 
 const RegisterPage = () => {
@@ -52,38 +49,57 @@ const RegisterPage = () => {
 
   const [show, setShow] = useState(false);
   const [selectedDrivers, setSelectedDrivers] = useState([]);
-  const [selectedMechanics, setSelectedMechanics] = useState([]); //CRIEI ESSA
-  const [selectedTimes, setSelectedTimes] = useState([]); //CRIEI ESSA
+  const [selectedMechanics, setSelectedMechanics] = useState([]);
+  const [selectedTimes, setSelectedTimes] = useState([]);
+  const [selectedAnalyst, setSelectedAnalyst] = useState(0);
 
   const handleClick = () => setShow(!show);
 
   // BACKEND
   const [drivers, setDrivers] = useState([]);
-  const [mechanics, setMechanics] = useState([]); //CRIEI ESSA
-  const [teams, setTeams] = useState([]); //CRIEI ESSA TBM AGORA
+  const [mechanics, setMechanics] = useState([]);
+  const [teams, setTeams] = useState([]);
+  const [analysts, setAnalysts] = useState([]);
 
   useEffect(() => {
     (async () => {
       const { data: driversResponse } = await api.get("/users/drivers");
-      // const response = JSON.parse(drivers.list);
-      // const { data: mechanics } = await api.get("/users/mechanics"); tava usando essa
-      const { data: mechanicsResponse } = await api.get("/users/mechanics"); //COLOQUEI AGORA
-      const { data: teamsResponse } = await api.get("/teams"); //COLOQUEI AGORA(TESTAR)
 
-      // const { data: analistas } = await api.get("/users/analysts");
+      const { data: mechanicsResponse } = await api.get("/users/mechanics");
+      const { data: teamsResponse } = await api.get("/teams");
+      const { data: analystsResponse } = await api.get("/users/analysts");
+
       // const { data: circuitos } = await api.get("/create-circuits");
+      setAnalysts(analystsResponse);
       setDrivers(driversResponse);
-      setMechanics(mechanicsResponse); //COLOQUEI AGORA
-      setTeams(teamsResponse); //COLOQUEI AGORA
-
-      // console.log(drivers); //TA OK
-      // console.log(mechanics); //TA OK
+      setMechanics(mechanicsResponse);
+      setTeams(teamsResponse);
     })();
 
     return () => {};
   }, []);
 
   const onSubmit = handleSubmit((data, event) => {
+    // data.drivers = getIdList({
+    //   list: drivers,
+    // });
+
+    data.mechanics = getIdList({
+      list: mechanics,
+    });
+
+    data.teams = getIdList({
+      list: teams,
+    });
+
+    data.analystId = getIdList({
+      list: teams,
+    })[0];
+
+    data.drivers = [6];
+    data.totalLaps = Number(data.totalLaps);
+    data.circuitId = 1;
+
     api
       .post("/races", data)
       .then(() => {
@@ -198,6 +214,25 @@ const RegisterPage = () => {
               />
             </Box>
 
+            <Box w="100%" marginTop="4">
+              <FormLabel>Selecione o analista</FormLabel>
+              <Select
+                closeMenuOnSelect={true}
+                components={animatedComponents}
+                options={dataToSelectOptions({
+                  list: analysts,
+                  params: { label: "name", value: "id" },
+                })}
+                onChange={(option: any) => {
+                  handleSelectChange(option, () => {
+                    setSelectedAnalyst(option);
+                  });
+                }}
+                value={selectedAnalyst}
+                placeholder="Selecione o analista"
+              />
+            </Box>
+
             <Box w="100%" marginY="4">
               <FormLabel>Inicio da Corrida</FormLabel>
               <InputGroup>
@@ -206,7 +241,7 @@ const RegisterPage = () => {
                   children={<EmailIcon color="gray.300" />}
                 />
                 <Input
-                  type="date"
+                  type="datetime-local"
                   {...register("startDate", { required: true })}
                 />
               </InputGroup>
@@ -220,26 +255,20 @@ const RegisterPage = () => {
                   children={<EmailIcon color="gray.300" />}
                 />
                 <Input
-                  type="date"
+                  type="datetime-local"
                   {...register("endDate", { required: true })}
                 />
               </InputGroup>
             </Box>
-            {/* INCLUSAO DO TOTAL DE VOLTAS */}
             <Box w="100%" marginY="4">
               <FormLabel>Total de voltas</FormLabel>
               <InputGroup>
-                <InputLeftElement
-                  pointerEvents="none"
-                  // children={<EmailIcon color="gray.300" />}
-                />
                 <Input
                   type="number"
                   {...register("totalLaps", { required: true })}
                 />
               </InputGroup>
             </Box>
-            {/* TESTE */}
           </CardBody>
 
           <CardFooter display="flex" width="100%">
