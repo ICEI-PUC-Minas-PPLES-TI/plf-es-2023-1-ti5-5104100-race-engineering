@@ -4,17 +4,26 @@ import {
   Post,
   Body,
   Patch,
-  Param,
   Delete,
   Inject,
-  UseInterceptors,
-  ClassSerializerInterceptor,
+  UseGuards,
+  Param,
 } from '@nestjs/common';
+import {
+  ApiBody,
+  ApiNotFoundResponse,
+  ApiOkResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { RaceService } from './race.service';
 import { CreateRaceDTO, UpdateRaceDto } from './models/race.dto';
 import { UserService } from '@/api/user/user.service';
 import { Race } from '@/api/race/models/race.entity';
-import { ApiBody, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { JwtGuard } from '@/api/user/auth/guards/auth.guard';
+import { RoleGuard } from '@/api/user/auth/guards/role.guard';
+import { Roles } from '@/api/user/auth/decorators/role.decorator';
+import { Role, User } from '@/api/user/models/user.entity';
+import { CurrentUser } from '@/api/user/auth/decorators/user.decorator';
 
 @Controller('races')
 @ApiTags('Races')
@@ -25,30 +34,33 @@ export class RaceController {
   private readonly raceService: RaceService;
 
   @Post()
+  @Roles(Role.Admin)
+  @UseGuards(JwtGuard, RoleGuard)
   @ApiBody({ type: CreateRaceDTO })
   @ApiOkResponse({ description: 'The race was created successfully' })
-  @UseInterceptors(ClassSerializerInterceptor)
-  private create(@Body() createRaceDto: CreateRaceDTO): Promise<Race | never> {
-    return this.raceService.create(createRaceDto);
+  @ApiNotFoundResponse({ description: 'The driver or mechanic does not exist' })
+  private create(@Body() createRaceDto: CreateRaceDTO): Promise<Race> {
+    return this.raceService.createRace(createRaceDto);
   }
 
   @Get()
-  findAll() {
-    return this.raceService.findAll();
+  @UseGuards(JwtGuard)
+  private findAll(@CurrentUser() user: User) {
+    return this.raceService.findAllRaces(user);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.raceService.findOne(+id);
+  private findOne(@Param('id') id: string) {
+    return this.raceService.findOneDetailed(+id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateRaceDto: UpdateRaceDto) {
-    return this.raceService.update(+id, updateRaceDto);
+    return this.raceService.updateRace(+id, updateRaceDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.raceService.remove(+id);
+    return this.raceService.removeRace(+id);
   }
 }

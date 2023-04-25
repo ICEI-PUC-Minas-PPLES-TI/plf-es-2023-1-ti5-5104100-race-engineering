@@ -24,7 +24,13 @@ void _onSubmit(String email, String password) async {
 
   final response = await request.create(endpoint, body);
 
-  if (response.statusCode == 404) {
+  final isStatusSuccess =
+      response.statusCode == 200 || response.statusCode == 201;
+
+  print(response.statusCode);
+  if (isStatusSuccess) {
+    // Formulário enviado com sucesso
+  } else {
     Alert(message: 'Usuário não encontrado 😔').show();
   }
 }

@@ -9,11 +9,14 @@ import {
   Inject,
   Get,
 } from '@nestjs/common';
-import { JwtAuthGuard } from '@/api/user/auth/auth.guard';
 import { IRequest, ListedUser, UpdateNameDto } from './models/user.dto';
-import { User } from './models/user.entity';
+import { Role, User } from './models/user.entity';
 import { UserService } from './user.service';
 import { ApiBody, ApiOkResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Roles } from '@/api/user/auth/decorators/role.decorator';
+import { JwtGuard } from '@/api/user/auth/guards/auth.guard';
+import { RoleGuard } from '@/api/user/auth/guards/role.guard';
+import { CurrentUser } from '@/api/user/auth/decorators/user.decorator';
 
 @Controller('users')
 @ApiTags('Users')
@@ -24,7 +27,6 @@ export class UserController {
   @Put('name')
   @ApiBody({ type: UpdateNameDto })
   @ApiOkResponse({ description: 'The user name was updated successfully' })
-  @UseGuards(JwtAuthGuard)
   @UseInterceptors(ClassSerializerInterceptor)
   private updateName(
     @Body() body: UpdateNameDto,
@@ -33,18 +35,31 @@ export class UserController {
     return this.service.updateName(body, req);
   }
 
+  @UseGuards(JwtGuard)
+  @Get('me')
+  @ApiResponse({ type: User, description: 'Successful operation' })
+  async getMe(@CurrentUser() user: User): Promise<User> {
+    return user;
+  }
+
+  @Roles(Role.Admin, Role.Driver)
+  @UseGuards(JwtGuard, RoleGuard)
   @Get('drivers')
   @ApiResponse({ type: [ListedUser], description: 'Successful operation' })
   async listDrivers(): Promise<ListedUser[]> {
     return this.service.listDrivers();
   }
 
+  @Roles(Role.Admin, Role.Mechanic)
+  @UseGuards(JwtGuard, RoleGuard)
   @Get('mechanics')
   @ApiResponse({ type: [ListedUser], description: 'Successful operation' })
   async listMechanics(): Promise<ListedUser[]> {
     return await this.service.listMechanics();
   }
 
+  @Roles(Role.Admin, Role.Analyst)
+  @UseGuards(JwtGuard, RoleGuard)
   @Get('analysts')
   @ApiResponse({ type: [ListedUser], description: 'Successful operation' })
   async listAnalysts(): Promise<ListedUser[]> {

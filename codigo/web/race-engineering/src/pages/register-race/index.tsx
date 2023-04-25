@@ -2,14 +2,12 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import Select from "react-select";
+import makeAnimated from "react-select/animated";
 
-import UserForm from "@/components/user-fields/user-fields";
 import api from "@/services/api";
+import { dataToSelectOptions } from "@/shared/utils/dataToSelectOptions";
 import { AtSignIcon, EmailIcon, LockIcon } from "@chakra-ui/icons";
-// import Select from 'react-select'; //######PRO MULTIPLIE SELECT
-// import AsyncSelect from 'react-select/async';//######PRO MULTIPLIE SELECT
-//Dai no lugar de usar Select usa AsyncSelect
-
 import {
   Box,
   Button,
@@ -25,9 +23,10 @@ import {
   InputGroup,
   InputLeftElement,
   InputRightElement,
-  Select,
   useToast,
 } from "@chakra-ui/react";
+
+import { options } from "./option-mock";
 
 type Register = {
   name: string;
@@ -40,63 +39,53 @@ type Register = {
   totalLaps: number;
   analystId: number;
   circuitId: number;
-  mechanicId: string; //Dps Faz igual ao drivers
-  drivers: Array<string>; //Verificar  OK
+  mechanics: Array<string>;
+  drivers: Array<string>;
 };
 
 const RegisterPage = () => {
-  //Esse const options é pro select
-  //Vai mudar algo pq vai vir do BD dos corredores e mecanicos ja cadastradros
-  const options = [
-    {
-      label: "Analista",
-      id: "ANALYST",
-    },
-    {
-      label: "Piloto",
-      id: "DRIVER",
-    },
-    {
-      label: "Mecânico",
-      id: "MECHANIC",
-    },
-  ];
+  const animatedComponents = makeAnimated();
+
   const router = useRouter();
   const { register, handleSubmit } = useForm<Register>();
   const toast = useToast();
 
-  const [selected, setSelected] = useState("");
   const [show, setShow] = useState(false);
+  const [selectedDrivers, setSelectedDrivers] = useState([]);
+  const [selectedMechanics, setSelectedMechanics] = useState([]); //CRIEI ESSA
+  const [selectedTimes, setSelectedTimes] = useState([]); //CRIEI ESSA
 
   const handleClick = () => setShow(!show);
 
-  const handleChange = (event: any) => {
-    setSelected(event.target.value);
-  };
-
   // BACKEND
   const [drivers, setDrivers] = useState([]);
+  const [mechanics, setMechanics] = useState([]); //CRIEI ESSA
+  const [teams, setTeams] = useState([]); //CRIEI ESSA TBM AGORA
 
   useEffect(() => {
     (async () => {
-      const { data: drivers } = await api.get("/drivers");
+      const { data: driversResponse } = await api.get("/users/drivers");
       // const response = JSON.parse(drivers.list);
-      // const { data: mecanicos } = await api.get('/users/mechanics');
-      // const { data: analistas } =await api.get('/users/analysts');
-      // const { data: circuitos } = await api.get('/circuits');
-      setDrivers(drivers.list);
-      console.log(drivers);
+      // const { data: mechanics } = await api.get("/users/mechanics"); tava usando essa
+      const { data: mechanicsResponse } = await api.get("/users/mechanics"); //COLOQUEI AGORA
+      const { data: teamsResponse } = await api.get("/teams"); //COLOQUEI AGORA(TESTAR)
+
+      // const { data: analistas } = await api.get("/users/analysts");
+      // const { data: circuitos } = await api.get("/create-circuits");
+      setDrivers(driversResponse);
+      setMechanics(mechanicsResponse); //COLOQUEI AGORA
+      setTeams(teamsResponse); //COLOQUEI AGORA
+
+      // console.log(drivers); //TA OK
+      // console.log(mechanics); //TA OK
     })();
 
-    return () => {
-      // Função de limpeza do efeito (opcional)
-    };
+    return () => {};
   }, []);
 
-  //Esse const onSubmit Pode Deixar (Talvez so mudar o caminho do post OU talvez nem precise)
   const onSubmit = handleSubmit((data, event) => {
     api
-      .post("/register", data)
+      .post("/races", data)
       .then(() => {
         event?.target?.reset();
         toast({
@@ -118,6 +107,14 @@ const RegisterPage = () => {
         });
       });
   });
+
+  const handleSelectChange = (selectedOption: any, callback: any) => {
+    if (selectedOption && selectedOption.length > 2) {
+      selectedOption = selectedOption.slice(0, 2);
+    }
+
+    callback();
+  };
 
   return (
     <Box
@@ -143,69 +140,62 @@ const RegisterPage = () => {
           <CardBody>
             <Box w="100%" marginTop="4">
               <FormLabel>Selecione o(s) Corredores</FormLabel>
-              <InputGroup id="racerType">
-                {/* const MyComponent = () => ( */}
-                {/* <Select options={options} /> */}
-                {/* ) */}
-                {/* ###############Multiplies Select */}
-                <Select
-                  value={selected}
-                  {...register("drivers")} //tava type Acho q troquei certo
-                  onChange={handleChange}
-                >
-                  <option hidden>Selecione o(s) Corredores</option>
-                  {/* No lugar de options vai ser Drivers 
-                    E no lugar de label vai ser NOme MAS 
-                      FALTA O OTAVIO COLOCAR ISSO NO BANCO DE DADOS
-                       O JOEY FALOU Q VAI FAZER ESSE SELECT*/}
-                  {options.map((option) => (
-                    <option key={option.id} value={option.id}>
-                      {option.label}
-                    </option>
-                  ))}
-                </Select>
-              </InputGroup>
+              <Select
+                closeMenuOnSelect={false}
+                components={animatedComponents}
+                isMulti
+                options={dataToSelectOptions({
+                  list: drivers,
+                  params: { label: "name", value: "id" },
+                })}
+                onChange={(option: any) => {
+                  handleSelectChange(option, () => {
+                    setSelectedDrivers(option);
+                  });
+                }}
+                value={selectedDrivers}
+                placeholder="Selecione os corredores"
+              />
             </Box>
 
             <Box w="100%" marginTop="4">
               <FormLabel>Selecione o(s) Mecanicos</FormLabel>
-              {/* Pode Manter o id  Mas acho q tem q trocar  #############*/}
-              <InputGroup id="mechanicType">
-                <Select
-                  value={selected}
-                  {...register("mechanicId")} //fica de olho se o otavio trocar
-                  onChange={handleChange}
-                >
-                  <option hidden>Selecione o(s) Mecanicos</option>
-                  {/*O mesmo q falei no select de cima */}
-                  {options.map((option) => (
-                    <option key={option.id} value={option.id}>
-                      {option.label}
-                    </option>
-                  ))}
-                </Select>
-              </InputGroup>
+              <Select
+                closeMenuOnSelect={false}
+                components={animatedComponents}
+                isMulti
+                options={dataToSelectOptions({
+                  list: mechanics,
+                  params: { label: "name", value: "id" },
+                })}
+                onChange={(option: any) => {
+                  handleSelectChange(option, () => {
+                    setSelectedMechanics(option);
+                  });
+                }}
+                value={selectedMechanics}
+                placeholder="Selecione os mecanicos"
+              />
             </Box>
 
-            {/* COLOCAR MAIS UM BOX PARA TIMES(FALTA TA NO BACKEND ANTES) */}
             <Box w="100%" marginTop="4">
               <FormLabel>Selecione o(s) Times</FormLabel>
-              {/* Pode Manter o id  Mas acho q tem q trocar  #############*/}
-              <InputGroup id="mechanicType">
-                <Select
-                  value={selected}
-                  {...register("mechanicId")} //AINDA N TEM(falta o otavio colocar)
-                  onChange={handleChange}
-                >
-                  <option hidden>Selecione o(s) Times</option>
-                  {/*O mesmo q falei no select de cima */}
-                  {options.map((option) => (
-                    <option key={option.id} value={option.id}>
-                      {option.label}
-                    </option>
-                  ))}
-                </Select>
-              </InputGroup>
+              <Select
+                closeMenuOnSelect={false}
+                components={animatedComponents}
+                isMulti
+                options={dataToSelectOptions({
+                  list: teams,
+                  params: { label: "name", value: "id" },
+                })}
+                onChange={(option: any) => {
+                  handleSelectChange(option, () => {
+                    setSelectedTimes(option);
+                  });
+                }}
+                value={selectedTimes}
+                placeholder="Selecione os Times"
+              />
             </Box>
 
             <Box w="100%" marginY="4">
@@ -217,7 +207,6 @@ const RegisterPage = () => {
                 />
                 <Input
                   type="date"
-                  //   placeholder="Digite seu email"
                   {...register("startDate", { required: true })}
                 />
               </InputGroup>
@@ -236,13 +225,27 @@ const RegisterPage = () => {
                 />
               </InputGroup>
             </Box>
+            {/* INCLUSAO DO TOTAL DE VOLTAS */}
+            <Box w="100%" marginY="4">
+              <FormLabel>Total de voltas</FormLabel>
+              <InputGroup>
+                <InputLeftElement
+                  pointerEvents="none"
+                  // children={<EmailIcon color="gray.300" />}
+                />
+                <Input
+                  type="number"
+                  {...register("totalLaps", { required: true })}
+                />
+              </InputGroup>
+            </Box>
+            {/* TESTE */}
           </CardBody>
 
           <CardFooter display="flex" width="100%">
             <Button
               colorScheme="messenger"
               variant="ghost"
-              //   indo pra pagina home Apos passar pela PagiNA "cadastro com sucesso por 3s"
               onClick={() => {
                 router.push("/");
               }}

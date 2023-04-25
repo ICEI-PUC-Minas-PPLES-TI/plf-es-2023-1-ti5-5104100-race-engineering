@@ -1,5 +1,19 @@
 import { PartialType } from '@nestjs/mapped-types';
+import { IsBoolean, IsNumber, IsString } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 
-export class CreateDriverDto {}
+export class EditDriverDTO {
+  @IsNumber()
+  @ApiProperty({ example: 7 })
+  number: number;
 
-export class UpdateDriverDto extends PartialType(CreateDriverDto) {}
+  @IsBoolean()
+  @ApiProperty({ example: true })
+  isActive: boolean;
+
+  @IsString()
+  @ApiProperty({ example: 'Brazilian' })
+  nationality: string;
+}
+
+export class UpdateDriverDto extends PartialType(EditDriverDTO) {}

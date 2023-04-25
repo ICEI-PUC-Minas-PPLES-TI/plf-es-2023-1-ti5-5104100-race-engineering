@@ -77,8 +77,8 @@ class _RegisterView extends State<RegisterView> {
       'name': name,
       'email': email,
       'password': password,
-      'userType': userType
-    };
+      'role': userType
+    });
 
     final response = await request.create(ENDPOINT, body);
 

@@ -1,18 +1,24 @@
 import {
   BaseEntity,
   Column,
+  CreateDateColumn,
+  DeleteDateColumn,
   Entity,
   Index,
   JoinColumn,
+  JoinTable,
   ManyToMany,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
-import { Lap } from '../../entities/lap.entity';
+import { Lap } from '@/api/lap/models/lap.entity';
 import { User } from '../../user/models/user.entity';
 import { Circuit } from '../../circuit/models/circuit.entity';
 import { Driver } from '../../driver/models/driver.entity';
+import { Exclude } from 'class-transformer';
+import { Team } from '@/api/team/models/team.entity';
 
 @Index('Race_pkey', ['id'], { unique: true })
 @Entity('Race', { schema: 'public' })
@@ -29,11 +35,17 @@ export class Race extends BaseEntity {
   @Column('integer', { name: 'totalLaps', nullable: true })
   totalLaps: number | null;
 
-  @Column('timestamp with time zone', { name: 'createdAt', nullable: true })
+  @Exclude()
+  @CreateDateColumn({ name: 'createdAt', type: 'timestamp', default: 'now()' })
   createdAt: Date | null;
 
-  @Column('timestamp with time zone', { name: 'updatedAt', nullable: true })
+  @Exclude()
+  @UpdateDateColumn({ name: 'updatedAt', type: 'timestamp', default: 'now()' })
   updatedAt: Date | null;
+
+  @Exclude()
+  @DeleteDateColumn({ name: 'deletedAt', type: 'timestamp', default: null })
+  deletedAt: Date | null;
 
   @OneToMany(() => Lap, (lap) => lap.race)
   laps: Lap[];
@@ -50,10 +62,18 @@ export class Race extends BaseEntity {
   @JoinColumn([{ name: 'firstPlaceId', referencedColumnName: 'id' }])
   firstPlace: Driver;
 
-  @ManyToOne(() => User, (user) => user.mechanicRaces)
-  @JoinColumn([{ name: 'mechanicId', referencedColumnName: 'id' }])
-  mechanic: User;
+  @ManyToMany(() => User, (user) => user.mechanicRaces)
+  mechanics: User[];
 
   @ManyToMany(() => Driver, (driver) => driver.races)
   drivers: Driver[];
+
+  @ManyToMany(() => Team, (team) => team.races)
+  @JoinTable({
+    name: 'Race_Team',
+    joinColumns: [{ name: 'raceId', referencedColumnName: 'id' }],
+    inverseJoinColumns: [{ name: 'teamId', referencedColumnName: 'id' }],
+    schema: 'public',
+  })
+  teams: Team[];
 }

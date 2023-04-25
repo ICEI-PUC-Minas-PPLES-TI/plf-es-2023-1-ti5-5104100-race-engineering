@@ -28,17 +28,27 @@ Race Engineering API built with [NestJS](https://github.com/nestjs/nest).
 
 Swagger documentation is available at http://localhost:8000/api-docs
 
-## Running with Docker
+## Database Initialization
 Docker must be installed locally.
 
 ```bash
+# To start the DB:
 $ docker-compose up
+
+# To start the DB dettached from the terminal:
+$ docker-compose up -d 
 ```
 
 ## Installation
 
 ```bash
 $ npm install
+```
+
+## Database - Run Migrations
+
+```bash
+$ npm run typeorm:cli migration:run
 ```
 
 ## Running the app

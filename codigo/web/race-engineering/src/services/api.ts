@@ -8,9 +8,10 @@ api.defaults.timeout = 10000000;
 
 api.interceptors.request.use(
   async (config) => {
-    const token = localStorage.getItem("token");
+    const token =
+      typeof window !== "undefined" && localStorage.getItem("token");
     if (token) {
-      config.headers.Authorization = token;
+      config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
   },

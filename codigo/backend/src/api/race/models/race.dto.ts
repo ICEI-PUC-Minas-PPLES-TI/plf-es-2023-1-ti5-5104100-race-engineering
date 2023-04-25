@@ -1,8 +1,18 @@
 import { PartialType } from '@nestjs/mapped-types';
 import { IsArray, IsDateString, IsNumber } from 'class-validator';
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class SelectDriverDTO {
+  @IsNumber()
+  id: number;
+}
+
+export class SelectMechanicDTO {
+  @IsNumber()
+  id: number;
+}
+
+export class SelectTeamDTO {
   @IsNumber()
   id: number;
 }
@@ -21,20 +31,24 @@ export class CreateRaceDTO {
   totalLaps: number;
 
   @IsNumber()
-  @ApiProperty({ type: 'number', example: 1 })
-  analystId: number;
+  @ApiPropertyOptional({ type: 'number', example: 1 })
+  analystId?: number;
 
   @IsNumber()
   @ApiProperty({ type: 'number', example: 1 })
   circuitId: number;
 
-  @IsNumber()
-  @ApiProperty({ type: 'number', example: 1 })
-  mechanicId: number;
+  @IsArray()
+  @ApiProperty({ type: 'array', example: [1, 2] })
+  mechanics: SelectMechanicDTO[];
 
   @IsArray()
   @ApiProperty({ type: 'array', example: [1, 2, 3] })
   drivers: SelectDriverDTO[];
+
+  @IsArray()
+  @ApiProperty({ type: 'array', example: [1, 2, 3] })
+  teams: SelectTeamDTO[];
 }
 
 export class UpdateRaceDto extends PartialType(CreateRaceDTO) {}

@@ -1,13 +1,17 @@
 import {
   BaseEntity,
   Column,
+  CreateDateColumn,
+  DeleteDateColumn,
   Entity,
   Index,
   OneToMany,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import { Race } from '../../race/models/race.entity';
 import { ApiProperty } from '@nestjs/swagger';
+import { Exclude } from 'class-transformer';
 
 @Index('Circuit_pkey', ['id'], { unique: true })
 @Entity('Circuit', { schema: 'public' })
@@ -32,13 +36,17 @@ export class Circuit extends BaseEntity {
   @ApiProperty({ type: 'number', example: 0.5 })
   safetyMargin: number | null;
 
-  @Column('timestamp with time zone', { name: 'createdAt', nullable: true })
-  @ApiProperty({ type: 'string', example: '2021-05-01T00:00:00.000Z' })
+  @Exclude()
+  @CreateDateColumn({ name: 'createdAt', type: 'timestamp', default: 'now()' })
   createdAt: Date | null;
 
-  @Column('timestamp with time zone', { name: 'updatedAt', nullable: true })
-  @ApiProperty({ type: 'string', example: '2021-05-01T00:00:00.000Z' })
+  @Exclude()
+  @UpdateDateColumn({ name: 'updatedAt', type: 'timestamp', default: 'now()' })
   updatedAt: Date | null;
+
+  @Exclude()
+  @DeleteDateColumn({ name: 'deletedAt', type: 'timestamp', default: null })
+  deletedAt: Date | null;
 
   @OneToMany(() => Race, (race) => race.circuit)
   races: Race[];

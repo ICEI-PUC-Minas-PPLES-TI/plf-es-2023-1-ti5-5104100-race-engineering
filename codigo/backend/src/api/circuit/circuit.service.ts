@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import {
   CreateCircuitDto,
   ListedCircuit,
@@ -19,7 +19,7 @@ export class CircuitService {
     circuit.createdAt = new Date();
     circuit.updatedAt = new Date();
 
-    return await Circuit.save(circuit);
+    return await circuit.save();
   }
 
   async findAll(): Promise<ListedCircuit[]> {
@@ -31,15 +31,23 @@ export class CircuitService {
     }));
   }
 
-  async findOne(id: number) {
-    return await Circuit.findOne({ where: { id } });
+  async findOne(id: number): Promise<Circuit> {
+    const circuit = await Circuit.findOne({ where: { id } });
+    if (!circuit) throw new NotFoundException({ message: 'Circuit not found' });
+    return circuit;
   }
 
-  async update(id: number, updateCircuitDto: UpdateCircuitDto) {
-    return `This action updates a #${id} circuit`;
+  async update(id: number, body: UpdateCircuitDto): Promise<Circuit> {
+    const circuit = await this.findOne(id);
+    circuit.name = body.name || circuit.name;
+    circuit.local = body.local || circuit.local;
+    circuit.trackSize = body.trackSize || circuit.trackSize;
+    circuit.safetyMargin = body.safetyMargin || circuit.safetyMargin;
+    return await circuit.save();
   }
 
-  async remove(id: number) {
-    return `This action removes a #${id} circuit`;;
+  async remove(id: number): Promise<Circuit> {
+    const circuit = await this.findOne(id);
+    return await circuit.softRemove();
   }
 }

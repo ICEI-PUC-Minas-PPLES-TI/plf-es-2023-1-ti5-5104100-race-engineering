@@ -22,7 +22,7 @@ const Logo = (props: any) => {
       borderRadius="full"
       boxSize="100px"
       //src="https://bit.ly/dan-abramov" // Perguntar sobre como adicionar imagem
-      src="./images/Logo-corrida.png"
+      src="./images/marca-centralizada.png"
       alt="Logo"
     />
   );
@@ -76,7 +76,7 @@ export default function SmallCentered() {
       >
         <Logo />
         <Stack direction={"row"} spacing={6}>
-          <Link href={"#"}>Home</Link>
+          <Link href={"/"}>Home</Link>
           <Link href={"#"}>Races</Link>
           <Link href={"#"}>Chat</Link>
         </Stack>

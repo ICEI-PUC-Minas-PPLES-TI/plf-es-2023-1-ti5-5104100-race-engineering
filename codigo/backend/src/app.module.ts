@@ -1,11 +1,11 @@
-import { Module } from '@nestjs/common';
+import { Logger, MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-
-import { ApiModule } from './api/app.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { getEnvPath } from './common/helper/env.helper';
+import { ApiModule } from './api/api.module';
+import { LoggerMiddleware } from '@/common/logger/logger.middleware';
 
 const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
 
@@ -25,6 +25,8 @@ const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
         migrations: ['dist/shared/typeorm/migrations/*.{ts,js}'],
         migrationsTableName: 'typeorm_migrations',
         synchronize: false, // never use TRUE in production!
+        // seeds: ['dist/shared/typeorm/seeding/*.{ts,js}'],
+        // factories: ['dist/shared/typeorm/factories/*.{ts,js}'],
       }),
       inject: [ConfigService],
     }),
@@ -33,4 +35,8 @@ const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoggerMiddleware).forRoutes('*');
+  }
+}

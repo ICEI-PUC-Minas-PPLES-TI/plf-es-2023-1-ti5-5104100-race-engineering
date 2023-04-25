@@ -1,6 +1,5 @@
-import { IsNumber, IsString } from 'class-validator';
-
 import { PartialType } from '@nestjs/mapped-types';
+import { IsNumber, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateCircuitDto {
