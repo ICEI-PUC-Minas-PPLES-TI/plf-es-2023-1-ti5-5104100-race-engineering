@@ -85,17 +85,20 @@ const RegisterPage = () => {
   const onSubmit = handleSubmit((data, event) => {
     data.mechanics = getIdList({
       list: mechanics,
-    });
+    }).slice(0, 1);
 
     data.teams = getIdList({
       list: teams,
-    });
+    }).slice(0, 1);
 
     data.analystId = getIdList({
       list: analysts,
     })[0];
 
-    data.drivers = [6];
+    data.drivers = getIdList({
+      list: drivers,
+    }).slice(0, 1);
+
     data.totalLaps = Number(data.totalLaps);
 
     data.circuitId = getIdList({
