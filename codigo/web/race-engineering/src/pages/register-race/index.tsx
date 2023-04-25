@@ -52,6 +52,7 @@ const RegisterPage = () => {
   const [selectedMechanics, setSelectedMechanics] = useState([]);
   const [selectedTimes, setSelectedTimes] = useState([]);
   const [selectedAnalyst, setSelectedAnalyst] = useState(0);
+  const [selectedCircuit, setSelectedCircuit] = useState(0);
 
   const handleClick = () => setShow(!show);
 
@@ -60,6 +61,7 @@ const RegisterPage = () => {
   const [mechanics, setMechanics] = useState([]);
   const [teams, setTeams] = useState([]);
   const [analysts, setAnalysts] = useState([]);
+  const [circuits, setCircuits] = useState([]);
 
   useEffect(() => {
     (async () => {
@@ -68,22 +70,19 @@ const RegisterPage = () => {
       const { data: mechanicsResponse } = await api.get("/users/mechanics");
       const { data: teamsResponse } = await api.get("/teams");
       const { data: analystsResponse } = await api.get("/users/analysts");
+      const { data: circuitsResponse } = await api.get("/circuits");
 
-      // const { data: circuitos } = await api.get("/create-circuits");
       setAnalysts(analystsResponse);
       setDrivers(driversResponse);
       setMechanics(mechanicsResponse);
       setTeams(teamsResponse);
+      setCircuits(circuitsResponse);
     })();
 
     return () => {};
   }, []);
 
   const onSubmit = handleSubmit((data, event) => {
-    // data.drivers = getIdList({
-    //   list: drivers,
-    // });
-
     data.mechanics = getIdList({
       list: mechanics,
     });
@@ -93,12 +92,15 @@ const RegisterPage = () => {
     });
 
     data.analystId = getIdList({
-      list: teams,
+      list: analysts,
     })[0];
 
     data.drivers = [6];
     data.totalLaps = Number(data.totalLaps);
-    data.circuitId = 1;
+
+    data.circuitId = getIdList({
+      list: circuits,
+    })[0];
 
     api
       .post("/races", data)
@@ -154,6 +156,44 @@ const RegisterPage = () => {
           </CardHeader>
 
           <CardBody>
+            <Box w="100%" marginTop="4">
+              <FormLabel>Selecione o circuito</FormLabel>
+              <Select
+                closeMenuOnSelect={true}
+                components={animatedComponents}
+                options={dataToSelectOptions({
+                  list: circuits,
+                  params: { label: "name", value: "id" },
+                })}
+                onChange={(option: any) => {
+                  handleSelectChange(option, () => {
+                    setSelectedCircuit(option);
+                  });
+                }}
+                value={selectedCircuit}
+                placeholder="Selecione o circuito"
+              />
+            </Box>
+
+            <Box w="100%" marginTop="4">
+              <FormLabel>Selecione o analista</FormLabel>
+              <Select
+                closeMenuOnSelect={true}
+                components={animatedComponents}
+                options={dataToSelectOptions({
+                  list: analysts,
+                  params: { label: "name", value: "id" },
+                })}
+                onChange={(option: any) => {
+                  handleSelectChange(option, () => {
+                    setSelectedAnalyst(option);
+                  });
+                }}
+                value={selectedAnalyst}
+                placeholder="Selecione o analista"
+              />
+            </Box>
+
             <Box w="100%" marginTop="4">
               <FormLabel>Selecione o(s) Corredores</FormLabel>
               <Select
@@ -211,25 +251,6 @@ const RegisterPage = () => {
                 }}
                 value={selectedTimes}
                 placeholder="Selecione os Times"
-              />
-            </Box>
-
-            <Box w="100%" marginTop="4">
-              <FormLabel>Selecione o analista</FormLabel>
-              <Select
-                closeMenuOnSelect={true}
-                components={animatedComponents}
-                options={dataToSelectOptions({
-                  list: analysts,
-                  params: { label: "name", value: "id" },
-                })}
-                onChange={(option: any) => {
-                  handleSelectChange(option, () => {
-                    setSelectedAnalyst(option);
-                  });
-                }}
-                value={selectedAnalyst}
-                placeholder="Selecione o analista"
               />
             </Box>
 
