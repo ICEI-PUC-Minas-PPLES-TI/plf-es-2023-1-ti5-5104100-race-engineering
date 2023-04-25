@@ -26,6 +26,9 @@ export class Race extends BaseEntity {
   @PrimaryGeneratedColumn({ type: 'integer', name: 'id' })
   id: number;
 
+  @Column('text', { name: 'name' })
+  name: string;
+
   @Column('timestamp with time zone', { name: 'startDate' })
   startDate: Date;
 
