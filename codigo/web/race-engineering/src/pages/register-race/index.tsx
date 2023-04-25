@@ -33,6 +33,7 @@ type Register = {
   startDate: string;
   endDate: string;
   totalLaps: number;
+  name: string;
   analystId: number;
   circuitId: number;
   mechanics: Array<any>;
@@ -85,15 +86,15 @@ const RegisterPage = () => {
   const onSubmit = handleSubmit((data, event) => {
     data.mechanics = getIdList({
       list: mechanics,
-    }).slice(0, 1);
+    });
 
     data.teams = getIdList({
       list: teams,
-    }).slice(0, 1);
+    });
 
     data.analystId = getIdList({
       list: analysts,
-    })[0];
+    })[0].id;
 
     data.drivers = getIdList({
       list: drivers,
@@ -103,7 +104,7 @@ const RegisterPage = () => {
 
     data.circuitId = getIdList({
       list: circuits,
-    })[0];
+    })[0].id;
 
     api
       .post("/races", data)
@@ -159,6 +160,12 @@ const RegisterPage = () => {
           </CardHeader>
 
           <CardBody>
+            <Box w="100%" marginY="4">
+              <FormLabel>Nome da corrida</FormLabel>
+              <InputGroup>
+                <Input type="text" {...register("name", { required: true })} />
+              </InputGroup>
+            </Box>
             <Box w="100%" marginTop="4">
               <FormLabel>Selecione o circuito</FormLabel>
               <Select
