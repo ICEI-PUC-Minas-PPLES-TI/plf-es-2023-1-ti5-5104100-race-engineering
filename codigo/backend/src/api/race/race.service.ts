@@ -24,6 +24,7 @@ export class RaceService {
 
   async createRace(createRaceDto: CreateRaceDTO) {
     const {
+      name,
       startDate,
       endDate,
       totalLaps,
@@ -43,6 +44,7 @@ export class RaceService {
     const foundTeams = await this.findTeams(teams);
 
     const race = new Race();
+    race.name = name;
     race.startDate = startDate;
     race.endDate = endDate;
     race.totalLaps = totalLaps;

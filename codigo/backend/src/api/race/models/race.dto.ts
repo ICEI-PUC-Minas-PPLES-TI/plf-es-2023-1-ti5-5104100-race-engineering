@@ -1,5 +1,5 @@
 import { PartialType } from '@nestjs/mapped-types';
-import { IsArray, IsDateString, IsNumber } from 'class-validator';
+import { IsArray, IsDateString, IsNumber, IsString } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class SelectDriverDTO {
@@ -18,6 +18,10 @@ export class SelectTeamDTO {
 }
 
 export class CreateRaceDTO {
+  @IsString()
+  @ApiProperty({ type: 'string', example: 'First race' })
+  name: string;
+
   @IsDateString()
   @ApiProperty({ type: 'string', example: '2023-04-03T08:00:00.000Z' })
   startDate: Date;
@@ -39,15 +43,15 @@ export class CreateRaceDTO {
   circuitId: number;
 
   @IsArray()
-  @ApiProperty({ type: 'array', example: [1, 2] })
+  @ApiProperty({ type: 'array', example: [{ id: 1 }, { id: 2 }] })
   mechanics: SelectMechanicDTO[];
 
   @IsArray()
-  @ApiProperty({ type: 'array', example: [1, 2, 3] })
+  @ApiProperty({ type: 'array', example: [{ id: 1 }, { id: 2 }, { id: 3 }] })
   drivers: SelectDriverDTO[];
 
   @IsArray()
-  @ApiProperty({ type: 'array', example: [1, 2, 3] })
+  @ApiProperty({ type: 'array', example: [{ id: 1 }, { id: 2 }, { id: 3 }] })
   teams: SelectTeamDTO[];
 }
 
