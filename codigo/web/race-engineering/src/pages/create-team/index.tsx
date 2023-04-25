@@ -71,17 +71,17 @@ const CircuitPage = () => {
                   query="Criar"
                   styles={{ px: "1", py: "1", bg: "gray.100" }}
                 >
-                  Criar novo Circuito
+                  Criar novo time
                 </Highlight>
               </Heading>
             </CardHeader>
             <CardBody>
               <Box w="100%" marginY="4">
-                <FormLabel>Nome do circuito</FormLabel>
+                <FormLabel>Nome do time</FormLabel>
                 <InputGroup>
                   <Input
                     type={"text"}
-                    placeholder="Digite o nome do circuito"
+                    placeholder="Digite o nome do time"
                     {...register("name", { required: true })}
                   />
                 </InputGroup>
@@ -91,7 +91,7 @@ const CircuitPage = () => {
                 <InputGroup>
                   <Input
                     type={"text"}
-                    placeholder="Digite a categoria do circuito"
+                    placeholder="Digite a categoria do time"
                     {...register("category", { required: true })}
                   />
                 </InputGroup>
