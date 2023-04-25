@@ -39,15 +39,15 @@ export class CreateRaceDTO {
   circuitId: number;
 
   @IsArray()
-  @ApiProperty({ type: 'array', example: [1, 2] })
+  @ApiProperty({ type: 'array', example: [{ id: 1 }, { id: 2 }] })
   mechanics: SelectMechanicDTO[];
 
   @IsArray()
-  @ApiProperty({ type: 'array', example: [1, 2, 3] })
+  @ApiProperty({ type: 'array', example: [{ id: 1 }, { id: 2 }, { id: 3 }] })
   drivers: SelectDriverDTO[];
 
   @IsArray()
-  @ApiProperty({ type: 'array', example: [1, 2, 3] })
+  @ApiProperty({ type: 'array', example: [{ id: 1 }, { id: 2 }, { id: 3 }] })
   teams: SelectTeamDTO[];
 }
 
