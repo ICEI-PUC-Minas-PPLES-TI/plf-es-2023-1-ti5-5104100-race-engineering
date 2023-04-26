@@ -31,7 +31,7 @@ type Login = {
 
 const LoginPage = () => {
   const router = useRouter();
-  const { authenticate } = useAuth();
+  const { authenticate, logout } = useAuth();
 
   const { register, handleSubmit } = useForm<Login>();
   const toast = useToast();
@@ -43,12 +43,29 @@ const LoginPage = () => {
   const onSubmit = handleSubmit((data, event) => {
     api
       .post("/auth/login", data)
-      .then((response) => {
+      .then(async (response) => {
         const { data } = response;
+        const ROLES_AUTHORIZED = ["ADMIN", "ANALYST"];
 
         authenticate(data);
+        const { data: profile } = await api.get("/users/me");
 
-        router.push("/");
+        if (typeof window !== "undefined") {
+          localStorage.setItem("profile", JSON.stringify(profile));
+        }
+
+        if (ROLES_AUTHORIZED.includes(profile.role)) {
+          router.push("/");
+        } else {
+          toast({
+            title: "Acesso não autorizado, contate o administrador do sistema.",
+            status: "warning",
+            duration: 3000,
+            isClosable: true,
+            position: "top-right",
+          });
+          logout();
+        }
       })
       .catch((err) => {
         toast({

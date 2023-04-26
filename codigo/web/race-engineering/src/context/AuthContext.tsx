@@ -2,11 +2,18 @@ import * as React from "react";
 
 type AuthParams = {
   token: string;
+  profile: {
+    name: string;
+    email: string;
+    role: string;
+    lastLoginAt: string;
+  };
 };
 
 type AuthContextData = {
   isAuthenticated: boolean;
-  authenticate: ({ token }: AuthParams) => void;
+  profile: {};
+  authenticate: ({ token, profile }: AuthParams) => void;
   logout: () => void;
 };
 
@@ -17,6 +24,7 @@ type ProviderProps = {
 export const AuthContext = React.createContext<AuthContextData>({
   isAuthenticated: false,
   authenticate: () => {},
+  profile: {},
   logout: () => {},
 });
 
@@ -28,19 +36,31 @@ export function AuthProvider({ children }: ProviderProps) {
   const [isAuthenticated, setIsAuthenticated] = React.useState(
     () => Boolean(localToken) ?? false
   );
+  const [profile, setProfile] = React.useState({});
 
-  function authenticate({ token }: AuthParams) {
+  function authenticate({ token, profile }: AuthParams) {
     setIsAuthenticated(true);
-    typeof window !== "undefined" && localStorage.setItem("token", token);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("token", token);
+      localStorage.setItem("profile", JSON.stringify(profile));
+
+      setProfile(profile);
+    }
   }
 
   function logout() {
     setIsAuthenticated(false);
-    typeof window !== "undefined" && localStorage.removeItem("token");
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("token");
+      localStorage.removeItem("profile");
+      setProfile({});
+    }
   }
 
   return (
-    <AuthContext.Provider value={{ authenticate, isAuthenticated, logout }}>
+    <AuthContext.Provider
+      value={{ authenticate, isAuthenticated, profile, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );
