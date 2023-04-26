@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import Head from "next/head";
 import NextLink from "next/link";
+
 import Sidebar from "@/components/sidebar/Sidebar";
 import {
   Box,
@@ -16,7 +17,6 @@ import {
   Stack,
   Tag,
 } from "@chakra-ui/react";
-
 
 export default function Index() {
   return (
@@ -37,20 +37,9 @@ export default function Index() {
           <Box w="5vw" className="sidebar-container">
             <Sidebar />
           </Box>
-          <Box w="95vw">
-            
-            
-            
-          </Box>
+          <Box w="95vw"></Box>
         </Box>
       </Box>
     </>
   );
 }
-
-
-
-
-
-
-

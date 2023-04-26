@@ -29,8 +29,7 @@ type Register = {
   name: string;
   email: string;
   password: string;
-  // userType: string;
-  role:string;
+  role: string;
 };
 
 const RegisterPage = () => {
