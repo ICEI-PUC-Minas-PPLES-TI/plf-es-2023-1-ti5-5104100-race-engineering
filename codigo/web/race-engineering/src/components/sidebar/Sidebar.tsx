@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { RiChat4Fill, RiSunFill, RiHome2Fill } from "react-icons/ri";
+import { RiChat4Fill, RiHome2Fill, RiSunFill } from "react-icons/ri";
 
+import { useAuth } from "@/context/AuthContext";
 import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
 import {
   Box,
@@ -20,6 +21,7 @@ import {
 const Sidebar = () => {
   const router = useRouter();
   const { isOpen, onToggle } = useDisclosure();
+  const { logout } = useAuth();
 
   const MenuToggle = ({ toggle }: any) => {
     return (
@@ -51,7 +53,7 @@ const Sidebar = () => {
               Home
             </Box>
           </Stack>
-          
+
           {/* Espaçamento entre a Home e os demais Icons*/}
           <Stack direction="column" spacing={0}></Stack>
 
@@ -98,7 +100,14 @@ const Sidebar = () => {
                 </MenuGroup>
                 <MenuDivider />
                 <MenuGroup title="Configurações">
-                  <MenuItem>Logout</MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      logout();
+                      router.push("/");
+                    }}
+                  >
+                    Logout
+                  </MenuItem>
                 </MenuGroup>
               </MenuList>
             </Menu>
