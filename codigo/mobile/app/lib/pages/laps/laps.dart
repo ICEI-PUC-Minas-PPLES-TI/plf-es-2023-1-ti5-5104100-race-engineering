@@ -86,18 +86,6 @@ class _LapsView extends State<LapsView> {
                     ),
                   )),
             ),
-            Row(
-              children: [
-                Text("testandao"),
-                Card(
-                  elevation: 5,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Text("testando")
-                )
-              ],
-            )
           ],
         )),
       )),

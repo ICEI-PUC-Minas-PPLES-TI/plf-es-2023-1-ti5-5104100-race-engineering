@@ -1,20 +1,33 @@
 import 'package:flutter/cupertino.dart';
-
 import 'package:app/pages/races/races.dart';
 import 'package:app/pages/laps/laps.dart';
 
 class AdminView extends StatefulWidget {
-  const AdminView({super.key});
+  const AdminView({Key? key}) : super(key: key);
 
   @override
-  State<AdminView> createState() => _AdminView();
+  State<AdminView> createState() => _AdminViewState();
 }
 
-class _AdminView extends State<AdminView> {
+class _AdminViewState extends State<AdminView> {
+  int _currentIndex = 0;
+
+  final List<Widget> _tabs = [
+    RacesView(),
+    RacesView(),
+    RacesView(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return CupertinoTabScaffold(
       tabBar: CupertinoTabBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.car_detailed),
@@ -33,13 +46,9 @@ class _AdminView extends State<AdminView> {
       tabBuilder: (BuildContext context, int index) {
         return CupertinoTabView(
           builder: (BuildContext context) {
-            return Center(
-              child: ListView.builder(
-                itemCount: 2, // quantidade de cards na tela
-                itemBuilder: (context, index) {
-                  return LapsView();
-                },
-              ),
+            return IndexedStack(
+              index: _currentIndex,
+              children: _tabs,
             );
           },
         );
