@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import { RiChat4Fill, RiHome2Fill, RiSunFill } from "react-icons/ri";
 
 import { useAuth } from "@/context/AuthContext";
@@ -18,10 +19,13 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 
+import { EditUserModal } from "../EditUserModal/EditUserModal";
+
 const Sidebar = () => {
   const router = useRouter();
   const { isOpen, onToggle } = useDisclosure();
   const { logout } = useAuth();
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
   const MenuToggle = ({ toggle }: any) => {
     return (
@@ -96,7 +100,9 @@ const Sidebar = () => {
               />
               <MenuList>
                 <MenuGroup title="Perfil">
-                  <MenuItem>Meu dados</MenuItem>
+                  <MenuItem onClick={() => setIsOpenModal(true)}>
+                    Meu dados
+                  </MenuItem>
                   <MenuItem>Histórico</MenuItem>
                 </MenuGroup>
                 <MenuDivider />
@@ -115,6 +121,7 @@ const Sidebar = () => {
           </Stack>
         </Box>
       </Flex>
+      <EditUserModal isOpen={isOpenModal} setIsOpen={setIsOpenModal} />
     </Box>
   );
 };
