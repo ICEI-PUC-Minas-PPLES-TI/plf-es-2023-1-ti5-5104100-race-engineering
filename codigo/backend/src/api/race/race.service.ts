@@ -97,6 +97,7 @@ export class RaceService {
   async updateRace(id: number, updateRaceDto: UpdateRaceDto) {
     const race = await this.findOneDetailed(id);
     const {
+      name,
       startDate,
       endDate,
       totalLaps,
@@ -106,6 +107,7 @@ export class RaceService {
       drivers,
     } = updateRaceDto;
 
+    if (name) race.name = name;
     if (startDate) race.startDate = startDate;
     if (endDate) race.endDate = endDate;
     if (totalLaps) race.totalLaps = totalLaps;
