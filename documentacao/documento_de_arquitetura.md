@@ -194,7 +194,7 @@ Obs: acrescente mais linhas, se necessário.
 As restrições impostas ao projeto que afetam sua arquitetura são:
 
 - A camada de apresentação front-end deverá ser desenvolvida usando o framework Next.js;
-- A aplicação backend deverá utilizar NodeJS com o ORM Sequelize;
+- A aplicação backend deverá utilizar NestJS com o ORM TypeORM;
 - A aplicação mobile deverá utilizar Flutter com Postgresql;
 - As aplicações mobile, back-end e front-end deverão estar em ambientes na nuvem;
 - Não deverá ser usado o firebase como arquitetura de mensageria;
@@ -212,8 +212,8 @@ As restrições impostas ao projeto que afetam sua arquitetura são:
 | --- | --- | --- |
 | Persistência | ORM Hibernate | Utiliza o Hibernate para mapear objetos de software para registros em um banco de dados relacional. |
 | Front end | API com Next.js | Criação de API com o framework Next.js para facilitar a criação de aplicações web.|
-| Back end | API com Node.js e ORM Sequelize | Criação de API com a linguagem Node.js e ORM Sequelize para a manipulação de dados no banco de dados. |
-| Integração | API com ORM Sequelize | Utilização de APIs com o ORM Sequelize para integração de diferentes partes do sistema. |
+| Back end | API com Nest.js e ORM TypeORM | Criação de API com a linguagem Node.js e ORM TypeORM para a manipulação de dados no banco de dados. |
+| Integração | API com ORM TypeORM | Utilização de APIs com o ORM TypeORM para integração de diferentes partes do sistema. |
 | Log do sistema | Web services com Node.js | Implementação de web services com Node.js para registro de logs do sistema. |
 | Teste de Software | API com Postman | Teste de software realizado por meio do Postman, que é uma plataforma para testes de APIs. |
 | Deploy | API com Node.js | Deploy da aplicação realizado por meio da API com Node.js. |
