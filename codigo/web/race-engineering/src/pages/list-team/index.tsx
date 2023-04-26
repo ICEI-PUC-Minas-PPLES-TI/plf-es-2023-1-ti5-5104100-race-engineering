@@ -1,28 +1,36 @@
-import { Inter } from "next/font/google";
 import Head from "next/head";
-import NextLink from "next/link";
+import { useEffect, useState } from "react";
+
 import Sidebar from "@/components/sidebar/Sidebar";
+import api from "@/services/api";
 import {
   Box,
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  Center,
-  Heading,
-  HStack,
-  Image,
-  Link,
-  Stack,
-  Tag,
+  Table,
+  TableContainer,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
 } from "@chakra-ui/react";
 
-
 export default function Index() {
+  const [races, setRaces] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const { data } = await api.get("/teams");
+      console.log(data);
+      setRaces(data);
+    })();
+
+    return () => {};
+  }, []);
+
   return (
     <>
       <Head>
-        <title>Lista de Corridas</title>
+        <title>Lista de Times</title>
       </Head>
 
       <Box height="100vh" width="100%">
@@ -34,23 +42,33 @@ export default function Index() {
           flex-flexDirection="column"
           alignItems="center"
         >
-          <Box w="5vw" className="sidebar-container">
+          <Box w="2vw" className="sidebar-container">
             <Sidebar />
           </Box>
-          <Box w="95vw">
-            
-            
-            
+          <Box w="98vw">
+            <TableContainer maxW="800px" margin="auto">
+              <Table size="sm" variant="striped" colorScheme="messenger">
+                <Thead>
+                  <Tr>
+                    <Th>ID</Th>
+                    <Th>Name</Th>
+                    <Th>Category</Th>
+                  </Tr>
+                </Thead>
+                <Tbody>
+                  {races.map((race: any) => (
+                    <Tr key={race.id}>
+                      <Td>{race.id}</Td>
+                      <Td>{race.name ?? "-"}</Td>
+                      <Td>{race.category ?? "-"}</Td>
+                    </Tr>
+                  ))}
+                </Tbody>
+              </Table>
+            </TableContainer>
           </Box>
         </Box>
       </Box>
     </>
   );
 }
-
-
-
-
-
-
-
