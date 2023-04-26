@@ -64,7 +64,7 @@ export default function Home() {
             <Sidebar />
           </Box>
 
-          <Box w="98vw">
+          <Box w="98vw" height="100vh">
             <Box
               mr="16px"
               ml="57px"
