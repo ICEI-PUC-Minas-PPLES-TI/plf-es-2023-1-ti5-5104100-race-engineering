@@ -144,7 +144,7 @@ _Esta seção descreve os requisitos comtemplados nesta descrição arquitetural
 | RF003 | O sistema deve permitir que o usuário leia e confirme os termos de uso após acessar a plataforma Web | Opcional
 | RF004 | O sistema deve permitir que o usuário cadastre uma corrida após acessar a plataforma Web | Obrigatório | ✅
 | RF005 | O sistema deve permitir que o usuário cadastre uma corrida com todas as informações necessárias após acessar a plataforma Web | Obrigatório | ✅
-| RF006 | O sistema deve permitir que o usuário visualize as corridas e os locais registrados após acessar a plataforma Web | Obrigatório ✅
+| RF006 | O sistema deve permitir que o usuário visualize as corridas e os locais registrados após acessar a plataforma Web | Obrigatório | ✅
 | RF007 | O sistema deve permitir que o usuário altere ou complemente suas informações de perfil após acessar a plataforma Web | Opcional
 | RF008 | O sistema deve permitir que o usuário marque uma corrida como principal após acessar a plataforma Web  | Obrigatório
 | RF009 | O sistema deve permitir que o usuário associe pilotos e mecânicos a uma corrida após acessar a plataforma Web | Obrigatório | ✅
