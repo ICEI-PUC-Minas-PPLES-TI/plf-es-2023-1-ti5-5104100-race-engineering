@@ -66,7 +66,7 @@ const Sidebar = () => {
           >
             <RiSunFill />
             <Box fontWeight="bold" fontSize="70%">
-              Clima{" "}
+              Clima
             </Box>
           </Stack>
 
@@ -76,6 +76,7 @@ const Sidebar = () => {
             spacing={2}
             onClick={() => router.push("/")}
             cursor="pointer"
+            opacity="0.3"
           >
             <RiChat4Fill />
             <Box fontWeight="bold" fontSize="70%">
