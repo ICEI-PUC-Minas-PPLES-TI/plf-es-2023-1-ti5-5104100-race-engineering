@@ -31,15 +31,6 @@ const CircuitPage = () => {
 
   const handleClick = () => setShow(!show);
 
-  useEffect(() => {
-    (async () => {
-      const { data: drivers } = await api.get("/drivers");
-      console.log(drivers);
-    })();
-
-    return () => {};
-  }, []);
-
   const onSubmit = handleSubmit((data, event) => {
     data.safetyMargin = Number(data.safetyMargin);
     data.trackSize = Number(data.trackSize);
