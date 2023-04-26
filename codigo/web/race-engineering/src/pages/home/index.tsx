@@ -46,7 +46,12 @@ export default function Home() {
             </Heading>
           </CardHeader>
           <CardBody>
-            <Text color="#ffffff" align="center" lineHeight="normal" fontSize={15}>
+            <Text
+              color="#ffffff"
+              align="center"
+              lineHeight="normal"
+              fontSize={15}
+            >
               Gerencie corridas com facilidade: liste, crie, edite ou remova
               corridas conforme necessário.
             </Text>
@@ -88,7 +93,12 @@ export default function Home() {
             </Heading>
           </CardHeader>
           <CardBody>
-            <Text color="#ffffff" align="center" lineHeight="normal" fontSize={15}>
+            <Text
+              color="#ffffff"
+              align="center"
+              lineHeight="normal"
+              fontSize={15}
+            >
               Gerencie os circuitos com facilidade: liste, crie, edite ou remova
               corridas conforme necessário.
             </Text>
@@ -129,7 +139,12 @@ export default function Home() {
             </Heading>
           </CardHeader>
           <CardBody>
-            <Text color="#ffffff" align="center" lineHeight="normal" fontSize={15}>
+            <Text
+              color="#ffffff"
+              align="center"
+              lineHeight="normal"
+              fontSize={15}
+            >
               Gerencie os times com facilidade: liste, crie, edite ou remova
               times conforme necessário.
             </Text>
@@ -150,49 +165,6 @@ export default function Home() {
               variant="solid"
               onClick={() => {
                 router.push("/create-team");
-              }}
-              colorScheme="whiteAlpha"
-              w="50%"
-              ml="2"
-            >
-              Cadastrar
-            </Button>
-          </CardFooter>
-        </Card>
-        <Card
-          align="center"
-          backgroundImage="./images/gradient-purple.png"
-          maxHeight="250px"
-        >
-          <CardHeader>
-            <Heading color="#ffffff" size="md">
-              Mecânicos
-            </Heading>
-          </CardHeader>
-          <CardBody>
-            <Text color="#ffffff" align="center" lineHeight="normal" fontSize={15}>
-              Gerencie os mecânicos com facilidade: liste, crie, edite ou remova
-              corridas conforme necessário.
-            </Text>
-          </CardBody>
-          <CardFooter w="100%">
-            <Button
-              variant="solid"
-              onClick={() => {
-                // router.push("/register-user");
-                router.push("/list-mechanic");
-              }}
-              colorScheme="whiteAlpha"
-              w="50%"
-              mr="2"
-            >
-              Listar
-            </Button>
-            <Button
-              variant="solid"
-              onClick={() => {
-                // router.push("/register-user");
-                router.push("/register-race");
               }}
               colorScheme="whiteAlpha"
               w="50%"

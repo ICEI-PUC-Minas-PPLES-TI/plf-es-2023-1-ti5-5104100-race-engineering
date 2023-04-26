@@ -22,11 +22,11 @@ export default function Index() {
             flex-flexDirection="column"
             alignItems="center"
           >
-            <Box w="5vw" className="sidebar-container">
+            <Box w="2vw" className="sidebar-container">
               <Sidebar />
             </Box>
 
-            <Box w="95vw">
+            <Box w="98vw">
               <Home />
             </Box>
           </Box>
