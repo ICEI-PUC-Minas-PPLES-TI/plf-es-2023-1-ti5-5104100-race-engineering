@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { RiLockPasswordLine } from "react-icons/ri";
+import { RiLockPasswordLine, RiMailLine } from "react-icons/ri";
 
-import { LockIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
@@ -20,7 +19,7 @@ export const PasswordInput = ({ register }: any) => {
 
   return (
     <Box w="100%" marginY="4">
-      <FormLabel>Senha c</FormLabel>
+      <FormLabel>Senha</FormLabel>
       <InputGroup>
         <InputLeftElement
           pointerEvents="none"

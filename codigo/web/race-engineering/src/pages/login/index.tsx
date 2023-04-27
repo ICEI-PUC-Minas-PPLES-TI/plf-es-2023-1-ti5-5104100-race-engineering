@@ -7,7 +7,6 @@ import { RiMailLine } from "react-icons/ri";
 import { PasswordInput } from "@/components/PasswordInput/PasswordInput";
 import { useAuth } from "@/context/AuthContext";
 import api from "@/services/api";
-import { EmailIcon, LockIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
