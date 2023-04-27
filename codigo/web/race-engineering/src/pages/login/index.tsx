@@ -2,10 +2,12 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { RiMailLine } from "react-icons/ri";
 
+import { PasswordInput } from "@/components/PasswordInput/PasswordInput";
 import { useAuth } from "@/context/AuthContext";
 import api from "@/services/api";
-import { AtSignIcon, EmailIcon, LockIcon } from "@chakra-ui/icons";
+import { EmailIcon, LockIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
@@ -35,10 +37,6 @@ const LoginPage = () => {
 
   const { register, handleSubmit } = useForm<Login>();
   const toast = useToast();
-
-  const [show, setShow] = useState(false);
-
-  const handleClick = () => setShow(!show);
 
   const onSubmit = handleSubmit((data, event) => {
     api
@@ -105,7 +103,8 @@ const LoginPage = () => {
               <InputGroup>
                 <InputLeftElement
                   pointerEvents="none"
-                  children={<EmailIcon color="gray.300" />}
+                  color="gray.300"
+                  children={<RiMailLine fontSize="20px" />}
                 />
                 <Input
                   type="email"
@@ -115,27 +114,7 @@ const LoginPage = () => {
               </InputGroup>
             </Box>
 
-            <Box w="100%" marginY="4">
-              <FormLabel>Senha</FormLabel>
-              <InputGroup>
-                <InputLeftElement
-                  pointerEvents="none"
-                  color="gray.300"
-                  fontSize="1.2em"
-                  children={<LockIcon color="gray.300" />}
-                />
-                <Input
-                  type={show ? "text" : "password"}
-                  placeholder="Digite sua senha"
-                  {...register("password", { required: true, minLength: 8 })}
-                />
-                <InputRightElement width="4.5rem">
-                  <Button h="1.75rem" size="sm" onClick={handleClick}>
-                    {show ? "Hide" : "Show"}
-                  </Button>
-                </InputRightElement>
-              </InputGroup>
-            </Box>
+            <PasswordInput register={register} />
           </CardBody>
 
           <CardFooter display="flex" width="100%">

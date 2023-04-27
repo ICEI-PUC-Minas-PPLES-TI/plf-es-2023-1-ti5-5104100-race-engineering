@@ -45,12 +45,17 @@ export const EditUserModal = ({ isOpen, setIsOpen }: Props) => {
           <ModalBody pb={6}>
             <FormControl>
               <FormLabel>Email</FormLabel>
-              <Input placeholder="joeyclapton@gmail.com" />
+              <Input placeholder="joeyclapton@gmail.com" disabled />
             </FormControl>
 
             <FormControl mt={4}>
-              <FormLabel>Last name</FormLabel>
-              <Input placeholder="Last name" />
+              <FormLabel>Nome completo</FormLabel>
+              <Input placeholder="Digite o novo nome" />
+            </FormControl>
+
+            <FormControl mt={4}>
+              <FormLabel>Senha</FormLabel>
+              <Input placeholder="Digite sua nova senha" />
             </FormControl>
           </ModalBody>
 
