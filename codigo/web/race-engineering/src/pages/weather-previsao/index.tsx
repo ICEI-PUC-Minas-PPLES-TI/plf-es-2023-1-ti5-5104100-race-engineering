@@ -20,14 +20,14 @@ type Params = {
   };
   
   const descriptionTranslations = {
-    "clear sky": "céu limpo",
-    "few clouds": "algumas nuvens",
-    "scattered clouds": "nuvens dispersas",
-    "broken clouds": "nuvens quebradas",
-    "overcast clouds": "céu nublado",
-    "light rain": "chuva fraca",
-    "moderate rain": "chuva moderada",
-    "heavy intensity rain": "chuva forte",
+    "clear sky": "Céu Limpo",
+    "few clouds": "Algumas Nuvens",
+    "scattered clouds": "Nuvens Dispersas",
+    "broken clouds": "Nuvens Fragmentadas",
+    "overcast clouds": "Céu Nublado",
+    "light rain": "Chuva Fraca",
+    "moderate rain": "Chuva Moderada",
+    "heavy intensity rain": "Chuva Forte",
     // Adicione aqui as demais traduções
   };
   
