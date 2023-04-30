@@ -151,7 +151,7 @@ export default function Home() {
                         <Flex alignItems="center">
                           <Text>
                             <Icon as={MdWindPower} mr={2} />
-                            {`${item.wind.speed}Km/s`}
+                            {`${item.wind.speed}Km/h`}
                           </Text>
                           <Text ml={4}>
                             <Icon as={MdOutlineWaterDrop} mr={2} />
