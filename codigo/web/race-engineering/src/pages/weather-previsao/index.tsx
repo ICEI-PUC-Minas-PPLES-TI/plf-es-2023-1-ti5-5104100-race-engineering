@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import { BsSearch } from "react-icons/bs";
 import Sidebar from "@/components/sidebar/Sidebar";
 import Head from "next/head";
+
+
 import {
   Box,
   FormControl,
@@ -16,10 +18,12 @@ import {
   Icon
 } from "@chakra-ui/react";
 import { MdOutlineWaterDrop, MdWindPower } from "react-icons/md";
+import { CalendarIcon, CloseIcon, CheckIcon } from "@chakra-ui/icons";
 
 
 type Params = {
   city: string;
+  date: string;
 };
 
 const descriptionTranslations = {
@@ -58,18 +62,22 @@ type Props = {
 
 export default function Home() {
   const [city, setCity] = useState("");
+  const [date, setDate] = useState("");
   const [weather, setWeather] = useState<Props["data"] | null>(null);
+  const [originalWeather, setOriginalWeather] = useState<Props["data"] | null>(null);
   const { register, handleSubmit } = useForm<Params>();
 
   const onSubmit = handleSubmit((data, event) => {
-    const url = `https://api.openweathermap.org/data/2.5/forecast?q=${data.city}&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}`;
+    const url = `https://api.openweathermap.org/data/2.5/forecast?q=${data.city}&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}${data.date ? `&dt=${new Date(data.date).getTime() / 1000}` : ''}`;
     setCity(data.city);
+    setDate(data.date);
     axios
       .get(url)
       .then((response) => {
         const { data } = response;
         event?.target?.reset();
         setWeather(data);
+        setOriginalWeather(data); // salvar uma cópia dos dados originais
       })
       .catch((err) => {
         toast({
@@ -81,6 +89,29 @@ export default function Home() {
         });
       });
   });
+
+
+
+  const handleDateClick = (event: { target: { value: string; }; }) => {
+    const selectedDate = new Date(event.target.value + 'T00:00:00-03:00').toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' }).substr(0, 10);
+    if (originalWeather) { // usar os dados originais para filtrar
+      const filteredData = originalWeather.list.filter((item) => {
+        const itemDate = new Date(item.dt_txt).toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' }).substr(0, 10);
+        return itemDate === selectedDate;
+      });
+      const filteredWeather = {
+        ...originalWeather,
+        list: filteredData
+      };
+      setWeather(filteredWeather);
+    }
+  };
+
+  const handleClearFilter = () => {
+    setCity("");
+    setDate("");
+    setWeather(originalWeather);
+  };
 
   return (
     <div>
@@ -129,10 +160,37 @@ export default function Home() {
                 </Box>
               </FormControl>
 
+              <FormControl dir="row" w="50%">
+                <FormLabel>Filtro</FormLabel>
+                <InputGroup>
+                  <Input
+                    type="date"
+                    placeholder="Digite a data"
+                    {...register("date")}
+                    onBlur={handleDateClick}
+                  />
+                  <IconButton
+                    ml="16px"
+                    icon={<CheckIcon />}
+                    aria-label="Selecione uma data"
+                  >
+                  </IconButton>
+                  <IconButton
+                    icon={<CloseIcon />}
+                    aria-label="Limpar filtro"
+                    onClick={handleClearFilter}
+                    ml={2}
+                  />
+                </InputGroup>
+              </FormControl>
+
+
+
+
               {weather && (
                 <Box mt={10}>
                   <Text fontSize="3xl" fontWeight="bold" mb={4}>
-                    Previsão do tempo para {city}
+                    Previsão do tempo {city}
                   </Text>
                   <Flex wrap="wrap">
                     {weather.list.map((item) => (
@@ -144,7 +202,7 @@ export default function Home() {
                         p={4}
                         textAlign="center"
                       >
-                        <Text>{new Date(item.dt_txt).toLocaleString('pt-BR')}</Text>
+                        <Text>{new Date(item.dt_txt).toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}</Text>
                         <Text>{(item.main.temp - 273.15).toFixed(1)}°C</Text>
                         <Text>{descriptionTranslations[item.weather[0].description] || item.weather[0].description}</Text>
 
@@ -186,5 +244,7 @@ function toast(arg0: {
 }) {
   throw new Error("Function not implemented.");
 }
+
+
 
 
