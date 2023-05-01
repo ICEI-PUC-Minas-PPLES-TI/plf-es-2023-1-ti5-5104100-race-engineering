@@ -51,7 +51,7 @@ export class RaceController {
 
   @Get(':id')
   private findOne(@Param('id') id: string) {
-    return this.raceService.findOneDetailed(+id);
+    return this.raceService.findOneRace(+id);
   }
 
   @Patch(':id')
@@ -62,5 +62,13 @@ export class RaceController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.raceService.removeRace(+id);
+  }
+
+  @Post(':id/set-main')
+  @Roles(Role.Analyst)
+  @UseGuards(JwtGuard, RoleGuard)
+  private async setMain(@Param('id') id: string, @CurrentUser() user: User) {
+    const race = await this.raceService.findOneRace(+id);
+    return this.userService.setAnalystMainRace(race, user.id);
   }
 }

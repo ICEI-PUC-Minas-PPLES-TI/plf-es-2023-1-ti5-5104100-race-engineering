@@ -1,13 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { IRequest, ListedUser, UpdateNameDto } from './models/user.dto';
 import { Role, User } from './models/user.entity';
+import { Race } from '@/api/race/models/race.entity';
 
 @Injectable()
 export class UserService {
-  // @InjectRepository(User)
-  // private readonly repository: Repository<User>;
-  // // TODO: Change Entity pattern from Active Record to Data Mapper, with implementations of repositories
-
   public async updateName(body: UpdateNameDto, req: IRequest): Promise<User> {
     const user: User = <User>req.user;
 
@@ -26,6 +23,12 @@ export class UserService {
         message: 'User not found or invalid UserType!',
       });
     return user;
+  }
+
+  async setAnalystMainRace(race: Race, userId: number) {
+    const user = await this.findOne(userId, Role.Analyst);
+    user.analystMainRace = race;
+    return user.save();
   }
 
   async listDrivers(): Promise<ListedUser[]> {
