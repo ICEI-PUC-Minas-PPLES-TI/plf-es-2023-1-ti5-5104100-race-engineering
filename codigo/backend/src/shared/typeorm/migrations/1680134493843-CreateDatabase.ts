@@ -12,6 +12,7 @@ export class CreateDatabase1680134493843 implements MigrationInterface {
         "password" text,
         "role" text,
         "lastLoginAt" timestamptz,
+        "mainRaceId" int,
         "createdAt" timestamptz,
         "updatedAt" timestamptz,
         "deletedAt" timestamptz
@@ -112,6 +113,8 @@ export class CreateDatabase1680134493843 implements MigrationInterface {
       ALTER TABLE "Driver" ADD FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE;
       
       ALTER TABLE "Driver" ADD FOREIGN KEY ("teamId") REFERENCES "Team" ("id") ON DELETE SET NULL;
+      
+      ALTER TABLE "User" ADD FOREIGN KEY ("mainRaceId") REFERENCES "Race" ("id") ON DELETE CASCADE;
       
       ALTER TABLE "Lap" ADD FOREIGN KEY ("raceId") REFERENCES "Race" ("id") ON DELETE CASCADE;
       

@@ -1,4 +1,4 @@
-import { Logger, MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
@@ -6,6 +6,9 @@ import { AppService } from './app.service';
 import { getEnvPath } from './common/helper/env.helper';
 import { ApiModule } from './api/api.module';
 import { LoggerMiddleware } from '@/common/logger/logger.middleware';
+import { DataSourceOptions } from 'typeorm';
+import { SeederOptions } from 'typeorm-extension';
+import { config } from '@/shared/typeorm/database.providers';
 
 const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
 
@@ -14,20 +17,7 @@ const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
     ConfigModule.forRoot({ envFilePath, isGlobal: true }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: (config: ConfigService) => ({
-        type: 'postgres',
-        host: config.get<string>('DATABASE_HOST'),
-        port: config.get<number>('DATABASE_PORT'),
-        database: config.get<string>('DATABASE_NAME'),
-        username: config.get<string>('DATABASE_USER'),
-        password: config.get<string>('DATABASE_PASSWORD'),
-        entities: ['dist/**/*.entity.{ts,js}'],
-        migrations: ['dist/shared/typeorm/migrations/*.{ts,js}'],
-        migrationsTableName: 'typeorm_migrations',
-        synchronize: false, // never use TRUE in production!
-        // seeds: ['dist/shared/typeorm/seeding/*.{ts,js}'],
-        // factories: ['dist/shared/typeorm/factories/*.{ts,js}'],
-      }),
+      useFactory: (): DataSourceOptions & SeederOptions => config,
       inject: [ConfigService],
     }),
     ApiModule,

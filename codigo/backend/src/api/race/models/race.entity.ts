@@ -53,6 +53,9 @@ export class Race extends BaseEntity {
   @OneToMany(() => Lap, (lap) => lap.race)
   laps: Lap[];
 
+  @OneToMany(() => User, (user) => user.analystMainRace)
+  mainRaceToAnalysts: User[];
+
   @ManyToOne(() => User, (user) => user.analystRaces)
   @JoinColumn([{ name: 'analystId', referencedColumnName: 'id' }])
   analyst: User;
