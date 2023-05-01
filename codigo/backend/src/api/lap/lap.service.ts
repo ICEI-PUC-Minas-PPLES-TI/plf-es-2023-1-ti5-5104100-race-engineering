@@ -14,7 +14,7 @@ export class LapService {
 
   async createLap(id: number, createLapDto: CreateLapDto) {
     const { lapNumber, driverId, lapTime } = createLapDto;
-    const race = await this.raceService.findOneDetailed(id);
+    const race = await this.raceService.findOneRace(id);
     let driver;
     if (driverId) driver = await this.driverService.findOne(driverId);
     console.log(lapNumber);
@@ -65,7 +65,7 @@ export class LapService {
   }
 
   async findByRaceId(id: number) {
-    const race = await this.raceService.findOneDetailed(id);
+    const race = await this.raceService.findOneRace(id);
     return await Lap.find({
       where: {
         race: { id: race.id },
@@ -84,7 +84,7 @@ export class LapService {
 
   async findByDriverIdAndRaceId(driverId: number, raceId: number) {
     const driver = await this.driverService.findOneDetailed(driverId);
-    const race = await this.raceService.findOneDetailed(raceId);
+    const race = await this.raceService.findOneRace(raceId);
     return await Lap.find({
       where: {
         driver: { id: driver.id },

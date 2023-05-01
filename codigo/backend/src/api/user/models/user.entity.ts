@@ -5,8 +5,10 @@ import {
   DeleteDateColumn,
   Entity,
   Index,
+  JoinColumn,
   JoinTable,
   ManyToMany,
+  ManyToOne,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -68,6 +70,10 @@ export class User extends BaseEntity {
 
   @OneToMany(() => Race, (race) => race.analyst)
   analystRaces: Race[];
+
+  @ManyToOne(() => Race, (race) => race.mainRaceToAnalysts)
+  @JoinColumn([{ name: 'mainRaceId', referencedColumnName: 'id' }])
+  analystMainRace: Race;
 
   @ManyToMany(() => Race, (race) => race.mechanics)
   @JoinTable({

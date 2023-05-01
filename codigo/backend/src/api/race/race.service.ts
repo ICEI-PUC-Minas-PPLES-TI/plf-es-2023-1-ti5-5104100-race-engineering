@@ -36,9 +36,7 @@ export class RaceService {
     } = createRaceDto;
 
     const circuit = await this.circuitService.findOne(circuitId);
-
     const analyst = await this.userService.findOne(analystId);
-
     const foundMechanics = await this.findMechanics(mechanics);
     const foundDrivers = await this.findDrivers(drivers);
     const foundTeams = await this.findTeams(teams);
@@ -73,7 +71,7 @@ export class RaceService {
     }
   }
 
-  async findOneDetailed(id: number) {
+  async findOneRace(id: number) {
     const race = await Race.findOne({ where: { id } });
     if (!race) throw new NotFoundException({ message: 'Race not found' });
     return race;
@@ -95,8 +93,9 @@ export class RaceService {
   }
 
   async updateRace(id: number, updateRaceDto: UpdateRaceDto) {
-    const race = await this.findOneDetailed(id);
+    const race = await this.findOneRace(id);
     const {
+      name,
       startDate,
       endDate,
       totalLaps,
@@ -106,6 +105,7 @@ export class RaceService {
       drivers,
     } = updateRaceDto;
 
+    if (name) race.name = name;
     if (startDate) race.startDate = startDate;
     if (endDate) race.endDate = endDate;
     if (totalLaps) race.totalLaps = totalLaps;
@@ -119,7 +119,7 @@ export class RaceService {
   }
 
   async removeRace(id: number) {
-    const race = await this.findOneDetailed(id);
+    const race = await this.findOneRace(id);
     return await race.softRemove();
   }
 
