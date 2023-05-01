@@ -67,9 +67,10 @@ const CircuitPage = () => {
       justifyContent="center"
       alignItems="center"
     >
-      <Box w="2vw" className="sidebar-container">
+      <Box w="2vw" className="sidebar-container" style={{ position: "fixed", top: 0, left: 0, bottom: 0 }}>
         <Sidebar />
       </Box>
+
       <Box w="98vw" justifyContent="center" alignItems="center">
         <FormControl width={480} as="form" onSubmit={onSubmit} margin="auto">
           <Card>

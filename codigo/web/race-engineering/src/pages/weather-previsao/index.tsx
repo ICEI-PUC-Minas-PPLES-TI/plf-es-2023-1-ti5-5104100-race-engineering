@@ -4,7 +4,9 @@ import { useForm } from "react-hook-form";
 import { BsSearch } from "react-icons/bs";
 import Sidebar from "@/components/sidebar/Sidebar";
 import Head from "next/head";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from 'react-toastify';
 
 import {
   Box,
@@ -18,7 +20,7 @@ import {
   Icon
 } from "@chakra-ui/react";
 import { MdOutlineWaterDrop, MdWindPower } from "react-icons/md";
-import { CalendarIcon, CloseIcon, CheckIcon } from "@chakra-ui/icons";
+import { CloseIcon, CheckIcon } from "@chakra-ui/icons";
 
 
 type Params = {
@@ -26,17 +28,6 @@ type Params = {
   date: string;
 };
 
-const descriptionTranslations = {
-  "clear sky": "Céu Limpo",
-  "few clouds": "Algumas Nuvens",
-  "scattered clouds": "Nuvens Dispersas",
-  "broken clouds": "Nuvens Fragmentadas",
-  "overcast clouds": "Céu Nublado",
-  "light rain": "Chuva Fraca",
-  "moderate rain": "Chuva Moderada",
-  "heavy intensity rain": "Chuva Forte",
-  // Adicione aqui as demais traduções
-};
 
 type Props = {
   data: {
@@ -79,17 +70,28 @@ export default function Home() {
         setWeather(data);
         setOriginalWeather(data); // salvar uma cópia dos dados originais
       })
-      .catch((err) => {
-        toast({
-          title: "Erro ao pesquisar clima, tente novamente",
-          status: "error",
-          duration: 3000,
-          isClosable: true,
+      .catch((error) => {
+        console.log(error);
+        let errorMessage = "Erro ao pesquisar clima, tente novamente";
+        if (error.response) {
+          if (error.response.status === 404) {
+            errorMessage = "Cidade não encontrada, verifique se o nome está correto e tente novamente";
+          } else {
+            errorMessage = `Erro na chamada da API: ${error.response.status} - ${error.response.data.message}`;
+          }
+        }
+        // exibe uma mensagem de erro para o usuário utilizando o react-toastify
+        toast.error(errorMessage, {
           position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
         });
       });
   });
-
 
 
   const handleDateClick = (event: { target: { value: string; }; }) => {
@@ -119,7 +121,7 @@ export default function Home() {
         <title>{city ? `Clima - ${city}` : 'Clima'}</title>
       </Head>
 
-      <Box height="100vh" width="100%">
+      <Box height="100vh" width="100%"  padding="0 6%">
         <Box
           height="100%"
           width="100%"
@@ -127,9 +129,10 @@ export default function Home() {
           justifyContent="center"
           alignItems="center"
         >
-          <Box w="2vw" className="sidebar-container">
+          <Box w="2vw" className="sidebar-container" style={{ position: "fixed", top: 0, left: 0, bottom: 0 }}>
             <Sidebar />
           </Box>
+
 
           <Box w="98vw" height="100vh">
             <Box
@@ -158,7 +161,9 @@ export default function Home() {
                     />
                   </InputGroup>
                 </Box>
+                <ToastContainer />
               </FormControl>
+
 
               <FormControl dir="row" w="50%">
                 <FormLabel>Filtro</FormLabel>
@@ -184,23 +189,27 @@ export default function Home() {
                 </InputGroup>
               </FormControl>
 
-
-
-
               {weather && (
                 <Box mt={10}>
                   <Text fontSize="3xl" fontWeight="bold" mb={4}>
-                    Previsão do tempo {city}
+                    Previsão do tempo {city.split(' ').map((word, index) => {
+                      if (index !== 0) {
+                        return ' ' + word.charAt(0).toUpperCase() + word.slice(1);
+                      }
+                      return word.charAt(0).toUpperCase() + word.slice(1);
+                    })}
                   </Text>
+
                   <Flex wrap="wrap">
                     {weather.list.map((item) => (
                       <Box
                         key={item.dt_txt}
                         m={4}
-                        border="1px solid #ccc"
+                        border="2px solid #ccc"
                         borderRadius="md"
                         p={4}
                         textAlign="center"
+                        bg="white"
                       >
                         <Text>{new Date(item.dt_txt).toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}</Text>
                         <Text>{(item.main.temp - 273.15).toFixed(1)}°C</Text>
@@ -229,22 +238,38 @@ export default function Home() {
           </Box>
         </Box>
       </Box>
-
     </div>
-
   );
 }
 
-function toast(arg0: {
-  title: string;
-  status: string;
-  duration: number;
-  isClosable: boolean;
-  position: string;
-}) {
-  throw new Error("Function not implemented.");
-}
-
-
-
-
+const descriptionTranslations = {
+  "clear sky": "Céu Limpo",
+  "few clouds": "Algumas Nuvens",
+  "scattered clouds": "Nuvens Dispersas",
+  "broken clouds": "Nuvens Fragmentadas",
+  "overcast clouds": "Céu Nublado",
+  "light rain": "Chuva Fraca",
+  "moderate rain": "Chuva Moderada",
+  "heavy intensity rain": "Chuva Forte",
+  "very heavy rain": "Chuva Muito Forte",
+  "extreme rain": "Chuva Extrema",
+  "freezing rain": "Chuva Congelante",
+  "light snow": "Neve Fraca",
+  "heavy snow": "Neve Forte",
+  "sleet": "Aguaneve",
+  "shower rain": "Chuva de Banho",
+  "thunderstorm": "Trovoadas",
+  "thunderstorm with light rain": "Trovoadas com Chuva Fraca",
+  "thunderstorm with heavy rain": "Trovoadas com Chuva Forte",
+  "thunderstorm with rain": "Trovoadas com Chuva",
+  "snow": "Neve",
+  "mist": "Neblina",
+  "haze": "Nevoeiro",
+  "fog": "Névoa",
+  "smoke": "Fumaça",
+  "dust": "Poeira",
+  "sand": "Areia",
+  "ash": "Cinzas",
+  "tornado": "Tornado",
+  "squalls": "Rajadas de Vento",
+};

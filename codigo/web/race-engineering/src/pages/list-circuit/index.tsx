@@ -45,8 +45,8 @@ export default function Index() {
           <Box w="2vw" className="sidebar-container">
             <Sidebar />
           </Box>
-          <Box w="98vw">
-            <TableContainer maxW="800px" margin="auto">
+          <Box height="100vh" width="100%" padding="6%" >
+            <TableContainer maxW="70%" margin="auto">
               <Table size="sm" variant="striped" colorScheme="messenger">
                 <Thead>
                   <Tr>

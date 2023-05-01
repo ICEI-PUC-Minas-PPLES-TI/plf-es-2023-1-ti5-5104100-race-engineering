@@ -37,7 +37,7 @@ export default function Index() {
       setRaces(data);
     })();
 
-    return () => {};
+    return () => { };
   }, []);
 
   return (
@@ -55,11 +55,12 @@ export default function Index() {
           flex-flexDirection="column"
           alignItems="center"
         >
-          <Box w="2vw" className="sidebar-container">
+          <Box w="2vw" className="sidebar-container" style={{ position: "fixed", top: 0, left: 0, bottom: 0 }}>
             <Sidebar />
           </Box>
-          <Box w="98vw">
-            <TableContainer maxW="800px" margin="auto">
+
+          <Box height="100vh" width="100%" padding="6%" >
+            <TableContainer maxW="70%" margin="auto">
               <Table size="sm" variant="striped" colorScheme="messenger">
                 <Thead>
                   <Tr>

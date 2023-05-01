@@ -60,7 +60,7 @@ export default function Home() {
           justifyContent="center"
           alignItems="center"
         >
-          <Box w="2vw" className="sidebar-container">
+          <Box w="2vw" className="sidebar-container" style={{ position: "fixed", top: 0, left: 0, bottom: 0 }}>
             <Sidebar />
           </Box>
 

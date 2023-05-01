@@ -23,8 +23,11 @@ export default function Home() {
   // });
 
   return (
-    <Box>
-      {/* <CaptionCarosel /> */}
+    <Box height="100vh" width="100%" padding="0 100px">
+      <Heading as="h1" size="2xl" textAlign="center" marginTop="2%" marginBottom="5%">
+        Gerenciamento Porshce Cup
+      </Heading>
+
       <SimpleGrid
         spacing={10}
         templateColumns="repeat(auto-fill, minmax(350px, 1fr))"
@@ -34,6 +37,8 @@ export default function Home() {
         marginRight="10"
         marginTop="10"
         marginBottom="10"
+        justifyContent="center"
+        alignItems="center"
       >
         <Card
           align="center"
