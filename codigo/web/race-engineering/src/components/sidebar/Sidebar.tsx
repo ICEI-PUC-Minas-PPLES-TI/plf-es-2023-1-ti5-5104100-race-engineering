@@ -1,7 +1,12 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { RiChat4Fill, RiHome2Fill, RiSunFill, RiThunderstormsFill } from "react-icons/ri";
+import {
+  RiChat4Fill,
+  RiHome2Fill,
+  RiSunFill,
+  RiThunderstormsFill,
+} from "react-icons/ri";
 
 import { useAuth } from "@/context/AuthContext";
 import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
@@ -65,19 +70,6 @@ const Sidebar = () => {
             direction="column"
             alignItems="center"
             spacing={2}
-            onClick={() => router.push("/weather")}
-            cursor="pointer"
-          >
-            <RiSunFill />
-            <Box fontWeight="bold" fontSize="70%">
-              Clima
-            </Box>
-          </Stack>
-
-          <Stack
-            direction="column"
-            alignItems="center"
-            spacing={2}
             onClick={() => router.push("/weather-previsao")}
             cursor="pointer"
           >
@@ -91,8 +83,7 @@ const Sidebar = () => {
             direction="column"
             alignItems="center"
             spacing={2}
-            onClick={() => router.push("/")}
-            cursor="pointer"
+            cursor="not-allowed"
             opacity="0.3"
           >
             <RiChat4Fill />
