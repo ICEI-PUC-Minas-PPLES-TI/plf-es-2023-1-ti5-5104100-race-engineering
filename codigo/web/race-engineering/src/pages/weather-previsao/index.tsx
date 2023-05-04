@@ -57,18 +57,23 @@ export default function Home() {
   const [weather, setWeather] = useState<Props["data"] | null>(null);
   const [originalWeather, setOriginalWeather] = useState<Props["data"] | null>(null);
   const { register, handleSubmit } = useForm<Params>();
+  const [showFilter, setShowFilter] = useState(false);
+  const [searchSuccess, setSearchSuccess] = useState(false);
 
   const onSubmit = handleSubmit((data, event) => {
     const url = `https://api.openweathermap.org/data/2.5/forecast?q=${data.city}&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}${data.date ? `&dt=${new Date(data.date).getTime() / 1000}` : ''}`;
     setCity(data.city);
     setDate(data.date);
+    setShowFilter(true);
     axios
       .get(url)
       .then((response) => {
         const { data } = response;
         event?.target?.reset();
         setWeather(data);
-        setOriginalWeather(data); // salvar uma cópia dos dados originais
+        setOriginalWeather(data);
+        setShowFilter(true); // exibe o filtro apenas se a pesquisa for bem-sucedida
+        setSearchSuccess(true); // define que a pesquisa foi bem-sucedida
       })
       .catch((error) => {
         console.log(error);
@@ -80,7 +85,6 @@ export default function Home() {
             errorMessage = `Erro na chamada da API: ${error.response.status} - ${error.response.data.message}`;
           }
         }
-        // exibe uma mensagem de erro para o usuário utilizando o react-toastify
         toast.error(errorMessage, {
           position: "top-right",
           autoClose: 5000,
@@ -90,6 +94,7 @@ export default function Home() {
           draggable: true,
           progress: undefined,
         });
+        setSearchSuccess(false); // define que a pesquisa não foi bem-sucedida
       });
   });
 
@@ -121,7 +126,7 @@ export default function Home() {
         <title>{city ? `Clima - ${city}` : 'Clima'}</title>
       </Head>
 
-      <Box height="100vh" width="100%"  padding="0 6%">
+      <Box height="100vh" width="100%" padding="0 12%">
         <Box
           height="100%"
           width="100%"
@@ -132,7 +137,6 @@ export default function Home() {
           <Box w="2vw" className="sidebar-container" style={{ position: "fixed", top: 0, left: 0, bottom: 0 }}>
             <Sidebar />
           </Box>
-
 
           <Box w="98vw" height="100vh">
             <Box
@@ -165,31 +169,35 @@ export default function Home() {
               </FormControl>
 
 
-              <FormControl dir="row" w="50%">
-                <FormLabel>Filtro</FormLabel>
-                <InputGroup>
-                  <Input
-                    type="date"
-                    placeholder="Digite a data"
-                    {...register("date")}
-                    onBlur={handleDateClick}
-                  />
-                  <IconButton
-                    ml="16px"
-                    icon={<CheckIcon />}
-                    aria-label="Selecione uma data"
-                  >
-                  </IconButton>
-                  <IconButton
-                    icon={<CloseIcon />}
-                    aria-label="Limpar filtro"
-                    onClick={handleClearFilter}
-                    ml={2}
-                  />
-                </InputGroup>
-              </FormControl>
 
-              {weather && (
+              {/* exibe o filtro somente se a cidade foi pesquisada */}
+              {searchSuccess && showFilter && (
+                <FormControl dir="row" w="50%">
+                  <FormLabel>Filtro</FormLabel>
+                  <InputGroup>
+                    <Input
+                      type="date"
+                      placeholder="Digite a data"
+                      {...register("date")}
+                      onBlur={handleDateClick}
+                    />
+                    <IconButton
+                      ml="16px"
+                      icon={<CheckIcon />}
+                      aria-label="Selecione uma data"
+                    >
+                    </IconButton>
+                    <IconButton
+                      icon={<CloseIcon />}
+                      aria-label="Limpar filtro"
+                      onClick={handleClearFilter}
+                      ml={2}
+                    />
+                  </InputGroup>
+                </FormControl>
+              )}
+
+              {searchSuccess && weather && (
                 <Box mt={10}>
                   <Text fontSize="3xl" fontWeight="bold" mb={4}>
                     Previsão do tempo {city.split(' ').map((word, index) => {
@@ -210,6 +218,7 @@ export default function Home() {
                         p={4}
                         textAlign="center"
                         bg="white"
+                        width="17%"
                       >
                         <Text>{new Date(item.dt_txt).toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}</Text>
                         <Text>{(item.main.temp - 273.15).toFixed(1)}°C</Text>
