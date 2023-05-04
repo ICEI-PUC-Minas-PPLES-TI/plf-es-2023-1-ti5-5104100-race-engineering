@@ -51,6 +51,11 @@ $ npm install
 $ npm run typeorm:cli migration:run
 ```
 
+## Database - Seeding
+```bash
+$ npm run seed:run
+```
+
 ## Running the app
 
 ```bash
