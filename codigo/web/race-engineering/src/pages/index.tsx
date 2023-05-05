@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 import Sidebar from "@/components/sidebar/Sidebar";
 import { useAuth } from "@/context/AuthContext";
 import { Box } from "@chakra-ui/react";
@@ -7,6 +9,15 @@ import LoginPage from "./login";
 
 export default function Index() {
   const { isAuthenticated } = useAuth();
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
+
+  if (!isHydrated) {
+    return null;
+  }
 
   return (
     <>
