@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 import Sidebar from "@/components/sidebar/Sidebar";
 import api from "@/services/api";
+import useApi from "@/shared/hooks/useApi";
 import {
   Box,
   Table,
@@ -17,15 +18,13 @@ import {
 export default function Index() {
   const [races, setRaces] = useState([]);
 
-  useEffect(() => {
-    (async () => {
-      const { data } = await api.get("/teams");
-      console.log(data);
-      setRaces(data);
-    })();
+  const { data, isLoading, error } = useApi<any>(() => api.get("/teams"));
 
-    return () => {};
-  }, []);
+  useEffect(() => {
+    if (data !== null) {
+      setRaces(data);
+    }
+  }, [data]);
 
   return (
     <>
@@ -42,11 +41,15 @@ export default function Index() {
           flex-flexDirection="column"
           alignItems="center"
         >
-          <Box w="2vw" className="sidebar-container" style={{ position: "fixed", top: 0, left: 0, bottom: 0 }}>
+          <Box
+            w="2vw"
+            className="sidebar-container"
+            style={{ position: "fixed", top: 0, left: 0, bottom: 0 }}
+          >
             <Sidebar />
           </Box>
 
-          <Box height="100vh" width="100%" padding="6%" >
+          <Box height="100vh" width="100%" padding="6%">
             <TableContainer maxW="70%" margin="auto">
               <Table size="sm" variant="striped" colorScheme="messenger">
                 <Thead>
