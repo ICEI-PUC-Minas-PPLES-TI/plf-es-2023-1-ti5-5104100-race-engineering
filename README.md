@@ -22,7 +22,31 @@ No intuito de agilizar processos tecnológicos referentes a formulação de estr
 
 ## Instruções de utilização
 
-Assim que a primeira versão do sistema estiver disponível, deverá complementar com as instruções de utilização. Descreva como instalar eventuais dependências e como executar a aplicação.
+
+# Deve-se baixar as bibliotecas do Front-End e do Back-End necessárias através dos seguintes passos:
+  Abra o Terminal no path 'plf-es-2023-1-ti5-5104100-race-engineering\codigo\backend' e execute o código a seguir:
+  
+    npm install
+    
+    Abra o Terminal no path 'plf-es-2023-1-ti5-5104100-race-engineering\codigo\web\race-engineering' e execute o código a seguir:
+  
+    npm install
+    
+    
+# Para rodar a aplicação:
+  Abra o Terminal no path 'plf-es-2023-1-ti5-5104100-race-engineering\codigo\backend'e use os seguintes códigos para rodar Back-End:
+  
+    docker-compose up -d 
+    
+    npm run typeorm:cli migration:run
+    
+    npm run start:dev
+    
+    Abra o Terminal no path 'plf-es-2023-1-ti5-5104100-race-engineering\codigo\web\race-engineering'e use os seguintes códigos para rodar o Front-End:
+    
+    npm run dev
+    
+O projeto estará disponível na URL de desenvolvimento: http://localhost:3000
 
 ## Histórico de versões
 
