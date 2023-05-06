@@ -19,30 +19,30 @@ No intuito de agilizar processos tecnológicos referentes a formulação de estr
 * Cleiton Silva Tavares
 
 * Aline Norberta de Brito
+  
+  
 
-## Instruções de utilização
+# Instruções de utilização
 
-
-# Deve-se baixar as bibliotecas do Front-End e do Back-End necessárias através dos seguintes passos:
+## Deve-se baixar as bibliotecas do Front-End e do Back-End necessárias através dos seguintes passos:
   Abra o Terminal no path 'plf-es-2023-1-ti5-5104100-race-engineering\codigo\backend' e execute o código a seguir:
   
     npm install
-    
-    Abra o Terminal no path 'plf-es-2023-1-ti5-5104100-race-engineering\codigo\web\race-engineering' e execute o código a seguir:
+  
+  Abra o Terminal no path 'plf-es-2023-1-ti5-5104100-race-engineering\codigo\web\race-engineering' e execute o código a seguir:
   
     npm install
     
-    
-# Para rodar a aplicação:
-  Abra o Terminal no path 'plf-es-2023-1-ti5-5104100-race-engineering\codigo\backend'e use os seguintes códigos para rodar Back-End:
+ ## Para rodar a aplicação:
+  Abra o Terminal no path 'plf-es-2023-1-ti5-5104100-race-engineering\codigo\backend'e use o seguinte código para rodar Back-End:
   
     docker-compose up -d 
     
     npm run typeorm:cli migration:run
     
     npm run start:dev
-    
-    Abra o Terminal no path 'plf-es-2023-1-ti5-5104100-race-engineering\codigo\web\race-engineering'e use os seguintes códigos para rodar o Front-End:
+  
+   Abra o Terminal no path 'plf-es-2023-1-ti5-5104100-race-engineering\codigo\web\race-engineering'e use o seguinte código para rodar o Front-End:
     
     npm run dev
     
