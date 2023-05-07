@@ -5,6 +5,7 @@ import Sidebar from "@/components/sidebar/Sidebar";
 import api from "@/services/api";
 import {
   Box,
+  Button,
   Heading,
   Table,
   TableContainer,
@@ -44,25 +45,39 @@ export default function Index() {
           flex-flexDirection="column"
           alignItems="center"
         >
-          <Box w="2vw" className="sidebar-container">
+          <Box w="2vw" className="sidebar-container" style={{ position: "fixed", top: 0, left: 0, bottom: 0 }}>
             <Sidebar />
           </Box>
-          <Box height="100vh" width="100%" padding="6%" >
+
+          <Box height="100vh" width="100%" padding="4%" >
             <TableContainer maxW="70%" margin="auto">
               <Table size="sm" variant="striped" colorScheme="messenger">
                 <Thead>
                   <Tr>
-                    <Th>ID</Th>
-                    <Th>Name</Th>
-                    <Th>Local</Th>
+                    <Th width="15%" textAlign="center">ID</Th>
+                    <Th width="35%" textAlign="center">Name</Th>
+                    <Th width="25%" textAlign="center">Local</Th>
+                    <Th width="40%" textAlign="center">Delete</Th>
                   </Tr>
                 </Thead>
                 <Tbody>
                   {races.map((race: any) => (
                     <Tr key={race.id}>
-                      <Td>{race.id}</Td>
-                      <Td>{race.name ?? "-"}</Td>
-                      <Td>{race.local ?? "-"}</Td>
+                      <Td textAlign="center">{race.id}</Td>
+                      <Td textAlign="center">{race.name ?? "-"}</Td>
+                      <Td textAlign="center">{race.local ?? "-"}</Td>
+                      <Td textAlign="center">
+                        <Button
+                          colorScheme="red"
+                          size="sm"
+                          variant="ghost"
+                          onClick={() => {
+      
+                          }}
+                        >
+                          Deletar
+                        </Button>
+                      </Td>
                     </Tr>
                   ))}
                 </Tbody>

@@ -103,24 +103,24 @@ export default function Index() {
           >
             <Sidebar />
           </Box>
-          <Box height="100vh" width="100%" padding="6%">
+          <Box height="100vh" width="100%" padding="4%">
             <TableContainer maxW="70%" margin="auto">
               <Table size="sm" variant="striped" colorScheme="messenger">
                 <Thead>
                   <Tr>
-                    <Th>ID</Th>
-                    <Th>Name</Th>
-                    <Th>Category</Th>
-                    <Th>Delete</Th>
+                    <Th width="15%" textAlign="center">ID</Th>
+                    <Th width="35%" textAlign="center">Name</Th>
+                    <Th width="25%" textAlign="center">Category</Th>
+                    <Th width="40%" textAlign="center">Delete</Th>
                   </Tr>
                 </Thead>
                 <Tbody>
                   {teams.map((team: any) => (
                     <Tr key={team.id}>
-                      <Td>{team.id}</Td>
-                      <Td>{team.name ?? "-"}</Td>
-                      <Td>{team.category ?? "-"}</Td>
-                      <Td>
+                      <Td textAlign="center">{team.id}</Td>
+                      <Td textAlign="center">{team.name ?? "-"}</Td>
+                      <Td textAlign="center">{team.category ?? "-"}</Td>
+                      <Td textAlign="center">
                         <Button
                           colorScheme="red"
                           size="sm"
