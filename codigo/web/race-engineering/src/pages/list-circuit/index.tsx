@@ -1,12 +1,10 @@
-import Head from "next/head";
 import { useEffect, useState } from "react";
 
 import Sidebar from "@/components/sidebar/Sidebar";
 import api from "@/services/api";
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, Heading } from "@chakra-ui/react";
 import {
   Box,
-  Button,
-  Heading,
   Table,
   TableContainer,
   Tbody,
@@ -14,20 +12,50 @@ import {
   Th,
   Thead,
   Tr,
+  Button,
+  useToast,
 } from "@chakra-ui/react";
 
 export default function Index() {
-  const [races, setRaces] = useState([]);
+  const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
+  const [circuits, setCircuits] = useState([]);
+  const [selectedCircuitId, setSelectedCircuitId] = useState<number | null>(null);
+
+  const toast = useToast();
 
   useEffect(() => {
     (async () => {
       const { data } = await api.get("/circuits");
       console.log(data);
-      setRaces(data);
+      setCircuits(data);
     })();
 
     return () => { };
   }, []);
+
+  const handleDeleteCircuit = (id: number) => {
+    api
+      .delete(`/circuits/${id}`)
+      .then(() => {
+        setCircuits((prevCircuits) => prevCircuits.filter((circuit: any) => circuit.id !== id));
+        toast({
+          title: "Circuito excluído com sucesso",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+          position: "top-right",
+        });
+      })
+      .catch((err) => {
+        toast({
+          title: "Erro ao excluir circuito, tente novamente",
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+          position: "top-right",
+        });
+      });
+  };
 
   return (
 
@@ -35,6 +63,25 @@ export default function Index() {
       <Heading as="h1" size="2xl" textAlign="center" marginTop="2%" >
         Lista de Circuitos
       </Heading>
+
+      <Modal key="confirmation-modal" isOpen={isConfirmationModalOpen} onClose={() => setIsConfirmationModalOpen(false)}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Confirmação</ModalHeader>
+          <ModalBody>
+            Tem certeza de que deseja excluir este Circuito?
+          </ModalBody>
+          <ModalFooter>
+            <Button colorScheme="red" mr={3} onClick={() => {
+              setIsConfirmationModalOpen(false);
+              handleDeleteCircuit(selectedCircuitId!);
+            }}>
+              Deletar
+            </Button>
+            <Button variant="ghost" onClick={() => setIsConfirmationModalOpen(false)}>Cancelar</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
 
       <Box height="100vh" width="100%">
         <Box
@@ -61,18 +108,19 @@ export default function Index() {
                   </Tr>
                 </Thead>
                 <Tbody>
-                  {races.map((race: any) => (
-                    <Tr key={race.id}>
-                      <Td textAlign="center">{race.id}</Td>
-                      <Td textAlign="center">{race.name ?? "-"}</Td>
-                      <Td textAlign="center">{race.local ?? "-"}</Td>
+                  {circuits.map((circuit: any) => (
+                    <Tr key={circuit.id}>
+                      <Td textAlign="center">{circuit.id}</Td>
+                      <Td textAlign="center">{circuit.name ?? "-"}</Td>
+                      <Td textAlign="center">{circuit.local ?? "-"}</Td>
                       <Td textAlign="center">
-                        <Button
+                      <Button
                           colorScheme="red"
                           size="sm"
                           variant="ghost"
                           onClick={() => {
-      
+                            setSelectedCircuitId(circuit.id);
+                            setIsConfirmationModalOpen(true);
                           }}
                         >
                           Deletar
