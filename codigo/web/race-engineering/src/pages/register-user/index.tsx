@@ -2,8 +2,6 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-
-import UserForm from "@/components/user-fields/user-fields";
 import api from "@/services/api";
 import { AtSignIcon, EmailIcon, LockIcon } from "@chakra-ui/icons";
 import {
@@ -14,6 +12,7 @@ import {
   CardFooter,
   CardHeader,
   FormControl,
+  FormErrorMessage,
   FormLabel,
   Heading,
   Highlight,
@@ -24,6 +23,7 @@ import {
   Select,
   useToast,
 } from "@chakra-ui/react";
+import { AxiosError } from "axios";
 
 type Register = {
   name: string;
@@ -48,7 +48,7 @@ const RegisterPage = () => {
     },
   ];
   const router = useRouter();
-  const { register, handleSubmit } = useForm<Register>();
+  const { register, handleSubmit, formState: { errors } } = useForm<Register>();
   const toast = useToast();
 
   const [selected, setSelected] = useState("");
@@ -60,22 +60,31 @@ const RegisterPage = () => {
     setSelected(event.target.value);
   };
 
-  const onSubmit = handleSubmit((data, event) => {
-    api
-      .post("/auth/register", data)
-      .then(() => {
-        event?.target?.reset();
-        router.push("/");
+  const onSubmit = handleSubmit(async (data, event) => {
+    try {
+      await api.post("/auth/register", data);
 
+      event?.target?.reset();
+      router.push("/");
+
+      toast({
+        title: "Cadastro realizado com sucesso",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+        position: "top-right",
+      });
+    } catch (err) {
+      const axiosError = err as AxiosError;
+      if (axiosError.response?.status === 409) {
         toast({
-          title: "Cadastro realizado com sucesso",
-          status: "success",
+          title: "O email fornecido já está cadastrado",
+          status: "error",
           duration: 3000,
           isClosable: true,
           position: "top-right",
         });
-      })
-      .catch((err) => {
+      } else {
         toast({
           title: "Erro ao fazer cadastro, tente novamente",
           status: "error",
@@ -83,7 +92,8 @@ const RegisterPage = () => {
           isClosable: true,
           position: "top-right",
         });
-      });
+      }
+    }
   });
 
   return (
@@ -108,11 +118,14 @@ const RegisterPage = () => {
           </CardHeader>
 
           <CardBody>
+
             <Box w="100%" marginBottom="3">
               <FormLabel>Nome completo</FormLabel>
               <InputGroup>
                 <InputLeftElement
                   pointerEvents="none"
+                  color="gray.300"
+                  fontSize="1.2em"
                   children={<AtSignIcon color="gray.300" />}
                 />
                 <Input
@@ -122,11 +135,14 @@ const RegisterPage = () => {
                 />
               </InputGroup>
             </Box>
+
             <Box w="100%" marginY="4">
               <FormLabel>Email</FormLabel>
               <InputGroup>
                 <InputLeftElement
                   pointerEvents="none"
+                  color="gray.300"
+                  fontSize="1.2em"
                   children={<EmailIcon color="gray.300" />}
                 />
                 <Input
@@ -138,26 +154,34 @@ const RegisterPage = () => {
             </Box>
 
             <Box w="100%" marginY="4">
-              <FormLabel>Senha</FormLabel>
-              <InputGroup>
-                <InputLeftElement
-                  pointerEvents="none"
-                  color="gray.300"
-                  fontSize="1.2em"
-                  children={<LockIcon color="gray.300" />}
-                />
-                <Input
-                  type={show ? "text" : "password"}
-                  placeholder="Digite sua senha"
-                  {...register("password", { required: true, minLength: 8 })}
-                />
-                <InputRightElement width="4.5rem">
-                  <Button h="1.75rem" size="sm" onClick={handleClick}>
-                    {show ? "Hide" : "Show"}
-                  </Button>
-                </InputRightElement>
-              </InputGroup>
+              <FormControl isInvalid={!!errors.password}>
+                <FormLabel>Senha</FormLabel>
+                <InputGroup>
+                  <InputLeftElement
+                    pointerEvents="none"
+                    color="gray.300"
+                    fontSize="1.2em"
+                    children={<LockIcon color="gray.300" />}
+                  />
+                  <Input
+                    type={show ? "text" : "password"}
+                    placeholder="Digite sua senha"
+                    {...register("password", { required: true, minLength: 8 })}
+                    name="password"
+                  />
+                  <InputRightElement width="4.5rem">
+                    <Button h="1.75rem" size="sm" onClick={handleClick}>
+                      {show ? "Hide" : "Show"}
+                    </Button>
+                  </InputRightElement>
+                </InputGroup>
+                <FormErrorMessage>
+                  {errors.password?.type === "required" && "A Senha é obrigatória"}
+                  {errors.password?.type === "minLength" && "Senha deve ter pelo menos 8 caracteres"}
+                </FormErrorMessage>
+              </FormControl>
             </Box>
+
             <Box w="100%" marginTop="4">
               <FormLabel>Tipo de usuário</FormLabel>
               <InputGroup id="role">
