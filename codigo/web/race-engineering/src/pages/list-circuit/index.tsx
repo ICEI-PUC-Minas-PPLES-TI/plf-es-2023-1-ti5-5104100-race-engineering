@@ -5,6 +5,7 @@ import Sidebar from "@/components/sidebar/Sidebar";
 import api from "@/services/api";
 import {
   Box,
+  Heading,
   Table,
   TableContainer,
   Tbody,
@@ -24,14 +25,15 @@ export default function Index() {
       setRaces(data);
     })();
 
-    return () => {};
+    return () => { };
   }, []);
 
   return (
-    <>
-      <Head>
-        <title>Lista de Circuitos</title>
-      </Head>
+
+    <Box height="100vh" width="100%" padding="4 100px">
+      <Heading as="h1" size="2xl" textAlign="center" marginTop="2%" >
+        Lista de Circuitos
+      </Heading>
 
       <Box height="100vh" width="100%">
         <Box
@@ -69,6 +71,6 @@ export default function Index() {
           </Box>
         </Box>
       </Box>
-    </>
+    </Box>
   );
 }

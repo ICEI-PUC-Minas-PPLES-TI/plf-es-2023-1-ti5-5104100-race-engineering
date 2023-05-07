@@ -1,10 +1,11 @@
 /* eslint-disable react/no-children-prop */
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-
 import Sidebar from "@/components/sidebar/Sidebar";
 import api from "@/services/api";
 import { RegisterTeam } from "@/shared/interfaces/register-team";
+
+
 import {
   Box,
   Button,
@@ -20,6 +21,7 @@ import {
   InputGroup,
   useToast,
 } from "@chakra-ui/react";
+
 
 const CircuitPage = () => {
   const router = useRouter();

@@ -1,34 +1,28 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import { BiChat, BiLike, BiShare } from "react-icons/bi";
-import { RiMore2Line } from "react-icons/ri";
 
 import Sidebar from "@/components/sidebar/Sidebar";
 import api from "@/services/api";
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, Heading } from "@chakra-ui/react";
 import {
-  Avatar,
   Box,
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  Flex,
-  Heading,
-  IconButton,
-  Image,
   Table,
   TableContainer,
   Tbody,
   Td,
-  Text,
   Th,
   Thead,
   Tr,
+  Button,
+  useToast,
 } from "@chakra-ui/react";
 
 export default function Index() {
+  const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
   const [races, setRaces] = useState([]);
+  const [selectedRaceId, setSelectedRaceId] = useState<number | null>(null);
+
+  const toast = useToast()
 
   useEffect(() => {
     (async () => {
@@ -40,51 +34,107 @@ export default function Index() {
     return () => { };
   }, []);
 
+  const handleDeleteRace = (id: number) => {
+    api
+      .delete(`/circuits/${id}`)
+      .then(() => {
+        setRaces((prevRaces) => prevRaces.filter((circuit: any) => circuit.id !== id));
+        toast({
+          title: "Circuito excluído com sucesso",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+          position: "top-right",
+        });
+      })
+      .catch((err) => {
+        toast({
+          title: "Erro ao excluir circuito, tente novamente",
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+          position: "top-right",
+        });
+      });
+  };
+
   return (
-    <>
-      <Head>
-        <title>Lista de Corridas</title>
-      </Head>
+    
+      <Box height="100vh" width="100%" padding="4 100px">
+        <Heading as="h1" size="2xl" textAlign="center" marginTop="2%" >
+          Lista de Corridas
+        </Heading>
 
-      <Box height="100vh" width="100%">
-        <Box
-          height="100%"
-          width="100%"
-          display="flex"
-          justifyContent="center"
-          flex-flexDirection="column"
-          alignItems="center"
-        >
-          <Box w="2vw" className="sidebar-container" style={{ position: "fixed", top: 0, left: 0, bottom: 0 }}>
-            <Sidebar />
-          </Box>
+        <Modal key="confirmation-modal" isOpen={isConfirmationModalOpen} onClose={() => setIsConfirmationModalOpen(false)}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Confirmação</ModalHeader>
+            <ModalBody>
+              Tem certeza de que deseja excluir esta Corrida?
+            </ModalBody>
+            <ModalFooter>
+              <Button colorScheme="red" mr={3} onClick={() => {
+                setIsConfirmationModalOpen(false);
+                handleDeleteRace(selectedRaceId!);
+              }}>
+                Deletar
+              </Button>
+              <Button variant="ghost" onClick={() => setIsConfirmationModalOpen(false)}>Cancelar</Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
 
-          <Box height="100vh" width="100%" padding="6%" >
-            <TableContainer maxW="70%" margin="auto">
-              <Table size="sm" variant="striped" colorScheme="messenger">
-                <Thead>
-                  <Tr>
-                    <Th>ID</Th>
-                    <Th>Name</Th>
-                    <Th>Start Date</Th>
-                    <Th>End Date</Th>
-                    <Th>Total Laps</Th>
-                  </Tr>
-                </Thead>
-                <Tbody>
-                  {races.map((race: any) => (
-                    <Tr key={race.id}>
-                      <Td>{race.id}</Td>
-                      <Td>{race.name ?? "-"}</Td>
-                      <Td>{new Date(race.startDate).toLocaleString()}</Td>
-                      <Td>{new Date(race.endDate).toLocaleString()}</Td>
-                      <Td>{race.totalLaps}</Td>
+        <Box height="100vh" width="100%">
+          <Box
+            height="100%"
+            width="100%"
+            display="flex"
+            justifyContent="center"
+            flex-flexDirection="column"
+            alignItems="center"
+          >
+            <Box w="2vw" className="sidebar-container" style={{ position: "fixed", top: 0, left: 0, bottom: 0 }}>
+              <Sidebar />
+            </Box>
+
+            <Box height="100vh" width="100%" padding="6%" >
+              <TableContainer maxW="70%" margin="auto">
+                <Table size="sm" variant="striped" colorScheme="messenger">
+                  <Thead>
+                    <Tr>
+                      <Th>ID</Th>
+                      <Th>Name</Th>
+                      <Th>Start Date</Th>
+                      <Th>End Date</Th>
+                      <Th>Total Laps</Th>
+                      <Th>Delete</Th>
                     </Tr>
-                  ))}
-                </Tbody>
-              </Table>
-            </TableContainer>
-            {/* <Card maxW="md">
+                  </Thead>
+                  <Tbody>
+                    {races.map((race: any) => (
+                      <Tr key={race.id}>
+                        <Td>{race.id}</Td>
+                        <Td>{race.name ?? "-"}</Td>
+                        <Td>{new Date(race.startDate).toLocaleString()}</Td>
+                        <Td>{new Date(race.endDate).toLocaleString()}</Td>
+                        <Td>{race.totalLaps}</Td>
+                        <Button
+                          colorScheme="red"
+                          size="sm"
+                          variant="ghost"
+                          onClick={() => {
+                            setSelectedRaceId(race.id);
+                            setIsConfirmationModalOpen(true);
+                          }}
+                        >
+                          Deletar
+                        </Button>
+                      </Tr>
+                    ))}
+                  </Tbody>
+                </Table>
+              </TableContainer>
+              {/* <Card maxW="md">
               <CardHeader>
                 <Flex spacing="4">
                   <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
@@ -139,9 +189,11 @@ export default function Index() {
                 </Button>
               </CardFooter>
             </Card> */}
+            </Box>
           </Box>
         </Box>
-      </Box>
-    </>
+        </Box >
+  
+    
   );
 }
