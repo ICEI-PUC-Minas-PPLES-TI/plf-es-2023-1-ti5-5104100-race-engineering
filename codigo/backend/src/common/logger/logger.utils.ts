@@ -85,7 +85,7 @@ export function buildLogContent(
     query,
   )} ${
     errorMessage ? JSON.stringify(errorMessage) : ''
-  } | time: ${timeDuration}ms | user { id: ${userId}, email: ${userEmail} }`;
+  } | time: ${timeDuration}ms | user { id: ${userId}, email: ${userEmail} } | response: ${responseBody}`;
 
   return {
     user: user,

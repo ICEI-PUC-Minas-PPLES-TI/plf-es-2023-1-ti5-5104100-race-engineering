@@ -1,6 +1,6 @@
 import { Injectable, Logger, NestMiddleware } from '@nestjs/common';
 import { NextFunction, Request, Response } from 'express';
-import { buildLogContent } from '@/common/logger/logger.utils';
+import { buildLogContent, getResponseBody } from '@/common/logger/logger.utils';
 
 @Injectable()
 export class LoggerMiddleware implements NestMiddleware {
@@ -8,16 +8,15 @@ export class LoggerMiddleware implements NestMiddleware {
 
   use(request: Request, response: Response, next: NextFunction): void {
     request.headers['x-request-time'] = Date.now().toString();
-
+    getResponseBody(response);
     response.on('finish', () => {
       const { statusCode } = response;
+      const logContent = buildLogContent(request, response);
       if (statusCode < 400) {
-        const logContent = buildLogContent(request, response);
-        this.logger.log(JSON.stringify(logContent.logMessage));
+        this.logger.log(logContent.logMessage);
       }
       if (statusCode >= 400) {
-        const logContent = buildLogContent(request, response);
-        this.logger.error(JSON.stringify(logContent.logMessage));
+        this.logger.error(logContent.logMessage);
       }
     });
 
