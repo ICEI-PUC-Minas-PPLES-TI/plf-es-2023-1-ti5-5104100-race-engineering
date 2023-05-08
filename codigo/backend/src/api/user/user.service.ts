@@ -31,13 +31,6 @@ export class UserService {
     return user.save();
   }
 
-  async listDrivers(): Promise<ListedUser[]> {
-    const drivers = await User.find({ where: { role: Role.Driver } });
-    return drivers.map((driver) => {
-      return { id: driver.id, name: driver.name };
-    });
-  }
-
   async listMechanics(): Promise<ListedUser[]> {
     const mechanics = await User.find({ where: { role: Role.Mechanic } });
     return mechanics.map((mechanic) => {

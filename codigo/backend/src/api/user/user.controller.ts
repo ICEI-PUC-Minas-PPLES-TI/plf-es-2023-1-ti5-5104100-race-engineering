@@ -42,14 +42,6 @@ export class UserController {
     return user;
   }
 
-  @Roles(Role.Admin, Role.Driver)
-  @UseGuards(JwtGuard, RoleGuard)
-  @Get('drivers')
-  @ApiResponse({ type: [ListedUser], description: 'Successful operation' })
-  async listDrivers(): Promise<ListedUser[]> {
-    return this.service.listDrivers();
-  }
-
   @Roles(Role.Admin, Role.Mechanic)
   @UseGuards(JwtGuard, RoleGuard)
   @Get('mechanics')
