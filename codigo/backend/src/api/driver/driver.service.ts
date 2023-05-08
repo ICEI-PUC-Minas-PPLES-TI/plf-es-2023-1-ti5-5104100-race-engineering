@@ -5,7 +5,15 @@ import { Driver } from '@/api/driver/models/driver.entity';
 @Injectable()
 export class DriverService {
   async findAll() {
-    return await Driver.find();
+    const drivers = await Driver.find({ relations: ['user'] });
+    return drivers.map((driver) => {
+      return {
+        id: driver.id,
+        number: driver.number,
+        name: driver.user.name,
+        email: driver.user.email,
+      };
+    });
   }
 
   public async findOneDetailed(id: number) {
