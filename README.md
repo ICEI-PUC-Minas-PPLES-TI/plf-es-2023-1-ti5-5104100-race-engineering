@@ -36,9 +36,11 @@ No intuito de agilizar processos tecnológicos referentes a formulação de estr
  ## Para rodar a aplicação:
   Abra o Terminal no path 'plf-es-2023-1-ti5-5104100-race-engineering\codigo\backend'e use o seguinte código para rodar Back-End:
   
-    docker-compose up -d 
+    docker-compose up -d
     
     npm run typeorm:cli migration:run
+  
+    npm run seed:run (para popular o BD, na 1ª vez que rodar)
     
     npm run start:dev
   
