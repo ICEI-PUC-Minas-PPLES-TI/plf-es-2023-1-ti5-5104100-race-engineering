@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:app/pages/races/races.dart';
 import 'package:app/pages/laps/laps.dart';
+import 'package:app/pages/notes/notes.dart';
+
 
 class AdminView extends StatefulWidget {
   const AdminView({Key? key}) : super(key: key);
@@ -14,8 +16,9 @@ class _AdminViewState extends State<AdminView> {
 
   final List<Widget> _tabs = [
     RacesView(),
-    RacesView(),
-    RacesView(),
+    LapsView(),
+    StickyNotesPage(),
+    LapsView(),
   ];
 
   @override
@@ -36,6 +39,10 @@ class _AdminViewState extends State<AdminView> {
           BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.clock_fill),
             label: 'Voltas',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.folder_fill),
+            label: 'Notas',
           ),
           BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.person_alt_circle_fill),
