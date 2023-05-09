@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import { isBrowserReady } from "@/shared/utils/isBrowserReady";
+
 type AuthParams = {
   token: string;
   profile: {
@@ -31,16 +33,18 @@ export const AuthContext = React.createContext<AuthContextData>({
 AuthContext.displayName = "AuthContext";
 
 export function AuthProvider({ children }: ProviderProps) {
-  const localToken =
-    typeof window !== "undefined" && localStorage.getItem("token");
+  const localToken = isBrowserReady() && localStorage.getItem("token");
+
   const [isAuthenticated, setIsAuthenticated] = React.useState(
     () => Boolean(localToken) ?? false
   );
+
   const [profile, setProfile] = React.useState({});
 
   function authenticate({ token, profile }: AuthParams) {
     setIsAuthenticated(true);
-    if (typeof window !== "undefined") {
+
+    if (isBrowserReady()) {
       localStorage.setItem("token", token);
       localStorage.setItem("profile", JSON.stringify(profile));
 
@@ -50,7 +54,7 @@ export function AuthProvider({ children }: ProviderProps) {
 
   function logout() {
     setIsAuthenticated(false);
-    if (typeof window !== "undefined") {
+    if (isBrowserReady()) {
       localStorage.removeItem("token");
       localStorage.removeItem("profile");
       setProfile({});

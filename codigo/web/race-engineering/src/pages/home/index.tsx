@@ -51,7 +51,7 @@ export default function Home() {
                 color="#ffffff"
                 align="center"
                 lineHeight="normal"
-                fontSize={15}
+                fontSize={17}
               >
                 Gerencie corridas com facilidade: liste, crie, edite ou remova
                 corridas conforme necessário.
@@ -99,7 +99,7 @@ export default function Home() {
                 color="#ffffff"
                 align="center"
                 lineHeight="normal"
-                fontSize={15}
+                fontSize={17}
               >
                 Gerencie os circuitos com facilidade: liste, crie, edite ou remova
                 corridas conforme necessário.
@@ -146,7 +146,7 @@ export default function Home() {
                 color="#ffffff"
                 align="center"
                 lineHeight="normal"
-                fontSize={15}
+                fontSize={17}
               >
                 Gerencie os times com facilidade: liste, crie, edite ou remova
                 times conforme necessário.

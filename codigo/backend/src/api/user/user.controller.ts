@@ -42,20 +42,20 @@ export class UserController {
     return user;
   }
 
-  @Roles(Role.Admin, Role.Driver)
-  @UseGuards(JwtGuard, RoleGuard)
-  @Get('drivers')
-  @ApiResponse({ type: [ListedUser], description: 'Successful operation' })
-  async listDrivers(): Promise<ListedUser[]> {
-    return this.service.listDrivers();
-  }
-
   @Roles(Role.Admin, Role.Mechanic)
   @UseGuards(JwtGuard, RoleGuard)
   @Get('mechanics')
   @ApiResponse({ type: [ListedUser], description: 'Successful operation' })
   async listMechanics(): Promise<ListedUser[]> {
     return await this.service.listMechanics();
+  }
+
+  @Roles(Role.Admin, Role.Driver)
+  @UseGuards(JwtGuard, RoleGuard)
+  @Get('drivers')
+  @ApiResponse({ type: [ListedUser], description: 'Successful operation' })
+  async listDrivers(): Promise<ListedUser[]> {
+    return await this.service.listDrivers();
   }
 
   @Roles(Role.Admin, Role.Analyst)

@@ -20,10 +20,10 @@ import {
 
 export default function Index() {
   return (
-    <>
-      <Head>
-        <title>Lista de Corridas</title>
-      </Head>
+    <Box height="100vh" width="100%" padding="4 100px">
+      <Heading as="h1" size="2xl" textAlign="center" marginTop="2%" >
+        Lista de Mecânicos
+      </Heading>
 
       <Box height="100vh" width="100%">
         <Box
@@ -41,6 +41,6 @@ export default function Index() {
           <Box w="95vw"></Box>
         </Box>
       </Box>
-    </>
+    </Box>
   );
 }

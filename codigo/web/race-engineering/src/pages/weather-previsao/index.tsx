@@ -134,9 +134,10 @@ export default function Home() {
           justifyContent="center"
           alignItems="center"
         >
-          <Box w="2vw" className="sidebar-container" style={{ position: "fixed", top: 0, left: 0, bottom: 0 }}>
+          <Box maxWidth="300px" className="sidebar-container" style={{ position: "fixed", top: 0, left: 0, bottom: 0 }}>
             <Sidebar />
           </Box>
+
 
           <Box w="98vw" height="100vh">
             <Box

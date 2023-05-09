@@ -41,9 +41,6 @@ export const EditUserModal = ({ isOpen, setIsOpen }: Props) => {
   let profile =
     typeof window !== "undefined" && localStorage.getItem("profile");
 
-  profile = JSON.parse(profile);
-
-  console.log(profile);
   useEffect(() => {
     setValue("name", "Colocar nome aqui");
   });
