@@ -29,7 +29,7 @@ class Note {
       id: map['id'],
       title: map['title'],
       description: map['description'],
-      color: map['color']
+      color: Color(map['color'])
     );
   }
 

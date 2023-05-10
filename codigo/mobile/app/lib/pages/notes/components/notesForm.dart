@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 import '../../../model/note/note.dart';
 import '../../../services/database/DatabaseHelper.dart';
+import '../notes.dart';
 // import 'components/stickyNotes.dart';
 
 class NotesForm extends StatefulWidget {
@@ -24,10 +25,6 @@ class _NotesForm extends State<NotesForm> {
       final String title = _titleController.text;
       final String description = _descriptionController.text;
 
-      // Resetar o formulário
-      _formKey.currentState!.reset();
-      _selectedColor = CupertinoColors.systemYellow;
-
       // TODO: Salvar a nota no local desejado
       setState(() {
         _notes.add(Note(
@@ -37,18 +34,21 @@ class _NotesForm extends State<NotesForm> {
           id: '',
         ));
       });
-
+      print(_selectedColor);
       Future<void> _addNote() async {
         Note newNote = Note(
-          title: title,
-          description: description,
-          id: '',
-          color: _selectedColor
-        );
+            title: title,
+            description: description,
+            id: '',
+            color: _selectedColor);
         await _databaseHelper.create(newNote);
       }
 
       _addNote();
+
+      // Resetar o formulário
+      _formKey.currentState!.reset();
+      _selectedColor = CupertinoColors.systemYellow;
     }
   }
 
@@ -62,118 +62,175 @@ class _NotesForm extends State<NotesForm> {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      navigationBar: CupertinoNavigationBar(
-        middle: Text('Sticky Notes'),
+      navigationBar:  CupertinoNavigationBar(
+        middle: Text("Criar nova nota"),
+        leading: GestureDetector(
+          child: const Icon(
+            CupertinoIcons.back,
+            color: CupertinoColors
+                .darkBackgroundGray, // Define a cor da seta de voltar
+          ),
+          onTap: () {
+            Navigator.of(context).pop();
+          },
+        ),
       ),
       child: SafeArea(
-        child: Padding(
+        child: Center(
+          child: Container(
+            height: MediaQuery.of(context).size.height,
             padding: const EdgeInsets.all(16.0),
-            child: Flexible(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        CupertinoFormSection(
-                          header: Text('Nova Nota'),
-                          children: [
-                            CupertinoTextFormFieldRow(
-                              controller: _titleController,
-                              placeholder: 'Título',
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Por favor, insira um título';
-                                }
-                                return null;
-                              },
-                            ),
-                            CupertinoTextFormFieldRow(
-                              controller: _descriptionController,
-                              placeholder: 'Descrição',
-                              maxLines: 3,
-                            ),
-                            CupertinoFormRow(
-                              helper: Text('Toque na cor para selecionar'),
-                              child: Row(
-                                children: [
-                                  Text('Cor'),
-                                  SizedBox(width: 8.0),
-                                  GestureDetector(
-                                    onTap: () {
-                                      showCupertinoModalPopup(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return CupertinoActionSheet(
-                                            title: Text('Selecione uma cor'),
-                                            actions: [
-                                              CupertinoActionSheetAction(
-                                                onPressed: () {
-                                                  setState(() {
-                                                    _selectedColor = CupertinoColors
-                                                        .systemYellow;
-                                                  });
-                                                  Navigator.pop(context);
-                                                },
-                                                child: Text('Amarelo'),
-                                              ),
-                                              CupertinoActionSheetAction(
-                                                onPressed: () {
-                                                  setState(() {
-                                                    _selectedColor =
-                                                        CupertinoColors.systemTeal;
-                                                  });
-                                                  Navigator.pop(context);
-                                                },
-                                                child: Text('Azul'),
-                                              ),
-                                              CupertinoActionSheetAction(
-                                                onPressed: () {
-                                                  setState(() {
-                                                    _selectedColor =
-                                                        CupertinoColors.systemPink;
-                                                  });
-                                                  Navigator.pop(context);
-                                                },
-                                                child: Text('Rosa'),
-                                              ),
-                                            ],
-                                            cancelButton:
+            child: Align(
+              alignment: Alignment.center,
+              child: SingleChildScrollView(
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      CupertinoFormSection(
+                        header: Text('Nova Nota'),
+                        children: [
+                          CupertinoTextFormFieldRow(
+                            controller: _titleController,
+                            placeholder: 'Título',
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Por favor, insira um título';
+                              }
+                              return null;
+                            },
+                          ),
+                          CupertinoTextFormFieldRow(
+                            controller: _descriptionController,
+                            placeholder: 'Descrição',
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Por favor, insira uma descrição';
+                              }
+                              return null;
+                            },
+                            maxLines: 3,
+                          ),
+                          CupertinoFormRow(
+                            helper: Text('Toque na cor para selecionar'),
+                            child: Row(
+                              children: [
+                                Text('Cor'),
+                                SizedBox(width: 8.0),
+                                GestureDetector(
+                                  onTap: () {
+                                    showCupertinoModalPopup(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return CupertinoActionSheet(
+                                          title: Text('Selecione uma cor'),
+                                          actions: [
                                             CupertinoActionSheetAction(
                                               onPressed: () {
+                                                setState(() {
+                                                  _selectedColor =
+                                                      CupertinoColors
+                                                          .systemYellow;
+                                                });
                                                 Navigator.pop(context);
                                               },
-                                              child: Text('Cancelar'),
+                                              child: Text('Amarelo'),
                                             ),
-                                          );
-                                        },
-                                      );
-                                    },
-                                    child: Container(
-                                      width: 20,
-                                      height: 20,
-                                      decoration: BoxDecoration(
-                                        color: _selectedColor,
-                                        shape: BoxShape.circle,
-                                      ),
+                                            CupertinoActionSheetAction(
+                                              onPressed: () {
+                                                setState(() {
+                                                  _selectedColor =
+                                                      CupertinoColors
+                                                          .systemTeal;
+                                                });
+                                                Navigator.pop(context);
+                                              },
+                                              child: Text('Azul'),
+                                            ),
+                                            CupertinoActionSheetAction(
+                                              onPressed: () {
+                                                setState(() {
+                                                  _selectedColor =
+                                                      CupertinoColors
+                                                          .systemPink;
+                                                });
+                                                Navigator.pop(context);
+                                              },
+                                              child: Text('Rosa'),
+                                            ),
+                                            CupertinoActionSheetAction(
+                                              onPressed: () {
+                                                setState(() {
+                                                  _selectedColor =
+                                                      CupertinoColors
+                                                          .systemGreen;
+                                                });
+                                                Navigator.pop(context);
+                                              },
+                                              child: Text('Verde'),
+                                            ),
+                                            CupertinoActionSheetAction(
+                                              onPressed: () {
+                                                setState(() {
+                                                  _selectedColor =
+                                                      CupertinoColors
+                                                          .systemIndigo;
+                                                });
+                                                Navigator.pop(context);
+                                              },
+                                              child: Text('Roxo'),
+                                            ),
+                                          ],
+                                          cancelButton:
+                                              CupertinoActionSheetAction(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text('Cancelar'),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                  child: Container(
+                                    width: 20,
+                                    height: 20,
+                                    decoration: BoxDecoration(
+                                      color: _selectedColor,
+                                      shape: BoxShape.circle,
                                     ),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                        SizedBox(height: 16.0),
-                        CupertinoButton.filled(
-                          onPressed: _submitNote,
-                          child: const Text('Salvar Nota'),
-                        ),
-                      ],
-                    ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 16.0),
+                      CupertinoButton(
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            _submitNote();
+                            Navigator.push(
+                              context,
+                              CupertinoPageRoute(builder: (context) => StickyNotesPage()),
+                            );
+                          }
+                        },
+                        color: CupertinoColors.darkBackgroundGray,
+                        child: const Text('Salvar Nota'),
+                      ),
+                    ],
                   ),
-                ))),
+                ),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
 }
+
+// Resto do código...

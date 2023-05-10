@@ -71,6 +71,7 @@ class DatabaseHelper {
     final db = await instance.database;
     final orderBy = 'id DESC';
     final maps = await db.query('notes', orderBy: orderBy);
+    print(maps);
     return maps.map((map) => Note.fromMap(map)).toList();
   }
 
