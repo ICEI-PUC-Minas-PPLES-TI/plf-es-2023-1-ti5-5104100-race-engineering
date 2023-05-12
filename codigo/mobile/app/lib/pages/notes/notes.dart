@@ -84,6 +84,7 @@ class _StickyNotesPageState extends State<StickyNotesPage> {
                          color: Color(notes[index].color.value),
                          text: notes[index].title,
                          description: notes[index].description,
+                         callback: fetchNotes
                        ),
                      );
                    },

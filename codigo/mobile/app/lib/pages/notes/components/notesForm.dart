@@ -153,33 +153,22 @@ class _NotesForm extends State<NotesForm> {
                                                 setState(() {
                                                   _selectedColor =
                                                       CupertinoColors
-                                                          .systemPink;
+                                                          .destructiveRed;
                                                 });
                                                 Navigator.pop(context);
                                               },
-                                              child: Text('Rosa'),
+                                              child: Text('Vermelho'),
                                             ),
                                             CupertinoActionSheetAction(
                                               onPressed: () {
                                                 setState(() {
                                                   _selectedColor =
-                                                      CupertinoColors
-                                                          .systemGreen;
+                                                      CupertinoColors.activeGreen;
+
                                                 });
                                                 Navigator.pop(context);
                                               },
                                               child: Text('Verde'),
-                                            ),
-                                            CupertinoActionSheetAction(
-                                              onPressed: () {
-                                                setState(() {
-                                                  _selectedColor =
-                                                      CupertinoColors
-                                                          .systemIndigo;
-                                                });
-                                                Navigator.pop(context);
-                                              },
-                                              child: Text('Roxo'),
                                             ),
                                           ],
                                           cancelButton:
