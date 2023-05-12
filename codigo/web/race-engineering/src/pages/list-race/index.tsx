@@ -36,11 +36,11 @@ export default function Index() {
 
   const handleDeleteRace = (id: number) => {
     api
-      .delete(`/circuits/${id}`)
+      .delete(`/races/${id}`)
       .then(() => {
-        setRaces((prevRaces) => prevRaces.filter((circuit: any) => circuit.id !== id));
+        setRaces((prevRaces) => prevRaces.filter((race: any) => race.id !== id));
         toast({
-          title: "Circuito excluído com sucesso",
+          title: "Corrida excluído com sucesso",
           status: "success",
           duration: 3000,
           isClosable: true,
@@ -49,7 +49,7 @@ export default function Index() {
       })
       .catch((err) => {
         toast({
-          title: "Erro ao excluir circuito, tente novamente",
+          title: "Erro ao excluir a corrida, tente novamente",
           status: "error",
           duration: 3000,
           isClosable: true,
