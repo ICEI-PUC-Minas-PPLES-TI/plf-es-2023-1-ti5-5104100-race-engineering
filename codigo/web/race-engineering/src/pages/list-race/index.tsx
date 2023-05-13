@@ -59,12 +59,11 @@ export default function Index() {
   };
 
   return (
-
-    <Box height="100vh" width="100%" padding="4 100px">
-      <Heading as="h1" size="2xl" textAlign="center" marginTop="2%" >
+    <Box width="100%" padding="4 100px">
+      <Heading as="h1" size="2xl" textAlign="center" marginTop="2%">
         Lista de Corridas
       </Heading>
-
+  
       <Modal key="confirmation-modal" isOpen={isConfirmationModalOpen} onClose={() => setIsConfirmationModalOpen(false)}>
         <ModalOverlay />
         <ModalContent>
@@ -83,22 +82,20 @@ export default function Index() {
           </ModalFooter>
         </ModalContent>
       </Modal>
-
-      <Box height="100vh" width="100%">
+  
+      <Box width="100%">
         <Box
-          height="100%"
           width="100%"
           display="flex"
           justifyContent="center"
-          flex-flexDirection="column"
+          flexDirection="column"
           alignItems="center"
         >
           <Box w="2vw" className="sidebar-container" style={{ position: "fixed", top: 0, left: 0, bottom: 0 }}>
             <Sidebar />
           </Box>
-
-
-          <Box height="100vh" width="100%" padding="4%">
+  
+          <Box width="100%" padding="4%">
             <TableContainer maxW="70%" margin="auto">
               <Table size="sm" variant="striped" colorScheme="messenger">
                 <Thead>
