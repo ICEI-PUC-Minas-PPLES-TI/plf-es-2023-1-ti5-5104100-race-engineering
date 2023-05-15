@@ -1,7 +1,33 @@
 // import "@/styles/globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 // import "@/styles/header.css";
+import Timer from "@/pages/timer";
 import { AuthProvider } from "@/context/AuthContext";
+import axios from "axios";
+import * as ReactDOM from "react-dom/client";
+import Signup from "@/pages/form";
+
+import {
+  Center,
+  Divider,
+  Flex,
+  Heading,
+  Square,
+  Table,
+  TableCaption,
+  TableContainer,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  Tbody,
+  Td,
+  Tfoot,
+  Th,
+  Thead,
+  Tr,
+  Tab,
+} from "@chakra-ui/react";
 import {
   ChakraProvider,
   NumberDecrementStepper,
@@ -35,6 +61,8 @@ import { useState, useEffect } from "react";
 
 import api from "@/services/api";
 import { dataToSelectOptions } from "@/shared/utils/dataToSelectOptions";
+import { Fleur_De_Leah } from "next/font/google";
+import { CheckCircleIcon } from "@chakra-ui/icons";
 type FormData = {
   raceId: string;
   laps: number;
@@ -116,6 +144,7 @@ export default function App({ Component, pageProps }: AppProps) {
             </HStack>
 
             {/* Minha Ideia Inicial so colocar um box tipo do meu estrategy orignial */}
+
             <Box w="100%" marginY="4">
               <Select
                 placeholder="Selecione a corrida"
@@ -153,6 +182,58 @@ export default function App({ Component, pageProps }: AppProps) {
             <Card heading="Voltas Restantes" detail="" />
           </Stack>
         </Stack>
+
+        <Divider />
+        <Tabs variant="unstyled">
+          <TabList>
+            <Tab _selected={{ color: "white", bg: "blue.500" }}>Piloto 1</Tab>
+            <Tab _selected={{ color: "white", bg: "green.400" }}>Piloto 2 </Tab>
+          </TabList>
+          <TabPanels>
+            <TabPanel>
+              <p>one!</p>
+            </TabPanel>
+            <TabPanel>
+              <p>two!</p>
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
+        <Divider />
+        <Box textAlign="center" py={10} px={6}>
+          <CheckCircleIcon boxSize={"50px"} color={"green.500"} />
+          <Heading as="h2" size="xl" mt={6} mb={2}>
+            Lap Annotation
+          </Heading>
+          <Box>
+            <Text fontSize="md" fontWeight="semibold">
+              Tempo para término da corrida
+            </Text>
+            <Timer></Timer>
+          </Box>
+        </Box>
+        <Signup></Signup>
+        <Box>
+          <TableContainer>
+            <Table variant="striped" colorScheme="teal">
+              <Thead>
+                <Tr>
+                  <Th>Tipo Pneu</Th>
+                  <Th>Piloto</Th>
+                  <Th>Número de voltas</Th>
+                  <Th>Qunatidade de gasolina no tanque</Th>
+                </Tr>
+              </Thead>
+              <Tbody>
+                <Tr>
+                  <Td>Dry</Td>
+                  <Td>Rubens</Td>
+                  <Td isNu>20</Td>
+                  <Td>70l</Td>
+                </Tr>
+              </Tbody>
+            </Table>
+          </TableContainer>
+        </Box>
         <Button
           padding="20px"
           margin="15px"
