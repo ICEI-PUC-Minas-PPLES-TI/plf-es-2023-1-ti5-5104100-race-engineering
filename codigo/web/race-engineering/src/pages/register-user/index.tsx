@@ -166,7 +166,7 @@ const RegisterPage = () => {
                   <Input
                     type={show ? "text" : "password"}
                     placeholder="Digite sua senha"
-                    {...register("password", { required: true, minLength: 8 })}
+                    {...register("password", { required: true, minLength: 8, maxLength: 20 })}
                     name="password"
                   />
                   <InputRightElement width="4.5rem">
@@ -178,6 +178,7 @@ const RegisterPage = () => {
                 <FormErrorMessage>
                   {errors.password?.type === "required" && "A Senha é obrigatória"}
                   {errors.password?.type === "minLength" && "Senha deve ter pelo menos 8 caracteres"}
+                  {errors.password?.type === "maxLength" && "Senha deve ter no máximo 20 caracteres"}
                 </FormErrorMessage>
               </FormControl>
             </Box>
