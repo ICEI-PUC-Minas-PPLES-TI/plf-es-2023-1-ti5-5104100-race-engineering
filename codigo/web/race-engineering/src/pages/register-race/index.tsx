@@ -4,12 +4,14 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
-
+import { dataToSelectOptions } from "@/shared/utils/dataToSelectOptions";
 import Sidebar from "@/components/sidebar/Sidebar";
 import api from "@/services/api";
-import { dataToSelectOptions } from "@/shared/utils/dataToSelectOptions";
 import { getIdList } from "@/shared/utils/getIdList";
 import { AtSignIcon, EmailIcon, LockIcon } from "@chakra-ui/icons";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import {
   Box,
   Button,
@@ -81,10 +83,13 @@ const RegisterPage = () => {
       setCircuits(circuitsResponse);
     })();
 
-    return () => {};
+    return () => { };
   }, []);
 
   const onSubmit = handleSubmit((data, event) => {
+    const startDate = new Date(data.startDate);
+    const endDate = new Date(data.endDate);
+
     data.mechanics = getIdList({
       list: mechanics,
     });
@@ -106,6 +111,18 @@ const RegisterPage = () => {
     data.circuitId = getIdList({
       list: circuits,
     })[0].id;
+
+
+    if (endDate < startDate) {
+      toast({
+        title: "A data de Início da Corrida não pode ser anterior à data do Fim da Corrida",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "top-right",
+      });
+      return; // Cancel submission
+    }
 
     api
       .post("/races", data)
@@ -306,6 +323,7 @@ const RegisterPage = () => {
                   />
                 </InputGroup>
               </Box>
+
               <Box w="100%" marginY="4">
                 <FormLabel>Total de voltas</FormLabel>
                 <InputGroup>

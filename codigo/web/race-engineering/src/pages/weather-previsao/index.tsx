@@ -134,7 +134,11 @@ export default function Home() {
           justifyContent="center"
           alignItems="center"
         >
-          <Box maxWidth="300px" className="sidebar-container" style={{ position: "fixed", top: 0, left: 0, bottom: 0 }}>
+          <Box
+            w="2vw"
+            className="sidebar-container"
+            style={{ position: "fixed", top: 0, left: 0, bottom: 0 }}
+          >
             <Sidebar />
           </Box>
 
@@ -219,7 +223,7 @@ export default function Home() {
                         p={4}
                         textAlign="center"
                         bg="white"
-                        width="17%"
+                        width={weather.list.length === 1 ? "50%" : weather.list.length === 2 ? "48%" : "17%"}
                       >
                         <Text>{new Date(item.dt_txt).toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}</Text>
                         <Text>{(item.main.temp - 273.15).toFixed(1)}°C</Text>
@@ -244,6 +248,7 @@ export default function Home() {
                   </Flex>
                 </Box>
               )}
+
             </Box>
           </Box>
         </Box>

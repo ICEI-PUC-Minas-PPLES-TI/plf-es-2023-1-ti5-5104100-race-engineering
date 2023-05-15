@@ -69,8 +69,9 @@ class DatabaseHelper {
 
   Future<List<Note>> readAll() async {
     final db = await instance.database;
-    final orderBy = 'id DESC';
-    final maps = await db.query('notes', orderBy: orderBy);
+    // final orderBy = 'id DESC';
+    // final maps = await db.query('notes', orderBy: orderBy);
+    final maps = await db.query('notes');
     return maps.map((map) => Note.fromMap(map)).toList();
   }
 

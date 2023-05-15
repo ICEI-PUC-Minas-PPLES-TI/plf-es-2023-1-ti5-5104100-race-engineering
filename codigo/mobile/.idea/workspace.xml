@@ -5,19 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4c4a502c-b19e-4505-95bc-bb87637afc44" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/lib/model/note/note.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/lib/pages/notes/components/notesForm.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/lib/pages/notes/components/stickyNotes.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/lib/pages/notes/notes.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/lib/pages/notes/notesForm.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/lib/services/database/DatabaseHelper.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/mobile.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mobile.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/assets/gradient.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/assets/rrr.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ios/Podfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/app/ios/Podfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/lib/pages/admin/admin.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/pages/admin/admin.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/assets/gradient.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/gradient.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/lib/pages/laps/laps.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/pages/laps/laps.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/lib/pages/notes/components/notesForm.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/pages/notes/components/notesForm.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/lib/pages/notes/components/stickyNotes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/pages/notes/components/stickyNotes.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/lib/pages/notes/notes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/pages/notes/notes.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/lib/services/database/DatabaseHelper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/services/database/DatabaseHelper.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/app/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/app/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes.db" beforeDir="false" afterPath="$PROJECT_DIR$/notes.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,13 +46,14 @@
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
     "io.flutter.reload.alreadyRun": "true",
-    "last_opened_file_path": "/Users/joeyclapton/dev/puc/plf-es-2023-1-ti5-5104100-race-engineering/codigo/mobile/app/lib/pages/register",
+    "last_opened_file_path": "/Users/joeyclapton/dev/puc/plf-es-2023-1-ti5-5104100-race-engineering/codigo/mobile/app/assets",
     "settings.editor.selected.configurable": "preferences.lookFeel",
     "show.migrate.to.gradle.popup": "false"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/assets" />
       <recent name="$PROJECT_DIR$/app/lib/pages/register" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -94,9 +95,14 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/app/lib/pages/notes/notes.dart</url>
-          <line>83</line>
-          <option name="timeStamp" value="3" />
+          <url>file://$PROJECT_DIR$/app/lib/pages/notes/components/notesForm.dart</url>
+          <line>85</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/app/lib/pages/laps/laps.dart</url>
+          <line>38</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

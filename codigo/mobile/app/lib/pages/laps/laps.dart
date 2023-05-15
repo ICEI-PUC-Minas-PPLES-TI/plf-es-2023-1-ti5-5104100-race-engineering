@@ -27,12 +27,121 @@ class _LapsView extends State<LapsView> {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
+      navigationBar:  CupertinoNavigationBar(
+        middle: Text("Minhas voltas"),
+      ),
       child: SafeArea(
           child: Container(
         height: MediaQuery.of(context).size.height - 150,
         child: CupertinoScrollbar(
             child: Column(
           children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Card(
+                  elevation: 5,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  margin: EdgeInsets.symmetric(vertical: 12.0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    // Defina o raio da borda arredondada desejado
+                    child: Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/gradient.png'),
+                          // substitua pelo caminho da sua imagem
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: const [
+                                Text(
+                                  'Tempo da volta 1',
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    color: CupertinoColors.white,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                SizedBox(height: 16.0),
+                                Text(
+                                  '3min 2s 938',
+                                  style: TextStyle(
+                                    fontSize: 26.0,
+                                    fontWeight: FontWeight.w600,
+                                    color: CupertinoColors.white,
+                                  ),
+                                ),
+                                SizedBox(height: 8.0),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Card(
+                  elevation: 5,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  margin: EdgeInsets.symmetric(vertical: 12.0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    // Defina o raio da borda arredondada desejado
+                    child: Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/gradient.png'),
+                          // substitua pelo caminho da sua imagem
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: const [
+                                Text(
+                                  'Tempo da volta 2',
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    color: CupertinoColors.white,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                SizedBox(height: 16.0),
+                                Text(
+                                  '3min 29s 821',
+                                  style: TextStyle(
+                                    fontSize: 26.0,
+                                    fontWeight: FontWeight.w600,
+                                    color: CupertinoColors.white,
+                                  ),
+                                ),
+                                SizedBox(height: 8.0),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )),
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Card(
@@ -70,7 +179,7 @@ class _LapsView extends State<LapsView> {
                                 ),
                                 SizedBox(height: 16.0),
                                 Text(
-                                  '1min 28s 836',
+                                  '7min 28s 836',
                                   style: TextStyle(
                                     fontSize: 26.0,
                                     fontWeight: FontWeight.w600,
