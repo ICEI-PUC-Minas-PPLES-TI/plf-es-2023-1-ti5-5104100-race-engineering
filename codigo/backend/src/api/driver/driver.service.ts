@@ -1,15 +1,38 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { EditDriverDTO } from './models/driver.dto';
+import { UpdateDriverDTO } from './models/driver.dto';
 import { Driver } from '@/api/driver/models/driver.entity';
 
 @Injectable()
 export class DriverService {
-  async findAll() {
-    const drivers = await Driver.find({ relations: ['user'] });
+  async findAll(page?: number) {
+    if (!page) page = 1;
+    const drivers = await Driver.createQueryBuilder('Driver')
+      .where({ isActive: true })
+      .offset((page - 1) * 10)
+      .limit(10)
+      .innerJoinAndSelect('Driver.user', 'User')
+      .getMany();
     return drivers.map((driver) => {
       return {
         id: driver.id,
         number: driver.number,
+        isActive: driver.isActive,
+        name: driver.user.name,
+        email: driver.user.email,
+      };
+    });
+  }
+
+  async findByTeamId(id: number) {
+    const drivers = await Driver.find({
+      where: { team: { id } },
+      relations: ['user'],
+    });
+    return drivers.map((driver) => {
+      return {
+        id: driver.id,
+        number: driver.number,
+        isActive: driver.isActive,
         name: driver.user.name,
         email: driver.user.email,
       };
@@ -25,7 +48,15 @@ export class DriverService {
     return driver;
   }
 
-  async update(id: number, body: EditDriverDTO) {
+  async listDriverRaces(id: number) {
+    const driver = await Driver.findOne({
+      where: { id },
+      relations: ['races'],
+    });
+    return driver.races;
+  }
+
+  async update(id: number, body: UpdateDriverDTO) {
     const driver = await this.findOne(id);
     driver.number = body.number || driver.number;
     driver.isActive = body.isActive || driver.isActive;
@@ -39,7 +70,7 @@ export class DriverService {
   }
 
   async findOne(id: number) {
-    const driver = await Driver.findOne({ where: { id } });
+    const driver = await Driver.findOne({ where: { id }, relations: ['user'] });
     if (!driver) throw new NotFoundException('Driver not found');
     return driver;
   }

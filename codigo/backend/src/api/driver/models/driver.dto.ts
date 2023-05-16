@@ -16,4 +16,4 @@ export class EditDriverDTO {
   nationality: string;
 }
 
-export class UpdateDriverDto extends PartialType(EditDriverDTO) {}
+export class UpdateDriverDTO extends PartialType(EditDriverDTO) {}
