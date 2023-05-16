@@ -26,17 +26,28 @@ export class MainSeeder implements Seeder {
     const raceRepository = dataSource.getRepository(Race);
     const lapRepository = dataSource.getRepository(Lap);
 
-    // User Seeder
     const userFactory = factoryManager.get(User);
     const driverFactory = factoryManager.get(Driver);
 
+    // User Seeder
+    await userFactory.save({ role: Role.Admin });
     const mechanics = await userFactory.saveMany(5, { role: Role.Mechanic });
     const analysts = await userFactory.saveMany(3, { role: Role.Analyst });
 
+    // Team Seeder
+    const teamFactory = factoryManager.get(Team);
+    const teams = await teamFactory.saveMany(10);
+
     const drivers: Driver[] = [];
     const driversUsers = await userFactory.saveMany(20, { role: Role.Driver });
+    let i = 0;
     for (const driverUser of driversUsers) {
-      const driver = await driverFactory.save({ user: driverUser });
+      const driver = await driverFactory.save({
+        user: driverUser,
+        team: teams[i],
+      });
+      i++;
+      if (i >= 10) i = 0;
       drivers.push(driver);
     }
 
@@ -47,10 +58,6 @@ export class MainSeeder implements Seeder {
     // Car Seeder
     const carFactory = factoryManager.get(Car);
     await carFactory.saveMany(20);
-
-    // Team Seeder
-    const teamFactory = factoryManager.get(Team);
-    const teams = await teamFactory.saveMany(2);
 
     // Race Seeder
     const raceFactory = factoryManager.get(Race);

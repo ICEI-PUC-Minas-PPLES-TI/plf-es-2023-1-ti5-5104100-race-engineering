@@ -8,6 +8,6 @@ export const UserFactory = setSeederFactory(User, () => {
   user.name = faker.name.fullName();
   user.email = faker.internet.email();
   const salt: string = bcrypt.genSaltSync(10);
-  user.password = bcrypt.hashSync('12345', salt);
+  user.password = bcrypt.hashSync('Senha123', salt);
   return user;
 });
