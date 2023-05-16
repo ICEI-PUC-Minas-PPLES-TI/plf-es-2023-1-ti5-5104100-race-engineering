@@ -27,6 +27,15 @@ export class Lap extends BaseEntity {
   @Column('numeric', { name: 'lapNumber', nullable: true })
   lapNumber: number | null;
 
+  @Column('numeric', { name: 'remainingGas', nullable: true })
+  remainingGas: number | null;
+
+  @Column('text', { name: 'tyreType', nullable: true })
+  tyreType: string;
+
+  @Column('boolean', { name: 'isAdditional', nullable: true })
+  isAdditional = false;
+
   @ManyToOne(() => Race, (race) => race.laps)
   @JoinColumn([{ name: 'raceId', referencedColumnName: 'id' }])
   race: Race;
@@ -46,4 +55,9 @@ export class Lap extends BaseEntity {
   @Exclude()
   @DeleteDateColumn({ name: 'deletedAt', type: 'timestamp', default: null })
   deletedAt: Date | null;
+}
+
+export enum TyreType {
+  WET = 'WET',
+  DRY = 'DRY',
 }

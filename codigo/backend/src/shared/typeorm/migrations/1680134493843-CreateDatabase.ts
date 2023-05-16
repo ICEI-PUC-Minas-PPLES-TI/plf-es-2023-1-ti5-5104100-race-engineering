@@ -60,6 +60,9 @@ export class CreateDatabase1680134493843 implements MigrationInterface {
         "driverId" int,
         "lapTime" interval,
         "lapNumber" int,
+        "remainingGas" decimal,
+        "tyreType" text,
+        "isAdditional" boolean,
         "createdAt" timestamptz,
         "updatedAt" timestamptz,
         "deletedAt" timestamptz

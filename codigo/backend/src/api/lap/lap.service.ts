@@ -1,5 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { CreateLapDto, UpdateLapDto } from './models/lap.dto';
+import {
+  CreateLapDto,
+  LapSearchParams,
+  SendTimerDto,
+  UpdateLapDto,
+} from './models/lap.dto';
 import { Lap } from '@/api/lap/models/lap.entity';
 import { RaceService } from '@/api/race/race.service';
 import { DriverService } from '@/api/driver/driver.service';
@@ -13,15 +18,25 @@ export class LapService {
   ) {}
 
   async createLap(id: number, createLapDto: CreateLapDto) {
-    const { lapNumber, driverId, lapTime } = createLapDto;
+    const {
+      lapNumber,
+      driverId,
+      lapTime,
+      remainingGas,
+      tyreType,
+      isAdditional,
+    } = createLapDto;
     const race = await this.raceService.findOneRace(id);
     let driver;
     if (driverId) driver = await this.driverService.findOne(driverId);
-    console.log(lapNumber);
+
     const lap = new Lap();
     lap.lapNumber = lapNumber;
     if (lapTime) lap.lapTime = parse(lapTime);
     if (driver) lap.driver = driver;
+    if (remainingGas) lap.remainingGas = remainingGas;
+    if (tyreType) lap.tyreType = tyreType;
+    if (isAdditional) lap.isAdditional = isAdditional;
     lap.race = race;
     lap.createdAt = new Date();
     lap.updatedAt = new Date();
@@ -29,8 +44,42 @@ export class LapService {
     return await lap.save();
   }
 
-  async findAll() {
-    return await Lap.find();
+  async findAll(page: number) {
+    const builder = await Lap.createQueryBuilder('Lap');
+    const pg = page ? page : 1;
+    const perPage = 10;
+    builder.offset((pg - 1) * perPage).limit(perPage);
+    return await builder.getMany();
+  }
+
+  async findByRaceId(id: number) {
+    const race = await this.raceService.findOneRace(id);
+    return await Lap.find({
+      where: {
+        race: { id: race.id },
+      },
+    });
+  }
+
+  async findByDriverId(id: number) {
+    const driver = await this.driverService.findOneDetailed(id);
+    return await Lap.find({
+      where: {
+        driver: { id: driver.id },
+      },
+      relations: ['race'],
+    });
+  }
+
+  async findByDriverIdAndRaceId(driverId: number, raceId: number) {
+    const driver = await this.driverService.findOneDetailed(driverId);
+    const race = await this.raceService.findOneRace(raceId);
+    return await Lap.find({
+      where: {
+        driver: { id: driver.id },
+        race: { id: race.id },
+      },
+    });
   }
 
   async findOne(id: number) {
@@ -49,47 +98,34 @@ export class LapService {
   }
 
   async update(id: number, updateLapDto: UpdateLapDto) {
-    const { lapTime, lapNumber, driverId } = updateLapDto;
+    const {
+      lapTime,
+      lapNumber,
+      driverId,
+      remainingGas,
+      tyreType,
+      isAdditional,
+    } = updateLapDto;
     const lap = await this.findOne(id);
     if (lapTime) lap.lapTime = parse(lapTime);
     if (lapNumber) lap.lapNumber = lapNumber;
-    if (driverId) {
-      lap.driver = await this.driverService.findOne(driverId);
-    }
+    if (driverId) lap.driver = await this.driverService.findOne(driverId);
+    if (remainingGas) lap.remainingGas = remainingGas;
+    if (tyreType) lap.tyreType = tyreType;
+    if (isAdditional) lap.isAdditional = isAdditional;
+
+    return await lap.save();
+  }
+
+  async sendTimer(id: number, sendTimerDto: SendTimerDto) {
+    const { lapTime } = sendTimerDto;
+    const lap = await this.findOne(id);
+    if (lapTime) lap.lapTime = parse(lapTime);
     return await lap.save();
   }
 
   async remove(id: number) {
     const lap = await this.findOne(id);
     return await lap.softRemove();
-  }
-
-  async findByRaceId(id: number) {
-    const race = await this.raceService.findOneRace(id);
-    return await Lap.find({
-      where: {
-        race: { id: race.id },
-      },
-    });
-  }
-
-  async findByDriverId(id: number) {
-    const driver = await this.driverService.findOneDetailed(id);
-    return await Lap.find({
-      where: {
-        driver: { id: driver.id },
-      },
-    });
-  }
-
-  async findByDriverIdAndRaceId(driverId: number, raceId: number) {
-    const driver = await this.driverService.findOneDetailed(driverId);
-    const race = await this.raceService.findOneRace(raceId);
-    return await Lap.find({
-      where: {
-        driver: { id: driver.id },
-        race: { id: race.id },
-      },
-    });
   }
 }

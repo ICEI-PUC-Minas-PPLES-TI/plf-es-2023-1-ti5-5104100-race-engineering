@@ -1,6 +1,7 @@
 import { PartialType } from '@nestjs/mapped-types';
-import { IsNumber, IsString } from 'class-validator';
+import { IsBoolean, IsNumber, IsString } from 'class-validator';
 import { ApiPropertyOptional } from '@nestjs/swagger';
+import { TyreType } from '@/api/lap/models/lap.entity';
 
 export class CreateLapDto {
   @IsNumber()
@@ -14,6 +15,31 @@ export class CreateLapDto {
   @IsString()
   @ApiPropertyOptional({ example: '00:01:20.345' })
   lapTime?: string;
+
+  @IsNumber()
+  @ApiPropertyOptional({ example: 42 })
+  remainingGas?: number;
+
+  @IsString()
+  @ApiPropertyOptional({ type: 'string', example: 'WET', enum: TyreType })
+  tyreType?: string;
+
+  @IsBoolean()
+  @ApiPropertyOptional({ example: true })
+  isAdditional?: boolean;
 }
 
 export class UpdateLapDto extends PartialType(CreateLapDto) {}
+
+export class SendTimerDto {
+  @IsString()
+  @ApiPropertyOptional({ example: '00:01:20.345' })
+  lapTime?: string;
+}
+
+export class LapSearchParams {
+  page: number;
+  filter: string;
+  sort: string;
+  sortBy: string;
+}

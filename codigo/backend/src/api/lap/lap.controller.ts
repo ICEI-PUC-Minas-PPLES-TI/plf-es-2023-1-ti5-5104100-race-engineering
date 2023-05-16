@@ -7,9 +7,10 @@ import {
   Param,
   Delete,
   Inject,
+  Query,
 } from '@nestjs/common';
 import { LapService } from './lap.service';
-import { CreateLapDto, UpdateLapDto } from './models/lap.dto';
+import { CreateLapDto, SendTimerDto, UpdateLapDto } from './models/lap.dto';
 import { ApiTags } from '@nestjs/swagger';
 
 @Controller('races/:raceId/laps')
@@ -27,6 +28,11 @@ export class LapController {
   }
 
   @Get()
+  findAll(@Query('page') page?: string) {
+    return this.lapService.findAll(+page);
+  }
+
+  @Get()
   findByRace(@Param('raceId') raceId: string) {
     return this.lapService.findByRaceId(+raceId);
   }
@@ -39,6 +45,11 @@ export class LapController {
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateLapDto: UpdateLapDto) {
     return this.lapService.update(+id, updateLapDto);
+  }
+
+  @Patch(':id')
+  sendTimer(@Param('id') id: string, @Body() sendTimerDTO: SendTimerDto) {
+    return this.lapService.sendTimer(+id, sendTimerDTO);
   }
 
   @Delete(':id')
