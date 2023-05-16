@@ -13,14 +13,26 @@ import {
   Text,
   useColorModeValue,
   Link,
+  Select,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import Timer from "@/pages/timer";
+import { dataToSelectOptions } from "@/shared/utils/dataToSelectOptions";
+
+type Estrategy = {
+  tire: string; //pneu verificar no backend
+  gas: number; // qtd de gasolina verificar tbm
+};
 
 export default function SignupCard() {
   const [showPassword, setShowPassword] = useState(false);
-
+  const [selectedTire, setSelectedTire] = useState("");
+  const { register, handleSubmit } = useForm<FormData>();
+  const handleChange = (event: any) => {
+    setSelectedTire(event.target.value);
+  };
   return (
     <Flex
       padding="10px"
@@ -38,8 +50,25 @@ export default function SignupCard() {
             <HStack>
               <Box>
                 <FormControl id="lap">
-                  <FormLabel>Tipo Pneu</FormLabel>
-                  <Input type="text" />
+                  <FormLabel>Selecionar o Pneu</FormLabel>
+                  <InputGroup id="tire">
+                    <Select
+                      value={selectedTire}
+                      {...register("tire")}
+                      onChange={handleChange}
+                    >
+                      {/* //deve ser dry e wet  OBS ELE NAO VEM DO BACKEND*/}
+                      <option hidden>Tipo de Pneu</option>
+                      <option label="seco" id="seco">
+                        Seco
+                      </option>
+                      <option label="molhado" id="molhado">
+                        Molhado
+                      </option>
+                    </Select>
+                  </InputGroup>
+                  {/* <FormLabel>Tipo Pneu</FormLabel>
+                  <Input type="text" /> */}
                 </FormControl>
               </Box>
               <Box>

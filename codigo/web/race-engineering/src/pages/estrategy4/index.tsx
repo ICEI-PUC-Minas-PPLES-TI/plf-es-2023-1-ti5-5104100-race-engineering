@@ -6,6 +6,7 @@ import { AuthProvider } from "@/context/AuthContext";
 import axios from "axios";
 import * as ReactDOM from "react-dom/client";
 import Signup from "@/pages/form";
+// import { format } from "date-fns"; // importe a função format
 
 import {
   Center,
@@ -63,12 +64,6 @@ import api from "@/services/api";
 import { dataToSelectOptions } from "@/shared/utils/dataToSelectOptions";
 import { Fleur_De_Leah } from "next/font/google";
 import { CheckCircleIcon } from "@chakra-ui/icons";
-type FormData = {
-  raceId: string;
-  laps: number;
-  startTime: string;
-  finishTime: string;
-};
 
 type Race = {
   id: string;
@@ -76,18 +71,16 @@ type Race = {
   startDate: string;
   endDate: string;
   totalLaps: number;
-  isMain: boolean;
 };
 
 export default function App({ Component, pageProps }: AppProps) {
   const [races, setRaces] = useState([]);
   const [selectedRace, setSelectedRace] = useState({});
   const [selectedIdRace, setSelectedIdRace] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  // const [startDate, setStartDate] = useState("");
+  // const [endDate, setEndDate] = useState("");
   const { register, handleSubmit } = useForm<FormData>(); //nem vai precisar eu acho
 
-  //   O useEffect do estrategya ta diferente talvez isso nao importe
   useEffect(() => {
     (async () => {
       const { data } = await api.get("/races");
@@ -163,9 +156,16 @@ export default function App({ Component, pageProps }: AppProps) {
                   </option>
                 ))}
               </Select>
-              <br />
+              {/* <br />
               <p>Data do Inicio da Corrida: {selectedRace.startDate} </p>
               <p>Data do Fim da Corrida: {selectedRace.endDate} </p>
+              <p>Total de Voltas: {selectedRace.totalLaps} </p> */}
+              <Box bg="gray.200" p="4">
+                <br />
+                <p>Data do Inicio da Corrida: {selectedRace.startDate} </p>
+                <p>Data do Fim da Corrida: {selectedRace.endDate} </p>
+                <p>Total de Voltas: {selectedRace.totalLaps} </p>
+              </Box>
             </Box>
           </Stack>
 
@@ -227,7 +227,9 @@ export default function App({ Component, pageProps }: AppProps) {
                 <Tr>
                   <Td>Dry</Td>
                   <Td>Rubens</Td>
-                  <Td isNu>20</Td>
+                  <Td is Null>
+                    20
+                  </Td>
                   <Td>70l</Td>
                 </Tr>
               </Tbody>
