@@ -183,35 +183,50 @@ export default function App({ Component, pageProps }: AppProps) {
           </Stack>
         </Stack>
 
-        <Divider />
-        <Tabs variant="unstyled">
-          <TabList>
-            <Tab _selected={{ color: "white", bg: "blue.500" }}>Piloto 1</Tab>
-            <Tab _selected={{ color: "white", bg: "green.400" }}>Piloto 2 </Tab>
-          </TabList>
-          <TabPanels>
-            <TabPanel>
-              <p>one!</p>
-            </TabPanel>
-            <TabPanel>
-              <p>two!</p>
-            </TabPanel>
-          </TabPanels>
-        </Tabs>
-        <Divider />
-        <Box textAlign="center" py={10} px={6}>
-          <CheckCircleIcon boxSize={"50px"} color={"green.500"} />
-          <Heading as="h2" size="xl" mt={6} mb={2}>
-            Lap Annotation
-          </Heading>
-          <Box>
-            <Text fontSize="md" fontWeight="semibold">
-              Tempo para término da corrida
-            </Text>
-            <Timer></Timer>
+        <Box display="flex" flexDirection="row" alignItems="center">
+          <Box flex="1" textAlign="center">
+            <CheckCircleIcon boxSize={"50px"} color={"green.500"} />
+            <Heading as="h2" size="xl" mt={6} mb={2}>
+              Lap Annotation
+            </Heading>
+            <Box>
+              <Text fontSize="md" fontWeight="semibold">
+                Tempo para término da corrida
+              </Text>
+              <Timer></Timer>
+            </Box>
+          </Box>
+          <Box flex="1" textAlign="center">
+            <Tabs variant="unstyled">
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <TabList display="flex" justifyContent="center">
+                <Tab _selected={{ color: "white", bg: "blue.500" }}>
+                  Piloto 1
+                </Tab>
+                <Tab _selected={{ color: "white", bg: "green.400" }}>
+                  Piloto 2
+                </Tab>
+              </TabList>
+              <TabPanels>
+                <TabPanel>
+                  <p>one!</p>
+                </TabPanel>
+                <TabPanel>
+                  <p>two!</p>
+                </TabPanel>
+              </TabPanels>
+            </Tabs>
           </Box>
         </Box>
-        <Signup></Signup>
+
+        {/* FORMULARIO */}
+        <Box display="flex" flexDirection="row" justifyContent="center">
+          <Signup />
+        </Box>
         <Box>
           <TableContainer>
             <Table variant="striped" colorScheme="teal">
@@ -226,11 +241,12 @@ export default function App({ Component, pageProps }: AppProps) {
               <Tbody>
                 <Tr>
                   <Td>Dry</Td>
-                  <Td>Rubens</Td>
-                  <Td is Null>
-                    20
-                  </Td>
-                  <Td>70l</Td>
+                  {/* <Td>Rubens</Td> */}
+                  <Td>piloto1</Td>
+                  {/* <Td isNull> */}
+                  <Td>20</Td>
+                  {/* <Td>70l</Td> */}
+                  <Td>70</Td>
                 </Tr>
               </Tbody>
             </Table>
