@@ -1,19 +1,44 @@
 // import "@/styles/globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+// Here we have used react-icons package for the icons
+import { GoChevronRight } from "react-icons/go";
+import { MdOutlineContentCopy } from "react-icons/md";
+
+import { AuthProvider } from "@/context/AuthContext";
+import Signup from "@/pages/form";
 // import "@/styles/header.css";
 import Timer from "@/pages/timer";
-import { AuthProvider } from "@/context/AuthContext";
-import axios from "axios";
-import * as ReactDOM from "react-dom/client";
-import Signup from "@/pages/form";
+import api from "@/services/api";
+import { dataToSelectOptions } from "@/shared/utils/dataToSelectOptions";
+import { CheckCircleIcon } from "@chakra-ui/icons";
 // import { format } from "date-fns"; // importe a função format
-
 import {
+  Box,
+  Button,
   Center,
+  chakra,
+  ChakraProvider,
+  Container,
   Divider,
   Flex,
   Heading,
+  HStack,
+  Icon,
+  Input,
+  Link,
+  NumberDecrementStepper,
+  NumberIncrementStepper,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  Select,
   Square,
+  Stack,
+  Tab,
   Table,
   TableCaption,
   TableContainer,
@@ -23,48 +48,15 @@ import {
   Tabs,
   Tbody,
   Td,
+  Text,
   Tfoot,
   Th,
   Thead,
   Tr,
-  Tab,
-} from "@chakra-ui/react";
-import {
-  ChakraProvider,
-  NumberDecrementStepper,
-  NumberIncrementStepper,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-} from "@chakra-ui/react";
-import { Input } from "@chakra-ui/react";
-
-import { useForm } from "react-hook-form";
-import type { AppProps } from "next/app";
-import * as React from "react";
-import {
-  chakra,
-  Container,
-  Stack,
-  HStack,
-  Text,
   useColorModeValue,
-  Button,
-  Box,
-  Link,
-  Icon,
-  Select,
 } from "@chakra-ui/react";
-// Here we have used react-icons package for the icons
-import { GoChevronRight } from "react-icons/go";
-import { MdOutlineContentCopy } from "react-icons/md";
-import { useState, useEffect } from "react";
 
-import api from "@/services/api";
-import { dataToSelectOptions } from "@/shared/utils/dataToSelectOptions";
-import { Fleur_De_Leah } from "next/font/google";
-import { CheckCircleIcon } from "@chakra-ui/icons";
-
+import type { AppProps } from "next/app";
 type Race = {
   id: string;
   name: string;
@@ -75,10 +67,10 @@ type Race = {
 
 export default function App({ Component, pageProps }: AppProps) {
   const [races, setRaces] = useState([]);
+  const [laps, setLaps] = useState([]);
   const [selectedRace, setSelectedRace] = useState({});
   const [selectedIdRace, setSelectedIdRace] = useState("");
-  // const [startDate, setStartDate] = useState("");
-  // const [endDate, setEndDate] = useState("");
+  const [maxLap, setMaxLap] = useState(0);
   const { register, handleSubmit } = useForm<FormData>(); //nem vai precisar eu acho
 
   useEffect(() => {
@@ -91,11 +83,26 @@ export default function App({ Component, pageProps }: AppProps) {
     return () => {};
   }, []);
 
+  const handleMaxLap = (event: any) => {
+    setMaxLap(event.target.value);
+  };
+
   const onSelectedRace = (id: any) => {
     const currentRace = races.filter((race) => race.id == id)[0];
     console.log(currentRace, id);
     setSelectedRace(currentRace);
   };
+
+  const fetchLaps = (raceId: number) => {
+    const fetchData = async () => {
+      const { data } = await api.get(`/races/${raceId}/laps`);
+      console.log(data);
+      setLaps(data);
+    };
+
+    fetchData();
+  };
+
   return (
     <ChakraProvider>
       <Container maxW="6xl" px={{ base: 6, md: 3 }} py={14}>
@@ -127,13 +134,7 @@ export default function App({ Component, pageProps }: AppProps) {
               <Text fontSize="md" fontWeight="semibold">
                 Defina o número de voltas máximas estabelecido pela organização
               </Text>
-              <NumberInput defaultValue={0} min={0} max={20}>
-                <NumberInputField />
-                <NumberInputStepper>
-                  <NumberIncrementStepper />
-                  <NumberDecrementStepper />
-                </NumberInputStepper>
-              </NumberInput>
+              <Input onChange={handleMaxLap} value={maxLap} />
             </HStack>
 
             {/* Minha Ideia Inicial so colocar um box tipo do meu estrategy orignial */}
@@ -160,12 +161,15 @@ export default function App({ Component, pageProps }: AppProps) {
               <p>Data do Inicio da Corrida: {selectedRace.startDate} </p>
               <p>Data do Fim da Corrida: {selectedRace.endDate} </p>
               <p>Total de Voltas: {selectedRace.totalLaps} </p> */}
-              <Box bg="gray.200" p="4">
-                <br />
-                <p>Data do Inicio da Corrida: {selectedRace.startDate} </p>
-                <p>Data do Fim da Corrida: {selectedRace.endDate} </p>
-                <p>Total de Voltas: {selectedRace.totalLaps} </p>
-              </Box>
+              {selectedRace ? (
+                <Box bg="gray.200" p="4">
+                  <br />
+                  <p>Corrida selecionada: {selectedRace.name}</p>
+                  <p>Data do Inicio da Corrida: {selectedRace.startDate} </p>
+                  <p>Data do Fim da Corrida: {selectedRace.endDate} </p>
+                  <p>Total de Voltas: {selectedRace.totalLaps} </p>
+                </Box>
+              ) : null}
             </Box>
           </Stack>
 
@@ -175,11 +179,11 @@ export default function App({ Component, pageProps }: AppProps) {
             direction={{ base: "column", sm: "row" }}
             alignItems="center"
           >
-            <Card heading="Número de Voltas" detail="" />
+            <Card heading="Número de Voltas" detail="" label="" />
 
-            <Card heading="Número de Voltas Máximas" detail="" />
-            <Card heading="Contador Geral de Voltas" detail="" />
-            <Card heading="Voltas Restantes" detail="" />
+            <Card heading="Número de Voltas Máximas" detail="" label={maxLap} />
+            <Card heading="Contador Geral de Voltas" detail="" label="" />
+            <Card heading="Voltas Restantes" detail="" label="" />
           </Stack>
         </Stack>
 
@@ -225,7 +229,10 @@ export default function App({ Component, pageProps }: AppProps) {
 
         {/* FORMULARIO */}
         <Box display="flex" flexDirection="row" justifyContent="center">
-          <Signup />
+          <Signup
+            raceId={selectedRace.id}
+            onAfterSubmit={async () => await fetchLaps(Number(selectedRace.id))}
+          />
         </Box>
         <Box>
           <TableContainer>
@@ -239,15 +246,19 @@ export default function App({ Component, pageProps }: AppProps) {
                 </Tr>
               </Thead>
               <Tbody>
-                <Tr>
-                  <Td>Dry</Td>
-                  {/* <Td>Rubens</Td> */}
-                  <Td>piloto1</Td>
-                  {/* <Td isNull> */}
-                  <Td>20</Td>
-                  {/* <Td>70l</Td> */}
-                  <Td>70</Td>
-                </Tr>
+                {laps.map((lap) => {
+                  return (
+                    <Tr key={lap.id}>
+                      <Td>Dry</Td>
+                      {/* <Td>Rubens</Td> */}
+                      <Td>{lap.driverId}</Td>
+                      {/* <Td isNull> */}
+                      <Td>{lap.lapNumber}</Td>
+                      {/* <Td>70l</Td> */}
+                      <Td>70</Td>
+                    </Tr>
+                  );
+                })}
               </Tbody>
             </Table>
           </TableContainer>
@@ -269,7 +280,15 @@ export default function App({ Component, pageProps }: AppProps) {
   );
 }
 
-const Card = ({ heading, detail }: { heading: string; detail: string }) => {
+const Card = ({
+  heading,
+  detail,
+  label,
+}: {
+  heading: string;
+  detail: string;
+  label: string;
+}) => {
   return (
     <Stack
       as={Link}
@@ -304,7 +323,7 @@ const Card = ({ heading, detail }: { heading: string; detail: string }) => {
         {detail}
       </Text>
       <Text fontSize="30" textAlign="center" color="black">
-        9
+        {label || 0}
       </Text>
     </Stack>
   );

@@ -1,28 +1,29 @@
-import {
-  Flex,
-  Box,
-  FormControl,
-  FormLabel,
-  Input,
-  InputGroup,
-  HStack,
-  InputRightElement,
-  Stack,
-  Button,
-  Heading,
-  Text,
-  useColorModeValue,
-  Link,
-  Select,
-  useToast,
-} from "@chakra-ui/react";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+
 import Timer from "@/pages/timer";
-import { dataToSelectOptions } from "@/shared/utils/dataToSelectOptions";
 import api from "@/services/api";
-import { useRouter } from "next/router";
+import { dataToSelectOptions } from "@/shared/utils/dataToSelectOptions";
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import {
+  Box,
+  Button,
+  Flex,
+  FormControl,
+  FormLabel,
+  Heading,
+  HStack,
+  Input,
+  InputGroup,
+  InputRightElement,
+  Link,
+  Select,
+  Stack,
+  Text,
+  useColorModeValue,
+  useToast,
+} from "@chakra-ui/react";
 
 type Estrategy = {
   tire: string; //pneu verificar no backend
@@ -32,7 +33,13 @@ type Estrategy = {
   drivers: string; //Piloto 1 ou 2 É mais facil(e n puxa do back)
 };
 
-export default function SignupCard() {
+export default function SignupCard({
+  raceId,
+  onAfterSubmit,
+}: {
+  raceId: String;
+  onAfterSubmit: () => {};
+}) {
   const [showPassword, setShowPassword] = useState(false);
   const [selectedTire, setSelectedTire] = useState("");
   const { register, handleSubmit } = useForm<FormData>();
@@ -45,21 +52,18 @@ export default function SignupCard() {
 
   const onSubmit = handleSubmit((data, event) => {
     api
-      .post("/estrategy", data) //verificar se é essa rota
+      .post(`/races/${Number(raceId)}/laps`, {
+        lapNumber: 1,
+        driverId: 1,
+        lapTime: "00:01:20.345",
+      }) //verificar se é essa rota
       .then(() => {
         event?.target?.reset();
-        toast({
-          title: "Cadastro realizado com sucesso",
-          status: "success",
-          duration: 3000,
-          isClosable: true,
-          position: "top-right",
-        });
-        router.push("/");
+        onAfterSubmit();
       })
       .catch((err) => {
         toast({
-          title: "Erro ao fazer cadastro, tente novamente",
+          title: "Erro ao cadastrar volta, tente novamente",
           status: "error",
           duration: 3000,
           isClosable: true,
@@ -84,7 +88,7 @@ export default function SignupCard() {
         >
           <Stack spacing={3}>
             <HStack>
-              <FormControl as="form" onSubmit={onSubmit} isRequired>
+              <FormControl as="form" onSubmit={onSubmit}>
                 <Box>
                   {/* <FormControl id="tire"> */}
                   <FormLabel>Selecionar o Pneu</FormLabel>
