@@ -38,7 +38,7 @@ class _RacesView extends State<RacesView> {
   void fetchRaces() async {
     try {
       Response response =
-          await Dio().get('http://localhost:8000/api/drivers/8');
+          await Dio().get('http://localhost:8000/api/drivers/20');
       dynamic data = response.data;
       dynamic driverInfo = response.data;
 
@@ -127,17 +127,17 @@ class _RacesView extends State<RacesView> {
                       ],
                     ),
                   ),
-                  CupertinoButton(
-                    child: Text(
-                      'Ver mais detalhes',
-                      style: CupertinoTheme.of(context)
-                          .textTheme
-                          .navTitleTextStyle,
-                    ),
-                    onPressed: () {
-                      // Lógica para exibir mais detalhes da corrida
-                    },
-                  ),
+                  // CupertinoButton(
+                  //   child: Text(
+                  //     'Ver mais detalhes',
+                  //     style: CupertinoTheme.of(context)
+                  //         .textTheme
+                  //         .navTitleTextStyle,
+                  //   ),
+                  //   onPressed: () {
+                  //     // Lógica para exibir mais detalhes da corrida
+                  //   },
+                  // ),
                 ],
               ),
             ),
