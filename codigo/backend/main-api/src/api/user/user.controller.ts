@@ -1,15 +1,14 @@
 import {
   ClassSerializerInterceptor,
   Controller,
-  Req,
   UseGuards,
   UseInterceptors,
-  Put,
   Body,
   Inject,
   Get,
+  Patch,
 } from '@nestjs/common';
-import { IRequest, ListedUser, UpdateNameDto } from './models/user.dto';
+import { ListedUser, UpdateNameDto } from './models/user.dto';
 import { Role, User } from './models/user.entity';
 import { UserService } from './user.service';
 import {
@@ -38,16 +37,17 @@ export class UserController {
     return user;
   }
 
-  @Put('profile/edit')
+  @Patch('profile/edit')
   @ApiOperation({ summary: 'Edit the current user profile' })
   @ApiBody({ type: UpdateNameDto })
   @ApiOkResponse({ description: 'The user name was updated successfully' })
+  @UseGuards(JwtGuard)
   @UseInterceptors(ClassSerializerInterceptor)
   private updateUser(
     @Body() body: UpdateNameDto,
-    @Req() req: IRequest,
+    @CurrentUser() user: User,
   ): Promise<User> {
-    return this.service.updateUser(body, req);
+    return this.service.updateUser(body, user);
   }
 
   @Get('mechanics')

@@ -8,14 +8,14 @@ import { DriverService } from '@/api/driver/driver.service';
 export class UserService {
   constructor(private readonly driverService: DriverService) {}
 
-  public async updateUser(body: UpdateNameDto, req: IRequest): Promise<User> {
-    const user: User = <User>req.user;
+  public async updateUser(body: UpdateNameDto, user: User): Promise<User> {
+    const userToUpdate = await User.findOne({ where: { id: user.id } });
     const { name, email } = body;
 
-    if (name) user.name = name;
-    if (email) user.email = body.email;
+    if (name) userToUpdate.name = name;
+    if (email) userToUpdate.email = body.email;
 
-    return User.save(user);
+    return User.save(userToUpdate);
   }
 
   async findOneDetailed(id: number, role?): Promise<User> {
