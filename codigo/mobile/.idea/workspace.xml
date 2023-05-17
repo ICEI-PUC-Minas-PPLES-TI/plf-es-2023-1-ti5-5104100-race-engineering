@@ -5,13 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4c4a502c-b19e-4505-95bc-bb87637afc44" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/lib/shared/utils/httpInterceptor.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/main-api/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/main-api/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/lib/pages/laps/laps.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/pages/laps/laps.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/lib/pages/login/login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/pages/login/login.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/lib/pages/races/races.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/pages/races/races.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/app/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/app/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes.db" beforeDir="false" afterPath="$PROJECT_DIR$/notes.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,11 +93,6 @@
           <url>file://$PROJECT_DIR$/app/lib/pages/notes/components/notesForm.dart</url>
           <line>85</line>
           <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/app/lib/pages/laps/laps.dart</url>
-          <line>38</line>
-          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

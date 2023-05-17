@@ -141,11 +141,11 @@ class _LoginView extends State<LoginView> {
                   onCreateAccount: () {},
                   onSubmit: () {
                     _handleLogin();
-                    // Navigator.push(
-                    //   context,
-                    //   CupertinoPageRoute(
-                    //       builder: (context) => AdminView()),
-                    // );
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                          builder: (context) => AdminView()),
+                    );
                   },
                 ))
           ],
