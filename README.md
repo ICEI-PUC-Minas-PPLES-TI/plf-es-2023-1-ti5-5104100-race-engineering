@@ -24,27 +24,40 @@ No intuito de agilizar processos tecnológicos referentes a formulação de estr
 
 # Instruções de utilização
 
-## Deve-se baixar as bibliotecas do Front-End e do Back-End necessárias através dos seguintes passos:
-  Abra o Terminal no path 'plf-es-2023-1-ti5-5104100-race-engineering\codigo\backend' e execute o código a seguir:
+## 1. Instalação das Dependências dos Projetos:
   
-    npm install
+  - BACKEND (API Principal) - `plf-es-2023-1-ti5-5104100-race-engineering\codigo\backend\main-api`
   
-  Abra o Terminal no path 'plf-es-2023-1-ti5-5104100-race-engineering\codigo\web\race-engineering' e execute o código a seguir:
+  - BACKEND (Microserviço de Notificações) - `plf-es-2023-1-ti5-5104100-race-engineering\codigo\backend\micro-notifications`
   
-    npm install
+  - FRONTEND - `plf-es-2023-1-ti5-5104100-race-engineering\codigo\web\race-engineering`
+  
+  Abra o terminal em cada uma das pastas e execute o seguinte comando:
     
- ## Para rodar a aplicação:
-  Abra o Terminal no path 'plf-es-2023-1-ti5-5104100-race-engineering\codigo\backend'e use o seguinte código para rodar Back-End:
+      npm install
+    
+ ## 2. Rodando a aplicação:
+ 
+  ### Backend (API Principal)
+  Abra o Terminal no path `plf-es-2023-1-ti5-5104100-race-engineering\codigo\backend\main-api` e use o seguinte código para rodar Back-End:
   
     docker-compose up -d
     
     npm run typeorm:cli migration:run
   
-    npm run seed:run (para popular o BD, na 1ª vez que rodar)
+    npm run seed:run  (para popular o Banco de Dados, somente na 1ª vez que rodar)
     
     npm run start:dev
+
+  API e sua documentação Swagger estará disponível na URL de desenvolvimento: http://localhost:8000/api-docs
   
-   Abra o Terminal no path 'plf-es-2023-1-ti5-5104100-race-engineering\codigo\web\race-engineering'e use o seguinte código para rodar o Front-End:
+  ### Backend (Microserviço de Notificações)
+  Abra o Terminal no path `plf-es-2023-1-ti5-5104100-race-engineering\codigo\backend\micro-notifications` e use o seguinte código:
+        
+    npm run start:dev
+  
+  ### Frontend:
+   Abra o Terminal no path `plf-es-2023-1-ti5-5104100-race-engineering\codigo\web\race-engineering` e use o seguinte código para rodar o Front-End:
     
     npm run dev
     
