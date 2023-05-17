@@ -30,7 +30,7 @@ export class MainSeeder implements Seeder {
     const driverFactory = factoryManager.get(Driver);
 
     // User Seeder
-    await userFactory.save({ role: Role.Admin });
+    await userFactory.save({ role: Role.Admin, email: 'admin@email.com' });
     const mechanics = await userFactory.saveMany(5, { role: Role.Mechanic });
     const analysts = await userFactory.saveMany(3, { role: Role.Analyst });
 
