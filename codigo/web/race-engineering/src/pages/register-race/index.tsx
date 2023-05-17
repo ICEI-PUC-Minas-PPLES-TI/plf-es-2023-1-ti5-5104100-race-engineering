@@ -69,7 +69,7 @@ const RegisterPage = () => {
 
   useEffect(() => {
     (async () => {
-      const { data: driversResponse } = await api.get("/users/drivers");
+      const { data: driversResponse } = await api.get("/drivers");
 
       const { data: mechanicsResponse } = await api.get("/users/mechanics");
       const { data: teamsResponse } = await api.get("/teams");
@@ -104,7 +104,7 @@ const RegisterPage = () => {
 
     data.drivers = getIdList({
       list: drivers,
-    }).slice(0, 1);
+    }).slice(0, 5);
 
     data.totalLaps = Number(data.totalLaps);
 

@@ -52,9 +52,9 @@ export default function SignupCard({
 
   const onSubmit = handleSubmit((data, event) => {
     api
-      .post(`/races/${Number(raceId)}/laps`, {
-        lapNumber: 1,
-        driverId: 1,
+      .post(`/laps/race/3`, {
+        lapNumber: 4,
+        driverId: 4,
         lapTime: "00:01:20.345",
       }) //verificar se é essa rota
       .then(() => {

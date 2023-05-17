@@ -1,5 +1,5 @@
 import { PartialType } from '@nestjs/mapped-types';
-import { IsBoolean, IsNumber, IsString } from 'class-validator';
+import {IsBoolean, IsNumber, IsOptional, IsString} from 'class-validator';
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { TyreType } from '@/api/lap/models/lap.entity';
 
@@ -16,14 +16,17 @@ export class CreateLapDto {
   @ApiPropertyOptional({ example: '00:01:20.345' })
   lapTime?: string;
 
+  @IsOptional()
   @IsNumber()
   @ApiPropertyOptional({ example: 42 })
   remainingGas?: number;
 
+  @IsOptional()
   @IsString()
   @ApiPropertyOptional({ type: 'string', example: 'WET', enum: TyreType })
   tyreType?: string;
 
+  @IsOptional()
   @IsBoolean()
   @ApiPropertyOptional({ example: true })
   isAdditional?: boolean;

@@ -101,7 +101,7 @@ export class RaceService {
               : null;
           if (sortDb) builder.orderBy(`Race.${sort}`, sortDb);
         }
-        const perPage = limit || 10;
+        const perPage = limit || 20;
         builder.offset((page - 1) * perPage).limit(perPage);
         return await builder.getMany();
     }

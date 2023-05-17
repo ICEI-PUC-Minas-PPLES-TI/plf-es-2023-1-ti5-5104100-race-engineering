@@ -95,7 +95,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   const fetchLaps = (raceId: number) => {
     const fetchData = async () => {
-      const { data } = await api.get(`/races/${raceId}/laps`);
+      const { data } = await api.get(`/laps/race/${raceId}`);
       console.log(data);
       setLaps(data);
     };
