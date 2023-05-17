@@ -1,30 +1,16 @@
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { useState } from "react";
-import {
-  RiChat4Fill,
-  RiHome2Fill,
-  RiSunFill,
-  RiThunderstormsFill,
-} from "react-icons/ri";
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { RiChat4Fill, RiHammerFill, RiHome2Fill, RiThunderstormsFill } from 'react-icons/ri';
 
-import { useAuth } from "@/context/AuthContext";
-import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
+import { useAuth } from '@/context/AuthContext';
+import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
 import {
-  Box,
-  Flex,
-  IconButton,
-  Menu,
-  MenuButton,
-  MenuDivider,
-  MenuGroup,
-  MenuItem,
-  MenuList,
-  Stack,
-  useDisclosure,
-} from "@chakra-ui/react";
+    Box, Flex, IconButton, Menu, MenuButton, MenuDivider, MenuGroup, MenuItem, MenuList, Stack,
+    useDisclosure
+} from '@chakra-ui/react';
 
-import { EditUserModal } from "../EditUserModal/EditUserModal";
+import { EditUserModal } from '../EditUserModal/EditUserModal';
 
 const Sidebar = () => {
   const router = useRouter();
@@ -76,6 +62,19 @@ const Sidebar = () => {
             <RiThunderstormsFill />
             <Box fontWeight="bold" fontSize="70%">
               Previsão
+            </Box>
+          </Stack>
+
+          <Stack
+            direction="column"
+            alignItems="center"
+            spacing={2}
+            onClick={() => router.push("/estrategy4")}
+            cursor="pointer"
+          >
+            <RiHammerFill />
+            <Box fontWeight="bold" fontSize="70%">
+              Estratégia
             </Box>
           </Stack>
 
