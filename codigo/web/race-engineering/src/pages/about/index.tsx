@@ -18,10 +18,9 @@ import {
   FormLabel,
   Heading,
   Highlight,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  InputRightElement,
+  Image,
+  Stack,
+  Text,
   useToast,
 } from "@chakra-ui/react";
 
@@ -30,7 +29,7 @@ type Login = {
   password: string;
 };
 
-const LoginPage = () => {
+const AboutPage = () => {
   const router = useRouter();
   const { authenticate, logout } = useAuth();
 
@@ -83,59 +82,64 @@ const LoginPage = () => {
       justifyContent="center"
       alignItems="center"
     >
-      <FormControl width={480} as="form" onSubmit={onSubmit} isRequired>
-        <Card>
-          <CardHeader>
-            <Heading as="h2" size="md">
-              <Highlight
-                query="Login"
-                styles={{ px: "1", py: "1", bg: "gray.100" }}
-              >
-                Login
-              </Highlight>
-            </Heading>
-          </CardHeader>
-
-          <CardBody>
-            <Box w="100%" marginY="4">
-              <FormLabel>Email</FormLabel>
-              <InputGroup>
-                <InputLeftElement
-                  pointerEvents="none"
-                  color="gray.300"
-                  children={<RiMailLine fontSize="20px" />}
-                />
-                <Input
-                  type="email"
-                  placeholder="Digite seu email"
-                  {...register("email", { required: true })}
-                />
-              </InputGroup>
-            </Box>
-
-            <PasswordInput register={register} />
-          </CardBody>
-
-          <CardFooter display="flex" width="100%">
-            <Button
-              colorScheme="messenger"
-              variant="ghost"
-              onClick={() => {
-                router.push("/register-user");
-              }}
-              width="50%"
-              mr="3"
-            >
-              Criar conta
-            </Button>
-            <Button colorScheme="messenger" width="50%" ml="3" type="submit">
-              Fazer login
-            </Button>
-          </CardFooter>
-        </Card>
-      </FormControl>
+      <Box
+        width="50%"
+        height="100%"
+        backgroundImage="https://images.unsplash.com/photo-1539057307452-65f8bc136475?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
+        backgroundRepeat="no-repeat"
+        backgroundSize="cover"
+        className="about-image"
+      >
+        {/* <Image
+          src="https://images.unsplash.com/photo-1539057307452-65f8bc136475?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
+          alt="Porsche Car by Porschefectionist on Unsplash"
+        /> */}
+      </Box>
+      <Stack
+        direction="column"
+        justifyContent="center"
+        align="center"
+        width="50%"
+      >
+        <Stack
+          direction="column"
+          justifyContent="center"
+          align="center"
+          p="64px"
+        >
+          <Heading>Race Engineering</Heading>
+          <Text fontSize="xl" textAlign="center">
+            Explore a gestão de dados em tempo real e aprimorar a comunicação
+            com sua equipe durante a corrida.
+          </Text>
+        </Stack>
+        <Stack direction="column" spacing={4} align="center">
+          <Button
+            bg="#000000"
+            variant="solid"
+            color="white"
+            w="320px"
+            h="40px"
+            onClick={() => {
+              router.push("/login");
+            }}
+          >
+            Login
+          </Button>
+          <Button
+            bg="#ffffff"
+            variant="ghost"
+            w="320px"
+            onClick={() => {
+              router.push("/register-user");
+            }}
+          >
+            Criar conta
+          </Button>
+        </Stack>
+      </Stack>
     </Box>
   );
 };
 
-export default LoginPage;
+export default AboutPage;

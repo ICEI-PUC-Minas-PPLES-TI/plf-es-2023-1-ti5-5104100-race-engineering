@@ -1,60 +1,28 @@
 // import "@/styles/globals.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 // Here we have used react-icons package for the icons
-import { GoChevronRight } from "react-icons/go";
-import { MdOutlineContentCopy } from "react-icons/md";
+import { GoChevronRight } from 'react-icons/go';
+import { MdOutlineContentCopy } from 'react-icons/md';
 
-import { AuthProvider } from "@/context/AuthContext";
-import Signup from "@/pages/form";
+import { AuthProvider } from '@/context/AuthContext';
+import Signup from '@/pages/form';
 // import "@/styles/header.css";
-import Timer from "@/pages/timer";
-import api from "@/services/api";
-import { dataToSelectOptions } from "@/shared/utils/dataToSelectOptions";
-import { CheckCircleIcon } from "@chakra-ui/icons";
+import Timer from '@/pages/timer';
+import api from '@/services/api';
+import { dataToSelectOptions } from '@/shared/utils/dataToSelectOptions';
+import { CheckCircleIcon } from '@chakra-ui/icons';
 // import { format } from "date-fns"; // importe a função format
 import {
-  Box,
-  Button,
-  Center,
-  chakra,
-  ChakraProvider,
-  Container,
-  Divider,
-  Flex,
-  Heading,
-  HStack,
-  Icon,
-  Input,
-  Link,
-  NumberDecrementStepper,
-  NumberIncrementStepper,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-  Select,
-  Square,
-  Stack,
-  Tab,
-  Table,
-  TableCaption,
-  TableContainer,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
-  Tbody,
-  Td,
-  Text,
-  Tfoot,
-  Th,
-  Thead,
-  Tr,
-  useColorModeValue,
-} from "@chakra-ui/react";
+    Box, Button, Center, chakra, ChakraProvider, Container, Divider, Flex, FormControl, FormLabel,
+    Heading, HStack, Icon, Input, Link, NumberDecrementStepper, NumberIncrementStepper, NumberInput,
+    NumberInputField, NumberInputStepper, Select, Square, Stack, Tab, Table, TableCaption,
+    TableContainer, TabList, TabPanel, TabPanels, Tabs, Tbody, Td, Text, Tfoot, Th, Thead, Tr,
+    useColorModeValue
+} from '@chakra-ui/react';
 
 import type { AppProps } from "next/app";
 type Race = {
@@ -115,7 +83,6 @@ export default function App({ Component, pageProps }: AppProps) {
             direction="column"
             spacing={6}
             justifyContent="center"
-            maxW="500px"
             mb={{ base: 3, md: 0 }}
           >
             <Box>
@@ -131,38 +98,37 @@ export default function App({ Component, pageProps }: AppProps) {
             </Box>
 
             <HStack spacing={{ base: 0, sm: 2 }} flexWrap="wrap">
-              <Text fontSize="md" fontWeight="semibold">
-                Defina o número de voltas máximas estabelecido pela organização
-              </Text>
-              <Input onChange={handleMaxLap} value={maxLap} />
+              <FormControl variant="floating" id="first-name">
+                <FormLabel>Número de voltas máxima</FormLabel>
+                <Input
+                  onChange={handleMaxLap}
+                  value={maxLap}
+                  placeholder="Digite o número de voltas máxima"
+                />
+              </FormControl>
             </HStack>
 
-            {/* Minha Ideia Inicial so colocar um box tipo do meu estrategy orignial */}
-
             <Box w="100%" marginY="4">
-              <Select
-                placeholder="Selecione a corrida"
-                onChange={(value) => {
-                  console.log(value.target.value);
-                  onSelectedRace(value.target.value);
-                }}
-                value={selectedIdRace}
-
-                // {...register("raceId", { required: true })} N sei se precisa
-              >
-                {races.map((race) => (
-                  <option key={race.id} value={race.id}>
-                    {/* {race.name} - {race.circuit}  N CONSIGO COLOCAR NA LINHA DE CIMA O ID e name na debaixo*/}
-                    {race.name}
-                  </option>
-                ))}
-              </Select>
-              {/* <br />
-              <p>Data do Inicio da Corrida: {selectedRace.startDate} </p>
-              <p>Data do Fim da Corrida: {selectedRace.endDate} </p>
-              <p>Total de Voltas: {selectedRace.totalLaps} </p> */}
+              <FormControl variant="floating" id="first-name">
+                <FormLabel>Corrida para a estratégia</FormLabel>
+                <Select
+                  placeholder="Selecione a corrida"
+                  onChange={(value) => {
+                    console.log(value.target.value);
+                    onSelectedRace(value.target.value);
+                  }}
+                  value={selectedIdRace}
+                >
+                  {races.map((race) => (
+                    <option key={race.id} value={race.id}>
+                      {/* {race.name} - {race.circuit}  N CONSIGO COLOCAR NA LINHA DE CIMA O ID e name na debaixo*/}
+                      {race.name}
+                    </option>
+                  ))}
+                </Select>
+              </FormControl>
               {selectedRace ? (
-                <Box bg="gray.200" p="4">
+                <Box bg="gray.200" p="4" mt="24px" rounded="lg">
                   <br />
                   <p>Corrida selecionada: {selectedRace.name}</p>
                   <p>Data do Inicio da Corrida: {selectedRace.startDate} </p>
@@ -171,25 +137,26 @@ export default function App({ Component, pageProps }: AppProps) {
                 </Box>
               ) : null}
             </Box>
-          </Stack>
 
-          {/* Esse stack debaixo é so para os card */}
-          <Stack
-            spacing={{ base: 5, sm: 2 }}
-            direction={{ base: "column", sm: "row" }}
-            alignItems="center"
-          >
-            <Card heading="Número de Voltas" detail="" label="" />
-
-            <Card heading="Número de Voltas Máximas" detail="" label={maxLap} />
-            <Card heading="Contador Geral de Voltas" detail="" label="" />
-            <Card heading="Voltas Restantes" detail="" label="" />
+            <Stack
+              spacing={{ base: 5, sm: 2 }}
+              direction={{ base: "column", sm: "row" }}
+              alignItems="center"
+            >
+              <Card heading="Número de Voltas" detail="" label="" />
+              <Card
+                heading="Número de Voltas Máximas"
+                detail=""
+                label={maxLap}
+              />
+              <Card heading="Contador Geral de Voltas" detail="" label="" />
+              <Card heading="Voltas Restantes" detail="" label="" />
+            </Stack>
           </Stack>
         </Stack>
 
         <Box display="flex" flexDirection="row" alignItems="center">
           <Box flex="1" textAlign="center">
-            <CheckCircleIcon boxSize={"50px"} color={"green.500"} />
             <Heading as="h2" size="xl" mt={6} mb={2}>
               Lap Annotation
             </Heading>
@@ -200,31 +167,6 @@ export default function App({ Component, pageProps }: AppProps) {
               <Timer></Timer>
             </Box>
           </Box>
-          <Box flex="1" textAlign="center">
-            <Tabs variant="unstyled">
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <TabList display="flex" justifyContent="center">
-                <Tab _selected={{ color: "white", bg: "blue.500" }}>
-                  Piloto 1
-                </Tab>
-                <Tab _selected={{ color: "white", bg: "green.400" }}>
-                  Piloto 2
-                </Tab>
-              </TabList>
-              <TabPanels>
-                <TabPanel>
-                  <p>one!</p>
-                </TabPanel>
-                <TabPanel>
-                  <p>two!</p>
-                </TabPanel>
-              </TabPanels>
-            </Tabs>
-          </Box>
         </Box>
 
         {/* FORMULARIO */}
@@ -233,6 +175,17 @@ export default function App({ Component, pageProps }: AppProps) {
             raceId={selectedRace.id}
             onAfterSubmit={async () => await fetchLaps(Number(selectedRace.id))}
           />
+          <Stack
+            spacing={{ base: 5, sm: 2 }}
+            direction={{ base: "column", sm: "row" }}
+            alignItems="center"
+          >
+            <Stack
+              spacing={{ base: 5, sm: 2 }}
+              direction={{ base: "column", sm: "row" }}
+              alignItems="center"
+            ></Stack>
+          </Stack>
         </Box>
         <Box>
           <TableContainer>
@@ -291,15 +244,7 @@ const Card = ({
 }) => {
   return (
     <Stack
-      as={Link}
-      href="#"
       direction="column"
-      _hover={{
-        boxShadow: useColorModeValue(
-          "0 4px 6px rgba(160, 174, 192, 0.6)",
-          "0 4px 6px rgba(9, 17, 28, 0.9)"
-        ),
-      }}
       bg={useColorModeValue("gray.200", "gray.700")}
       p={3}
       rounded="lg"

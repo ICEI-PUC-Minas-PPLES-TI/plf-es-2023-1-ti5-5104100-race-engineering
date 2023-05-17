@@ -69,7 +69,7 @@ const Sidebar = () => {
             direction="column"
             alignItems="center"
             spacing={2}
-            onClick={() => router.push("/estrategy4")}
+            onClick={() => router.push("/estrategy")}
             cursor="pointer"
           >
             <RiHammerFill />

@@ -1,29 +1,15 @@
-import { useRouter } from "next/router";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
-import Timer from "@/pages/timer";
-import api from "@/services/api";
-import { dataToSelectOptions } from "@/shared/utils/dataToSelectOptions";
-import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import Timer from '@/pages/timer';
+import api from '@/services/api';
+import { dataToSelectOptions } from '@/shared/utils/dataToSelectOptions';
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import {
-  Box,
-  Button,
-  Flex,
-  FormControl,
-  FormLabel,
-  Heading,
-  HStack,
-  Input,
-  InputGroup,
-  InputRightElement,
-  Link,
-  Select,
-  Stack,
-  Text,
-  useColorModeValue,
-  useToast,
-} from "@chakra-ui/react";
+    Box, Button, Flex, FormControl, FormLabel, Heading, HStack, Input, InputGroup,
+    InputRightElement, Link, Select, Stack, Text, useColorModeValue, useToast
+} from '@chakra-ui/react';
 
 type Estrategy = {
   tire: string; //pneu verificar no backend
@@ -52,9 +38,9 @@ export default function SignupCard({
 
   const onSubmit = handleSubmit((data, event) => {
     api
-      .post(`/races/${Number(raceId)}/laps`, {
+      .post(`/races/laps/${Number(15)}`, {
         lapNumber: 1,
-        driverId: 1,
+        driverId: 18,
         lapTime: "00:01:20.345",
       }) //verificar se é essa rota
       .then(() => {
