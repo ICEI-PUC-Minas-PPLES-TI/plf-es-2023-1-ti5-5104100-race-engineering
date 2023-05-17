@@ -8,10 +8,12 @@ import { DriverService } from '@/api/driver/driver.service';
 export class UserService {
   constructor(private readonly driverService: DriverService) {}
 
-  public async updateName(body: UpdateNameDto, req: IRequest): Promise<User> {
+  public async updateUser(body: UpdateNameDto, req: IRequest): Promise<User> {
     const user: User = <User>req.user;
+    const { name, email } = body;
 
-    user.name = body.name;
+    if (name) user.name = name;
+    if (email) user.email = body.email;
 
     return User.save(user);
   }

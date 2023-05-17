@@ -7,6 +7,11 @@ export class UpdateNameDto {
   @IsString()
   @IsOptional()
   public readonly name?: string;
+
+  @ApiProperty({ type: 'string', example: 'john@email.com' })
+  @IsString()
+  @IsOptional()
+  public readonly email?: string;
 }
 
 export interface IRequest extends Request {

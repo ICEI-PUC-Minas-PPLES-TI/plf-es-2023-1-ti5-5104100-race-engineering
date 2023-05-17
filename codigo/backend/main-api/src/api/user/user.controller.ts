@@ -24,22 +24,22 @@ export class UserController {
   @Inject(UserService)
   private readonly service: UserService;
 
-  @Put('name')
-  @ApiBody({ type: UpdateNameDto })
-  @ApiOkResponse({ description: 'The user name was updated successfully' })
-  @UseInterceptors(ClassSerializerInterceptor)
-  private updateName(
-    @Body() body: UpdateNameDto,
-    @Req() req: IRequest,
-  ): Promise<User> {
-    return this.service.updateName(body, req);
-  }
-
   @UseGuards(JwtGuard)
-  @Get('me')
+  @Get('profile')
   @ApiResponse({ type: User, description: 'Successful operation' })
   async getMe(@CurrentUser() user: User): Promise<User> {
     return user;
+  }
+
+  @Put('profile/edit')
+  @ApiBody({ type: UpdateNameDto })
+  @ApiOkResponse({ description: 'The user name was updated successfully' })
+  @UseInterceptors(ClassSerializerInterceptor)
+  private updateUser(
+    @Body() body: UpdateNameDto,
+    @Req() req: IRequest,
+  ): Promise<User> {
+    return this.service.updateUser(body, req);
   }
 
   @Roles(Role.Admin, Role.Mechanic)
@@ -48,14 +48,6 @@ export class UserController {
   @ApiResponse({ type: [ListedUser], description: 'Successful operation' })
   async listMechanics(): Promise<ListedUser[]> {
     return await this.service.listMechanics();
-  }
-
-  @Roles(Role.Admin, Role.Driver)
-  @UseGuards(JwtGuard, RoleGuard)
-  @Get('drivers')
-  @ApiResponse({ type: [ListedUser], description: 'Successful operation' })
-  async listDrivers(): Promise<ListedUser[]> {
-    return await this.service.listDrivers();
   }
 
   @Roles(Role.Admin, Role.Analyst)
