@@ -1,8 +1,6 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { getEnvPath } from './common/helper/env.helper';
 import { ApiModule } from './api/api.module';
 import { LoggerMiddleware } from '@/common/logger/logger.middleware';
@@ -22,8 +20,6 @@ const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
     }),
     ApiModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

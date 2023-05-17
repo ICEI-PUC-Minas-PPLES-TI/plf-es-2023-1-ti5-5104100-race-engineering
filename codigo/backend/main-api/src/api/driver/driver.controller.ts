@@ -10,53 +10,40 @@ import {
 } from '@nestjs/common';
 import { DriverService } from './driver.service';
 import { UpdateDriverDTO } from './models/driver.dto';
-import { ApiTags } from '@nestjs/swagger';
-import { LapService } from '@/api/lap/lap.service';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
 @Controller('drivers')
 @ApiTags('Drivers')
 export class DriverController {
   @Inject(DriverService)
   private readonly driverService: DriverService;
-  @Inject(LapService)
-  private readonly lapService: LapService;
 
   @Get()
+  @ApiOperation({ summary: 'List drivers' })
   findAll(@Query('page') page?: string) {
     return this.driverService.findAll(parseInt(page));
   }
 
-  @Get('teams/:teamId')
-  findByTeam(@Param('teamId') teamId: string) {
-    return this.driverService.findByTeamId(+teamId);
-  }
-
   @Get(':id')
+  @ApiOperation({ summary: 'Find one Driver' })
   findOne(@Param('id') id: string) {
     return this.driverService.findOneDetailed(+id);
   }
 
-  @Get(':id/races')
-  listDriverRaces(@Param('id') id: string) {
-    return this.driverService.listDriverRaces(+id);
-  }
-
-  @Get(':id/laps')
-  listDriverLaps(@Param('id') id: string) {
-    return this.lapService.findByDriverId(+id);
-  }
-
-  @Get(':id/races/:raceId/laps')
-  listLapsByRace(@Param('id') id: string, @Param('raceId') raceId: string) {
-    return this.lapService.findByDriverIdAndRaceId(+id, +raceId);
+  @Get('teams/:teamId')
+  @ApiOperation({ summary: 'Find drivers by TeamId' })
+  findByTeam(@Param('teamId') teamId: string) {
+    return this.driverService.findByTeamId(+teamId);
   }
 
   @Patch(':id')
+  @ApiOperation({ summary: 'Edit Driver info' })
   update(@Param('id') id: string, @Body() updateDriverDto: UpdateDriverDTO) {
     return this.driverService.update(+id, updateDriverDto);
   }
 
   @Delete(':id')
+  @ApiOperation({ summary: 'Remove Driver' })
   remove(@Param('id') id: string) {
     return this.driverService.remove(+id);
   }

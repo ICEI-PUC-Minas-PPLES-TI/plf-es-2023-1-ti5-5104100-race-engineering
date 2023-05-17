@@ -8,6 +8,7 @@ import {
 import { Lap } from '@/api/lap/models/lap.entity';
 import { RaceService } from '@/api/race/race.service';
 import { DriverService } from '@/api/driver/driver.service';
+import { TeamService } from '../team/team.service';
 import * as parse from 'postgres-interval';
 
 @Injectable()
@@ -15,6 +16,7 @@ export class LapService {
   constructor(
     private readonly raceService: RaceService,
     private readonly driverService: DriverService,
+    private readonly teamService: TeamService,
   ) {}
 
   async createLap(id: number, createLapDto: CreateLapDto) {
@@ -44,14 +46,6 @@ export class LapService {
     return await lap.save();
   }
 
-  async findAll(page: number) {
-    const builder = await Lap.createQueryBuilder('Lap');
-    const pg = page ? page : 1;
-    const perPage = 10;
-    builder.offset((pg - 1) * perPage).limit(perPage);
-    return await builder.getMany();
-  }
-
   async findByRaceId(id: number) {
     const race = await this.raceService.findOneRace(id);
     return await Lap.find({
@@ -71,14 +65,47 @@ export class LapService {
     });
   }
 
-  async findByDriverIdAndRaceId(driverId: number, raceId: number) {
+  async findByTeamId(id: number) {
+    const team = await this.teamService.findOne(id);
+    return await Lap.find({
+      where: {
+        driver: { team: { id: team.id } },
+      },
+      relations: ['driver'],
+    });
+  }
+
+  async findByRaceIdAndDriverId(raceId: number, driverId: number) {
     const driver = await this.driverService.findOneDetailed(driverId);
     const race = await this.raceService.findOneRace(raceId);
-    return await Lap.find({
+    const laps = await Lap.find({
       where: {
         driver: { id: driver.id },
         race: { id: race.id },
       },
+      relations: ['driver', 'race'],
+    });
+    return laps.map((lap) => {
+      delete lap.driver;
+      delete lap.race;
+      return lap;
+    });
+  }
+
+  async findByRaceIdAndTeamId(raceId: number, teamId: number) {
+    const team = await this.teamService.findOne(teamId);
+    const race = await this.raceService.findOneRace(raceId);
+    const laps = await Lap.find({
+      where: {
+        driver: { team: { id: team.id } },
+        race: { id: race.id },
+      },
+      relations: ['driver', 'race'],
+    });
+    return laps.map((lap) => {
+      delete lap.driver;
+      delete lap.race;
+      return lap;
     });
   }
 

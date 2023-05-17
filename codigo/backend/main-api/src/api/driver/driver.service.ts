@@ -48,14 +48,6 @@ export class DriverService {
     return driver;
   }
 
-  async listDriverRaces(id: number) {
-    const driver = await Driver.findOne({
-      where: { id },
-      relations: ['races'],
-    });
-    return driver.races;
-  }
-
   async update(id: number, body: UpdateDriverDTO) {
     const driver = await this.findOne(id);
     driver.number = body.number || driver.number;

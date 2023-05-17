@@ -195,9 +195,7 @@ export class RaceService {
     endDate: Date,
     totalLaps: number,
   ) {
-    console.log(startDate);
     const startDateInstance = new Date(startDate);
-    console.log('instance: ' + startDateInstance);
     const endDateInstance = new Date(endDate);
     const date = startDateInstance.toLocaleString('pt-BR', {
       weekday: 'short',
@@ -205,11 +203,8 @@ export class RaceService {
       month: 'long',
       day: 'numeric',
     });
-    console.log('date: ' + date);
     const startTime = startDateInstance.toTimeString().slice(0, 5);
-    console.log('start: ' + startTime);
     const endTime = endDateInstance.toTimeString().slice(0, 5);
-    console.log('end: ' + endTime);
 
     this.proxyService.notificationMicroservice.emit('race-created', {
       driverName,

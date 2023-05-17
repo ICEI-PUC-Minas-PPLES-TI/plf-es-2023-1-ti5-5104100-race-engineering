@@ -14,6 +14,7 @@ import {
   ApiBody,
   ApiNotFoundResponse,
   ApiOkResponse,
+  ApiOperation,
   ApiTags,
 } from '@nestjs/swagger';
 import { RaceService } from './race.service';
@@ -39,6 +40,7 @@ export class RaceController {
   private readonly raceService: RaceService;
 
   @Post()
+  @ApiOperation({ summary: 'Create a new race' })
   @Roles(Role.Admin)
   @UseGuards(JwtGuard, RoleGuard)
   @ApiBody({ type: CreateRaceDTO })
@@ -49,6 +51,7 @@ export class RaceController {
   }
 
   @Get()
+  @ApiOperation({ summary: 'List races' })
   @UseGuards(JwtGuard)
   private findAll(
     @CurrentUser() user: User,
@@ -58,25 +61,35 @@ export class RaceController {
   }
 
   @Get(':id')
+  @ApiOperation({ summary: 'Find one race' })
   private findOne(@Param('id') id: string) {
     return this.raceService.findOneRace(+id);
   }
 
   @Patch(':id')
+  @ApiOperation({ summary: 'Edit one race' })
   update(@Param('id') id: string, @Body() updateRaceDto: UpdateRaceDto) {
     return this.raceService.updateRace(+id, updateRaceDto);
   }
 
   @Delete(':id')
+  @ApiOperation({ summary: 'Remove one race' })
   remove(@Param('id') id: string) {
     return this.raceService.removeRace(+id);
   }
 
   @Post(':id/set-main')
+  @ApiOperation({ summary: 'Set a race as main-race (analyst only)' })
   @Roles(Role.Analyst)
   @UseGuards(JwtGuard, RoleGuard)
   private async setMain(@Param('id') id: string, @CurrentUser() user: User) {
     const race = await this.raceService.findOneRace(+id);
     return this.userService.setAnalystMainRace(race, user.id);
+  }
+
+  @Get('driver/:id')
+  @ApiOperation({ summary: 'List races by driver' })
+  findByDriver(@Param('id') id: string) {
+    return this.raceService.findByDriver(+id);
   }
 }

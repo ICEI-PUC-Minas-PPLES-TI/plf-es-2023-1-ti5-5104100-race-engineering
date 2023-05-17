@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { AuthModule } from './user/auth/auth.module';
 import { UserModule } from './user/user.module';
 import { RaceModule } from './race/race.module';
 import { DriverModule } from './driver/driver.module';
@@ -10,11 +11,12 @@ import { ProxyModule } from '@/api/notifications/proxy/proxy.module';
 
 @Module({
   imports: [
+    AuthModule,
     UserModule,
-    RaceModule,
     DriverModule,
-    CircuitModule,
+    RaceModule,
     LapModule,
+    CircuitModule,
     TeamModule,
     CarModule,
     ProxyModule,
