@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import {
   CreateRaceDTO,
+  RaceSearchParams,
   SelectDriverDTO,
   UpdateRaceDto,
 } from './models/race.dto';
@@ -12,6 +13,7 @@ import { Race } from '@/api/race/models/race.entity';
 import { User, Role } from '@/api/user/models/user.entity';
 import { TeamService } from '@/api/team/team.service';
 import { Team } from '@/api/team/models/team.entity';
+import { ProxyService } from '@/api/notifications/proxy/proxy.service';
 
 @Injectable()
 export class RaceService {
@@ -20,6 +22,7 @@ export class RaceService {
     public readonly circuitService: CircuitService,
     public readonly driverService: DriverService,
     public readonly teamService: TeamService,
+    public readonly proxyService: ProxyService,
   ) {}
 
   async createRace(createRaceDto: CreateRaceDTO) {
@@ -41,6 +44,17 @@ export class RaceService {
     const foundDrivers = await this.findDrivers(drivers);
     const foundTeams = await this.findTeams(teams);
 
+    for (const driver of foundDrivers) {
+      this.notifyDriver(
+        driver.user.name,
+        driver.user.email,
+        name,
+        startDate,
+        endDate,
+        totalLaps,
+      );
+    }
+
     const race = new Race();
     race.name = name;
     race.startDate = startDate;
@@ -57,8 +71,13 @@ export class RaceService {
     return await race.save();
   }
 
-  async findAllRaces(user: User): Promise<Race[]> {
-    const foundUser = await this.userService.findOne(user.id);
+  async findAllRaces(
+    user: User,
+    searchParams: RaceSearchParams,
+  ): Promise<Race[]> {
+    const { search, sort, sortDirection, page, limit } = searchParams;
+    const foundUser = await this.userService.findOneDetailed(user.id);
+
     switch (user.role) {
       case Role.Driver:
         return await this.findByDriver(foundUser.driver.id);
@@ -67,7 +86,24 @@ export class RaceService {
       case Role.Analyst:
         return await this.findByAnalyst(foundUser.id);
       case Role.Admin:
-        return await Race.find();
+        const builder = await Race.createQueryBuilder('Race');
+        if (search) {
+          builder.where('LOWER(Race.name) LIKE :search', {
+            search: `%${search.toLowerCase()}%`,
+          });
+        }
+        if (sort && sortDirection) {
+          const sortDb =
+            sortDirection === 'asc'
+              ? 'ASC'
+              : sortDirection === 'desc'
+              ? 'DESC'
+              : null;
+          if (sortDb) builder.orderBy(`Race.${sort}`, sortDb);
+        }
+        const perPage = limit || 10;
+        builder.offset((page - 1) * perPage).limit(perPage);
+        return await builder.getMany();
     }
   }
 
@@ -77,18 +113,18 @@ export class RaceService {
     return race;
   }
 
-  private async findByDriver(id: number): Promise<Race[]> {
+  async findByDriver(id: number): Promise<Race[]> {
     const driver = await this.driverService.findOneDetailed(id);
     return driver.races;
   }
 
   private async findByMechanic(id: number): Promise<Race[]> {
-    const mechanic = await this.userService.findOne(id);
+    const mechanic = await this.userService.findOneDetailed(id);
     return mechanic.mechanicRaces;
   }
 
   private async findByAnalyst(id: number): Promise<Race[]> {
-    const analyst = await this.userService.findOne(id);
+    const analyst = await this.userService.findOneDetailed(id);
     return analyst.analystRaces;
   }
 
@@ -110,7 +146,8 @@ export class RaceService {
     if (endDate) race.endDate = endDate;
     if (totalLaps) race.totalLaps = totalLaps;
     if (circuitId) race.circuit = await this.circuitService.findOne(circuitId);
-    if (analystId) race.analyst = await this.userService.findOne(analystId);
+    if (analystId)
+      race.analyst = await this.userService.findOneDetailed(analystId);
     if (mechanics) race.mechanics = await this.findMechanics(mechanics);
     if (drivers) race.drivers = await this.findDrivers(drivers);
     race.updatedAt = new Date();
@@ -126,10 +163,7 @@ export class RaceService {
   private async findMechanics(mechanics: SelectDriverDTO[]): Promise<User[]> {
     const foundMechanics: User[] = [];
     for (let i = 0; i < mechanics.length; i++) {
-      const foundMechanic = await this.userService.findOne(
-        mechanics[i].id,
-        Role.Mechanic,
-      );
+      const foundMechanic = await this.userService.findOne(mechanics[i].id);
       foundMechanics.push(foundMechanic);
     }
     return foundMechanics;
@@ -138,9 +172,7 @@ export class RaceService {
   private async findDrivers(drivers: SelectDriverDTO[]): Promise<Driver[]> {
     const foundDrivers: Driver[] = [];
     for (let i = 0; i < drivers.length; i++) {
-      const foundDriver = await this.driverService.findOneDetailed(
-        drivers[i].id,
-      );
+      const foundDriver = await this.driverService.findOne(drivers[i].id);
       foundDrivers.push(foundDriver);
     }
     return foundDrivers;
@@ -153,5 +185,40 @@ export class RaceService {
       foundTeams.push(foundTeam);
     }
     return foundTeams;
+  }
+
+  private notifyDriver(
+    driverName: string,
+    driverEmail: string,
+    name: string,
+    startDate: Date,
+    endDate: Date,
+    totalLaps: number,
+  ) {
+    console.log(startDate);
+    const startDateInstance = new Date(startDate);
+    console.log('instance: ' + startDateInstance);
+    const endDateInstance = new Date(endDate);
+    const date = startDateInstance.toLocaleString('pt-BR', {
+      weekday: 'short',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+    console.log('date: ' + date);
+    const startTime = startDateInstance.toTimeString().slice(0, 5);
+    console.log('start: ' + startTime);
+    const endTime = endDateInstance.toTimeString().slice(0, 5);
+    console.log('end: ' + endTime);
+
+    this.proxyService.notificationMicroservice.emit('race-created', {
+      driverName,
+      driverEmail,
+      raceName: name,
+      raceDate: date,
+      raceStartTime: startTime,
+      raceEndTime: endTime,
+      raceLaps: totalLaps,
+    });
   }
 }

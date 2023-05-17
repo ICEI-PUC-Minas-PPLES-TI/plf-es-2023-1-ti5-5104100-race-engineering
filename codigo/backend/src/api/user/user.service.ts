@@ -16,7 +16,7 @@ export class UserService {
     return User.save(user);
   }
 
-  async findOne(id: number, role?): Promise<User> {
+  async findOneDetailed(id: number, role?): Promise<User> {
     const user = await User.findOne({
       where: { id, role },
       relations: ['driver', 'analystRaces', 'mechanicRaces'],
@@ -28,8 +28,14 @@ export class UserService {
     return user;
   }
 
+  async findOne(id: number): Promise<User> {
+    const user = await User.findOne({ where: { id } });
+    if (!user) throw new NotFoundException({ message: 'User not found!' });
+    return user;
+  }
+
   async setAnalystMainRace(race: Race, userId: number) {
-    const user = await this.findOne(userId, Role.Analyst);
+    const user = await this.findOneDetailed(userId, Role.Analyst);
     user.analystMainRace = race;
     return user.save();
   }

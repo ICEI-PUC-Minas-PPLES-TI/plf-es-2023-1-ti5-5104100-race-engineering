@@ -8,6 +8,7 @@ import {
   Inject,
   UseGuards,
   Param,
+  Query,
 } from '@nestjs/common';
 import {
   ApiBody,
@@ -16,7 +17,11 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { RaceService } from './race.service';
-import { CreateRaceDTO, UpdateRaceDto } from './models/race.dto';
+import {
+  CreateRaceDTO,
+  RaceSearchParams,
+  UpdateRaceDto,
+} from './models/race.dto';
 import { UserService } from '@/api/user/user.service';
 import { Race } from '@/api/race/models/race.entity';
 import { JwtGuard } from '@/api/user/auth/guards/auth.guard';
@@ -45,8 +50,11 @@ export class RaceController {
 
   @Get()
   @UseGuards(JwtGuard)
-  private findAll(@CurrentUser() user: User) {
-    return this.raceService.findAllRaces(user);
+  private findAll(
+    @CurrentUser() user: User,
+    @Query() searchParams: RaceSearchParams,
+  ) {
+    return this.raceService.findAllRaces(user, searchParams);
   }
 
   @Get(':id')

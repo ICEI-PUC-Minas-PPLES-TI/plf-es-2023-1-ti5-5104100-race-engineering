@@ -1,5 +1,13 @@
 import { PartialType } from '@nestjs/mapped-types';
-import { IsArray, IsDateString, IsNumber, IsString } from 'class-validator';
+import {
+  IsArray,
+  IsDateString,
+  IsInt,
+  IsNumber,
+  IsNumberString,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class SelectDriverDTO {
@@ -56,3 +64,25 @@ export class CreateRaceDTO {
 }
 
 export class UpdateRaceDto extends PartialType(CreateRaceDTO) {}
+
+export class RaceSearchParams {
+  @IsOptional()
+  @IsString()
+  search: string;
+
+  @IsOptional()
+  @IsString()
+  sort: string;
+
+  @IsOptional()
+  @IsString()
+  sortDirection: string;
+
+  @IsOptional()
+  @IsInt()
+  page = 1;
+
+  @IsOptional()
+  @IsNumberString()
+  limit: number;
+}

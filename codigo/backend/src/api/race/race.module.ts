@@ -5,6 +5,7 @@ import { UserService } from '@/api/user/user.service';
 import { DriverService } from '@/api/driver/driver.service';
 import { CircuitService } from '@/api/circuit/circuit.service';
 import { TeamService } from '@/api/team/team.service';
+import { ProxyService } from '@/api/notifications/proxy/proxy.service';
 
 @Module({
   controllers: [RaceController],
@@ -14,6 +15,7 @@ import { TeamService } from '@/api/team/team.service';
     DriverService,
     CircuitService,
     TeamService,
+    ProxyService,
   ],
 })
 export class RaceModule {}

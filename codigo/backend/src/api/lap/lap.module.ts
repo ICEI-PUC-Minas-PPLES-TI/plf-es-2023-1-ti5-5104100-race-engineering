@@ -6,6 +6,7 @@ import { DriverService } from '@/api/driver/driver.service';
 import { UserService } from '@/api/user/user.service';
 import { CircuitService } from '@/api/circuit/circuit.service';
 import { TeamService } from '@/api/team/team.service';
+import { ProxyService } from '@/api/notifications/proxy/proxy.service';
 
 @Module({
   imports: [],
@@ -17,6 +18,7 @@ import { TeamService } from '@/api/team/team.service';
     UserService,
     CircuitService,
     TeamService,
+    ProxyService,
   ],
 })
 export class LapModule {}
