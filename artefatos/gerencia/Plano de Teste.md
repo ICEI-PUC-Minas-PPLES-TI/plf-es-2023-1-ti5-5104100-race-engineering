@@ -60,7 +60,41 @@ Funcionalidades
 
 | Funcionalidade | Deletar Corrida |
 | --- | --- |
-| Comportamento Esperado | Ao clicar em listar na box chamada Corridas, o usuário irá ver uma lista com todas as Corridas Cadastradas.<br><br>Ao clicar no botão Deletar, um formulário questionando se o usuário quer deletar ou não a corrida irá aparecer. |
+| Comportamento Esperado | Ao clicar em listar na box chamada Corridas, o usuário irá ver uma lista com todas as Corridas Cadastradas.<br><br>Ao clicar no botão Deletar, um formulário questionando se o usuário quer deletar ou não a corrida irá aparecer. Ao confirmar que realmente deseja deletar, uma mensagem de confirmação irá aparecer. |
+| Verificações | - |
+| Critérios de Aceite | - |
+      
+
+
+| Funcionalidade | Cadastro de Circuito |
+| --- | --- |
+| Comportamento Esperado | Ao clicar em cadastro na box chamada Circuito, deve-se digitar o Nome do Circuito, informar o Local do Circuito, informar o Track Size e informar a Margin. Isso irá efetuar o cadastro do circuito na plataforma e o usuário deverá ser redirecionado para a tela inicial.<br><br>Deve indicar o campo obrigatório a ser corrigido pelo usuário. |
+| Verificações | - Todos os campos devem ser obrigatórios.<br>- Exibir uma mensagem de confirmação em caso positivo.<br>- Redirecionar o usuário para a tela inicial.<br>- Exibir mensagem de falha no caso de campo obrigatório incompleto. |
+| Critérios de Aceite | - Todos os campos devem ser obrigatórios.<br>- Exibir uma mensagem de confirmação em caso positivo.<br>- Redirecionar o usuário para a tela inicial.<br>- Exibir mensagem de falha caso o campo obrigatório esteja incompleto. |
+      
+      
+      
+| Funcionalidade | Deletar Circuito |
+| --- | --- |
+| Comportamento Esperado | Ao clicar em listar na box chamada Circuitos, o usuário irá ver uma lista com todos os Circuitos Cadastrados.<br><br>Ao clicar no botão Deletar, um formulário questionando se o usuário quer deletar ou não o circuito irá aparecer. Ao confirmar que realmente deseja deletar, uma mensagem de confirmação irá aparecer. |
+| Verificações | - |
+| Critérios de Aceite | - |
+      
+
+      
+      
+
+| Funcionalidade | Cadastro de Time |
+| --- | --- |
+| Comportamento Esperado | Ao clicar em cadastro na box chamada Time, deve-se digitar o Nome do Time e selecionar a Categoria. Isso irá efetuar o cadastro do time na plataforma e o usuário deverá ser redirecionado para a tela inicial.<br><br>Deve indicar o campo obrigatório a ser corrigido pelo usuário. |
+| Verificações | - Todos os campos devem ser obrigatórios.<br>- Exibir uma mensagem de confirmação em caso positivo.<br>- Redirecionar o usuário para a tela inicial.<br>- Exibir mensagem de falha no caso de campo obrigatório incompleto. |
+| Critérios de Aceite | - Todos os campos devem ser obrigatórios.<br>- Exibir uma mensagem de confirmação em caso positivo.<br>- Redirecionar o usuário para a tela inicial.<br>- Exibir mensagem de falha caso o campo obrigatório esteja incompleto. |
+      
+      
+
+| Funcionalidade | Deletar Time |
+| --- | --- |
+| Comportamento Esperado | Ao clicar em listar na box chamada Times, o usuário irá ver uma lista com todos os Times Cadastrados.<br><br>Ao clicar no botão Deletar, um formulário questionando se o usuário quer deletar ou não o time irá aparecer. Ao confirmar que realmente deseja deletar, uma mensagem de confirmação irá aparecer. |
 | Verificações | - |
 | Critérios de Aceite | - |
 
