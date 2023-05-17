@@ -49,13 +49,6 @@ export class UserService {
     });
   }
 
-  async listDrivers(): Promise<ListedUser[]> {
-    const drivers = await this.driverService.findAll();
-    return drivers.map((driver) => {
-      return { id: driver.id, name: driver.name };
-    });
-  }
-
   async listAnalysts(): Promise<ListedUser[]> {
     const analysts = await User.find({ where: { role: Role.Analyst } });
     return analysts.map((analyst) => {
