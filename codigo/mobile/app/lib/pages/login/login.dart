@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:app/pages/login/components/header.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:alert/alert.dart';
@@ -8,6 +10,7 @@ import 'package:app/pages/register/register.dart';
 import 'package:app/pages/admin/admin.dart';
 import 'package:app/pages/login/components/footer.dart';
 import 'package:app/services/http/http.dart';
+import 'package:app/shared/utils/httpInterceptor.dart';
 
 class LoginView extends StatefulWidget {
   @override
@@ -17,6 +20,8 @@ class LoginView extends StatefulWidget {
 void _onSubmit(String email, String password) async {
   Request request = Request();
   const endpoint = '/auth/login';
+  final httpInterceptor = new HttpInterceptor();
+
   final body = {
     'email': email,
     'password': password,
@@ -27,9 +32,12 @@ void _onSubmit(String email, String password) async {
   final isStatusSuccess =
       response.statusCode == 200 || response.statusCode == 201;
 
-  print(response.statusCode);
+
   if (isStatusSuccess) {
-    // Formulário enviado com sucesso
+    Map<String, dynamic> body = json.decode(response.body);
+    String token = body['token'];
+
+    httpInterceptor.setupInterceptors(token);
   } else {
     Alert(message: 'Usuário não encontrado 😔').show();
   }
@@ -132,11 +140,12 @@ class _LoginView extends State<LoginView> {
                 child: Footer(
                   onCreateAccount: () {},
                   onSubmit: () {
-                    Navigator.push(
-                      context,
-                      CupertinoPageRoute(
-                          builder: (context) => AdminView()),
-                    );
+                    _handleLogin();
+                    // Navigator.push(
+                    //   context,
+                    //   CupertinoPageRoute(
+                    //       builder: (context) => AdminView()),
+                    // );
                   },
                 ))
           ],
