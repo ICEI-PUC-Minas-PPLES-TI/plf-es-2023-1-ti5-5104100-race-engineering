@@ -1,6 +1,6 @@
 // import "@/styles/globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import Sidebar from "@/components/sidebar/Sidebar";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -104,8 +104,22 @@ export default function App({ Component, pageProps }: AppProps) {
   };
 
   return (
+
+    <Box
+      height="100vh"
+      width="100%"
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+    >
+      <Box w="2vw" className="sidebar-container">
+        <Sidebar />
+      </Box>
+
     <ChakraProvider>
+      
       <Container maxW="6xl" px={{ base: 6, md: 3 }} py={14}>
+        
         <Stack
           direction={{ base: "column", md: "row" }}
           spacing={2}
@@ -277,6 +291,7 @@ export default function App({ Component, pageProps }: AppProps) {
         </Button>
       </Container>
     </ChakraProvider>
+    </Box>
   );
 }
 
@@ -290,7 +305,9 @@ const Card = ({
   label: string;
 }) => {
   return (
+    
     <Stack
+    
       as={Link}
       href="#"
       direction="column"
