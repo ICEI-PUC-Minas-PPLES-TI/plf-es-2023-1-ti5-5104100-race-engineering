@@ -81,13 +81,13 @@ const AboutPage = () => {
       display="flex"
       justifyContent="center"
       alignItems="center"
-      flexDirection={{ base: "row", md: "column" }}
+      flexDirection={{ lg: "row", md: "column" }}
     >
       <Box
-        width={{ base: "50%", md: "100%" }}
-        height={{ base: "100%", md: "50%" }}
+        width={{ lg: "50%", md: "100%" }}
+        height={{ lg: "100%", md: "50%" }}
         backgroundImage={{
-          base: "https://images.unsplash.com/photo-1539057307452-65f8bc136475?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+          lg: "https://images.unsplash.com/photo-1539057307452-65f8bc136475?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
           md: "https://images.unsplash.com/photo-1611157816410-6a6b31ee255e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1589&q=80",
         }}
         backgroundRepeat="no-repeat"
@@ -104,8 +104,8 @@ const AboutPage = () => {
         direction="column"
         justifyContent="center"
         align="center"
-        height={{ base: "100%", md: "50%" }}
-        width={{ base: "50%", md: "100%" }}
+        height={{ lg: "100%", md: "50%" }}
+        width={{ lg: "50%", md: "100%" }}
       >
         <Stack
           direction="column"
