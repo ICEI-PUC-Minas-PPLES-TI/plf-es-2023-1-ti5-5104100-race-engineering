@@ -1,6 +1,6 @@
 // import "@/styles/globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Sidebar from "@/components/sidebar/Sidebar";
+
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -25,6 +25,8 @@ import {
   Container,
   Divider,
   Flex,
+  FormControl,
+  FormLabel,
   Heading,
   HStack,
   Icon,
@@ -104,7 +106,6 @@ export default function App({ Component, pageProps }: AppProps) {
   };
 
   return (
-
     <Box
       height="100vh"
       width="100%"
@@ -116,181 +117,166 @@ export default function App({ Component, pageProps }: AppProps) {
         <Sidebar />
       </Box>
 
-    <ChakraProvider>
-      
-      <Container maxW="6xl" px={{ base: 6, md: 3 }} py={14}>
-        
-        <Stack
-          direction={{ base: "column", md: "row" }}
-          spacing={2}
-          justifyContent="center"
-        >
+      <ChakraProvider>
+        <Container maxW="6xl" px={{ base: 6, md: 3 }} py={14}>
           <Stack
-            direction="column"
-            spacing={6}
+            direction={{ base: "column", md: "row" }}
+            spacing={2}
             justifyContent="center"
-            maxW="500px"
-            mb={{ base: 3, md: 0 }}
           >
-            <Box>
-              <chakra.h1
-                fontSize="5xl"
-                lineHeight={1}
-                fontWeight="bold"
-                textAlign="left"
+            <Stack
+              direction="column"
+              spacing={6}
+              justifyContent="center"
+              mb={{ base: 3, md: 0 }}
+            >
+              <Box>
+                <chakra.h1
+                  fontSize="5xl"
+                  lineHeight={1}
+                  fontWeight="bold"
+                  textAlign="left"
+                >
+                  Defina a Estratégida <br />
+                  <chakra.span color="teal"> da Corrida</chakra.span>
+                </chakra.h1>
+              </Box>
+
+              <HStack spacing={{ base: 0, sm: 2 }} flexWrap="wrap">
+                <FormControl variant="floating" id="first-name">
+                  <FormLabel>Número de voltas máxima</FormLabel>
+                  <Input
+                    onChange={handleMaxLap}
+                    value={maxLap}
+                    placeholder="Digite o número de voltas máxima"
+                  />
+                </FormControl>
+              </HStack>
+
+              <Box w="100%" marginY="4">
+                <FormControl variant="floating" id="first-name">
+                  <FormLabel>Corrida para a estratégia</FormLabel>
+                  <Select
+                    placeholder="Selecione a corrida"
+                    onChange={(value) => {
+                      console.log(value.target.value);
+                      onSelectedRace(value.target.value);
+                    }}
+                    value={selectedIdRace}
+                  >
+                    {races.map((race) => (
+                      <option key={race.id} value={race.id}>
+                        {/* {race.name} - {race.circuit}  N CONSIGO COLOCAR NA LINHA DE CIMA O ID e name na debaixo*/}
+                        {race.name}
+                      </option>
+                    ))}
+                  </Select>
+                </FormControl>
+                {selectedRace ? (
+                  <Box bg="gray.200" p="4" mt="24px" rounded="lg">
+                    <br />
+                    <p>Corrida selecionada: {selectedRace.name}</p>
+                    <p>Data do Inicio da Corrida: {selectedRace.startDate} </p>
+                    <p>Data do Fim da Corrida: {selectedRace.endDate} </p>
+                    <p>Total de Voltas: {selectedRace.totalLaps} </p>
+                  </Box>
+                ) : null}
+              </Box>
+
+              <Stack
+                spacing={{ base: 5, sm: 2 }}
+                direction={{ base: "column", sm: "row" }}
+                alignItems="center"
               >
-                Defina a Estratégida <br />
-                <chakra.span color="teal"> da Corrida</chakra.span>
-              </chakra.h1>
-            </Box>
-
-            <HStack spacing={{ base: 0, sm: 2 }} flexWrap="wrap">
-              <Text fontSize="md" fontWeight="semibold">
-                Defina o número de voltas máximas estabelecido pela organização
-              </Text>
-              <Input onChange={handleMaxLap} value={maxLap} />
-            </HStack>
-
-            {/* Minha Ideia Inicial so colocar um box tipo do meu estrategy orignial */}
-
-            <Box w="100%" marginY="4">
-              <Select
-                placeholder="Selecione a corrida"
-                onChange={(value) => {
-                  console.log(value.target.value);
-                  onSelectedRace(value.target.value);
-                }}
-                value={selectedIdRace}
-
-                // {...register("raceId", { required: true })} N sei se precisa
-              >
-                {races.map((race) => (
-                  <option key={race.id} value={race.id}>
-                    {/* {race.name} - {race.circuit}  N CONSIGO COLOCAR NA LINHA DE CIMA O ID e name na debaixo*/}
-                    {race.name}
-                  </option>
-                ))}
-              </Select>
-              {/* <br />
-              <p>Data do Inicio da Corrida: {selectedRace.startDate} </p>
-              <p>Data do Fim da Corrida: {selectedRace.endDate} </p>
-              <p>Total de Voltas: {selectedRace.totalLaps} </p> */}
-              {selectedRace ? (
-                <Box bg="gray.200" p="4">
-                  <br />
-                  <p>Corrida selecionada: {selectedRace.name}</p>
-                  <p>Data do Inicio da Corrida: {selectedRace.startDate} </p>
-                  <p>Data do Fim da Corrida: {selectedRace.endDate} </p>
-                  <p>Total de Voltas: {selectedRace.totalLaps} </p>
-                </Box>
-              ) : null}
-            </Box>
+                <Card heading="Número de Voltas" detail="" label="" />
+                <Card
+                  heading="Número de Voltas Máximas"
+                  detail=""
+                  label={maxLap}
+                />
+                <Card heading="Contador Geral de Voltas" detail="" label="" />
+                <Card heading="Voltas Restantes" detail="" label="" />
+              </Stack>
+            </Stack>
           </Stack>
 
-          {/* Esse stack debaixo é so para os card */}
-          <Stack
-            spacing={{ base: 5, sm: 2 }}
-            direction={{ base: "column", sm: "row" }}
-            alignItems="center"
-          >
-            <Card heading="Número de Voltas" detail="" label="" />
-
-            <Card heading="Número de Voltas Máximas" detail="" label={maxLap} />
-            <Card heading="Contador Geral de Voltas" detail="" label="" />
-            <Card heading="Voltas Restantes" detail="" label="" />
-          </Stack>
-        </Stack>
-
-        <Box display="flex" flexDirection="row" alignItems="center">
-          <Box flex="1" textAlign="center">
-            <CheckCircleIcon boxSize={"50px"} color={"green.500"} />
-            <Heading as="h2" size="xl" mt={6} mb={2}>
-              Lap Annotation
-            </Heading>
-            <Box>
-              <Text fontSize="md" fontWeight="semibold">
-                Tempo para término da corrida
-              </Text>
-              <Timer></Timer>
+          <Box display="flex" flexDirection="row" alignItems="center">
+            <Box flex="1" textAlign="center">
+              <Heading as="h2" size="xl" mt={6} mb={2}>
+                Lap Annotation
+              </Heading>
+              <Box>
+                <Text fontSize="md" fontWeight="semibold">
+                  Tempo para término da corrida
+                </Text>
+                <Timer></Timer>
+              </Box>
             </Box>
           </Box>
-          <Box flex="1" textAlign="center">
-            <Tabs variant="unstyled">
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <TabList display="flex" justifyContent="center">
-                <Tab _selected={{ color: "white", bg: "blue.500" }}>
-                  Piloto 1
-                </Tab>
-                <Tab _selected={{ color: "white", bg: "green.400" }}>
-                  Piloto 2
-                </Tab>
-              </TabList>
-              <TabPanels>
-                <TabPanel>
-                  <p>one!</p>
-                </TabPanel>
-                <TabPanel>
-                  <p>two!</p>
-                </TabPanel>
-              </TabPanels>
-            </Tabs>
-          </Box>
-        </Box>
 
-        {/* FORMULARIO */}
-        <Box display="flex" flexDirection="row" justifyContent="center">
-          <Signup
-            raceId={selectedRace.id}
-            onAfterSubmit={async () => await fetchLaps(Number(selectedRace.id))}
-          />
-        </Box>
-        <Box>
-          <TableContainer>
-            <Table variant="striped" colorScheme="teal">
-              <Thead>
-                <Tr>
-                  <Th>Tipo Pneu</Th>
-                  <Th>Piloto</Th>
-                  <Th>Número de voltas</Th>
-                  <Th>Qunatidade de gasolina no tanque</Th>
-                </Tr>
-              </Thead>
-              <Tbody>
-                {laps.map((lap) => {
-                  return (
-                    <Tr key={lap.id}>
-                      <Td>Dry</Td>
-                      {/* <Td>Rubens</Td> */}
-                      <Td>{lap.driverId}</Td>
-                      {/* <Td isNull> */}
-                      <Td>{lap.lapNumber}</Td>
-                      {/* <Td>70l</Td> */}
-                      <Td>70</Td>
-                    </Tr>
-                  );
-                })}
-              </Tbody>
-            </Table>
-          </TableContainer>
-        </Box>
-        <Button
-          padding="20px"
-          margin="15px"
-          rightIcon={<GoChevronRight />}
-          colorScheme="blue"
-          variant="solid"
-          size="lg"
-          rounded="md"
-          mb={{ base: 2, sm: 0 }}
-        >
-          Confirmar Estratégia
-        </Button>
-      </Container>
-    </ChakraProvider>
+          {/* FORMULARIO */}
+          <Box display="flex" flexDirection="row" justifyContent="center">
+            <Signup
+              raceId={selectedRace.id}
+              onAfterSubmit={async () =>
+                await fetchLaps(Number(selectedRace.id))
+              }
+            />
+            <Stack
+              spacing={{ base: 5, sm: 2 }}
+              direction={{ base: "column", sm: "row" }}
+              alignItems="center"
+            >
+              <Stack
+                spacing={{ base: 5, sm: 2 }}
+                direction={{ base: "column", sm: "row" }}
+                alignItems="center"
+              ></Stack>
+            </Stack>
+          </Box>
+          <Box>
+            <TableContainer>
+              <Table variant="striped" colorScheme="teal">
+                <Thead>
+                  <Tr>
+                    <Th>Tipo Pneu</Th>
+                    <Th>Piloto</Th>
+                    <Th>Número de voltas</Th>
+                    <Th>Qunatidade de gasolina no tanque</Th>
+                  </Tr>
+                </Thead>
+                <Tbody>
+                  {laps.map((lap) => {
+                    return (
+                      <Tr key={lap.id}>
+                        <Td>Dry</Td>
+                        {/* <Td>Rubens</Td> */}
+                        <Td>{lap.driverId}</Td>
+                        {/* <Td isNull> */}
+                        <Td>{lap.lapNumber}</Td>
+                        {/* <Td>70l</Td> */}
+                        <Td>70</Td>
+                      </Tr>
+                    );
+                  })}
+                </Tbody>
+              </Table>
+            </TableContainer>
+          </Box>
+          <Button
+            padding="20px"
+            margin="15px"
+            rightIcon={<GoChevronRight />}
+            colorScheme="blue"
+            variant="solid"
+            size="lg"
+            rounded="md"
+            mb={{ base: 2, sm: 0 }}
+          >
+            Confirmar Estratégia
+          </Button>
+        </Container>
+      </ChakraProvider>
     </Box>
   );
 }
@@ -305,18 +291,8 @@ const Card = ({
   label: string;
 }) => {
   return (
-    
     <Stack
-    
-      as={Link}
-      href="#"
       direction="column"
-      _hover={{
-        boxShadow: useColorModeValue(
-          "0 4px 6px rgba(160, 174, 192, 0.6)",
-          "0 4px 6px rgba(9, 17, 28, 0.9)"
-        ),
-      }}
       bg={useColorModeValue("gray.200", "gray.700")}
       p={3}
       rounded="lg"

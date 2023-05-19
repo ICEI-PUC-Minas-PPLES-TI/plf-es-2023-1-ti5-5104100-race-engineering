@@ -118,17 +118,25 @@ const LoginPage = () => {
 
           <CardFooter display="flex" width="100%">
             <Button
-              colorScheme="messenger"
               variant="ghost"
+              bg="#ffffff"
+              color="black"
               onClick={() => {
                 router.push("/register-user");
               }}
               width="50%"
               mr="3"
             >
-              Cadastro
+              Criar conta
             </Button>
-            <Button colorScheme="messenger" width="50%" ml="3" type="submit">
+            <Button
+              bg="#000000"
+              color="white"
+              variant="solid"
+              width="50%"
+              ml="3"
+              type="submit"
+            >
               Fazer login
             </Button>
           </CardFooter>

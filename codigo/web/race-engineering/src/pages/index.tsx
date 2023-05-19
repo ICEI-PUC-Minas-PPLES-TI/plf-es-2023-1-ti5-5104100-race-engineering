@@ -4,8 +4,8 @@ import Sidebar from "@/components/sidebar/Sidebar";
 import { useAuth } from "@/context/AuthContext";
 import { Box } from "@chakra-ui/react";
 
+import AboutPage from "./about";
 import Home from "./home/index";
-import LoginPage from "./login";
 
 export default function Index() {
   const { isAuthenticated } = useAuth();
@@ -22,7 +22,7 @@ export default function Index() {
   return (
     <>
       {!isAuthenticated ? (
-        <LoginPage />
+        <AboutPage />
       ) : (
         <Box height="100vh" width="100%">
           <Box
@@ -33,7 +33,11 @@ export default function Index() {
             flex-flexDirection="column"
             alignItems="center"
           >
-            <Box w="2vw" className="sidebar-container" style={{ position: "fixed", top: 0, left: 0, bottom: 0 }}>
+            <Box
+              w="2vw"
+              className="sidebar-container"
+              style={{ position: "fixed", top: 0, left: 0, bottom: 0 }}
+            >
               <Sidebar />
             </Box>
 

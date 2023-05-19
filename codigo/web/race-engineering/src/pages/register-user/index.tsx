@@ -1,7 +1,14 @@
+import { AxiosError } from "axios";
 /* eslint-disable react/no-children-prop */
 import { useRouter } from "next/router";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import {
+  RiCheckboxBlankCircleLine,
+  RiCheckboxCircleFill,
+  RiErrorWarningFill,
+} from "react-icons/ri";
+
 import api from "@/services/api";
 import { AtSignIcon, EmailIcon, LockIcon } from "@chakra-ui/icons";
 import {
@@ -20,10 +27,13 @@ import {
   InputGroup,
   InputLeftElement,
   InputRightElement,
+  List,
+  ListIcon,
+  ListItem,
   Select,
+  Text,
   useToast,
 } from "@chakra-ui/react";
-import { AxiosError } from "axios";
 
 type Register = {
   name: string;
@@ -48,7 +58,13 @@ const RegisterPage = () => {
     },
   ];
   const router = useRouter();
-  const { register, handleSubmit, formState: { errors } } = useForm<Register>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    trigger,
+    getValues,
+  } = useForm<Register>();
   const toast = useToast();
 
   const [selected, setSelected] = useState("");
@@ -118,7 +134,6 @@ const RegisterPage = () => {
           </CardHeader>
 
           <CardBody>
-
             <Box w="100%" marginBottom="3">
               <FormLabel>Nome completo</FormLabel>
               <InputGroup>
@@ -166,8 +181,18 @@ const RegisterPage = () => {
                   <Input
                     type={show ? "text" : "password"}
                     placeholder="Digite sua senha"
-                    {...register("password", { required: true, minLength: 8, maxLength: 20 })}
+                    {...register("password", {
+                      required: true,
+                      minLength: 8,
+                      maxLength: 20,
+                    })}
                     name="password"
+                    maxLength={20}
+                    minLength={8}
+                    onInput={() => {
+                      trigger("password");
+                      console.log(errors);
+                    }}
                   />
                   <InputRightElement width="4.5rem">
                     <Button h="1.75rem" size="sm" onClick={handleClick}>
@@ -175,11 +200,46 @@ const RegisterPage = () => {
                     </Button>
                   </InputRightElement>
                 </InputGroup>
-                <FormErrorMessage>
-                  {errors.password?.type === "required" && "A Senha é obrigatória"}
-                  {errors.password?.type === "minLength" && "Senha deve ter pelo menos 8 caracteres"}
-                  {errors.password?.type === "maxLength" && "Senha deve ter no máximo 20 caracteres"}
-                </FormErrorMessage>
+                <List mt={3}>
+                  <ListItem>
+                    {!getValues("password") && (
+                      <ListIcon
+                        as={RiCheckboxBlankCircleLine}
+                        color="gray.300"
+                      />
+                    )}
+                    {getValues("password") &&
+                      getValues("password").length < 8 && (
+                        <ListIcon as={RiErrorWarningFill} color="red.300" />
+                      )}
+                    {getValues("password") &&
+                      getValues("password").length >= 8 && (
+                        <ListIcon as={RiCheckboxCircleFill} color="green.300" />
+                      )}
+                    Deve ter pelo menos 8 caracteres
+                  </ListItem>
+
+                  <ListItem>
+                    {!getValues("password") && (
+                      <ListIcon
+                        as={RiCheckboxBlankCircleLine}
+                        color="gray.300"
+                      />
+                    )}
+                    {getValues("password") && getValues("password").length && (
+                      <ListIcon as={RiCheckboxCircleFill} color="green.300" />
+                    )}
+                    Senha deve ter no máximo 20 caracteres{" "}
+                  </ListItem>
+                </List>
+                {/* <FormErrorMessage>
+                  {errors.password?.type === "required" &&
+                    "A Senha é obrigatória"}
+                  {errors.password?.type === "minLength" &&
+                    "Senha deve ter pelo menos 8 caracteres"}
+                  {errors.password?.type === "maxLength" &&
+                    "Senha deve ter no máximo 20 caracteres"}
+                </FormErrorMessage> */}
               </FormControl>
             </Box>
 
@@ -205,8 +265,9 @@ const RegisterPage = () => {
 
           <CardFooter display="flex" width="100%">
             <Button
-              colorScheme="messenger"
               variant="ghost"
+              bg="#ffffff"
+              color="black"
               onClick={() => {
                 router.push("/");
               }}
@@ -215,7 +276,14 @@ const RegisterPage = () => {
             >
               Voltar
             </Button>
-            <Button colorScheme="messenger" width="50%" ml="3" type="submit">
+            <Button
+              bg="#000000"
+              color="white"
+              variant="solid"
+              width="50%"
+              ml="3"
+              type="submit"
+            >
               Cadastrar
             </Button>
           </CardFooter>

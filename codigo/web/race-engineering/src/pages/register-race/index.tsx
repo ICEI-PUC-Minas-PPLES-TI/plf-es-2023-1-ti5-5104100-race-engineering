@@ -1,17 +1,18 @@
+import "react-toastify/dist/ReactToastify.css";
+
 /* eslint-disable react/no-children-prop */
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
-import { dataToSelectOptions } from "@/shared/utils/dataToSelectOptions";
+import { toast, ToastContainer } from "react-toastify";
+
 import Sidebar from "@/components/sidebar/Sidebar";
 import api from "@/services/api";
+import { dataToSelectOptions } from "@/shared/utils/dataToSelectOptions";
 import { getIdList } from "@/shared/utils/getIdList";
 import { AtSignIcon, EmailIcon, LockIcon } from "@chakra-ui/icons";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
 import {
   Box,
   Button,
@@ -83,7 +84,7 @@ const RegisterPage = () => {
       setCircuits(circuitsResponse);
     })();
 
-    return () => { };
+    return () => {};
   }, []);
 
   const onSubmit = handleSubmit((data, event) => {
@@ -112,10 +113,10 @@ const RegisterPage = () => {
       list: circuits,
     })[0].id;
 
-
     if (endDate < startDate) {
       toast({
-        title: "A data de Início da Corrida não pode ser anterior à data do Fim da Corrida",
+        title:
+          "A data de Início da Corrida não pode ser anterior à data do Fim da Corrida",
         status: "error",
         duration: 5000,
         isClosable: true,
