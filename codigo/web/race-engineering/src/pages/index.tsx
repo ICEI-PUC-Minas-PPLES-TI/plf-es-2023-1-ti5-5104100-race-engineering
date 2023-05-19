@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 import Sidebar from "@/components/sidebar/Sidebar";
@@ -10,6 +11,7 @@ import Home from "./home/index";
 export default function Index() {
   const { isAuthenticated } = useAuth();
   const [isHydrated, setIsHydrated] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     setIsHydrated(true);
@@ -18,6 +20,14 @@ export default function Index() {
   if (!isHydrated) {
     return null;
   }
+
+  const onRedirect = () => {
+    if (!isAuthenticated) {
+      router.push("/");
+    } else {
+      router.push("/home");
+    }
+  };
 
   return (
     <>
@@ -30,8 +40,8 @@ export default function Index() {
             width="100%"
             display="flex"
             justifyContent="center"
-            flex-flexDirection="column"
             alignItems="center"
+            flexDirection="column"
           >
             <Box
               w="2vw"
