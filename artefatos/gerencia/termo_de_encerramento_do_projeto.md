@@ -13,15 +13,17 @@ sprints, com 5 sprints e a aplicação foi finalizada dia 14/6.
 
 ## Artefatos entregues
 Os seguintes artefatos foram gerados e entregues para o projeto:
-Declaração de Escopo, Partes Interessadas, Termo de Abertura do Projeto,
-Atas de reuniões, Estrutura Analítica do Projeto, Documento de Arquitetura,
-Diagrama de Caso de Uso, Diagrama de Classes, Diagrama de
-Componentes, Diagrama Entidade-Relacionamento.
+Declaração de Escopo,Atas de reuniões, Partes Interessadas,
+Termo de Abertura do Projeto, Diagrama de Caso de Uso,
+Documento de Arquitetura, Estrutura Analítica do Projeto,
+Diagrama Entidade-Relacionamento Diagrama de Classes, 
+Diagrama de Componentes.
 
 ## Conclusões
-O trabalho em questão entregou um sistema composto por duas partes
-essências, uma aplicação mobile e outra web. Essas duas partes foram
-concebidas de modo a auxiliar o cliente no controle de corridas.
+O projeto em questão resultou na entrega de um sistema composto por duas 
+partes fundamentais: uma aplicação mobile e uma aplicação web. 
+Ambas foram desenvolvidas com o objetivo de auxiliar o cliente 
+no gerenciamento de corridas.
 
 
 Esse sistema tem tres perfils diferentes , analista , mecanico e piloto.Tanto
