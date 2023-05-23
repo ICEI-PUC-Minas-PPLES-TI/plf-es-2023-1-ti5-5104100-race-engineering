@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { GoChevronRight } from "react-icons/go";
 import { MdOutlineContentCopy } from "react-icons/md";
 
+import Sidebar from "@/components/sidebar/Sidebar";
 import { AuthProvider } from "@/context/AuthContext";
 import Signup from "@/pages/form";
 // import "@/styles/header.css";

@@ -149,14 +149,6 @@ const RegisterPage = () => {
       });
   });
 
-  const handleSelectChange = (selectedOption: any, callback: any) => {
-    if (selectedOption && selectedOption.length > 2) {
-      selectedOption = selectedOption.slice(0, 2);
-    }
-
-    callback();
-  };
-
   return (
     <Box
       height="100vh"
@@ -196,6 +188,7 @@ const RegisterPage = () => {
                   <Input
                     type="text"
                     {...register("name", { required: true })}
+                    placeholder="Digite o nome da corrida"
                   />
                 </InputGroup>
               </Box>
@@ -209,9 +202,7 @@ const RegisterPage = () => {
                     params: { label: "name", value: "id" },
                   })}
                   onChange={(option: any) => {
-                    handleSelectChange(option, () => {
-                      setSelectedCircuit(option);
-                    });
+                    setSelectedCircuit(option);
                   }}
                   value={selectedCircuit}
                   placeholder="Selecione o circuito"
@@ -228,9 +219,7 @@ const RegisterPage = () => {
                     params: { label: "name", value: "id" },
                   })}
                   onChange={(option: any) => {
-                    handleSelectChange(option, () => {
-                      setSelectedAnalyst(option);
-                    });
+                    setSelectedAnalyst(option);
                   }}
                   value={selectedAnalyst}
                   placeholder="Selecione o analista"
@@ -248,10 +237,9 @@ const RegisterPage = () => {
                     params: { label: "name", value: "id" },
                   })}
                   onChange={(option: any) => {
-                    handleSelectChange(option, () => {
-                      setSelectedDrivers(option);
-                    });
+                    setSelectedDrivers(option);
                   }}
+                  isOptionDisabled={() => selectedDrivers.length >= 2}
                   value={selectedDrivers}
                   placeholder="Selecione os corredores"
                 />
@@ -268,10 +256,9 @@ const RegisterPage = () => {
                     params: { label: "name", value: "id" },
                   })}
                   onChange={(option: any) => {
-                    handleSelectChange(option, () => {
-                      setSelectedMechanics(option);
-                    });
+                    setSelectedMechanics(option);
                   }}
+                  isOptionDisabled={() => selectedMechanics.length >= 2}
                   value={selectedMechanics}
                   placeholder="Selecione os mecanicos"
                 />
@@ -288,12 +275,11 @@ const RegisterPage = () => {
                     params: { label: "name", value: "id" },
                   })}
                   onChange={(option: any) => {
-                    handleSelectChange(option, () => {
-                      setSelectedTimes(option);
-                    });
+                    setSelectedTimes(option);
                   }}
                   value={selectedTimes}
                   placeholder="Selecione os Times"
+                  isOptionDisabled={() => selectedTimes.length >= 2}
                 />
               </Box>
 
@@ -331,6 +317,7 @@ const RegisterPage = () => {
                   <Input
                     type="number"
                     {...register("totalLaps", { required: true })}
+                    placeholder="Digite o total de voltas da corria"
                   />
                 </InputGroup>
               </Box>
@@ -338,7 +325,7 @@ const RegisterPage = () => {
 
             <CardFooter display="flex" width="100%">
               <Button
-                colorScheme="messenger"
+                bg="#ffffff"
                 variant="ghost"
                 onClick={() => {
                   router.push("/");
@@ -348,7 +335,14 @@ const RegisterPage = () => {
               >
                 Voltar
               </Button>
-              <Button colorScheme="messenger" width="50%" ml="3" type="submit">
+              <Button
+                bg="#000000"
+                variant="solid"
+                color="white"
+                width="50%"
+                ml="3"
+                type="submit"
+              >
                 Cadastrar
               </Button>
             </CardFooter>

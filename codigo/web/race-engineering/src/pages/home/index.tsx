@@ -8,8 +8,6 @@ import {
   CardFooter,
   CardHeader,
   Heading,
-  Highlight,
-  SimpleGrid,
   Text,
 } from "@chakra-ui/react";
 
@@ -24,13 +22,13 @@ export default function Home() {
         "Gerencie corridas com facilidade: liste, crie, edite ou remova corridas conforme necessário.",
       backgroundImage:
         "https://images.unsplash.com/photo-1611651338412-8403fa6e3599?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80",
-      onSecondaryAction: {
+      secondaryButton: {
         label: "Listar",
         action: () => {
           router.push("/list-race");
         },
       },
-      onPrimaryAction: {
+      primaryButton: {
         label: "Cadastrar",
         action: () => {
           router.push("/register-race");
@@ -44,13 +42,13 @@ export default function Home() {
         "Gerencie os circuitos com facilidade: liste, crie, edite ou remova corridas conforme necessário.",
       backgroundImage:
         "https://images.unsplash.com/photo-1543796076-c8a565501995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80",
-      onSecondaryAction: {
+      secondaryButton: {
         label: "Listar",
         action: () => {
           router.push("/list-circuit");
         },
       },
-      onPrimaryAction: {
+      primaryButton: {
         label: "Cadastrar",
         action: () => {
           router.push("/register-circuit");
@@ -64,13 +62,13 @@ export default function Home() {
         "Gerencie os times com facilidade: liste, crie, edite ou remova times conforme necessário.",
       backgroundImage:
         "https://images.unsplash.com/photo-1642767226923-5d9abcea019a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
-      onSecondaryAction: {
+      secondaryButton: {
         label: "Listar",
         action: () => {
           router.push("/list-team");
         },
       },
-      onPrimaryAction: {
+      primaryButton: {
         label: "Cadastrar",
         action: () => {
           router.push("/register-team");
@@ -138,26 +136,21 @@ export default function Home() {
             <CardFooter w="100%" zIndex="1">
               <Button
                 variant="solid"
-                onClick={() => {
-                  router.push("/list-race");
-                }}
+                onClick={card.secondaryButton.action}
                 colorScheme="whiteAlpha"
                 w="50%"
                 mr="2"
               >
-                Listar
+                {card.secondaryButton.label}
               </Button>
               <Button
                 variant="solid"
-                onClick={() => {
-                  // router.push("/register-user");
-                  router.push("/register-race");
-                }}
+                onClick={card.primaryButton.action}
                 colorScheme="whiteAlpha"
                 w="50%"
                 ml="2"
               >
-                Cadastrar
+                {card.primaryButton.label}
               </Button>
             </CardFooter>
           </Card>

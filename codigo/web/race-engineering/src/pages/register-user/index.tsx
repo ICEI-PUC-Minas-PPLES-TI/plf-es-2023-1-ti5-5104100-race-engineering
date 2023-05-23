@@ -81,7 +81,7 @@ const RegisterPage = () => {
       await api.post("/auth/register", data);
 
       event?.target?.reset();
-      router.push("/");
+      router.push("/login");
 
       toast({
         title: "Cadastro realizado com sucesso",
