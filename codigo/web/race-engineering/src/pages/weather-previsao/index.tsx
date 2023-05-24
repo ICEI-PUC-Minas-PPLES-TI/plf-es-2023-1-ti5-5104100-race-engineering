@@ -204,7 +204,7 @@ export default function Home() {
               </FormControl>
 
               {searchSuccess && weather && (
-                <Box mt={10}>
+                <Box mt={6} background="white" rounded="lg" padding="32px">
                   <Text fontSize="3xl" fontWeight="bold" mb={4}>
                     Previsão do tempo - {city}
                   </Text>

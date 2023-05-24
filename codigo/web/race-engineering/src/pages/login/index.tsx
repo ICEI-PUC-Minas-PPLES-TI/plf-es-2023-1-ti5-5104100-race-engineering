@@ -43,26 +43,26 @@ const LoginPage = () => {
       .then(async (response) => {
         const { data } = response;
         const ROLES_AUTHORIZED = ["ADMIN", "ANALYST"];
-
+        router.push("/");
         authenticate(data);
-        const { data: profile } = await api.get("/users/me");
+        //const { data: profile } = await api.get("/users/me");
 
-        if (typeof window !== "undefined") {
-          localStorage.setItem("profile", JSON.stringify(profile));
-        }
+        // if (typeof window !== "undefined") {
+        //   localStorage.setItem("profile", JSON.stringify(profile));
+        // }
 
-        if (ROLES_AUTHORIZED.includes(profile.role)) {
-          router.push("/");
-        } else {
-          toast({
-            title: "Acesso não autorizado, contate o administrador do sistema.",
-            status: "warning",
-            duration: 3000,
-            isClosable: true,
-            position: "top-right",
-          });
-          logout();
-        }
+        // if (ROLES_AUTHORIZED.includes(profile.role)) {
+        //   router.push("/");
+        // } else {
+        //   toast({
+        //     title: "Acesso não autorizado, contate o administrador do sistema.",
+        //     status: "warning",
+        //     duration: 3000,
+        //     isClosable: true,
+        //     position: "top-right",
+        //   });
+        //   logout();
+        // }
       })
       .catch((err) => {
         toast({

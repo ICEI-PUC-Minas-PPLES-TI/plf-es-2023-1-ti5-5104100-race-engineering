@@ -85,101 +85,92 @@ export default function SignupCard({
   }, [raceId]);
 
   return (
-    <Flex
-      padding="10px"
-      margin="20px"
-      bg={useColorModeValue("gray.50", "gray.800")}
-      flexDirection="row"
+    <Box
+      rounded={"lg"}
+      bg={useColorModeValue("white", "gray.700")}
+      p={2}
+      width="100%"
     >
-      <Stack>
-        <Box
-          rounded={"lg"}
-          bg={useColorModeValue("white", "gray.700")}
-          boxShadow={"lg"}
-          p={2}
-        >
-          <Stack spacing={3}>
-            <HStack>
-              <FormControl as="form" onSubmit={onSubmit}>
-                <Box>
-                  {/* <FormControl id="tire"> */}
-                  <FormLabel>Selecionar o Pneu</FormLabel>
-                  <InputGroup id="tire">
-                    <Select
-                      value={selectedTire}
-                      {...register("tire")}
-                      onChange={handleChange}
-                    >
-                      {" "}
-                      <option hidden>Tipo de Pneu</option>
-                      <option label="dry" id="dry">
-                        Dry
-                      </option>
-                      <option label="wet" id="wet">
-                        Wet
-                      </option>
-                    </Select>
-                  </InputGroup>
-                </Box>
-
-                <Box>
-                  <FormLabel>Selecionar o Pneu</FormLabel>
-                  <InputGroup id="drivers">
-                    <Select
-                      closeMenuOnSelect={false}
-                      components={animatedComponents}
-                      options={dataToSelectOptions({
-                        list: drivers,
-                        params: { label: "name", value: "id" },
-                      })}
-                      onChange={(option: any) => {
-                        setSelectedDrivers(option);
-                      }}
-                      value={selectedDrivers}
-                      placeholder="Selecione os corredores"
-                    />
-                  </InputGroup>
-                </Box>
-
-                <Box>
-                  <FormLabel>Total de voltas</FormLabel>
-                  <InputGroup>
-                    <Input
-                      type="number"
-                      {...register("laps", { required: true })}
-                    />
-                  </InputGroup>
-                </Box>
-
-                <Box>
-                  <FormLabel>Quantidade de Gasolina</FormLabel>
-                  <InputGroup>
-                    <Input
-                      type="number"
-                      {...register("gas", { required: true })}
-                    />
-                  </InputGroup>
-                </Box>
-
-                <Box>
-                  <Button
-                    loadingText="Submitting"
-                    size="lg"
-                    bg={"blue.400"}
-                    color={"white"}
-                    _hover={{
-                      bg: "blue.500",
-                    }}
-                    type="submit"
+      <Stack spacing={3}>
+        <HStack>
+          <FormControl as="form" onSubmit={onSubmit}>
+            <Box mt="16px">
+              <FormLabel>Selecionar o Pneu</FormLabel>
+              <InputGroup id="tire">
+                <Box w="100%">
+                  <Select
+                    value={selectedTire}
+                    {...register("tire")}
+                    onChange={handleChange}
+                    placeholder="Selecione o tipo de pneu"
                   >
-                    Salvar Lap
-                  </Button>
+                    <option hidden>Tipo de Pneu</option>
+                    <option label="dry" id="dry">
+                      Dry
+                    </option>
+                    <option label="wet" id="wet">
+                      Wet
+                    </option>
+                  </Select>
                 </Box>
-              </FormControl>
-            </HStack>
-          </Stack>
-        </Box>
+              </InputGroup>
+            </Box>
+
+            <Box mt="16px">
+              <FormLabel>Selecionar o Pneu</FormLabel>
+              <InputGroup id="drivers">
+                <Box w="100%">
+                  <Select
+                    closeMenuOnSelect={false}
+                    components={animatedComponents}
+                    options={dataToSelectOptions({
+                      list: drivers,
+                      params: { label: "name", value: "id" },
+                    })}
+                    onChange={(option: any) => {
+                      setSelectedDrivers(option);
+                    }}
+                    value={selectedDrivers}
+                    placeholder="Selecione os corredores"
+                  />
+                </Box>
+              </InputGroup>
+            </Box>
+
+            <Box mt="16px">
+              <FormLabel>Total de voltas</FormLabel>
+              <InputGroup>
+                <Input
+                  type="number"
+                  {...register("laps", { required: true })}
+                />
+              </InputGroup>
+            </Box>
+
+            <Box mt="16px">
+              <FormLabel>Quantidade de Gasolina</FormLabel>
+              <InputGroup>
+                <Input type="number" {...register("gas", { required: true })} />
+              </InputGroup>
+            </Box>
+
+            <Box mt="16px">
+              <Button
+                loadingText="Submitting"
+                size="lg"
+                bg={"blue.400"}
+                color={"white"}
+                _hover={{
+                  bg: "blue.500",
+                }}
+                type="submit"
+              >
+                Salvar Lap
+              </Button>
+            </Box>
+          </FormControl>
+        </HStack>
       </Stack>
-    </Flex>
+    </Box>
   );
 }

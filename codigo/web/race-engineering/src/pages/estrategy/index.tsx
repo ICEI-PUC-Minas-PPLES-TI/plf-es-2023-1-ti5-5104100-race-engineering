@@ -148,8 +148,8 @@ export default function App({ Component, pageProps }: AppProps) {
             </FormControl>
           </Box>
 
-          <Box w="100%" marginY="4">
-            <Box bg="white" p="4" mt="24px" rounded="lg">
+          <Box w="100%" my="24px">
+            <Box bg="white" p="4" rounded="lg">
               <Text fontWeight="semibold" color="black.300" fontSize="24px">
                 Informações da corrida
               </Text>
@@ -268,66 +268,62 @@ export default function App({ Component, pageProps }: AppProps) {
             <Card heading="Voltas Restantes" detail="" label="" />
           </Stack>
 
-          <Box display="flex" flexDirection="row" alignItems="center">
+          {/* <Box display="flex" flexDirection="row" alignItems="center">
             <Box>
               <Text fontSize="md" fontWeight="semibold">
                 Tempo para término da corrida
               </Text>
               <Timer></Timer>
             </Box>
-          </Box>
+          </Box> */}
 
           {/* FORMULARIO */}
-          <Box display="flex" flexDirection="row" justifyContent="center">
-            <Signup
-              raceId={selectedRace.id}
-              races={races}
-              onAfterSubmit={async () =>
-                await fetchLaps(Number(selectedRace.id))
-              }
-            />
-            <Stack
-              spacing={{ base: 5, sm: 2 }}
-              direction={{ base: "column", sm: "row" }}
-              alignItems="center"
-            >
-              <Stack
-                spacing={{ base: 5, sm: 2 }}
-                direction={{ base: "column", sm: "row" }}
-                alignItems="center"
-              ></Stack>
-            </Stack>
+          <Box
+            display="flex"
+            flexDirection="row"
+            justifyContent="center"
+            mt="24px"
+          >
+            <Box w="30%">
+              <Signup
+                raceId={selectedRace.id}
+                races={races}
+                onAfterSubmit={async () =>
+                  await fetchLaps(Number(selectedRace.id))
+                }
+              />
+            </Box>
+            <Box w="70%" ml="24px" bg="white" rounded="lg">
+              <TableContainer>
+                <Table variant="striped" colorScheme="messenger">
+                  <Thead>
+                    <Tr>
+                      <Th>Tipo Pneu</Th>
+                      <Th>Piloto</Th>
+                      <Th>Número de voltas</Th>
+                      <Th>Qunatidade de gasolina no tanque</Th>
+                    </Tr>
+                  </Thead>
+                  <Tbody>
+                    {laps.map((lap) => {
+                      return (
+                        <Tr key={lap.id}>
+                          <Td>Dry</Td>
+                          {/* <Td>Rubens</Td> */}
+                          <Td>{lap.driverId}</Td>
+                          {/* <Td isNull> */}
+                          <Td>{lap.lapNumber}</Td>
+                          {/* <Td>70l</Td> */}
+                          <Td>70</Td>
+                        </Tr>
+                      );
+                    })}
+                  </Tbody>
+                </Table>
+              </TableContainer>
+            </Box>
           </Box>
-          <Box>
-            <TableContainer>
-              <Table variant="striped" colorScheme="teal">
-                <Thead>
-                  <Tr>
-                    <Th>Tipo Pneu</Th>
-                    <Th>Piloto</Th>
-                    <Th>Número de voltas</Th>
-                    <Th>Qunatidade de gasolina no tanque</Th>
-                  </Tr>
-                </Thead>
-                <Tbody>
-                  {laps.map((lap) => {
-                    return (
-                      <Tr key={lap.id}>
-                        <Td>Dry</Td>
-                        {/* <Td>Rubens</Td> */}
-                        <Td>{lap.driverId}</Td>
-                        {/* <Td isNull> */}
-                        <Td>{lap.lapNumber}</Td>
-                        {/* <Td>70l</Td> */}
-                        <Td>70</Td>
-                      </Tr>
-                    );
-                  })}
-                </Tbody>
-              </Table>
-            </TableContainer>
-          </Box>
-          <Button
+          {/* <Button
             padding="20px"
             margin="15px"
             rightIcon={<GoChevronRight />}
@@ -338,7 +334,7 @@ export default function App({ Component, pageProps }: AppProps) {
             mb={{ base: 2, sm: 0 }}
           >
             Confirmar Estratégia
-          </Button>
+          </Button> */}
         </Box>
       </ChakraProvider>
     </Box>
