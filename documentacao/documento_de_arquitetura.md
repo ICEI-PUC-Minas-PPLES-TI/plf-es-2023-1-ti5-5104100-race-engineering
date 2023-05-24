@@ -365,10 +365,6 @@ _Esta seção descreve a avaliação da arquitetura apresentada, baseada no mét
 
 ## 4.1. Cenários
 
-_Esta seção descreve a avaliação da arquitetura apresentada, baseada no método ATAM._
-
-## 4.1. Cenários
-
 **Cenário 1 - Compatibilidade:** A aplicação mobile desenvolvida deve ser compatível com os sistemas Android e IOS. 
 
 **Cenário 2 - Adaptabilidade:** O sistema deve estar disponível nas modalidades mobile e web, e a versão web da aplicação deve operar corretamente nos seguintes navegadores: Google Chrome, Edge e Firefox.
