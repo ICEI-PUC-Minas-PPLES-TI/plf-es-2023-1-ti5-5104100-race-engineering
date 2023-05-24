@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import Select from "react-select";
+import makeAnimated from "react-select/animated";
 
 import Timer from "@/pages/timer";
 import api from "@/services/api";
@@ -16,9 +18,6 @@ import {
   HStack,
   Input,
   InputGroup,
-  InputRightElement,
-  Link,
-  Select,
   Stack,
   Text,
   useColorModeValue,
@@ -36,19 +35,28 @@ type Estrategy = {
 export default function SignupCard({
   raceId,
   onAfterSubmit,
+  races,
 }: {
   raceId: String;
   onAfterSubmit: () => {};
+  races: [];
 }) {
   const [showPassword, setShowPassword] = useState(false);
   const [selectedTire, setSelectedTire] = useState("");
+  const [drivers, setDrivers] = useState([]);
   const { register, handleSubmit } = useForm<FormData>();
   const handleChange = (event: any) => {
     setSelectedTire(event.target.value);
   };
+  const animatedComponents = makeAnimated();
+  const [selectedDrivers, setSelectedDrivers] = useState([]);
 
   const toast = useToast();
-  const router = useRouter();
+
+  const fetchDrivers = async () => {
+    const { data } = await api.get("/drivers");
+    setDrivers(data);
+  };
 
   const onSubmit = handleSubmit((data, event) => {
     api
@@ -71,6 +79,10 @@ export default function SignupCard({
         });
       });
   });
+
+  useEffect(() => {
+    fetchDrivers();
+  }, [raceId]);
 
   return (
     <Flex
@@ -95,10 +107,10 @@ export default function SignupCard({
                   <InputGroup id="tire">
                     <Select
                       value={selectedTire}
-                      {...register("tire")} //n é erro
+                      {...register("tire")}
                       onChange={handleChange}
                     >
-                      {/* //deve ser dry e wet  OBS ELE NAO VEM DO BACKEND*/}
+                      {" "}
                       <option hidden>Tipo de Pneu</option>
                       <option label="dry" id="dry">
                         Dry
@@ -108,38 +120,26 @@ export default function SignupCard({
                       </option>
                     </Select>
                   </InputGroup>
-                  {/* <FormLabel>Tipo Pneu</FormLabel>
-                  <Input type="text" /> */}
-                  {/* </FormControl> */}
                 </Box>
 
                 <Box>
-                  {/* <FormControl id="tire"> */}
                   <FormLabel>Selecionar o Pneu</FormLabel>
                   <InputGroup id="drivers">
                     <Select
-                      value={selectedTire}
-                      {...register("drivers")} //n é erro
-                      onChange={handleChange}
-                    >
-                      {/*Tem que ver no back mas é temporario*/}
-                      <option hidden>Selecione o Piloto</option>
-                      <option label="piloto1" id="piloto1">
-                        piloto1
-                      </option>
-                      <option label="piloto2" id="piloto2">
-                        piloto2
-                      </option>
-                    </Select>
+                      closeMenuOnSelect={false}
+                      components={animatedComponents}
+                      options={dataToSelectOptions({
+                        list: drivers,
+                        params: { label: "name", value: "id" },
+                      })}
+                      onChange={(option: any) => {
+                        setSelectedDrivers(option);
+                      }}
+                      value={selectedDrivers}
+                      placeholder="Selecione os corredores"
+                    />
                   </InputGroup>
-                  {/* </FormControl> */}
-                  {/* <FormControl id="piloto">
-                  <FormLabel>Piloto</FormLabel>
-                  <Input type="text" />
-                </FormControl> */}
                 </Box>
-
-                {/* <Box w="100%" marginY="4"> */}
 
                 <Box>
                   <FormLabel>Total de voltas</FormLabel>
@@ -150,12 +150,6 @@ export default function SignupCard({
                     />
                   </InputGroup>
                 </Box>
-                {/* <Box>
-                <FormControl id="voltas">
-                  <FormLabel>Número de voltas</FormLabel>
-                  <Input type="text" />
-                </FormControl>
-              </Box> */}
 
                 <Box>
                   <FormLabel>Quantidade de Gasolina</FormLabel>
@@ -166,28 +160,20 @@ export default function SignupCard({
                     />
                   </InputGroup>
                 </Box>
-                {/* <Box>
-                <FormControl id="voltas">
-                  <FormLabel>Quantidade gasolina no tanque</FormLabel>
-                  <Input type="text" />
-                </FormControl>
-              </Box> */}
 
                 <Box>
-                  <Stack spacing={2} pt={1}>
-                    <Button
-                      loadingText="Submitting"
-                      size="lg"
-                      bg={"blue.400"}
-                      color={"white"}
-                      _hover={{
-                        bg: "blue.500",
-                      }}
-                      type="submit" //tava faltando o type submit
-                    >
-                      Salvar Lap
-                    </Button>
-                  </Stack>
+                  <Button
+                    loadingText="Submitting"
+                    size="lg"
+                    bg={"blue.400"}
+                    color={"white"}
+                    _hover={{
+                      bg: "blue.500",
+                    }}
+                    type="submit"
+                  >
+                    Salvar Lap
+                  </Button>
                 </Box>
               </FormControl>
             </HStack>
