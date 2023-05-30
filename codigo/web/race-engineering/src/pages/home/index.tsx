@@ -31,7 +31,7 @@ export default function Home() {
       primaryButton: {
         label: "Cadastrar",
         action: () => {
-          router.push("/register-race");
+          router.push("/create-race");
         },
       },
     },
@@ -51,7 +51,7 @@ export default function Home() {
       primaryButton: {
         label: "Cadastrar",
         action: () => {
-          router.push("/register-circuit");
+          router.push("/create-circuit");
         },
       },
     },
@@ -71,7 +71,7 @@ export default function Home() {
       primaryButton: {
         label: "Cadastrar",
         action: () => {
-          router.push("/register-team");
+          router.push("/create-team");
         },
       },
     },
