@@ -167,8 +167,7 @@ Obs: acrescente mais linhas, se necessário.
 | RNF002 | O sistema deve possuir armazenamento local no mobile com o SQLite|
 | RNF003 | O software deve ser compátivel com os sistemas Android e IOS|
 | RNF004 | A versão web da aplicação deve operar corretamente nos seguintes navegadores: Google Chrome, Edge e Firefox|
-| RNF005 | O software deve fornecer taxa de ocorrência de falha de 2/1.000
-| RNF006 | Apenas pessoas que tenham sido autenticadas por um componente de controle acesso e autenticação poderão visualizar informações
+| RNF005 | Apenas pessoas que tenham sido autenticadas por um componente de controle acesso e autenticação poderão visualizar informações
 
 
 
@@ -225,7 +224,6 @@ Será utilizado o PostgreSQL como banco de dados devido à sua robustez, flexibi
 3. O sistema deve permitir a consulta de dados da corrida
 4. O sistema deve permitir o cadastro de dados da corrida
 5. O sistema deve fazer cálculos baseados nos dados da corrida e gerar informações baseadas no dados
-6. O sistema deve prover um chat para comunicação dos usuário
 
 Obs: a quantidade e o escopo das funcionalidades deve ser negociado com os professores/orientadores do trabalho.
 
@@ -275,13 +273,7 @@ Obs: a quantidade e o escopo das funcionalidades deve ser negociado com os profe
 | **Requisitos associados** | RF005                                               |
 | **Fluxo Principal**       | Fazer login no sistema e consultar o clima de uma localidade|
 
-#### UC06 – Troca de mensagens por chat
-| **Descrição**             | Eu como usuário quero poder trocar mensagens com outros usuários via chat    |
-| ------------------------- | ---------------------------------------------------- |
-| **Atores**                | Usuário                                             |
-| **Prioridade**            | Baixa                                                 |
-| **Requisitos associados** | RF018                                              |
-| **Fluxo Principal**       | Fazer login no sistema e enviar/receber mensagens via chat|
+
 
 ### Histórias de usuário
 - Como mecânico quero poder visualizar dados da corrida
@@ -289,7 +281,6 @@ Obs: a quantidade e o escopo das funcionalidades deve ser negociado com os profe
 - Como analista quero poder visualizar o tempo de cada volta da corrida
 - Como analista quero poder cadastrar dados de um corrida
 - Como analista quero poder visualizar o clima de uma localidade para prever mudanças no planejamento da corrida
-- Como usuário quero poder trocar mensagens com outros usuários por chat
 
 ## 3.2. Visão Lógica
 
