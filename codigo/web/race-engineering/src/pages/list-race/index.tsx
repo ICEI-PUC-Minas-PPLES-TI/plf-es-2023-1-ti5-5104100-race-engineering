@@ -169,7 +169,7 @@ export default function Index() {
                     <Th width="20%" textAlign="center">Start Date</Th>
                     <Th width="20%" textAlign="center">End Date</Th>
                     <Th width="15%" textAlign="center">Total Laps</Th>
-                    <Th width="15%" textAlign="center">Editar</Th>
+                    <Th width="15%" textAlign="center">Edit</Th>
                     <Th width="15%" textAlign="center">Delete</Th>
                   </Tr>
                 </Thead>

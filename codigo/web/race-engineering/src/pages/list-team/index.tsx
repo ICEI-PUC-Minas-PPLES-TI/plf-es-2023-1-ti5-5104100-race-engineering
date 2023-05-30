@@ -160,10 +160,10 @@ export default function Index() {
                     Category
                   </Th>
                   <Th width="12%" textAlign="center">
-                    Editar
+                    Edit
                   </Th>
                   <Th width="13%" textAlign="center">
-                    Deletar
+                    Delete
                   </Th>
                 </Tr>
               </Thead>
