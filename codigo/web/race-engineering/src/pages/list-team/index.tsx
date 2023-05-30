@@ -239,6 +239,4 @@ export default function Index() {
       </Box>
     </Box>
   );
-
-
 }
