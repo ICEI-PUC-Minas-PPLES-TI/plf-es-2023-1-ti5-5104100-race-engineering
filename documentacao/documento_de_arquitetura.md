@@ -164,10 +164,11 @@ Obs: acrescente mais linhas, se necessário.
 | **ID** | **Descrição** |
 | --- | --- |
 | RNF001 | O tempo de resposta das consultas deve ser inferior a 5 segundos|
-| RNF002 | O sistema deve possuir armazenamento local no mobile com o SQLite|
-| RNF003 | O software deve ser compátivel com os sistemas Android e IOS|
-| RNF004 | A versão web da aplicação deve operar corretamente nos seguintes navegadores: Google Chrome, Edge e Firefox|
-| RNF005 | Apenas pessoas que tenham sido autenticadas por um componente de controle acesso e autenticação poderão visualizar informações
+| RNF002 | O software deve ser compátivel com os sistemas Android e IOS|
+| RNF003 | A versão web da aplicação deve operar corretamente nos seguintes navegadores: Google Chrome, Edge e Firefox|
+| RNF004 | O usuário deve estar autentificado e relacionado a um tipo para vizualizar informações e realizar ações.|
+| RNF005 | A aplicação deve estar disponível quando necessária para utilização .|
+| RNF006 | Os ícones e símbologias devem ser intuitivos também para pessoas que não atuam com corridas .|
 
 
 
@@ -357,7 +358,7 @@ _Apresente as medidas registradas na coleta de dados. O que não for possível q
 | **Atributo de Qualidade:** | Compatibilidade|
 | --- | --- |
 | **Requisito de Qualidade** | Compatibilidade as plataformas Android e IOS |
-| **Preocupação:** | A instalação do sistema deve ser suportada nos disositivos móveis com sistemas Android e IOS |
+| **Preocupação:** | A instalação do sistema deve ser suportada nos dispositivos móveis com sistemas Android e IOS |
 | **Cenários(s):** | Cenário 1 |
 | **Ambiente:** | Sistemas operacionais Android e IOS|
 | **Estímulo:** | Emulação da aplicação nos ambientes requiridos |
@@ -379,7 +380,7 @@ _Apresente as medidas registradas na coleta de dados. O que não for possível q
 | **Cenários(s):** | Cenário 2 |
 | **Ambiente:** | Plataforma Mobile e Web |
 | **Estímulo:** | Acessar o sistema em diferentes navegadores |
-| **Mecanismo:** | Cadastro corridas na plataforma web e visualização da mesma informação. |
+| **Mecanismo:** | Cadastro corridas na plataforma web e visualização dessa informação no web e no mobile. |
 | **Medida de Resposta:** | A corrida  cadastrada no Web pode ser visualizada no mobile  |
 
 **Considerações sobre a arquitetura:**
@@ -395,13 +396,11 @@ _Apresente as medidas registradas na coleta de dados. O que não for possível q
 | **Requisito de Qualidade** | Acesso aos recursos restritos deve ser controlado |
 | **Preocupação:** | Os acessos de usuários devem ser controlados de forma que cada um tenha acesso apenas aos recursos condizentes as suas atuações. |
 | **Cenários(s):** | Cenário 3|
-| **Ambiente:** | Sistema em operação normal |
-| **Estímulo:** | Acesso do analista de corridas para cadastro de corridas e geração de estratégia. |
+| **Ambiente:** | Plataforma web e mobile |
+| **Estímulo:** | Acesso do analista de corridas para cadastro de corridas. |
 | **Mecanismo:** |  |
-| **Medida de Resposta:** | As áreas restritas do software são acessadas com restrição de tipo de usuário. |
+| **Medida de Resposta:** |  |
 	
-	
-
 
 **Considerações sobre a arquitetura:**
 
@@ -409,6 +408,7 @@ _Apresente as medidas registradas na coleta de dados. O que não for possível q
 | --- | --- |
 | **Pontos de Sensibilidade:** | Não existe |
 | _ **Tradeoff** _ **:** | Não existe |
+	
 	
 | **Atributo de Qualidade:** | Disponibilidade |
 | --- | --- |
@@ -418,7 +418,7 @@ _Apresente as medidas registradas na coleta de dados. O que não for possível q
 | **Ambiente:** | Sistema em operação normal |
 | **Estímulo:** | Ao utilizar a aplicação a percepção do usuário é um sistema funcionando sem interrupções|
 | **Mecanismo:** | Solicitação de uma requisição ao servidor |
-| **Medida de Resposta:** | A aplicação deve responder a solicitação do usuário imediatamente |
+| **Medida de Resposta:** | A aplicação deve responder a solicitação do usuário|
 
 **Considerações sobre a arquitetura:**
 
@@ -431,13 +431,13 @@ _Apresente as medidas registradas na coleta de dados. O que não for possível q
 	
 | **Atributo de Qualidade:** | Acessibilidade |
 | --- | --- |
-| **Requisito de Qualidade** | Os ícones e telas da aplicação devem ser intuitivas para usuários considerados leigos|
+| **Requisito de Qualidade** | Os ícones e telas da aplicação devem ser intuitivos|
 | **Preocupação:** | Os usuários precisam navegar em uma plataforma organizada |
 | **Cenários(s):** | Cenário 5 |
 | **Ambiente:** | Telas do sistema |
 | **Estímulo:** | Navegação nos principais fluxos do sistema |
-| **Mecanismo:** | Um usuário sem vícios utiliza a aplicação nos seus pricipais fluxos sem auxílio |
-| **Medida de Resposta:** | O usuário deve coseguir ingressar em um passeio e favoritar sem dificuldades |
+| **Mecanismo:** | |
+| **Medida de Resposta:** |  |
 
 **Considerações sobre a arquitetura:**
 
