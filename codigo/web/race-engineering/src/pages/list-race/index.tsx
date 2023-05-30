@@ -23,7 +23,6 @@ import {
   Button,
   useToast,
 } from "@chakra-ui/react";
-import useApi from "@/shared/hooks/useApi";
 
 export default function Index() {
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
@@ -37,7 +36,6 @@ export default function Index() {
     totalLaps: 0,
   });
   const [editModalOpen, setEditModalOpen] = useState(false);
-  const { data } = useApi<any>(() => api.get("/races"));
   const toast = useToast();
 
   useEffect(() => {

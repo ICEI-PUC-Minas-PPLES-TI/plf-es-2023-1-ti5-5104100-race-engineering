@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-
 import Sidebar from "@/components/sidebar/Sidebar";
 import api from "@/services/api";
-import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, Heading } from "@chakra-ui/react";
+import useApi from "@/shared/hooks/useApi";
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, Heading, FormControl, FormLabel, Input } from "@chakra-ui/react";
 import {
   Box,
   Table,
@@ -18,9 +18,11 @@ import {
 
 export default function Index() {
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
-  const [circuits, setCircuits] = useState([]);
   const [selectedCircuitId, setSelectedCircuitId] = useState<number | null>(null);
-
+  const [circuits, setCircuits] = useState<any[]>([]);
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [editedCircuit, setEditedCircuit] = useState({ id: "", name: "", local: "" });
+  const { data } = useApi<any>(() => api.get("/circuits"));
   const toast = useToast();
 
   useEffect(() => {
@@ -57,12 +59,62 @@ export default function Index() {
       });
   };
 
+  const handleEditCircuit = (circuit: any) => {
+    setEditedCircuit((prevCircuit) => ({ ...prevCircuit, ...circuit }));
+    setEditModalOpen(true);
+  };
+
+  const handleUpdateCircuit = () => {
+    const { id, name, local } = editedCircuit;
+    api
+      .patch(`/circuits/${id}`, { name, local })
+      .then(() => {
+        setCircuits((prevCircuits) =>
+          prevCircuits.map((circuit: any) => {
+            if (circuit.id === id) {
+              return { ...circuit, name, local };
+            }
+            return circuit;
+          })
+        );
+        toast({
+          title: "Circuito atualizado com sucesso",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+          position: "top-right",
+        });
+        setEditModalOpen(false);
+      })
+      .catch((err) => {
+        if (err.response && err.response.status === 404) {
+          toast({
+            title: "Circuito não encontrado",
+            status: "error",
+            duration: 3000,
+            isClosable: true,
+            position: "top-right",
+          });
+        } else {
+          toast({
+            title: "Erro ao atualizar circuito, tente novamente",
+            status: "error",
+            duration: 3000,
+            isClosable: true,
+            position: "top-right",
+          });
+        }
+        console.error(err);
+      });
+  };
+
+
   return (
     <Box width="100%" padding="4 100px">
       <Heading as="h1" size="2xl" textAlign="center" marginTop="2%">
         Lista de Circuitos
       </Heading>
-  
+
       <Modal key="confirmation-modal" isOpen={isConfirmationModalOpen} onClose={() => setIsConfirmationModalOpen(false)}>
         <ModalOverlay />
         <ModalContent>
@@ -75,13 +127,13 @@ export default function Index() {
               setIsConfirmationModalOpen(false);
               handleDeleteCircuit(selectedCircuitId!);
             }}>
-              Deletar
+              Delete
             </Button>
             <Button variant="ghost" onClick={() => setIsConfirmationModalOpen(false)}>Cancelar</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
-  
+
       <Box width="100%">
         <Box
           width="100%"
@@ -93,7 +145,7 @@ export default function Index() {
           <Box w="2vw" className="sidebar-container" style={{ position: "fixed", top: 0, left: 0, bottom: 0 }}>
             <Sidebar />
           </Box>
-  
+
           <Box width="100%" padding="4%">
             <TableContainer maxW="70%" margin="auto">
               <Table size="sm" variant="striped" colorScheme="messenger">
@@ -102,6 +154,7 @@ export default function Index() {
                     <Th width="15%" textAlign="center">ID</Th>
                     <Th width="35%" textAlign="center">Name</Th>
                     <Th width="25%" textAlign="center">Local</Th>
+                    <Th width="25%" textAlign="center">Edit</Th>
                     <Th width="40%" textAlign="center">Delete</Th>
                   </Tr>
                 </Thead>
@@ -111,6 +164,11 @@ export default function Index() {
                       <Td textAlign="center">{circuit.id}</Td>
                       <Td textAlign="center">{circuit.name ?? "-"}</Td>
                       <Td textAlign="center">{circuit.local ?? "-"}</Td>
+                      <Td textAlign="center">
+                        <Button colorScheme="yellow" size="sm" variant="ghost" onClick={() => handleEditCircuit(circuit)}>
+                          Editar
+                        </Button>
+                      </Td>
                       <Td textAlign="center">
                         <Button
                           colorScheme="red"
@@ -131,8 +189,48 @@ export default function Index() {
             </TableContainer>
           </Box>
         </Box>
+
+        <Modal isOpen={editModalOpen} onClose={() => setEditModalOpen(false)}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Editar Time</ModalHeader>
+            <ModalBody>
+              <FormControl>
+                <FormLabel>Nome</FormLabel>
+                <Input
+                  value={editedCircuit.name}
+                  onChange={(e) =>
+                    setEditedCircuit((prevCircuit) => ({
+                      ...prevCircuit,
+                      name: e.target.value,
+                    }))
+                  }
+                />
+              </FormControl>
+              <FormControl mt={4}>
+                <FormLabel>Local</FormLabel>
+                <Input
+                  value={editedCircuit.local}
+                  onChange={(e) =>
+                    setEditedCircuit((prevCircuit) => ({
+                      ...prevCircuit,
+                      local: e.target.value,
+                    }))
+                  }
+                />
+              </FormControl>
+            </ModalBody>
+            <ModalFooter>
+              <Button colorScheme="blue" mr={3} onClick={handleUpdateCircuit}>
+                Atualizar
+              </Button>
+              <Button onClick={() => setEditModalOpen(false)}>Cancelar</Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+
       </Box>
     </Box>
   );
-  
+
 }
