@@ -151,8 +151,8 @@ _Esta seção descreve os requisitos comtemplados nesta descrição arquitetural
 | RF011 | O sistema deve permitir que o usuário visualize informações climáticas após acessar a plataforma Web | Obrigatório | ✅
 | RF012 | O sistema deve permitir que o usuário insira dados informativos sobre a corrida após acessar a plataforma Web | Obrigatório | ✅
 | RF013 | O sistema deve permitir que o usuário salve os dados da corrida após acessar a plataforma Web | Obrigatório | ✅
-| RF014 | O sistema deve permitir que o mecânico consulte informações sobre os pneus durante a corrida após acessar o aplicativo | Essencial 
-| RF015 | O sistema deve permitir que o piloto consulte informações sobre o número de voltas após acessar o aplicativo | Essencial
+| RF014 | O sistema deve permitir que o mecânico consulte informações sobre os pneus durante a corrida após acessar o aplicativo | Essencial | ⏳
+| RF015 | O sistema deve permitir que o piloto consulte informações sobre o número de voltas após acessar o aplicativo | Essencial |  ✅
 
 
 
