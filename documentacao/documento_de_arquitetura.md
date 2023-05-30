@@ -339,30 +339,105 @@ _Esta seção descreve a avaliação da arquitetura apresentada, baseada no mét
 
 ## 4.1. Cenários
 
-**Cenário 1 - Compatibilidade:** A aplicação mobile desenvolvida deve ser compatível com os sistemas Android e IOS. 
+**Cenário 1 - Compatibilidade:** 
 
-**Cenário 2 - Adaptabilidade:** O sistema deve estar disponível nas modalidades mobile e web, e a versão web da aplicação deve operar corretamente nos seguintes navegadores: Google Chrome, Edge e Firefox.
+**Cenário 2 - Adaptabilidade:**
 
-**Cenário 3 - Segurança:** O sistema deve garantir a segurança do usuário, por isso ele deve estar autenticado para utilizar os serviços.
+**Cenário 3 - Segurança:** 
 
-**Cenário 4 - Disponibilidade:** O sistema deve estar disponível para interação com o usuário 24 horas e sete dias na semana.
+**Cenário 4 - Disponibilidade:** 
 
-**Cenário 5 - Acessibilidade:** Os ícones e telas da aplicação devem ser intuitivas para usuários considerados leigos.
+**Cenário 5 - Acessibilidade:**
 
 
 ## 4.2. Avaliação
 
 _Apresente as medidas registradas na coleta de dados. O que não for possível quantificar apresente uma justificativa baseada em evidências qualitativas que suportam o atendimento do requisito não-funcional. Apresente uma avaliação geral da arquitetura indicando os pontos fortes e as limitações da arquitetura proposta._
 
+| **Atributo de Qualidade:** | Compatibilidade|
+| --- | --- |
+| **Requisito de Qualidade** | Compatibilidade as plataformas Android e IOS |
+| **Preocupação:** | A instalação do sistema deve ser suportada nos disositivos móveis com sistemas Android e IOS |
+| **Cenários(s):** | Cenário 1 |
+| **Ambiente:** | Sistemas operacionais Android e IOS|
+| **Estímulo:** | Emulação da aplicação nos ambientes requiridos |
+| **Mecanismo:** |  |
+| **Medida de Resposta:** |  |
+
+**Considerações sobre a arquitetura:**
+
+| **Riscos:** | Não existe |
+| --- | --- |
+| **Pontos de Sensibilidade:** | Não existe |
+| _ **Tradeoff** _ **:** | Não existe |
+	
+	
+| **Atributo de Qualidade:** | Adaptabilidade |
+| --- | --- |
+| **Requisito de Qualidade** | O sistema deve estar disponível nas modalidades mobile e web |
+| **Preocupação:** | O sistema deve ser acessível nos navegadores Google Chrome, Edge e Firefox |
+| **Cenários(s):** | Cenário 2 |
+| **Ambiente:** | Plataforma Mobile e Web |
+| **Estímulo:** | Acessar o sistema em diferentes navegadores |
+| **Mecanismo:** | Cadastro corridas na plataforma web e visualização da mesma informação. |
+| **Medida de Resposta:** | A corrida  cadastrada no Web pode ser visualizada no mobile  |
+
+**Considerações sobre a arquitetura:**
+
+| **Riscos:** | Não existe |
+| --- | --- |
+| **Pontos de Sensibilidade:** | Não existe |
+| _ **Tradeoff** _ **:** | Não existe |
+
+	
 | **Atributo de Qualidade:** | Segurança |
 | --- | --- |
 | **Requisito de Qualidade** | Acesso aos recursos restritos deve ser controlado |
-| **Preocupação:** | Os acessos de usuários devem ser controlados de forma que cada um tenha acesso apenas aos recursos condizentes as suas credenciais. |
+| **Preocupação:** | Os acessos de usuários devem ser controlados de forma que cada um tenha acesso apenas aos recursos condizentes as suas atuações. |
+| **Cenários(s):** | Cenário 3|
+| **Ambiente:** | Sistema em operação normal |
+| **Estímulo:** | Acesso do analista de corridas para cadastro de corridas e geração de estratégia. |
+| **Mecanismo:** |  |
+| **Medida de Resposta:** | As áreas restritas do software são acessadas com restrição de tipo de usuário. |
+	
+	
+
+
+**Considerações sobre a arquitetura:**
+
+| **Riscos:** | Não existe |
+| --- | --- |
+| **Pontos de Sensibilidade:** | Não existe |
+| _ **Tradeoff** _ **:** | Não existe |
+	
+| **Atributo de Qualidade:** | Disponibilidade |
+| --- | --- |
+| **Requisito de Qualidade** | A aplicação deve estar disponível para acesso do usuário|
+| **Preocupação:** | Desde que tenha acesso a internet, o usuário deve acessar a aplicação a qualquer momento |
 | **Cenários(s):** | Cenário 4 |
 | **Ambiente:** | Sistema em operação normal |
-| **Estímulo:** | Acesso do administrador do sistema as funcionalidades de cadastro de novos produtos e exclusão de produtos. |
-| **Mecanismo:** | O servidor de aplicação (Rails) gera um _token_ de acesso para o usuário que se autentica no sistema. Este _token_ é transferido para a camada de visualização (Angular) após a autenticação e o tratamento visual das funcionalidades podem ser tratados neste nível. |
-| **Medida de Resposta:** | As áreas restritas do sistema devem ser disponibilizadas apenas quando há o acesso de usuários credenciados. |
+| **Estímulo:** | Ao utilizar a aplicação a percepção do usuário é um sistema funcionando sem interrupções|
+| **Mecanismo:** | Solicitação de uma requisição ao servidor |
+| **Medida de Resposta:** | A aplicação deve responder a solicitação do usuário imediatamente |
+
+**Considerações sobre a arquitetura:**
+
+| **Riscos:** | Não existe |
+| --- | --- |
+| **Pontos de Sensibilidade:** | Não existe |
+| _ **Tradeoff** _ **:** | Não existe |
+<br />
+	
+	
+| **Atributo de Qualidade:** | Acessibilidade |
+| --- | --- |
+| **Requisito de Qualidade** | Os ícones e telas da aplicação devem ser intuitivas para usuários considerados leigos|
+| **Preocupação:** | Os usuários precisam navegar em uma plataforma organizada |
+| **Cenários(s):** | Cenário 5 |
+| **Ambiente:** | Telas do sistema |
+| **Estímulo:** | Navegação nos principais fluxos do sistema |
+| **Mecanismo:** | Um usuário sem vícios utiliza a aplicação nos seus pricipais fluxos sem auxílio |
+| **Medida de Resposta:** | O usuário deve coseguir ingressar em um passeio e favoritar sem dificuldades |
 
 **Considerações sobre a arquitetura:**
 
