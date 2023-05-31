@@ -168,7 +168,186 @@ const RegisterPage = () => {
           as="form"
           onSubmit={onSubmit}
           isRequired
-        ></FormControl>
+        >
+          <Card>
+            <CardHeader>
+              <Heading as="h2" size="md">
+                <Highlight
+                  query="Criar"
+                  styles={{ px: "1", py: "1", bg: "gray.100" }}
+                >
+                  Criar nova Corrida
+                </Highlight>
+              </Heading>
+            </CardHeader>
+
+            <CardBody>
+              <Box w="100%" marginY="4">
+                <FormLabel>Nome da corrida</FormLabel>
+                <InputGroup>
+                  <Input
+                    type="text"
+                    {...register("name", { required: true })}
+                    placeholder="Digite o nome da corrida"
+                  />
+                </InputGroup>
+              </Box>
+              <Box w="100%" marginTop="4">
+                <FormLabel>Selecione o circuito</FormLabel>
+                <Select
+                  closeMenuOnSelect={true}
+                  components={animatedComponents}
+                  options={dataToSelectOptions({
+                    list: circuits,
+                    params: { label: "name", value: "id" },
+                  })}
+                  onChange={(option: any) => {
+                    setSelectedCircuit(option);
+                  }}
+                  value={selectedCircuit}
+                  placeholder="Selecione o circuito"
+                />
+              </Box>
+
+              <Box w="100%" marginTop="4">
+                <FormLabel>Selecione o analista</FormLabel>
+                <Select
+                  closeMenuOnSelect={true}
+                  components={animatedComponents}
+                  options={dataToSelectOptions({
+                    list: analysts,
+                    params: { label: "name", value: "id" },
+                  })}
+                  onChange={(option: any) => {
+                    setSelectedAnalyst(option);
+                  }}
+                  value={selectedAnalyst}
+                  placeholder="Selecione o analista"
+                />
+              </Box>
+
+              <Box w="100%" marginTop="4">
+                <FormLabel>Selecione o(s) Corredores</FormLabel>
+                <Select
+                  closeMenuOnSelect={false}
+                  components={animatedComponents}
+                  isMulti
+                  options={dataToSelectOptions({
+                    list: drivers,
+                    params: { label: "name", value: "id" },
+                  })}
+                  onChange={(option: any) => {
+                    setSelectedDrivers(option);
+                  }}
+                  isOptionDisabled={() => selectedDrivers.length >= 2}
+                  value={selectedDrivers}
+                  placeholder="Selecione os corredores"
+                />
+              </Box>
+
+              <Box w="100%" marginTop="4">
+                <FormLabel>Selecione o(s) Mecanicos</FormLabel>
+                <Select
+                  closeMenuOnSelect={false}
+                  components={animatedComponents}
+                  isMulti
+                  options={dataToSelectOptions({
+                    list: mechanics,
+                    params: { label: "name", value: "id" },
+                  })}
+                  onChange={(option: any) => {
+                    setSelectedMechanics(option);
+                  }}
+                  isOptionDisabled={() => selectedMechanics.length >= 2}
+                  value={selectedMechanics}
+                  placeholder="Selecione os mecanicos"
+                />
+              </Box>
+
+              <Box w="100%" marginTop="4">
+                <FormLabel>Selecione o(s) Times</FormLabel>
+                <Select
+                  closeMenuOnSelect={false}
+                  components={animatedComponents}
+                  isMulti
+                  options={dataToSelectOptions({
+                    list: teams,
+                    params: { label: "name", value: "id" },
+                  })}
+                  onChange={(option: any) => {
+                    setSelectedTimes(option);
+                  }}
+                  value={selectedTimes}
+                  placeholder="Selecione os Times"
+                  isOptionDisabled={() => selectedTimes.length >= 2}
+                />
+              </Box>
+
+              <Box w="100%" marginY="4">
+                <FormLabel>Inicio da Corrida</FormLabel>
+                <InputGroup>
+                  <InputLeftElement
+                    pointerEvents="none"
+                    children={<EmailIcon color="gray.300" />}
+                  />
+                  <Input
+                    type="datetime-local"
+                    {...register("startDate", { required: true })}
+                  />
+                </InputGroup>
+              </Box>
+
+              <Box w="100%" marginY="4">
+                <FormLabel>Fim da Corrida</FormLabel>
+                <InputGroup>
+                  <InputLeftElement
+                    pointerEvents="none"
+                    children={<EmailIcon color="gray.300" />}
+                  />
+                  <Input
+                    type="datetime-local"
+                    {...register("endDate", { required: true })}
+                  />
+                </InputGroup>
+              </Box>
+
+              <Box w="100%" marginY="4">
+                <FormLabel>Total de voltas</FormLabel>
+                <InputGroup>
+                  <Input
+                    type="number"
+                    {...register("totalLaps", { required: true })}
+                    placeholder="Digite o total de voltas da corria"
+                  />
+                </InputGroup>
+              </Box>
+            </CardBody>
+
+            <CardFooter display="flex" width="100%">
+              <Button
+                bg="#ffffff"
+                variant="ghost"
+                onClick={() => {
+                  router.push("/");
+                }}
+                width="50%"
+                mr="3"
+              >
+                Voltar
+              </Button>
+              <Button
+                bg="#000000"
+                variant="solid"
+                color="white"
+                width="50%"
+                ml="3"
+                type="submit"
+              >
+                Cadastrar
+              </Button>
+            </CardFooter>
+          </Card>
+        </FormControl>
       </Box>
     </Box>
   );
