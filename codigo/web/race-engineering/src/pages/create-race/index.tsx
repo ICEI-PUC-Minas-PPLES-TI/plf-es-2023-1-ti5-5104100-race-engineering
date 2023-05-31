@@ -169,7 +169,7 @@ const RegisterPage = () => {
           onSubmit={onSubmit}
           isRequired
         >
-          <Card>
+          {/* <Card>
             <CardHeader>
               <Heading as="h2" size="md">
                 <Highlight
@@ -182,7 +182,7 @@ const RegisterPage = () => {
             </CardHeader>
 
             <CardBody>
-              {/* <Box w="100%" marginY="4">
+              <Box w="100%" marginY="4">
                 <FormLabel>Nome da corrida</FormLabel>
                 <InputGroup>
                   <Input
@@ -207,7 +207,7 @@ const RegisterPage = () => {
                   value={selectedCircuit}
                   placeholder="Selecione o circuito"
                 />
-              </Box> */}
+              </Box>
 
               <Box w="100%" marginTop="4">
                 <FormLabel>Selecione o analista</FormLabel>
@@ -346,7 +346,7 @@ const RegisterPage = () => {
                 Cadastrar
               </Button>
             </CardFooter>
-          </Card>
+          </Card> */}
         </FormControl>
       </Box>
     </Box>
