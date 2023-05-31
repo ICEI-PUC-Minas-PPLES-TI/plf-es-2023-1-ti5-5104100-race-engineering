@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import Sidebar from "@/components/sidebar/Sidebar";
 import api from "@/services/api";
+import { useForm } from "react-hook-form";
+
 import {
   Modal,
   ModalOverlay,
@@ -22,6 +24,7 @@ import {
   Tr,
   Button,
   useToast,
+  FormErrorMessage,
 } from "@chakra-ui/react";
 
 export default function Index() {
@@ -122,6 +125,8 @@ export default function Index() {
       });
   };
 
+  const { register, handleSubmit, formState: { errors } } = useForm();
+
   return (
     <Box width="100%" padding="4 100px">
       <Heading as="h1" size="2xl" textAlign="center" marginTop="2%">
@@ -212,9 +217,11 @@ export default function Index() {
           <ModalContent>
             <ModalHeader>Editar Time</ModalHeader>
             <ModalBody>
-              <FormControl>
+              <FormControl isRequired isInvalid={!!errors.name}>
                 <FormLabel>Nome</FormLabel>
                 <Input
+                  type="text"
+                  {...register("name", { required: true })}
                   value={editedRace.name}
                   onChange={(e) =>
                     setEditedRace((prevRace) => ({
@@ -223,11 +230,15 @@ export default function Index() {
                     }))
                   }
                 />
+                {errors.name && (
+                  <FormErrorMessage>O nome da corrida é obrigatório</FormErrorMessage>
+                )}
               </FormControl>
-              <FormControl mt={4}>
+              <FormControl mt={4} isRequired isInvalid={!!errors.startDate}>
                 <FormLabel>Data de Início</FormLabel>
                 <Input
                   type="datetime-local"
+                  {...register("startDate", { required: true })}
                   value={editedRace.startDate}
                   onChange={(e) =>
                     setEditedRace((prevRace) => ({
@@ -236,11 +247,15 @@ export default function Index() {
                     }))
                   }
                 />
+                {errors.startDate && (
+                  <FormErrorMessage>A data de início é obrigatória</FormErrorMessage>
+                )}
               </FormControl>
-              <FormControl mt={4}>
+              <FormControl mt={4} isRequired isInvalid={!!errors.endDate}>
                 <FormLabel>Data de Término</FormLabel>
                 <Input
                   type="datetime-local"
+                  {...register("endDate", { required: true })}
                   value={editedRace.endDate}
                   onChange={(e) =>
                     setEditedRace((prevRace) => ({
@@ -249,11 +264,15 @@ export default function Index() {
                     }))
                   }
                 />
+                {errors.endDate && (
+                  <FormErrorMessage>A data de término é obrigatória</FormErrorMessage>
+                )}
               </FormControl>
-              <FormControl mt={4}>
+              <FormControl mt={4} isRequired isInvalid={!!errors.totalLaps}>
                 <FormLabel>Total de Voltas</FormLabel>
                 <Input
                   type="number"
+                  {...register("totalLaps", { required: true })}
                   value={editedRace.totalLaps}
                   onChange={(e) =>
                     setEditedRace((prevRace) => ({
@@ -262,17 +281,20 @@ export default function Index() {
                     }))
                   }
                 />
+                {errors.totalLaps && (
+                  <FormErrorMessage>O total de voltas é obrigatório</FormErrorMessage>
+                )}
               </FormControl>
-
             </ModalBody>
             <ModalFooter>
-              <Button colorScheme="blue" mr={3} onClick={handleUpdateRace}>
+              <Button colorScheme="blue" mr={3} onClick={handleSubmit(handleUpdateRace)}>
                 Atualizar
               </Button>
               <Button onClick={() => setEditModalOpen(false)}>Cancelar</Button>
             </ModalFooter>
           </ModalContent>
         </Modal>
+
 
       </Box>
     </Box >
