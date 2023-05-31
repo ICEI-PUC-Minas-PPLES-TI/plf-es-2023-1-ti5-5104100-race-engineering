@@ -1,10 +1,17 @@
-import Head from "next/head";
 import { useEffect, useState } from "react";
-
 import Sidebar from "@/components/sidebar/Sidebar";
 import api from "@/services/api";
-import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, Heading } from "@chakra-ui/react";
 import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  Heading,
+  FormControl,
+  FormLabel,
+  Input,
   Box,
   Table,
   TableContainer,
@@ -19,10 +26,17 @@ import {
 
 export default function Index() {
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
-  const [races, setRaces] = useState([]);
+  const [races, setRaces] = useState<any[]>([]); // Provide type annotation for races
   const [selectedRaceId, setSelectedRaceId] = useState<number | null>(null);
-
-  const toast = useToast()
+  const [editedRace, setEditedRace] = useState({
+    id: "",
+    name: "",
+    startDate: "",
+    endDate: "",
+    totalLaps: 0,
+  });
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  const toast = useToast();
 
   useEffect(() => {
     (async () => {
@@ -58,12 +72,62 @@ export default function Index() {
       });
   };
 
+  const handleEditRace = (race: any) => {
+    setEditedRace((prevRace) => ({ ...prevRace, ...race }));
+    setEditModalOpen(true);
+  };
+
+  const handleUpdateRace = () => {
+    const { id, name, startDate, endDate, totalLaps } = editedRace;
+    api
+      .patch(`/races/${id}`, { name, startDate, endDate, totalLaps })
+      .then(() => {
+        setRaces((prevRaces) =>
+          prevRaces.map((race: any) => {
+            if (race.id === id) {
+              return { ...race, name, startDate, endDate, totalLaps };
+            }
+            return race;
+          })
+        );
+        toast({
+          title: "Corrida atualizada com sucesso",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+          position: "top-right",
+        });
+        setEditModalOpen(false);
+      })
+      .catch((err) => {
+        if (err.response && err.response.status === 404) {
+
+          toast({
+            title: "Time não encontrado",
+            status: "error",
+            duration: 3000,
+            isClosable: true,
+            position: "top-right",
+          });
+        } else {
+          toast({
+            title: "Erro ao atualizar time, tente novamente",
+            status: "error",
+            duration: 3000,
+            isClosable: true,
+            position: "top-right",
+          });
+        }
+        console.error(err); // Opcional: exibe o erro no console para fins de depuração
+      });
+  };
+
   return (
     <Box width="100%" padding="4 100px">
       <Heading as="h1" size="2xl" textAlign="center" marginTop="2%">
         Lista de Corridas
       </Heading>
-  
+
       <Modal key="confirmation-modal" isOpen={isConfirmationModalOpen} onClose={() => setIsConfirmationModalOpen(false)}>
         <ModalOverlay />
         <ModalContent>
@@ -82,7 +146,7 @@ export default function Index() {
           </ModalFooter>
         </ModalContent>
       </Modal>
-  
+
       <Box width="100%">
         <Box
           width="100%"
@@ -94,7 +158,7 @@ export default function Index() {
           <Box w="2vw" className="sidebar-container" style={{ position: "fixed", top: 0, left: 0, bottom: 0 }}>
             <Sidebar />
           </Box>
-  
+
           <Box width="100%" padding="4%">
             <TableContainer maxW="70%" margin="auto">
               <Table size="sm" variant="striped" colorScheme="messenger">
@@ -105,6 +169,7 @@ export default function Index() {
                     <Th width="20%" textAlign="center">Start Date</Th>
                     <Th width="20%" textAlign="center">End Date</Th>
                     <Th width="15%" textAlign="center">Total Laps</Th>
+                    <Th width="15%" textAlign="center">Edit</Th>
                     <Th width="15%" textAlign="center">Delete</Th>
                   </Tr>
                 </Thead>
@@ -116,6 +181,11 @@ export default function Index() {
                       <Td textAlign="center">{new Date(race.startDate).toLocaleString()}</Td>
                       <Td textAlign="center">{new Date(race.endDate).toLocaleString()}</Td>
                       <Td textAlign="center">{race.totalLaps}</Td>
+                      <Td textAlign="center">
+                        <Button colorScheme="yellow" size="sm" variant="ghost" onClick={() => handleEditRace(race)}>
+                          Editar
+                        </Button>
+                      </Td>
                       <Td textAlign="center">
                         <Button
                           colorScheme="red"
@@ -136,10 +206,75 @@ export default function Index() {
             </TableContainer>
           </Box>
         </Box>
+
+        <Modal isOpen={editModalOpen} onClose={() => setEditModalOpen(false)}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Editar Time</ModalHeader>
+            <ModalBody>
+              <FormControl>
+                <FormLabel>Nome</FormLabel>
+                <Input
+                  value={editedRace.name}
+                  onChange={(e) =>
+                    setEditedRace((prevRace) => ({
+                      ...prevRace,
+                      name: e.target.value,
+                    }))
+                  }
+                />
+              </FormControl>
+              <FormControl mt={4}>
+                <FormLabel>Data de Início</FormLabel>
+                <Input
+                  type="datetime-local"
+                  value={editedRace.startDate}
+                  onChange={(e) =>
+                    setEditedRace((prevRace) => ({
+                      ...prevRace,
+                      startDate: e.target.value,
+                    }))
+                  }
+                />
+              </FormControl>
+              <FormControl mt={4}>
+                <FormLabel>Data de Término</FormLabel>
+                <Input
+                  type="datetime-local"
+                  value={editedRace.endDate}
+                  onChange={(e) =>
+                    setEditedRace((prevRace) => ({
+                      ...prevRace,
+                      endDate: e.target.value,
+                    }))
+                  }
+                />
+              </FormControl>
+              <FormControl mt={4}>
+                <FormLabel>Total de Voltas</FormLabel>
+                <Input
+                  type="number"
+                  value={editedRace.totalLaps}
+                  onChange={(e) =>
+                    setEditedRace((prevRace) => ({
+                      ...prevRace,
+                      totalLaps: parseInt(e.target.value),
+                    }))
+                  }
+                />
+              </FormControl>
+
+            </ModalBody>
+            <ModalFooter>
+              <Button colorScheme="blue" mr={3} onClick={handleUpdateRace}>
+                Atualizar
+              </Button>
+              <Button onClick={() => setEditModalOpen(false)}>Cancelar</Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+
       </Box>
-
     </Box >
-
-
   );
 }

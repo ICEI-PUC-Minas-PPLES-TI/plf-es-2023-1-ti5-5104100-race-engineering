@@ -141,29 +141,18 @@ _Esta seção descreve os requisitos comtemplados nesta descrição arquitetural
 | --- | --- | --- | --- |
 | RF001 | O sistema deve permitir que o usuário realize o cadastro na plataforma Web | Obrigatório | ✅
 | RF002 | O sistema deve permitir que o usuário acesse a plataforma Web utilizando o e-mail e senha cadastrados anteriormente | Obrigatório | ✅
-| RF003 | O sistema deve permitir que o usuário leia e confirme os termos de uso após acessar a plataforma Web | Opcional
 | RF004 | O sistema deve permitir que o usuário cadastre uma corrida após acessar a plataforma Web | Obrigatório | ✅
 | RF005 | O sistema deve permitir que o usuário cadastre uma corrida com todas as informações necessárias após acessar a plataforma Web | Obrigatório | ✅
 | RF006 | O sistema deve permitir que o usuário visualize as corridas e os locais registrados após acessar a plataforma Web | Obrigatório | ✅
-| RF007 | O sistema deve permitir que o usuário altere ou complemente suas informações de perfil após acessar a plataforma Web | Opcional
-| RF008 | O sistema deve permitir que o usuário marque uma corrida como principal após acessar ao acessar a estratégia na plataforma Web  | Obrigatório
-| RF009 | O sistema deve permitir que o usuário associe pilotos e mecânicos a uma corrida após acessar a plataforma Web | Obrigatório | ✅
-| RF010 | O sistema deve permitir que o usuário pesquise uma corrida registrada após acessar a plataforma Web | Opcional
-| RF011 | O sistema deve permitir que o usuário faça o login no aplicativo | Obrigatório | ✅
-| RF012 | O sistema deve permitir que o usuário acesse o aplicativo utilizando o e-mail e senha cadastrados anteriormente | Obrigatório | ✅
-| RF013 | O sistema deve permitir que o usuário altere sua senha de registro após acessar o aplicativo | Obrigatório
-| RF014 | O sistema deve permitir que o usuário visualize as corridas associadas a ele após acessar o aplicativo | Obrigatório | ✅
-| RF015 | O sistema deve permitir que o usuário altere ou complemente suas informações de perfil após acessar o aplicativo | Opcional
-| RF016 | O sistema deve permitir que o usuário marque uma corrida como principal após acessar o aplicativo | Opcional
-| RF017 | O sistema deve permitir que o usuário aplique filtros e pesquise uma determinada corrida após acessar a plataforma Web | Opcional
-| RF018 | O sistema deve permitir que o usuário receba notificações após acessar a plataforma Web | Opcional
-| RF019 | O sistema deve permitir que o usuário troque mensagens através do chat após acessar o aplicativo móvel | Obrigatório|
-| RF020 | O sistema deve permitir que o usuário visualize informações climáticas após acessar a plataforma Web | Obrigatório | ✅
-| RF021 | O sistema deve permitir que o usuário insira dados informativos sobre a corrida após acessar a plataforma Web | Obrigatório | ✅
-| RF022 | O sistema deve permitir que o usuário salve os dados da corrida após acessar a plataforma Web | Obrigatório | ✅
-| RF023 | O sistema deve permitir que o usuário envie mensagens através do chat após acessar a plataforma Web | Essencial
-| RF024 | O sistema deve permitir que o mecânico consulte informações sobre os pneus durante a corrida após acessar o aplicativo | Essencial
-| RF025 | O sistema deve permitir que o piloto consulte informações sobre o número de voltas após acessar o aplicativo | Essencial
+| RF007 | O sistema deve permitir que o usuário associe pilotos e mecânicos a uma corrida após acessar a plataforma Web | Obrigatório | ✅
+| RF008 | O sistema deve permitir que o usuário faça o login no aplicativo | Obrigatório | ✅
+| RF009 | O sistema deve permitir que o usuário acesse o aplicativo utilizando o e-mail e senha cadastrados anteriormente | Obrigatório | ✅
+| RF010 | O sistema deve permitir que o usuário visualize as corridas associadas a ele após acessar o aplicativo | Obrigatório | ✅
+| RF011 | O sistema deve permitir que o usuário visualize informações climáticas após acessar a plataforma Web | Obrigatório | ✅
+| RF012 | O sistema deve permitir que o usuário insira dados informativos sobre a corrida após acessar a plataforma Web | Obrigatório | ✅
+| RF013 | O sistema deve permitir que o usuário salve os dados da corrida após acessar a plataforma Web | Obrigatório | ✅
+| RF014 | O sistema deve permitir que o mecânico consulte informações sobre os pneus durante a corrida após acessar o aplicativo | Essencial | ⏳
+| RF015 | O sistema deve permitir que o piloto consulte informações sobre o número de voltas após acessar o aplicativo | Essencial |  ✅
 
 
 
@@ -175,18 +164,12 @@ Obs: acrescente mais linhas, se necessário.
 | **ID** | **Descrição** |
 | --- | --- |
 | RNF001 | O tempo de resposta das consultas deve ser inferior a 5 segundos|
-| RNF002 | O sistema deve possuir armazenamento local no mobile com o SQLite|
-| RNF003 | O software deve ser compátivel com os sistemas Android e IOS|
-| RNF004 | A versão web da aplicação deve operar corretamente nos seguintes navegadores: Google Chrome, Edge e Firefox|
-| RNF005 | O usuário deve estar autenticado com 3 segundos|
-| RNF006 | A plataforma só pode utilizar os dados do usuário mediante autorização|
-| RNF007 | O sistema deve estar disponível para uso durante pelo menos 99,5% do tempo em um período de 30 dias consecutivos, excluindo períodos de manutenção programada.
-| RNF008 | O serviço de chat do software terá uma disponibilidade de 999/1.000
-| RNF009 | O software deve fornecer taxa de ocorrência de falha de 2/1.000
-| RNF010 | O software deve fazer backup de dados com tamanho maximo de 10GB, a cada 24 horas
-| RNF011 | O software deve processar no mínimo 6 transações por segundo
-| RNF012 | Apenas pessoas que tenham sido autenticadas por um componente de controle acesso e autenticação poderão visualizar informações
-| RNF013 | Todas as comunicações externas entre o servidor de dados do software e usuários devem ser criptografadas
+| RNF002 | O software deve ser compátivel com os sistemas Android e IOS|
+| RNF003 | A versão web da aplicação deve operar corretamente nos seguintes navegadores: Google Chrome, Edge e Firefox|
+| RNF004 | O usuário deve estar autentificado e relacionado a um tipo para vizualizar informações e realizar ações.|
+| RNF005 | A aplicação deve estar disponível quando necessária para utilização .|
+| RNF006 | Os ícones e símbologias devem ser intuitivos também para pessoas que não atuam com corridas .|
+
 
 
 ## 2.3. Restrições Arquiteturais
@@ -242,7 +225,6 @@ Será utilizado o PostgreSQL como banco de dados devido à sua robustez, flexibi
 3. O sistema deve permitir a consulta de dados da corrida
 4. O sistema deve permitir o cadastro de dados da corrida
 5. O sistema deve fazer cálculos baseados nos dados da corrida e gerar informações baseadas no dados
-6. O sistema deve prover um chat para comunicação dos usuário
 
 Obs: a quantidade e o escopo das funcionalidades deve ser negociado com os professores/orientadores do trabalho.
 
@@ -292,13 +274,7 @@ Obs: a quantidade e o escopo das funcionalidades deve ser negociado com os profe
 | **Requisitos associados** | RF005                                               |
 | **Fluxo Principal**       | Fazer login no sistema e consultar o clima de uma localidade|
 
-#### UC06 – Troca de mensagens por chat
-| **Descrição**             | Eu como usuário quero poder trocar mensagens com outros usuários via chat    |
-| ------------------------- | ---------------------------------------------------- |
-| **Atores**                | Usuário                                             |
-| **Prioridade**            | Baixa                                                 |
-| **Requisitos associados** | RF018                                              |
-| **Fluxo Principal**       | Fazer login no sistema e enviar/receber mensagens via chat|
+
 
 ### Histórias de usuário
 - Como mecânico quero poder visualizar dados da corrida
@@ -306,7 +282,6 @@ Obs: a quantidade e o escopo das funcionalidades deve ser negociado com os profe
 - Como analista quero poder visualizar o tempo de cada volta da corrida
 - Como analista quero poder cadastrar dados de um corrida
 - Como analista quero poder visualizar o clima de uma localidade para prever mudanças no planejamento da corrida
-- Como usuário quero poder trocar mensagens com outros usuários por chat
 
 ## 3.2. Visão Lógica
 
@@ -365,29 +340,104 @@ _Esta seção descreve a avaliação da arquitetura apresentada, baseada no mét
 
 ## 4.1. Cenários
 
-_Apresente os cenários de testes utilizados na realização dos testes da sua aplicação. Escolha cenários de testes que demonstrem os requisitos não funcionais sendo satisfeitos. Os requisitos a seguir são apenas exemplos de possíveis requisitos, devendo ser revistos, adequados a cada projeto e complementados de forma a terem uma especificação completa e auto-explicativa._
+**Cenário 1 - Compatibilidade:** 
 
-**Cenário 1 - Acessibilidade:** Suspendisse consequat consectetur velit. Sed sem risus, dictum dictum facilisis vitae, commodo quis leo. Vivamus nulla sem, cursus a mollis quis, interdum at nulla. Nullam dictum congue mauris. Praesent nec nisi hendrerit, ullamcorper tortor non, rutrum sem. In non lectus tortor. Nulla vel tincidunt eros.
+**Cenário 2 - Adaptabilidade:**
 
-**Cenário 2 - Interoperabilidade:** Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce ut accumsan erat. Pellentesque in enim tempus, iaculis sem in, semper arcu.
+**Cenário 3 - Segurança:** 
 
-**Cenário 3 - Manutenibilidade:** Phasellus magna tellus, consectetur quis scelerisque eget, ultricies eu ligula. Sed rhoncus fermentum nisi, a ullamcorper leo fringilla id. Nulla lacinia sem vel magna ornare, non tincidunt ipsum rhoncus. Nam euismod semper ante id tristique. Mauris vel elit augue.
+**Cenário 4 - Disponibilidade:** 
 
-**Cenário 4 - Segurança:** Suspendisse consectetur porta tortor non convallis. Sed lobortis erat sed dignissim dignissim. Nunc eleifend elit et aliquet imperdiet. Ut eu quam at lacus tincidunt fringilla eget maximus metus. Praesent finibus, sapien eget molestie porta, neque turpis congue risus, vel porttitor sapien tortor ac nulla. Aliquam erat volutpat.
+**Cenário 5 - Acessibilidade:**
+
 
 ## 4.2. Avaliação
 
 _Apresente as medidas registradas na coleta de dados. O que não for possível quantificar apresente uma justificativa baseada em evidências qualitativas que suportam o atendimento do requisito não-funcional. Apresente uma avaliação geral da arquitetura indicando os pontos fortes e as limitações da arquitetura proposta._
 
+| **Atributo de Qualidade:** | Compatibilidade|
+| --- | --- |
+| **Requisito de Qualidade** | Compatibilidade as plataformas Android e IOS |
+| **Preocupação:** | A instalação do sistema deve ser suportada nos dispositivos móveis com sistemas Android e IOS |
+| **Cenários(s):** | Cenário 1 |
+| **Ambiente:** | Sistemas operacionais Android e IOS|
+| **Estímulo:** | Emulação da aplicação nos ambientes requiridos |
+| **Mecanismo:** |  |
+| **Medida de Resposta:** |  |
+
+**Considerações sobre a arquitetura:**
+
+| **Riscos:** | Não existe |
+| --- | --- |
+| **Pontos de Sensibilidade:** | Não existe |
+| _ **Tradeoff** _ **:** | Não existe |
+	
+	
+| **Atributo de Qualidade:** | Adaptabilidade |
+| --- | --- |
+| **Requisito de Qualidade** | O sistema deve estar disponível nas modalidades mobile e web |
+| **Preocupação:** | O sistema deve ser acessível nos navegadores Google Chrome, Edge e Firefox |
+| **Cenários(s):** | Cenário 2 |
+| **Ambiente:** | Plataforma Mobile e Web |
+| **Estímulo:** | Acessar o sistema em diferentes navegadores |
+| **Mecanismo:** | Cadastro corridas na plataforma web e visualização dessa informação no web e no mobile. |
+| **Medida de Resposta:** | A corrida  cadastrada no Web pode ser visualizada no mobile  |
+
+**Considerações sobre a arquitetura:**
+
+| **Riscos:** | Não existe |
+| --- | --- |
+| **Pontos de Sensibilidade:** | Não existe |
+| _ **Tradeoff** _ **:** | Não existe |
+
+	
 | **Atributo de Qualidade:** | Segurança |
 | --- | --- |
 | **Requisito de Qualidade** | Acesso aos recursos restritos deve ser controlado |
-| **Preocupação:** | Os acessos de usuários devem ser controlados de forma que cada um tenha acesso apenas aos recursos condizentes as suas credenciais. |
+| **Preocupação:** | Os acessos de usuários devem ser controlados de forma que cada um tenha acesso apenas aos recursos condizentes as suas atuações. |
+| **Cenários(s):** | Cenário 3|
+| **Ambiente:** | Plataforma web e mobile |
+| **Estímulo:** | Acesso do analista de corridas para cadastro de corridas. |
+| **Mecanismo:** |  |
+| **Medida de Resposta:** |  |
+	
+
+**Considerações sobre a arquitetura:**
+
+| **Riscos:** | Não existe |
+| --- | --- |
+| **Pontos de Sensibilidade:** | Não existe |
+| _ **Tradeoff** _ **:** | Não existe |
+	
+	
+| **Atributo de Qualidade:** | Disponibilidade |
+| --- | --- |
+| **Requisito de Qualidade** | A aplicação deve estar disponível para acesso do usuário|
+| **Preocupação:** | Desde que tenha acesso a internet, o usuário deve acessar a aplicação a qualquer momento |
 | **Cenários(s):** | Cenário 4 |
 | **Ambiente:** | Sistema em operação normal |
-| **Estímulo:** | Acesso do administrador do sistema as funcionalidades de cadastro de novos produtos e exclusão de produtos. |
-| **Mecanismo:** | O servidor de aplicação (Rails) gera um _token_ de acesso para o usuário que se autentica no sistema. Este _token_ é transferido para a camada de visualização (Angular) após a autenticação e o tratamento visual das funcionalidades podem ser tratados neste nível. |
-| **Medida de Resposta:** | As áreas restritas do sistema devem ser disponibilizadas apenas quando há o acesso de usuários credenciados. |
+| **Estímulo:** | Ao utilizar a aplicação a percepção do usuário é um sistema funcionando sem interrupções|
+| **Mecanismo:** | Solicitação de uma requisição ao servidor |
+| **Medida de Resposta:** | A aplicação deve responder a solicitação do usuário|
+
+**Considerações sobre a arquitetura:**
+
+| **Riscos:** | Não existe |
+| --- | --- |
+| **Pontos de Sensibilidade:** | Não existe |
+| _ **Tradeoff** _ **:** | Não existe |
+<br />
+	
+	
+| **Atributo de Qualidade:** | Acessibilidade |
+| --- | --- |
+| **Requisito de Qualidade** | Os ícones e telas da aplicação devem ser intuitivos|
+| **Preocupação:** | Os usuários precisam navegar em uma plataforma organizada |
+| **Cenários(s):** | Cenário 5 |
+| **Ambiente:** | Telas do sistema |
+| **Estímulo:** | Navegação nos principais fluxos do sistema |
+| **Mecanismo:** | |
+| **Medida de Resposta:** |  |
 
 **Considerações sobre a arquitetura:**
 

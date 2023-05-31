@@ -8,176 +8,153 @@ import {
   CardFooter,
   CardHeader,
   Heading,
-  Highlight,
-  SimpleGrid,
   Text,
 } from "@chakra-ui/react";
 
 export default function Home() {
   const router = useRouter();
 
-  // useEffect(() => {
-  //   api.get("/users/drivers").then((r) => {
-  //     console.log(r);
-  //   });
-  // });
+  const cards = [
+    {
+      id: 0,
+      title: "Corridas",
+      description:
+        "Gerencie corridas com facilidade: liste, crie, edite ou remova corridas conforme necessário.",
+      backgroundImage:
+        "https://images.unsplash.com/photo-1611651338412-8403fa6e3599?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80",
+      secondaryButton: {
+        label: "Listar",
+        action: () => {
+          router.push("/list-race");
+        },
+      },
+      primaryButton: {
+        label: "Cadastrar",
+        action: () => {
+          router.push("/create-race");
+        },
+      },
+    },
+    {
+      id: 0,
+      title: "Circuitos",
+      description:
+        "Gerencie os circuitos com facilidade: liste, crie, edite ou remova corridas conforme necessário.",
+      backgroundImage:
+        "https://images.unsplash.com/photo-1543796076-c8a565501995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80",
+      secondaryButton: {
+        label: "Listar",
+        action: () => {
+          router.push("/list-circuit");
+        },
+      },
+      primaryButton: {
+        label: "Cadastrar",
+        action: () => {
+          router.push("/create-circuit");
+        },
+      },
+    },
+    {
+      id: 0,
+      title: "Times",
+      description:
+        "Gerencie os times com facilidade: liste, crie, edite ou remova times conforme necessário.",
+      backgroundImage:
+        "https://images.unsplash.com/photo-1642767226923-5d9abcea019a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+      secondaryButton: {
+        label: "Listar",
+        action: () => {
+          router.push("/list-team");
+        },
+      },
+      primaryButton: {
+        label: "Cadastrar",
+        action: () => {
+          router.push("/create-team");
+        },
+      },
+    },
+  ];
 
   return (
     <Box height="100vh" width="100%" padding="0 100px">
-      <Heading as="h1" size="2xl" textAlign="center" marginTop="3%" marginBottom="5%">
+      <Heading
+        as="h1"
+        size="2xl"
+        textAlign="center"
+        marginTop="3%"
+        marginBottom="5%"
+      >
         Gerenciamento Porsche Cup
       </Heading>
 
-      <Box padding="0 20px" margin="0 auto">
-        <SimpleGrid
-          spacing={10}
-          templateColumns="repeat(3, 1fr)"
-          justifyContent="center"
-          alignItems="center"
-        >
+      <Box
+        padding="0 20px"
+        margin="0 auto"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        flexDirection="column"
+      >
+        {cards.map((card) => (
           <Card
             align="center"
-            backgroundImage="./images/gradient-black.png"
+            backgroundImage={card.backgroundImage}
+            backgroundPosition="center center"
+            backgroundSize="cover"
             maxHeight="250px"
-            width="100%"
+            key={card.id}
+            my="32px"
+            maxWidth="500px"
+            width="500px"
           >
-            <CardHeader>
+            <Box
+              position="absolute"
+              top="0"
+              bottom="0"
+              left="0"
+              right="0"
+              background="rgba(0,0,0,0.7)"
+              borderRadius="8px"
+            />
+            <CardHeader zIndex="1">
               <Heading color="#ffffff" size="md">
-                Corridas
+                {card.title}
               </Heading>
             </CardHeader>
-            <CardBody>
+            <CardBody zIndex="1">
               <Text
                 color="#ffffff"
                 align="center"
                 lineHeight="normal"
                 fontSize={17}
               >
-                Gerencie corridas com facilidade: liste, crie, edite ou remova
-                corridas conforme necessário.
+                {card.description}
               </Text>
             </CardBody>
-            <CardFooter w="100%">
+            <CardFooter w="100%" zIndex="1">
               <Button
                 variant="solid"
-                onClick={() => {
-                  router.push("/list-race");
-                }}
+                onClick={card.secondaryButton.action}
                 colorScheme="whiteAlpha"
                 w="50%"
                 mr="2"
               >
-                Listar
+                {card.secondaryButton.label}
               </Button>
               <Button
                 variant="solid"
-                onClick={() => {
-                  // router.push("/register-user");
-                  router.push("/register-race");
-                }}
+                onClick={card.primaryButton.action}
                 colorScheme="whiteAlpha"
                 w="50%"
                 ml="2"
               >
-                Cadastrar
+                {card.primaryButton.label}
               </Button>
             </CardFooter>
           </Card>
-          <Card
-            align="center"
-            backgroundImage="./images/gradient-red.png"
-            maxHeight="250px"
-            width="100%"
-          >
-            <CardHeader>
-              <Heading color="#ffffff" size="md">
-                Circuitos
-              </Heading>
-            </CardHeader>
-            <CardBody>
-              <Text
-                color="#ffffff"
-                align="center"
-                lineHeight="normal"
-                fontSize={17}
-              >
-                Gerencie os circuitos com facilidade: liste, crie, edite ou remova
-                corridas conforme necessário.
-              </Text>
-            </CardBody>
-            <CardFooter w="100%">
-              <Button
-                variant="solid"
-                onClick={() => {
-                  router.push("/list-circuit");
-                }}
-                colorScheme="whiteAlpha"
-                w="50%"
-                mr="2"
-              >
-                Listar
-              </Button>
-              <Button
-                variant="solid"
-                onClick={() => {
-                  router.push("/create-circuit");
-                }}
-                colorScheme="whiteAlpha"
-                w="50%"
-                ml="2"
-              >
-                Cadastrar
-              </Button>
-            </CardFooter>
-          </Card>
-          <Card
-            align="center"
-            backgroundImage="./images/gradient-green.png"
-            maxHeight="250px"
-            width="100%"
-          >
-            <CardHeader>
-              <Heading color="#ffffff" size="md">
-                Times
-              </Heading>
-            </CardHeader>
-            <CardBody>
-              <Text
-                color="#ffffff"
-                align="center"
-                lineHeight="normal"
-                fontSize={17}
-              >
-                Gerencie os times com facilidade: liste, crie, edite ou remova
-                times conforme necessário.
-              </Text>
-            </CardBody>
-            <CardFooter w="100%">
-              <Button
-                variant="solid"
-                onClick={() => {
-                  router.push("/list-team");
-                }}
-                colorScheme="whiteAlpha"
-                w="50%"
-                mr="2"
-              >
-                Listar
-              </Button>
-              <Button
-                variant="solid"
-                onClick={() => {
-                  router.push("/create-team");
-                }}
-                colorScheme="whiteAlpha"
-                w="50%"
-                ml="2"
-              >
-                Cadastrar
-              </Button>
-            </CardFooter>
-          </Card>
-        </SimpleGrid>
+        ))}
       </Box>
     </Box>
   );

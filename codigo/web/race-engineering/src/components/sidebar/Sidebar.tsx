@@ -1,16 +1,30 @@
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useState } from 'react';
-import { RiChat4Fill, RiHammerFill, RiHome2Fill, RiThunderstormsFill } from 'react-icons/ri';
-
-import { useAuth } from '@/context/AuthContext';
-import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useState } from "react";
 import {
-    Box, Flex, IconButton, Menu, MenuButton, MenuDivider, MenuGroup, MenuItem, MenuList, Stack,
-    useDisclosure
-} from '@chakra-ui/react';
+  RiChat4Fill,
+  RiHammerFill,
+  RiHome2Fill,
+  RiThunderstormsFill,
+} from "react-icons/ri";
 
-import { EditUserModal } from '../EditUserModal/EditUserModal';
+import { useAuth } from "@/context/AuthContext";
+import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
+import {
+  Box,
+  Flex,
+  IconButton,
+  Menu,
+  MenuButton,
+  MenuDivider,
+  MenuGroup,
+  MenuItem,
+  MenuList,
+  Stack,
+  useDisclosure,
+} from "@chakra-ui/react";
+
+import { EditUserModal } from "../EditUserModal/EditUserModal";
 
 const Sidebar = () => {
   const router = useRouter();

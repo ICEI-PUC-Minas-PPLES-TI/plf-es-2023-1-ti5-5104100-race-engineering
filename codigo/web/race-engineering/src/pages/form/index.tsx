@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import Select from "react-select";
+import makeAnimated from "react-select/animated";
 
 import Timer from "@/pages/timer";
 import api from "@/services/api";
@@ -16,9 +18,6 @@ import {
   HStack,
   Input,
   InputGroup,
-  InputRightElement,
-  Link,
-  Select,
   Stack,
   Text,
   useColorModeValue,
@@ -36,25 +35,34 @@ type Estrategy = {
 export default function SignupCard({
   raceId,
   onAfterSubmit,
+  races,
 }: {
   raceId: String;
   onAfterSubmit: () => {};
+  races: [];
 }) {
   const [showPassword, setShowPassword] = useState(false);
   const [selectedTire, setSelectedTire] = useState("");
+  const [drivers, setDrivers] = useState([]);
   const { register, handleSubmit } = useForm<FormData>();
   const handleChange = (event: any) => {
     setSelectedTire(event.target.value);
   };
+  const animatedComponents = makeAnimated();
+  const [selectedDrivers, setSelectedDrivers] = useState([]);
 
   const toast = useToast();
-  const router = useRouter();
+
+  const fetchDrivers = async () => {
+    const { data } = await api.get("/drivers");
+    setDrivers(data);
+  };
 
   const onSubmit = handleSubmit((data, event) => {
     api
-      .post(`/laps/race/3`, {
-        lapNumber: 4,
-        driverId: 4,
+      .post(`/races/laps/${Number(15)}`, {
+        lapNumber: 1,
+        driverId: 18,
         lapTime: "00:01:20.345",
       }) //verificar se é essa rota
       .then(() => {
@@ -72,128 +80,97 @@ export default function SignupCard({
       });
   });
 
+  useEffect(() => {
+    fetchDrivers();
+  }, [raceId]);
+
   return (
-    <Flex
-      padding="10px"
-      margin="20px"
-      bg={useColorModeValue("gray.50", "gray.800")}
-      flexDirection="row"
+    <Box
+      rounded={"lg"}
+      bg={useColorModeValue("white", "gray.700")}
+      p={2}
+      width="100%"
     >
-      <Stack>
-        <Box
-          rounded={"lg"}
-          bg={useColorModeValue("white", "gray.700")}
-          boxShadow={"lg"}
-          p={2}
-        >
-          <Stack spacing={3}>
-            <HStack>
-              <FormControl as="form" onSubmit={onSubmit}>
-                <Box>
-                  {/* <FormControl id="tire"> */}
-                  <FormLabel>Selecionar o Pneu</FormLabel>
-                  <InputGroup id="tire">
-                    <Select
-                      value={selectedTire}
-                      {...register("tire")} //n é erro
-                      onChange={handleChange}
-                    >
-                      {/* //deve ser dry e wet  OBS ELE NAO VEM DO BACKEND*/}
-                      <option hidden>Tipo de Pneu</option>
-                      <option label="dry" id="dry">
-                        Dry
-                      </option>
-                      <option label="wet" id="wet">
-                        Wet
-                      </option>
-                    </Select>
-                  </InputGroup>
-                  {/* <FormLabel>Tipo Pneu</FormLabel>
-                  <Input type="text" /> */}
-                  {/* </FormControl> */}
+      <Stack spacing={3}>
+        <HStack>
+          <FormControl as="form" onSubmit={onSubmit}>
+            <Box mt="16px">
+              <FormLabel>Selecionar o Pneu</FormLabel>
+              <InputGroup id="tire">
+                <Box w="100%">
+                  <Select
+                    value={selectedTire}
+                    {...register("tire")}
+                    onChange={handleChange}
+                    placeholder="Selecione o tipo de pneu"
+                  >
+                    <option hidden>Tipo de Pneu</option>
+                    <option label="dry" id="dry">
+                      Dry
+                    </option>
+                    <option label="wet" id="wet">
+                      Wet
+                    </option>
+                  </Select>
                 </Box>
+              </InputGroup>
+            </Box>
 
-                <Box>
-                  {/* <FormControl id="tire"> */}
-                  <FormLabel>Selecionar o Pneu</FormLabel>
-                  <InputGroup id="drivers">
-                    <Select
-                      value={selectedTire}
-                      {...register("drivers")} //n é erro
-                      onChange={handleChange}
-                    >
-                      {/*Tem que ver no back mas é temporario*/}
-                      <option hidden>Selecione o Piloto</option>
-                      <option label="piloto1" id="piloto1">
-                        piloto1
-                      </option>
-                      <option label="piloto2" id="piloto2">
-                        piloto2
-                      </option>
-                    </Select>
-                  </InputGroup>
-                  {/* </FormControl> */}
-                  {/* <FormControl id="piloto">
-                  <FormLabel>Piloto</FormLabel>
-                  <Input type="text" />
-                </FormControl> */}
+            <Box mt="16px">
+              <FormLabel>Selecionar o Pneu</FormLabel>
+              <InputGroup id="drivers">
+                <Box w="100%">
+                  <Select
+                    closeMenuOnSelect={false}
+                    components={animatedComponents}
+                    options={dataToSelectOptions({
+                      list: drivers,
+                      params: { label: "name", value: "id" },
+                    })}
+                    onChange={(option: any) => {
+                      setSelectedDrivers(option);
+                    }}
+                    value={selectedDrivers}
+                    placeholder="Selecione os corredores"
+                  />
                 </Box>
+              </InputGroup>
+            </Box>
 
-                {/* <Box w="100%" marginY="4"> */}
+            <Box mt="16px">
+              <FormLabel>Total de voltas</FormLabel>
+              <InputGroup>
+                <Input
+                  type="number"
+                  {...register("laps", { required: true })}
+                />
+              </InputGroup>
+            </Box>
 
-                <Box>
-                  <FormLabel>Total de voltas</FormLabel>
-                  <InputGroup>
-                    <Input
-                      type="number"
-                      {...register("laps", { required: true })}
-                    />
-                  </InputGroup>
-                </Box>
-                {/* <Box>
-                <FormControl id="voltas">
-                  <FormLabel>Número de voltas</FormLabel>
-                  <Input type="text" />
-                </FormControl>
-              </Box> */}
+            <Box mt="16px">
+              <FormLabel>Quantidade de Gasolina</FormLabel>
+              <InputGroup>
+                <Input type="number" {...register("gas", { required: true })} />
+              </InputGroup>
+            </Box>
 
-                <Box>
-                  <FormLabel>Quantidade de Gasolina</FormLabel>
-                  <InputGroup>
-                    <Input
-                      type="number"
-                      {...register("gas", { required: true })}
-                    />
-                  </InputGroup>
-                </Box>
-                {/* <Box>
-                <FormControl id="voltas">
-                  <FormLabel>Quantidade gasolina no tanque</FormLabel>
-                  <Input type="text" />
-                </FormControl>
-              </Box> */}
-
-                <Box>
-                  <Stack spacing={2} pt={1}>
-                    <Button
-                      loadingText="Submitting"
-                      size="lg"
-                      bg={"blue.400"}
-                      color={"white"}
-                      _hover={{
-                        bg: "blue.500",
-                      }}
-                      type="submit" //tava faltando o type submit
-                    >
-                      Salvar Lap
-                    </Button>
-                  </Stack>
-                </Box>
-              </FormControl>
-            </HStack>
-          </Stack>
-        </Box>
+            <Box mt="16px">
+              <Button
+                loadingText="Submitting"
+                size="lg"
+                bg={"blue.400"}
+                color={"white"}
+                _hover={{
+                  bg: "blue.500",
+                }}
+                type="submit"
+              >
+                Salvar Lap
+              </Button>
+            </Box>
+          </FormControl>
+        </HStack>
       </Stack>
-    </Flex>
+    </Box>
   );
 }

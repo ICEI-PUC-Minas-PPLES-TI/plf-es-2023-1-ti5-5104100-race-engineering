@@ -6,7 +6,7 @@ export default function Document() {
       <Head />
       <body
         style={{
-          background: "#f7f9fe",
+          background: "#eef2f5",
         }}
       >
         <Main />

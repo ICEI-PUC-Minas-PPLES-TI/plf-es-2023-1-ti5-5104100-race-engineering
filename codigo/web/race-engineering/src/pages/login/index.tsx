@@ -43,26 +43,26 @@ const LoginPage = () => {
       .then(async (response) => {
         const { data } = response;
         const ROLES_AUTHORIZED = ["ADMIN", "ANALYST"];
-
+        router.push("/");
         authenticate(data);
-        const { data: profile } = await api.get("/users/me");
+        //const { data: profile } = await api.get("/users/me");
 
-        if (typeof window !== "undefined") {
-          localStorage.setItem("profile", JSON.stringify(profile));
-        }
+        // if (typeof window !== "undefined") {
+        //   localStorage.setItem("profile", JSON.stringify(profile));
+        // }
 
-        if (ROLES_AUTHORIZED.includes(profile.role)) {
-          router.push("/");
-        } else {
-          toast({
-            title: "Acesso não autorizado, contate o administrador do sistema.",
-            status: "warning",
-            duration: 3000,
-            isClosable: true,
-            position: "top-right",
-          });
-          logout();
-        }
+        // if (ROLES_AUTHORIZED.includes(profile.role)) {
+        //   router.push("/");
+        // } else {
+        //   toast({
+        //     title: "Acesso não autorizado, contate o administrador do sistema.",
+        //     status: "warning",
+        //     duration: 3000,
+        //     isClosable: true,
+        //     position: "top-right",
+        //   });
+        //   logout();
+        // }
       })
       .catch((err) => {
         toast({
@@ -118,17 +118,25 @@ const LoginPage = () => {
 
           <CardFooter display="flex" width="100%">
             <Button
-              colorScheme="messenger"
               variant="ghost"
+              bg="#ffffff"
+              color="black"
               onClick={() => {
                 router.push("/register-user");
               }}
               width="50%"
               mr="3"
             >
-              Cadastro
+              Criar conta
             </Button>
-            <Button colorScheme="messenger" width="50%" ml="3" type="submit">
+            <Button
+              bg="#000000"
+              color="white"
+              variant="solid"
+              width="50%"
+              ml="3"
+              type="submit"
+            >
               Fazer login
             </Button>
           </CardFooter>

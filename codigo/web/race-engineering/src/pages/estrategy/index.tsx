@@ -6,8 +6,9 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 // Here we have used react-icons package for the icons
 import { GoChevronRight } from "react-icons/go";
-import { MdOutlineContentCopy } from "react-icons/md";
+import { RiInformationFill } from "react-icons/ri";
 
+import Sidebar from "@/components/sidebar/Sidebar";
 import { AuthProvider } from "@/context/AuthContext";
 import Signup from "@/pages/form";
 // import "@/styles/header.css";
@@ -25,6 +26,8 @@ import {
   Container,
   Divider,
   Flex,
+  FormControl,
+  FormLabel,
   Heading,
   HStack,
   Icon,
@@ -70,7 +73,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const [laps, setLaps] = useState([]);
   const [selectedRace, setSelectedRace] = useState({});
   const [selectedIdRace, setSelectedIdRace] = useState("");
-  const [maxLap, setMaxLap] = useState(0);
+  const [maxLap, setMaxLap] = useState("");
   const { register, handleSubmit } = useForm<FormData>(); //nem vai precisar eu acho
 
   useEffect(() => {
@@ -104,42 +107,22 @@ export default function App({ Component, pageProps }: AppProps) {
   };
 
   return (
-    <ChakraProvider>
-      <Container maxW="6xl" px={{ base: 6, md: 3 }} py={14}>
-        <Stack
-          direction={{ base: "column", md: "row" }}
-          spacing={2}
-          justifyContent="center"
-        >
-          <Stack
-            direction="column"
-            spacing={6}
-            justifyContent="center"
-            maxW="500px"
-            mb={{ base: 3, md: 0 }}
-          >
-            <Box>
-              <chakra.h1
-                fontSize="5xl"
-                lineHeight={1}
-                fontWeight="bold"
-                textAlign="left"
-              >
-                Defina a Estratégida <br />
-                <chakra.span color="teal"> da Corrida</chakra.span>
-              </chakra.h1>
-            </Box>
+    <Box
+      height="100vh"
+      width="100%"
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+    >
+      <Box w="2vw" className="sidebar-container">
+        <Sidebar />
+      </Box>
 
-            <HStack spacing={{ base: 0, sm: 2 }} flexWrap="wrap">
-              <Text fontSize="md" fontWeight="semibold">
-                Defina o número de voltas máximas estabelecido pela organização
-              </Text>
-              <Input onChange={handleMaxLap} value={maxLap} />
-            </HStack>
-
-            {/* Minha Ideia Inicial so colocar um box tipo do meu estrategy orignial */}
-
-            <Box w="100%" marginY="4">
+      <ChakraProvider>
+        <Box w="98vw" justifyContent="center" alignItems="center" padding="4%">
+          <Box display="flex" flexDir="row" bg="white" p={3} rounded="lg">
+            <FormControl mr="2" id="first-name" width="50%">
+              <FormLabel>Corrida para a estratégia</FormLabel>
               <Select
                 placeholder="Selecione a corrida"
                 onChange={(value) => {
@@ -147,136 +130,214 @@ export default function App({ Component, pageProps }: AppProps) {
                   onSelectedRace(value.target.value);
                 }}
                 value={selectedIdRace}
-
-                // {...register("raceId", { required: true })} N sei se precisa
               >
                 {races.map((race) => (
                   <option key={race.id} value={race.id}>
-                    {/* {race.name} - {race.circuit}  N CONSIGO COLOCAR NA LINHA DE CIMA O ID e name na debaixo*/}
                     {race.name}
                   </option>
                 ))}
               </Select>
-              {/* <br />
-              <p>Data do Inicio da Corrida: {selectedRace.startDate} </p>
-              <p>Data do Fim da Corrida: {selectedRace.endDate} </p>
-              <p>Total de Voltas: {selectedRace.totalLaps} </p> */}
-              {selectedRace ? (
-                <Box bg="gray.200" p="4">
-                  <br />
-                  <p>Corrida selecionada: {selectedRace.name}</p>
-                  <p>Data do Inicio da Corrida: {selectedRace.startDate} </p>
-                  <p>Data do Fim da Corrida: {selectedRace.endDate} </p>
-                  <p>Total de Voltas: {selectedRace.totalLaps} </p>
-                </Box>
-              ) : null}
-            </Box>
-          </Stack>
+            </FormControl>
+            <FormControl ml="2" variant="floating" id="first-name" width="50%">
+              <FormLabel>Número de voltas máxima</FormLabel>
+              <Input
+                onChange={handleMaxLap}
+                value={maxLap}
+                placeholder="Digite o número de voltas máxima"
+              />
+            </FormControl>
+          </Box>
 
-          {/* Esse stack debaixo é so para os card */}
+          <Box w="100%" my="24px">
+            <Box bg="white" p="4" rounded="lg">
+              <Text fontWeight="semibold" color="black.300" fontSize="24px">
+                Informações da corrida
+              </Text>
+              <br />
+              <Stack direction="row">
+                <Box display="flex" flexDirection="row">
+                  <Box direction="row">
+                    <Text
+                      fontWeight="semibold"
+                      color="#060f1a"
+                      display="flex"
+                      justifyContent="center"
+                      alignItems="center"
+                    >
+                      Corrida selecionada
+                      <Icon
+                        as={RiInformationFill}
+                        ml={1}
+                        width="1.3em"
+                        height="1.3em"
+                      />
+                    </Text>
+                    <Text>{selectedRace.name ? selectedRace.name : "-"}</Text>
+                  </Box>
+                  <Divider mx="16px" my="0" orientation="vertical" />
+                </Box>
+
+                <Box display="flex" flexDirection="row">
+                  <Box>
+                    <Text
+                      fontWeight="semibold"
+                      color="#060f1a"
+                      display="flex"
+                      justifyContent="center"
+                      alignItems="center"
+                    >
+                      Inicio da Corrida
+                      <Icon
+                        as={RiInformationFill}
+                        ml={1}
+                        width="1.3em"
+                        height="1.3em"
+                      />
+                    </Text>
+                    <Text>
+                      {selectedRace.startDate
+                        ? new Date(selectedRace.startDate).toLocaleString(
+                            "pt-BR"
+                          )
+                        : "-"}
+                    </Text>
+                  </Box>
+                  <Divider mx="16px" my="0" orientation="vertical" />
+                </Box>
+
+                <Box display="flex" flexDirection="row">
+                  <Box>
+                    <Text
+                      fontWeight="semibold"
+                      color="#060f1a"
+                      display="flex"
+                      justifyContent="center"
+                      alignItems="center"
+                    >
+                      Fim da corrida
+                      <Icon
+                        as={RiInformationFill}
+                        ml={1}
+                        width="1.3em"
+                        height="1.3em"
+                      />
+                    </Text>
+                    <Text>
+                      {selectedRace.endDate
+                        ? new Date(selectedRace.endDate).toLocaleString("pt-BR")
+                        : "-"}
+                    </Text>
+                  </Box>
+                  <Divider mx="16px" my="0" orientation="vertical" />
+                </Box>
+
+                <Box display="flex" flexDirection="row">
+                  <Box>
+                    <Text
+                      fontWeight="semibold"
+                      color="#060f1a"
+                      display="flex"
+                      justifyContent="center"
+                      alignItems="center"
+                    >
+                      Total de voltas
+                      <Icon
+                        as={RiInformationFill}
+                        ml={1}
+                        width="1.3em"
+                        height="1.3em"
+                      />
+                    </Text>
+                    <Text>
+                      {selectedRace.totalLaps ? selectedRace.totalLaps : "-"}
+                    </Text>
+                  </Box>
+                </Box>
+              </Stack>
+            </Box>
+          </Box>
+
           <Stack
             spacing={{ base: 5, sm: 2 }}
             direction={{ base: "column", sm: "row" }}
             alignItems="center"
           >
             <Card heading="Número de Voltas" detail="" label="" />
-
             <Card heading="Número de Voltas Máximas" detail="" label={maxLap} />
             <Card heading="Contador Geral de Voltas" detail="" label="" />
             <Card heading="Voltas Restantes" detail="" label="" />
           </Stack>
-        </Stack>
 
-        <Box display="flex" flexDirection="row" alignItems="center">
-          <Box flex="1" textAlign="center">
-            <CheckCircleIcon boxSize={"50px"} color={"green.500"} />
-            <Heading as="h2" size="xl" mt={6} mb={2}>
-              Lap Annotation
-            </Heading>
+          {/* <Box display="flex" flexDirection="row" alignItems="center">
             <Box>
               <Text fontSize="md" fontWeight="semibold">
                 Tempo para término da corrida
               </Text>
               <Timer></Timer>
             </Box>
-          </Box>
-          <Box flex="1" textAlign="center">
-            <Tabs variant="unstyled">
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <TabList display="flex" justifyContent="center">
-                <Tab _selected={{ color: "white", bg: "blue.500" }}>
-                  Piloto 1
-                </Tab>
-                <Tab _selected={{ color: "white", bg: "green.400" }}>
-                  Piloto 2
-                </Tab>
-              </TabList>
-              <TabPanels>
-                <TabPanel>
-                  <p>one!</p>
-                </TabPanel>
-                <TabPanel>
-                  <p>two!</p>
-                </TabPanel>
-              </TabPanels>
-            </Tabs>
-          </Box>
-        </Box>
+          </Box> */}
 
-        {/* FORMULARIO */}
-        <Box display="flex" flexDirection="row" justifyContent="center">
-          <Signup
-            raceId={selectedRace.id}
-            onAfterSubmit={async () => await fetchLaps(Number(selectedRace.id))}
-          />
-        </Box>
-        <Box>
-          <TableContainer>
-            <Table variant="striped" colorScheme="teal">
-              <Thead>
-                <Tr>
-                  <Th>Tipo Pneu</Th>
-                  <Th>Piloto</Th>
-                  <Th>Número de voltas</Th>
-                  <Th>Qunatidade de gasolina no tanque</Th>
-                </Tr>
-              </Thead>
-              <Tbody>
-                {laps.map((lap) => {
-                  return (
-                    <Tr key={lap.id}>
-                      <Td>Dry</Td>
-                      {/* <Td>Rubens</Td> */}
-                      <Td>{lap.driverId}</Td>
-                      {/* <Td isNull> */}
-                      <Td>{lap.lapNumber}</Td>
-                      {/* <Td>70l</Td> */}
-                      <Td>70</Td>
+          {/* FORMULARIO */}
+          <Box
+            display="flex"
+            flexDirection="row"
+            justifyContent="center"
+            mt="24px"
+          >
+            <Box w="30%">
+              <Signup
+                raceId={selectedRace.id}
+                races={races}
+                onAfterSubmit={async () =>
+                  await fetchLaps(Number(selectedRace.id))
+                }
+              />
+            </Box>
+            <Box w="70%" ml="24px" bg="white" rounded="lg">
+              <TableContainer>
+                <Table variant="striped" colorScheme="messenger">
+                  <Thead>
+                    <Tr>
+                      <Th>Tipo Pneu</Th>
+                      <Th>Piloto</Th>
+                      <Th>Número de voltas</Th>
+                      <Th>Qunatidade de gasolina no tanque</Th>
                     </Tr>
-                  );
-                })}
-              </Tbody>
-            </Table>
-          </TableContainer>
+                  </Thead>
+                  <Tbody>
+                    {laps.map((lap) => {
+                      return (
+                        <Tr key={lap.id}>
+                          <Td>Dry</Td>
+                          {/* <Td>Rubens</Td> */}
+                          <Td>{lap.driverId}</Td>
+                          {/* <Td isNull> */}
+                          <Td>{lap.lapNumber}</Td>
+                          {/* <Td>70l</Td> */}
+                          <Td>70</Td>
+                        </Tr>
+                      );
+                    })}
+                  </Tbody>
+                </Table>
+              </TableContainer>
+            </Box>
+          </Box>
+          {/* <Button
+            padding="20px"
+            margin="15px"
+            rightIcon={<GoChevronRight />}
+            colorScheme="blue"
+            variant="solid"
+            size="lg"
+            rounded="md"
+            mb={{ base: 2, sm: 0 }}
+          >
+            Confirmar Estratégia
+          </Button> */}
         </Box>
-        <Button
-          padding="20px"
-          margin="15px"
-          rightIcon={<GoChevronRight />}
-          colorScheme="blue"
-          variant="solid"
-          size="lg"
-          rounded="md"
-          mb={{ base: 2, sm: 0 }}
-        >
-          Confirmar Estratégia
-        </Button>
-      </Container>
-    </ChakraProvider>
+      </ChakraProvider>
+    </Box>
   );
 }
 
@@ -291,20 +352,12 @@ const Card = ({
 }) => {
   return (
     <Stack
-      as={Link}
-      href="#"
       direction="column"
-      _hover={{
-        boxShadow: useColorModeValue(
-          "0 4px 6px rgba(160, 174, 192, 0.6)",
-          "0 4px 6px rgba(9, 17, 28, 0.9)"
-        ),
-      }}
-      bg={useColorModeValue("gray.200", "gray.700")}
+      bg="white"
       p={3}
       rounded="lg"
       spacing={1}
-      maxW="450px"
+      width="100%"
       h="max-content"
     >
       <Text
