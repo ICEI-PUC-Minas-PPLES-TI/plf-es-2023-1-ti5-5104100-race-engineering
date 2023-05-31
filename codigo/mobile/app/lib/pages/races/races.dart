@@ -38,8 +38,7 @@ class _RacesView extends State<RacesView> {
   void fetchRaces() async {
     try {
       Response response =
-          await Dio().get('http://localhost:8000/api/drivers/20');
-      dynamic data = response.data;
+          await Dio().get('http://localhost:8000/api/races');
       dynamic driverInfo = response.data;
 
       dynamic races = driverInfo['races']

@@ -182,7 +182,7 @@ const RegisterPage = () => {
             </CardHeader>
 
             <CardBody>
-              <Box w="100%" marginY="4">
+              {/* <Box w="100%" marginY="4">
                 <FormLabel>Nome da corrida</FormLabel>
                 <InputGroup>
                   <Input
@@ -207,7 +207,7 @@ const RegisterPage = () => {
                   value={selectedCircuit}
                   placeholder="Selecione o circuito"
                 />
-              </Box>
+              </Box> */}
 
               <Box w="100%" marginTop="4">
                 <FormLabel>Selecione o analista</FormLabel>
