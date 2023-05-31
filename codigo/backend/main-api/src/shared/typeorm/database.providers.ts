@@ -17,14 +17,12 @@ const data: any = dotenv.parse(fs.readFileSync(envFilePath));
 
 export const config: DataSourceOptions & SeederOptions = {
   type: 'postgres',
-  host: 'localhost',
+  host: data.DATABASE_HOST,
   port: data.DATABASE_PORT,
   database: data.DATABASE_NAME,
   username: data.DATABASE_USER,
   password: data.DATABASE_PASSWORD,
   entities: ['dist/**/*.entity.{ts,js}'],
-  migrations: ['dist/shared/typeorm/migrations/*.{ts,js}'],
-  migrationsTableName: 'typeorm_migrations',
   logger: 'file',
   synchronize: false,
   factories: [
