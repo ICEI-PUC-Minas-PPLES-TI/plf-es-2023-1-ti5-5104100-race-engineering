@@ -136,7 +136,7 @@ const RegisterPage = () => {
           isClosable: true,
           position: "top-right",
         });
-        router.push("/");
+        router.push("/list-race");
       })
       .catch((err) => {
         toast({
