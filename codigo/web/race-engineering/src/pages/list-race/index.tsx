@@ -82,6 +82,18 @@ export default function Index() {
 
   const handleUpdateRace = () => {
     const { id, name, startDate, endDate, totalLaps } = editedRace;
+  
+    if (endDate < startDate) {
+      toast({
+        title: "A data de Início da Corrida não pode ser anterior à data do Fim da Corrida",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "top-right",
+      });
+      return; // Cancel submission
+    }
+  
     api
       .patch(`/races/${id}`, { name, startDate, endDate, totalLaps })
       .then(() => {
@@ -104,7 +116,6 @@ export default function Index() {
       })
       .catch((err) => {
         if (err.response && err.response.status === 404) {
-
           toast({
             title: "Time não encontrado",
             status: "error",
@@ -124,6 +135,7 @@ export default function Index() {
         console.error(err); // Opcional: exibe o erro no console para fins de depuração
       });
   };
+  
 
   const { register, handleSubmit, formState: { errors } } = useForm();
 
