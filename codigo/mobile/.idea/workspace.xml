@@ -5,15 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4c4a502c-b19e-4505-95bc-bb87637afc44" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/lib/pages/profile/profile.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ios/Podfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/app/ios/Podfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/lib/pages/admin/admin.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/pages/admin/admin.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/lib/pages/races/races.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/pages/races/races.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/lib/shared/utils/httpInterceptor.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/shared/utils/httpInterceptor.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/app/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/app/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/race-engineering/src/pages/estrategy/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../web/race-engineering/src/pages/estrategy/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +33,7 @@
     &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
     &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/joeyclapton/dev/puc/plf-es-2023-1-ti5-5104100-race-engineering/codigo/mobile/app/assets&quot;,

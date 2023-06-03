@@ -71,7 +71,7 @@ type Race = {
 export default function App({ Component, pageProps }: AppProps) {
   const [races, setRaces] = useState([]);
   const [laps, setLaps] = useState([]);
-  const [selectedRace, setSelectedRace] = useState({});
+  const [selectedRace, setSelectedRace] = useState();
   const [selectedIdRace, setSelectedIdRace] = useState("");
   const [maxLap, setMaxLap] = useState("");
   const { register, handleSubmit } = useForm<FormData>(); //nem vai precisar eu acho
@@ -156,7 +156,7 @@ export default function App({ Component, pageProps }: AppProps) {
               <br />
               <Stack direction="row">
                 <Box display="flex" flexDirection="row">
-                  <Box direction="row">
+                  <Box>
                     <Text
                       fontWeight="semibold"
                       color="#060f1a"
@@ -172,7 +172,11 @@ export default function App({ Component, pageProps }: AppProps) {
                         height="1.3em"
                       />
                     </Text>
-                    <Text>{selectedRace.name ? selectedRace.name : "-"}</Text>
+                    <Text>
+                      {selectedRace && selectedRace?.name
+                        ? selectedRace?.name
+                        : "-"}
+                    </Text>
                   </Box>
                   <Divider mx="16px" my="0" orientation="vertical" />
                 </Box>
