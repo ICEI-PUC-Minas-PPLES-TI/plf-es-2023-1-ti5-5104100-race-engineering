@@ -31,7 +31,13 @@ type Estrategy = {
   // drivers: Array<any>; //sao os cadastradas NA CORRIDA e n todos4
   drivers: string; //Piloto 1 ou 2 É mais facil(e n puxa do back)
 };
-
+type Race = {
+  id: string;
+  name: string;
+  startDate: string;
+  endDate: string;
+  totalLaps: number;
+};
 export default function SignupCard({
   raceId,
   onAfterSubmit,
@@ -39,9 +45,8 @@ export default function SignupCard({
 }: {
   raceId: String;
   onAfterSubmit: () => {};
-  races: [];
+  races: Race[];
 }) {
-  const [showPassword, setShowPassword] = useState(false);
   const [selectedTire, setSelectedTire] = useState("");
   const [drivers, setDrivers] = useState([]);
   const { register, handleSubmit } = useForm<FormData>();
@@ -97,7 +102,7 @@ export default function SignupCard({
             <Box mt="16px">
               <FormLabel>Selecionar o Pneu</FormLabel>
               <InputGroup id="tire">
-                <Box w="100%">
+                {/* <Box w="100%">
                   <Select
                     value={selectedTire}
                     {...register("tire")}
@@ -112,7 +117,7 @@ export default function SignupCard({
                       Wet
                     </option>
                   </Select>
-                </Box>
+                </Box> */}
               </InputGroup>
             </Box>
 
@@ -137,7 +142,7 @@ export default function SignupCard({
               </InputGroup>
             </Box>
 
-            <Box mt="16px">
+            {/* <Box mt="16px">
               <FormLabel>Total de voltas</FormLabel>
               <InputGroup>
                 <Input
@@ -152,7 +157,7 @@ export default function SignupCard({
               <InputGroup>
                 <Input type="number" {...register("gas", { required: true })} />
               </InputGroup>
-            </Box>
+            </Box> */}
 
             <Box mt="16px">
               <Button

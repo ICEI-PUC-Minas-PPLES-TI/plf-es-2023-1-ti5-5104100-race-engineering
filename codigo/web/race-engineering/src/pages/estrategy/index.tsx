@@ -69,13 +69,12 @@ type Race = {
 };
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [races, setRaces] = useState([]);
+  const [races, setRaces] = useState<Race[]>([]);
   const [laps, setLaps] = useState([]);
-  const [selectedRace, setSelectedRace] = useState();
+  const [selectedRace, setSelectedRace] = useState<Race>();
   const [selectedIdRace, setSelectedIdRace] = useState("");
   const [maxLap, setMaxLap] = useState("");
-  const { register, handleSubmit } = useForm<FormData>(); //nem vai precisar eu acho
-
+  const { register, handleSubmit } = useForm<FormData>();
   useEffect(() => {
     (async () => {
       const { data } = await api.get("/races");

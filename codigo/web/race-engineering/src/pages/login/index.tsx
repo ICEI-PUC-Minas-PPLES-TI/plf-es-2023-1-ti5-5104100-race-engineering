@@ -1,6 +1,5 @@
 /* eslint-disable react/no-children-prop */
 import { useRouter } from "next/router";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { RiMailLine } from "react-icons/ri";
 
@@ -21,7 +20,6 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
-  InputRightElement,
   useToast,
 } from "@chakra-ui/react";
 
@@ -32,7 +30,7 @@ type Login = {
 
 const LoginPage = () => {
   const router = useRouter();
-  const { authenticate, logout } = useAuth();
+  const { authenticate } = useAuth();
 
   const { register, handleSubmit } = useForm<Login>();
   const toast = useToast();
@@ -42,27 +40,8 @@ const LoginPage = () => {
       .post("/auth/login", data)
       .then(async (response) => {
         const { data } = response;
-        const ROLES_AUTHORIZED = ["ADMIN", "ANALYST"];
         router.push("/");
         authenticate(data);
-        //const { data: profile } = await api.get("/users/me");
-
-        // if (typeof window !== "undefined") {
-        //   localStorage.setItem("profile", JSON.stringify(profile));
-        // }
-
-        // if (ROLES_AUTHORIZED.includes(profile.role)) {
-        //   router.push("/");
-        // } else {
-        //   toast({
-        //     title: "Acesso não autorizado, contate o administrador do sistema.",
-        //     status: "warning",
-        //     duration: 3000,
-        //     isClosable: true,
-        //     position: "top-right",
-        //   });
-        //   logout();
-        // }
       })
       .catch((err) => {
         toast({
