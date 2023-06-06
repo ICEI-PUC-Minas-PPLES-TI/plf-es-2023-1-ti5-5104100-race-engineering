@@ -31,8 +31,6 @@ import {
   useToast,
 } from "@chakra-ui/react";
 
-import { options } from "./option-mock";
-
 type Register = {
   startDate: string;
   endDate: string;
