@@ -335,20 +335,20 @@ Obs: Acrescente uma breve descrição sobre o diagrama apresentado na Figura 3.
 
 <a name="avaliacao"></a>
 # 4. Avaliação da Arquitetura
-
+	
 _Esta seção descreve a avaliação da arquitetura apresentada, baseada no método ATAM._
 
 ## 4.1. Cenários
 
-**Cenário 1 - Compatibilidade:** 
+**Cenário 1 - Compatibilidade:** A compatibilidade busca a averiguação do funcionamento do projeto nas plataformas Android e IOS de modo a provar a não restrição de performance desse frente a diferente ambientes.
 
-**Cenário 2 - Adaptabilidade:**
+**Cenário 2 - Adaptabilidade:** A adaptabilidade deseja promover a utilização do software a partir de diferentes navegadores como Google Chrome, Edge e Firefox .
 
-**Cenário 3 - Segurança:** 
+**Cenário 3 - Segurança:** A segurança promove a restrição de atuação para diferentes usuários, uma vez que os mesmos são bem definidos em relação a sua atuação e utilização de ferramentas.
 
-**Cenário 4 - Disponibilidade:** 
+**Cenário 4 - Disponibilidade:** A disponibilidade visa avaliar a provisão temporal do software em relação a sua possibilidade de utilização.
 
-**Cenário 5 - Acessibilidade:**
+**Cenário 5 - Acessibilidade:** A acessibilidade visa averiguar utilização do software em seu aspecto vizualizativo por parte dos utentes.
 
 
 ## 4.2. Avaliação
@@ -389,6 +389,12 @@ _Apresente as medidas registradas na coleta de dados. O que não for possível q
 | --- | --- |
 | **Pontos de Sensibilidade:** | Não existe |
 | _ **Tradeoff** _ **:** | Não existe |
+	
+	
+
+![Diagrama de classes](imagens/classes.png "Diagrama de classes")
+![Diagrama de classes](imagens/classes.png "Diagrama de classes")
+![Diagrama de classes](imagens/classes.png "Diagrama de classes")
 
 	
 | **Atributo de Qualidade:** | Segurança |
