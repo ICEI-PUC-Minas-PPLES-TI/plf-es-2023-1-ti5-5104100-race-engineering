@@ -392,9 +392,9 @@ _Apresente as medidas registradas na coleta de dados. O que não for possível q
 	
 	
 
-![Diagrama de classes](imagens/classes.png "Diagrama de classes")
-![Diagrama de classes](imagens/classes.png "Diagrama de classes")
-![Diagrama de classes](imagens/classes.png "Diagrama de classes")
+![Diagrama de classes](imagens/chrome.jpeg "Diagrama de classes")
+![Diagrama de classes](imagens/firefox.jpeg )
+![Diagrama de classes](imagens/edge.jpeg )
 
 	
 | **Atributo de Qualidade:** | Segurança |
