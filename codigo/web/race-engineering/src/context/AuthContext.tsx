@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { isBrowserReady } from "@/shared/utils/isBrowserReady";
+import { isBrowserReady } from "../shared/utils/isBrowserReady";
 
 type AuthParams = {
   token: string;

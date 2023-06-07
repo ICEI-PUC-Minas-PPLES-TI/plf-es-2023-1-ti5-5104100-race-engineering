@@ -3,9 +3,6 @@ import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { RiMailLine } from "react-icons/ri";
 
-import { PasswordInput } from "@/components/PasswordInput/PasswordInput";
-import { useAuth } from "@/context/AuthContext";
-import api from "@/services/api";
 import {
   Box,
   Button,
@@ -22,6 +19,10 @@ import {
   InputLeftElement,
   useToast,
 } from "@chakra-ui/react";
+
+import { PasswordInput } from "../../components/PasswordInput/PasswordInput";
+import { useAuth } from "../../context/AuthContext";
+import api from "../../services/api";
 
 type Login = {
   email: string;
