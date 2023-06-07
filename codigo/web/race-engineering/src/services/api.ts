@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "http://localhost:8000/api",
+  baseURL: "https://race-engineering-api.azurewebsites.net/api",
 });
 
 api.defaults.timeout = 10000000;
