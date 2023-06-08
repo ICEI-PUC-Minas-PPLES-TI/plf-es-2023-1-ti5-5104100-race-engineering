@@ -1,39 +1,20 @@
-import { AxiosError } from "axios";
+import { AxiosError } from 'axios';
 /* eslint-disable react/no-children-prop */
-import { useRouter } from "next/router";
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useRouter } from 'next/router';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import {
-  RiCheckboxBlankCircleLine,
-  RiCheckboxCircleFill,
-  RiErrorWarningFill,
-} from "react-icons/ri";
+    RiCheckboxBlankCircleLine, RiCheckboxCircleFill, RiErrorWarningFill
+} from 'react-icons/ri';
 
-import api from "@/services/api";
-import { AtSignIcon, EmailIcon, LockIcon } from "@chakra-ui/icons";
+import BackgroundSection from '@/components/BackgroundSection';
+import api from '@/services/api';
+import { AtSignIcon, EmailIcon, LockIcon } from '@chakra-ui/icons';
 import {
-  Box,
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Heading,
-  Highlight,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  InputRightElement,
-  List,
-  ListIcon,
-  ListItem,
-  Select,
-  Text,
-  useToast,
-} from "@chakra-ui/react";
+    Box, Button, Card, CardBody, CardFooter, CardHeader, FormControl, FormErrorMessage, FormLabel,
+    Heading, Highlight, Input, InputGroup, InputLeftElement, InputRightElement, List, ListIcon,
+    ListItem, Select, Text, useToast
+} from '@chakra-ui/react';
 
 type Register = {
   name: string;
@@ -113,14 +94,14 @@ const RegisterPage = () => {
   });
 
   return (
-    <Box
-      height="100vh"
-      width="100%"
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-    >
-      <FormControl width={480} as="form" onSubmit={onSubmit} isRequired>
+    <BackgroundSection>
+      <FormControl
+        my="32px"
+        maxWidth={450}
+        as="form"
+        onSubmit={onSubmit}
+        isRequired
+      >
         <Card>
           <CardHeader>
             <Heading as="h2" size="md">
@@ -232,14 +213,6 @@ const RegisterPage = () => {
                     Senha deve ter no máximo 20 caracteres{" "}
                   </ListItem>
                 </List>
-                {/* <FormErrorMessage>
-                  {errors.password?.type === "required" &&
-                    "A Senha é obrigatória"}
-                  {errors.password?.type === "minLength" &&
-                    "Senha deve ter pelo menos 8 caracteres"}
-                  {errors.password?.type === "maxLength" &&
-                    "Senha deve ter no máximo 20 caracteres"}
-                </FormErrorMessage> */}
               </FormControl>
             </Box>
 
@@ -248,7 +221,6 @@ const RegisterPage = () => {
               <InputGroup id="role">
                 <Select
                   value={selected}
-                  // {...register("userType")}
                   {...register("role")}
                   onChange={handleChange}
                 >
@@ -289,7 +261,7 @@ const RegisterPage = () => {
           </CardFooter>
         </Card>
       </FormControl>
-    </Box>
+    </BackgroundSection>
   );
 };
 

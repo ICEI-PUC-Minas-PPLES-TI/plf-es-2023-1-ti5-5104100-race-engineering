@@ -1,27 +1,16 @@
 /* eslint-disable react/no-children-prop */
-import { useRouter } from "next/router";
-import { useForm } from "react-hook-form";
-import { RiMailLine } from "react-icons/ri";
+import { useRouter } from 'next/router';
+import { useForm } from 'react-hook-form';
+import { RiMailLine } from 'react-icons/ri';
 
-import { PasswordInput } from "@/components/PasswordInput/PasswordInput";
-import { useAuth } from "@/context/AuthContext";
-import api from "@/services/api";
+import BackgroundSection from '@/components/BackgroundSection';
+import { PasswordInput } from '@/components/PasswordInput/PasswordInput';
+import { useAuth } from '@/context/AuthContext';
+import api from '@/services/api';
 import {
-  Box,
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  FormControl,
-  FormLabel,
-  Heading,
-  Highlight,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  useToast,
-} from "@chakra-ui/react";
+    Box, Button, Card, CardBody, CardFooter, CardHeader, FormControl, FormLabel, Heading, Highlight,
+    Input, InputGroup, InputLeftElement, Stack, useToast
+} from '@chakra-ui/react';
 
 type Login = {
   email: string;
@@ -55,14 +44,8 @@ const LoginPage = () => {
   });
 
   return (
-    <Box
-      height="100vh"
-      width="100%"
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-    >
-      <FormControl width={480} as="form" onSubmit={onSubmit} isRequired>
+    <BackgroundSection>
+      <FormControl maxW="450px" as="form" onSubmit={onSubmit} isRequired>
         <Card>
           <CardHeader>
             <Heading as="h2" size="md">
@@ -121,7 +104,7 @@ const LoginPage = () => {
           </CardFooter>
         </Card>
       </FormControl>
-    </Box>
+    </BackgroundSection>
   );
 };
 
