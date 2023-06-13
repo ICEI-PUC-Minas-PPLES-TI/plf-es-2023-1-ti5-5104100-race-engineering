@@ -1,27 +1,27 @@
 cff-version: 1.0.1
 message: Please cite this software using these metadata.
-title: 
+title:Race-Engineering 
 authors:
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names:
+  - family-names:Ferreira 
+    given-names:Ian
+  - family-names:Santos 
+    given-names:Joey 
+  - family-names:Silva 
+    given-names:Lorrayne 
+  - family-names:Rocha 
+    given-names:Octávio 
+  - family-names:Xavier
+    given-names:Vitor 
+  - family-names:Bastos 
+    given-names:Vítor
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names:Tavares 
+    given-names:Cleiton 
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names:Brito 
+    given-names:Aline 
 keywords:
   - 
   - 
