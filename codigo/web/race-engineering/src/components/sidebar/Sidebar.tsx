@@ -24,7 +24,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 
-import { EditUserModal } from "../EditUserModal/EditUserModal";
+// import { EditUserModal } from "../EditUserModal/EditUserModal";
 
 const Sidebar = () => {
   const router = useRouter();
@@ -138,7 +138,7 @@ const Sidebar = () => {
           </Stack>
         </Box>
       </Flex>
-      <EditUserModal isOpen={isOpenModal} setIsOpen={setIsOpenModal} />
+      {/* <EditUserModal isOpen={isOpenModal} setIsOpen={setIsOpenModal} /> */}
     </Box>
   );
 };
