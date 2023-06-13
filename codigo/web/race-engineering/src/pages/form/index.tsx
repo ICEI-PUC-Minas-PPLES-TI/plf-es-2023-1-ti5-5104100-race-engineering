@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Select from "react-select";
@@ -7,19 +6,15 @@ import makeAnimated from "react-select/animated";
 import Timer from "@/pages/timer";
 import api from "@/services/api";
 import { dataToSelectOptions } from "@/shared/utils/dataToSelectOptions";
-import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
-  Flex,
   FormControl,
   FormLabel,
-  Heading,
   HStack,
-  Input,
   InputGroup,
   Stack,
-  Text,
+  Input,
   useColorModeValue,
   useToast,
 } from "@chakra-ui/react";
@@ -44,15 +39,13 @@ export default function SignupCard({
   races,
 }: {
   raceId: String;
-  onAfterSubmit: () => {};
+  onAfterSubmit: (lap: any) => {};
   races: Race[];
 }) {
   const [selectedTire, setSelectedTire] = useState("");
   const [drivers, setDrivers] = useState([]);
   const { register, handleSubmit } = useForm<FormData>();
-  const handleChange = (event: any) => {
-    setSelectedTire(event.target.value);
-  };
+
   const animatedComponents = makeAnimated();
   const [selectedDrivers, setSelectedDrivers] = useState([]);
 
@@ -64,25 +57,36 @@ export default function SignupCard({
   };
 
   const onSubmit = handleSubmit((data, event) => {
-    api
-      .post(`/races/laps/${Number(15)}`, {
-        lapNumber: 1,
-        driverId: 18,
-        lapTime: "00:01:20.345",
-      }) //verificar se é essa rota
-      .then(() => {
-        event?.target?.reset();
-        onAfterSubmit();
-      })
-      .catch((err) => {
-        toast({
-          title: "Erro ao cadastrar volta, tente novamente",
-          status: "error",
-          duration: 3000,
-          isClosable: true,
-          position: "top-right",
-        });
-      });
+    // api
+    //   .post(`/races/laps/${Number(15)}`, {
+    //     lapNumber: 1,
+    //     driverId: 18,
+    //     lapTime: "00:01:20.345",
+    //   })
+    //   .then(() => {
+    //     event?.target?.reset();
+    //     onAfterSubmit();
+    //   })
+    //   .catch((err) => {
+    //     toast({
+    //       title: "Erro ao cadastrar volta, tente novamente",
+    //       status: "error",
+    //       duration: 3000,
+    //       isClosable: true,
+    //       position: "top-right",
+    //     });
+    //   });
+    console.log(data);
+    const update = {
+      ...data,
+      id: selectedDrivers.value,
+      driverId: selectedDrivers.value,
+      tire: selectedTire.value,
+    };
+    onAfterSubmit(update);
+    event?.target?.reset();
+    setSelectedTire("");
+    setSelectedDrivers([]);
   });
 
   useEffect(() => {
@@ -101,32 +105,31 @@ export default function SignupCard({
           <FormControl as="form" onSubmit={onSubmit}>
             <Box mt="16px">
               <FormLabel>Selecionar o Pneu</FormLabel>
-              <InputGroup id="tire">
-                {/* <Box w="100%">
+              <InputGroup id="tire" zIndex={2}>
+                <Box w="100%">
                   <Select
+                    closeMenuOnSelect={true}
+                    components={animatedComponents}
+                    options={[
+                      { label: "Molhado", value: "wet" },
+                      { label: "Seco", value: "dry" },
+                    ]}
+                    onChange={(option: any) => {
+                      setSelectedTire(option);
+                    }}
                     value={selectedTire}
-                    {...register("tire")}
-                    onChange={handleChange}
-                    placeholder="Selecione o tipo de pneu"
-                  >
-                    <option hidden>Tipo de Pneu</option>
-                    <option label="dry" id="dry">
-                      Dry
-                    </option>
-                    <option label="wet" id="wet">
-                      Wet
-                    </option>
-                  </Select>
-                </Box> */}
+                    placeholder="Selecione os corredores"
+                  />
+                </Box>
               </InputGroup>
             </Box>
 
             <Box mt="16px">
-              <FormLabel>Selecionar o Pneu</FormLabel>
-              <InputGroup id="drivers">
+              <FormLabel>Selecionar o corredor</FormLabel>
+              <InputGroup id="drivers" zIndex={1}>
                 <Box w="100%">
                   <Select
-                    closeMenuOnSelect={false}
+                    closeMenuOnSelect={true}
                     components={animatedComponents}
                     options={dataToSelectOptions({
                       list: drivers,
@@ -142,12 +145,13 @@ export default function SignupCard({
               </InputGroup>
             </Box>
 
-            {/* <Box mt="16px">
+            <Box mt="16px">
               <FormLabel>Total de voltas</FormLabel>
               <InputGroup>
                 <Input
                   type="number"
-                  {...register("laps", { required: true })}
+                  {...register("lapNumber", { required: true })}
+                  placeholder="Digite a quantidade de voltas"
                 />
               </InputGroup>
             </Box>
@@ -155,9 +159,13 @@ export default function SignupCard({
             <Box mt="16px">
               <FormLabel>Quantidade de Gasolina</FormLabel>
               <InputGroup>
-                <Input type="number" {...register("gas", { required: true })} />
+                <Input
+                  type="number"
+                  {...register("gas", { required: true })}
+                  placeholder="Digite a quantidade de gasolina atual"
+                />
               </InputGroup>
-            </Box> */}
+            </Box>
 
             <Box mt="16px">
               <Button
@@ -170,7 +178,7 @@ export default function SignupCard({
                 }}
                 type="submit"
               >
-                Salvar Lap
+                Salvar Volta
               </Button>
             </Box>
           </FormControl>
