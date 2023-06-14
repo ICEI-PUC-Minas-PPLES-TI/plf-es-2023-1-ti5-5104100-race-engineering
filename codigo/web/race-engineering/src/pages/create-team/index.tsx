@@ -40,7 +40,7 @@ const CircuitPage = () => {
           isClosable: true,
           position: "top-right",
         });
-        router.push("/");
+        router.push("/list-team");
       })
       .catch((err) => {
         toast({

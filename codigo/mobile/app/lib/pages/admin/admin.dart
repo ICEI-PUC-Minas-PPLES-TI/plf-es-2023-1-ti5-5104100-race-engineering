@@ -1,3 +1,4 @@
+import 'package:app/pages/profile/profile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:app/pages/races/races.dart';
 import 'package:app/pages/laps/laps.dart';
@@ -18,7 +19,7 @@ class _AdminViewState extends State<AdminView> {
     RacesView(),
     LapsView(),
     StickyNotesPage(),
-    LapsView(),
+    ProfileView()
   ];
 
   @override

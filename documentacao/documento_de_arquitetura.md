@@ -335,20 +335,20 @@ Obs: Acrescente uma breve descrição sobre o diagrama apresentado na Figura 3.
 
 <a name="avaliacao"></a>
 # 4. Avaliação da Arquitetura
-
+	
 _Esta seção descreve a avaliação da arquitetura apresentada, baseada no método ATAM._
 
 ## 4.1. Cenários
 
-**Cenário 1 - Compatibilidade:** 
+**Cenário 1 - Compatibilidade:** A compatibilidade busca a averiguação do funcionamento do projeto nas plataformas Android e IOS de modo a provar a não restrição de performance desse frente a diferente ambientes.
 
-**Cenário 2 - Adaptabilidade:**
+**Cenário 2 - Adaptabilidade:** A adaptabilidade deseja promover a utilização do software a partir de diferentes navegadores como Google Chrome, Edge e Firefox .
 
-**Cenário 3 - Segurança:** 
+**Cenário 3 - Segurança:** A segurança promove a restrição de atuação para diferentes usuários, uma vez que os mesmos são bem definidos em relação a sua atuação e utilização de ferramentas.
 
-**Cenário 4 - Disponibilidade:** 
+**Cenário 4 - Disponibilidade:** A disponibilidade visa avaliar a provisão temporal do software em relação a sua possibilidade de utilização.
 
-**Cenário 5 - Acessibilidade:**
+**Cenário 5 - Acessibilidade:** A acessibilidade visa averiguar utilização do software em seu aspecto vizualizativo por parte dos utentes.
 
 
 ## 4.2. Avaliação
@@ -362,8 +362,8 @@ _Apresente as medidas registradas na coleta de dados. O que não for possível q
 | **Cenários(s):** | Cenário 1 |
 | **Ambiente:** | Sistemas operacionais Android e IOS|
 | **Estímulo:** | Emulação da aplicação nos ambientes requiridos |
-| **Mecanismo:** |  |
-| **Medida de Resposta:** |  |
+| **Mecanismo:** | Input nos campos de login |
+| **Medida de Resposta:** | Login efetuado |
 
 **Considerações sobre a arquitetura:**
 
@@ -371,6 +371,9 @@ _Apresente as medidas registradas na coleta de dados. O que não for possível q
 | --- | --- |
 | **Pontos de Sensibilidade:** | Não existe |
 | _ **Tradeoff** _ **:** | Não existe |
+	
+
+![Diagrama de classes](./imagens/login.jpeg)
 	
 	
 | **Atributo de Qualidade:** | Adaptabilidade |
@@ -378,10 +381,10 @@ _Apresente as medidas registradas na coleta de dados. O que não for possível q
 | **Requisito de Qualidade** | O sistema deve estar disponível nas modalidades mobile e web |
 | **Preocupação:** | O sistema deve ser acessível nos navegadores Google Chrome, Edge e Firefox |
 | **Cenários(s):** | Cenário 2 |
-| **Ambiente:** | Plataforma Mobile e Web |
+| **Ambiente:** | Plataforma Web |
 | **Estímulo:** | Acessar o sistema em diferentes navegadores |
-| **Mecanismo:** | Cadastro corridas na plataforma web e visualização dessa informação no web e no mobile. |
-| **Medida de Resposta:** | A corrida  cadastrada no Web pode ser visualizada no mobile  |
+| **Mecanismo:** | Acesso via web a aplicação |
+| **Medida de Resposta:** | Vizualização de tela inicial |
 
 **Considerações sobre a arquitetura:**
 
@@ -389,6 +392,12 @@ _Apresente as medidas registradas na coleta de dados. O que não for possível q
 | --- | --- |
 | **Pontos de Sensibilidade:** | Não existe |
 | _ **Tradeoff** _ **:** | Não existe |
+	
+	
+
+![Diagrama de classes](imagens/chrome.jpeg "Diagrama de classes")
+![Diagrama de classes](imagens/firefox.jpeg )
+![Diagrama de classes](imagens/edge.jpeg )
 
 	
 | **Atributo de Qualidade:** | Segurança |
@@ -397,9 +406,9 @@ _Apresente as medidas registradas na coleta de dados. O que não for possível q
 | **Preocupação:** | Os acessos de usuários devem ser controlados de forma que cada um tenha acesso apenas aos recursos condizentes as suas atuações. |
 | **Cenários(s):** | Cenário 3|
 | **Ambiente:** | Plataforma web e mobile |
-| **Estímulo:** | Acesso do analista de corridas para cadastro de corridas. |
-| **Mecanismo:** |  |
-| **Medida de Resposta:** |  |
+| **Estímulo:** | Acesso do analista a página de estratégia. |
+| **Mecanismo:** | Login como analista do Web |
+| **Medida de Resposta:** | Criação de estratégia  |
 	
 
 **Considerações sobre a arquitetura:**
@@ -408,6 +417,8 @@ _Apresente as medidas registradas na coleta de dados. O que não for possível q
 | --- | --- |
 | **Pontos de Sensibilidade:** | Não existe |
 | _ **Tradeoff** _ **:** | Não existe |
+	
+![Diagrama de classes](./imagens/Estratégia.jpeg)
 	
 	
 | **Atributo de Qualidade:** | Disponibilidade |
@@ -427,6 +438,10 @@ _Apresente as medidas registradas na coleta de dados. O que não for possível q
 | **Pontos de Sensibilidade:** | Não existe |
 | _ **Tradeoff** _ **:** | Não existe |
 <br />
+
+![Diagrama de classes](./imagens/seguranca-1.jpeg)
+![Diagrama de classes](./imagens/seguranca-2.jpeg)
+![Diagrama de classes](./imagens/seguranca-3.jpeg)
 	
 	
 | **Atributo de Qualidade:** | Acessibilidade |
@@ -447,6 +462,10 @@ _Apresente as medidas registradas na coleta de dados. O que não for possível q
 | _ **Tradeoff** _ **:** | Não existe |
 
 Evidências dos testes realizados
+	
+![Diagrama de classes](./imagens/tela_inicial.jpeg)
+![Diagrama de classes](./imagens/tempo_voltas.jpeg)
+![Diagrama de classes](./imagens/suporte.jpeg)
 
 _Apresente imagens, descreva os testes de tal forma que se comprove a realização da avaliação._
 

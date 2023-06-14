@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import Sidebar from "@/components/sidebar/Sidebar";
 import api from "@/services/api";
 import useApi from "@/shared/hooks/useApi";
-import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, Heading, FormControl, FormLabel, Input } from "@chakra-ui/react";
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, Heading, FormControl, FormLabel, Input, FormErrorMessage } from "@chakra-ui/react";
+import { useForm } from "react-hook-form";
+
 import {
   Box,
   Table,
@@ -106,7 +108,7 @@ export default function Index() {
       });
   };
 
-
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
   return (
     <Box width="100%" padding="4%">
@@ -203,9 +205,11 @@ export default function Index() {
           <ModalContent>
             <ModalHeader>Editar Time</ModalHeader>
             <ModalBody>
-              <FormControl>
+              <FormControl isRequired isInvalid={!!errors.name}>
                 <FormLabel>Nome</FormLabel>
                 <Input
+                  type="text"
+                  {...register("name", { required: true })}
                   value={editedTeam.name}
                   onChange={(e) =>
                     setEditedTeam((prevTeam) => ({
@@ -214,10 +218,15 @@ export default function Index() {
                     }))
                   }
                 />
+                {errors.name && (
+                  <FormErrorMessage>O nome do time é obrigatório</FormErrorMessage>
+                )}
               </FormControl>
-              <FormControl mt={4}>
+              <FormControl mt={4} isRequired isInvalid={!!errors.category}>
                 <FormLabel>Categoria</FormLabel>
                 <Input
+                  type="text"
+                  {...register("category", { required: true })}
                   value={editedTeam.category}
                   onChange={(e) =>
                     setEditedTeam((prevTeam) => ({
@@ -226,16 +235,21 @@ export default function Index() {
                     }))
                   }
                 />
+                {errors.category && (
+                  <FormErrorMessage>A categoria do time é obrigatória</FormErrorMessage>
+                )}
               </FormControl>
             </ModalBody>
             <ModalFooter>
-              <Button colorScheme="blue" mr={3} onClick={handleUpdateTeam}>
+              <Button colorScheme="blue" mr={3} onClick={handleSubmit(handleUpdateTeam)}>
                 Atualizar
               </Button>
               <Button onClick={() => setEditModalOpen(false)}>Cancelar</Button>
             </ModalFooter>
           </ModalContent>
         </Modal>
+
+
       </Box>
     </Box>
   );

@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import Sidebar from "@/components/sidebar/Sidebar";
 import api from "@/services/api";
 import useApi from "@/shared/hooks/useApi";
-import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, Heading, FormControl, FormLabel, Input } from "@chakra-ui/react";
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, Heading, FormControl, FormLabel, Input, FormErrorMessage } from "@chakra-ui/react";
+import { useForm } from "react-hook-form";
+
 import {
   Box,
   Table,
@@ -108,6 +110,7 @@ export default function Index() {
       });
   };
 
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
   return (
     <Box width="100%" padding="4 100px">
@@ -195,9 +198,11 @@ export default function Index() {
           <ModalContent>
             <ModalHeader>Editar Time</ModalHeader>
             <ModalBody>
-              <FormControl>
+              <FormControl isRequired isInvalid={!!errors.name}>
                 <FormLabel>Nome</FormLabel>
                 <Input
+                  type="text"
+                  {...register("name", { required: true })}
                   value={editedCircuit.name}
                   onChange={(e) =>
                     setEditedCircuit((prevCircuit) => ({
@@ -206,10 +211,15 @@ export default function Index() {
                     }))
                   }
                 />
+                {errors.name && (
+                  <FormErrorMessage>O nome do circuito é obrigatório</FormErrorMessage>
+                )}
               </FormControl>
-              <FormControl mt={4}>
+              <FormControl mt={4} isRequired isInvalid={!!errors.local}>
                 <FormLabel>Local</FormLabel>
                 <Input
+                  type="text"
+                  {...register("local", { required: true })}
                   value={editedCircuit.local}
                   onChange={(e) =>
                     setEditedCircuit((prevCircuit) => ({
@@ -218,10 +228,13 @@ export default function Index() {
                     }))
                   }
                 />
+                {errors.local && (
+                  <FormErrorMessage>O local do circuito é obrigatório</FormErrorMessage>
+                )}
               </FormControl>
             </ModalBody>
             <ModalFooter>
-              <Button colorScheme="blue" mr={3} onClick={handleUpdateCircuit}>
+              <Button colorScheme="blue" mr={3} onClick={handleSubmit(handleUpdateCircuit)}>
                 Atualizar
               </Button>
               <Button onClick={() => setEditModalOpen(false)}>Cancelar</Button>

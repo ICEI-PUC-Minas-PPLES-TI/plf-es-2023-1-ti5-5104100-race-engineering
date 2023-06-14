@@ -1,6 +1,6 @@
 # Termo de Encerramento do Projeto: Race Engineering
 ## Objetivo do projeto
-Desenvolver uma aplicação de controle de corridas, para o cálculo de estratégias e armazenamento de informações condizentes a corrida, fomentando views diferentes para seus utentes.
+Desenvolver uma aplicação de controle de corridas, para o cálculo de estratégias e armazenamento de informações condizentes a corrida, fomentando views diferentes para seus utentes.Para isso serão desenvolvidas uma aplicação mobile e uma web com o intuito de focalizar o processo de diferentes views atendendo necessidades de todas as partes interessadas. Objetivando uma aplicação que vise possibilitar o gerenciamento de informações por parte do Engenheiro de Pista, oferecendo informações previsionais de clima, permitindo visualização de performance ao piloto, demonstrando informações de tempo e voltas decorrentes e provendo um chat entre os envolvidos. Os pontos principais aprofundados se concentram na atualização de informações em tempo real a todos os desenvolvidos, o armazenamento de informações e o chat para comunicação
 
 ## Resumo do projeto
 O projeto iniciou dia 8/2 juntamente com o início das aulas de trabalho
@@ -17,7 +17,7 @@ Declaração de Escopo,Atas de reuniões, Partes Interessadas,
 Termo de Abertura do Projeto, Diagrama de Caso de Uso,
 Documento de Arquitetura, Estrutura Analítica do Projeto,
 Diagrama Entidade-Relacionamento Diagrama de Classes, 
-Diagrama de Componentes.
+Diagrama de Componentes,e os Artefatos de Software :Api ,backend ,site web e o aplicativo mobile.
 
 ## Conclusões
 O projeto em questão resultou na entrega de um sistema composto por duas 

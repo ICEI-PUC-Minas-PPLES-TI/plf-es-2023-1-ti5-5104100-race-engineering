@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class Request {
-  final BASE_URL = 'http://localhost:8000/api';
+  final BASE_URL = 'https://race-engineering-api.azurewebsites.net/api';
   final HEADERS = {'Content-Type': 'application/json'};
 
   Future<http.Response>create(String endpoint, Map<String, dynamic> body) async {

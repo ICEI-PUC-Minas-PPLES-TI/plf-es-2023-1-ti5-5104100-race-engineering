@@ -31,8 +31,6 @@ import {
   useToast,
 } from "@chakra-ui/react";
 
-import { options } from "./option-mock";
-
 type Register = {
   startDate: string;
   endDate: string;
@@ -136,7 +134,7 @@ const RegisterPage = () => {
           isClosable: true,
           position: "top-right",
         });
-        router.push("/");
+        router.push("/list-race");
       })
       .catch((err) => {
         toast({

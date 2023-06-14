@@ -65,12 +65,19 @@ O projeto estará disponível na URL de desenvolvimento: http://localhost:3000
 
 ## Histórico de versões
 
-* 0.1.1
-    * CHANGE: Atualização das documentacoes. Código permaneceu inalterado.
-* 0.1.0
-    * Implementação da funcionalidade X pertencente ao processo P.
-* 0.0.1
+* 1.0.0
+    * CHANGE: Atualização das documentações
     * Trabalhando na modelagem do processo de negócios.
-   
+* 2.0.0
+    * Definição arquitetural
+    * Trabalhando no back-end , mobile e front.
+* 3.0.0
+    * Desenvolvimento back-end , mobile e front.
+    * Documentação
+* 4.0.0 
+    * Finalização projeto.
+    * Arquitetura ATM.
+    * Documentação final.
+    
 </div>
 

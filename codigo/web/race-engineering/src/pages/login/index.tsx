@@ -1,29 +1,16 @@
 /* eslint-disable react/no-children-prop */
-import { useRouter } from "next/router";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { RiMailLine } from "react-icons/ri";
+import { useRouter } from 'next/router';
+import { useForm } from 'react-hook-form';
+import { RiMailLine } from 'react-icons/ri';
 
-import { PasswordInput } from "@/components/PasswordInput/PasswordInput";
-import { useAuth } from "@/context/AuthContext";
-import api from "@/services/api";
+import BackgroundSection from '@/components/BackgroundSection';
+import { PasswordInput } from '@/components/PasswordInput/PasswordInput';
+import { useAuth } from '@/context/AuthContext';
+import api from '@/services/api';
 import {
-  Box,
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  FormControl,
-  FormLabel,
-  Heading,
-  Highlight,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  InputRightElement,
-  useToast,
-} from "@chakra-ui/react";
+    Box, Button, Card, CardBody, CardFooter, CardHeader, FormControl, FormLabel, Heading, Highlight,
+    Input, InputGroup, InputLeftElement, Stack, useToast
+} from '@chakra-ui/react';
 
 type Login = {
   email: string;
@@ -32,7 +19,7 @@ type Login = {
 
 const LoginPage = () => {
   const router = useRouter();
-  const { authenticate, logout } = useAuth();
+  const { authenticate } = useAuth();
 
   const { register, handleSubmit } = useForm<Login>();
   const toast = useToast();
@@ -42,27 +29,8 @@ const LoginPage = () => {
       .post("/auth/login", data)
       .then(async (response) => {
         const { data } = response;
-        const ROLES_AUTHORIZED = ["ADMIN", "ANALYST"];
         router.push("/");
         authenticate(data);
-        //const { data: profile } = await api.get("/users/me");
-
-        // if (typeof window !== "undefined") {
-        //   localStorage.setItem("profile", JSON.stringify(profile));
-        // }
-
-        // if (ROLES_AUTHORIZED.includes(profile.role)) {
-        //   router.push("/");
-        // } else {
-        //   toast({
-        //     title: "Acesso não autorizado, contate o administrador do sistema.",
-        //     status: "warning",
-        //     duration: 3000,
-        //     isClosable: true,
-        //     position: "top-right",
-        //   });
-        //   logout();
-        // }
       })
       .catch((err) => {
         toast({
@@ -76,14 +44,8 @@ const LoginPage = () => {
   });
 
   return (
-    <Box
-      height="100vh"
-      width="100%"
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-    >
-      <FormControl width={480} as="form" onSubmit={onSubmit} isRequired>
+    <BackgroundSection>
+      <FormControl maxW="450px" as="form" onSubmit={onSubmit} isRequired>
         <Card>
           <CardHeader>
             <Heading as="h2" size="md">
@@ -142,7 +104,7 @@ const LoginPage = () => {
           </CardFooter>
         </Card>
       </FormControl>
-    </Box>
+    </BackgroundSection>
   );
 };
 

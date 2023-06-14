@@ -5,18 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4c4a502c-b19e-4505-95bc-bb87637afc44" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/assets/gradient.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/assets/rrr.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/gradient.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/gradient.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/lib/pages/laps/laps.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/pages/laps/laps.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/lib/pages/notes/components/notesForm.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/pages/notes/components/notesForm.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/lib/pages/notes/components/stickyNotes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/pages/notes/components/stickyNotes.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/lib/pages/notes/notes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/pages/notes/notes.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/lib/services/database/DatabaseHelper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/services/database/DatabaseHelper.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/app/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/app/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/lib/pages/races/races.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/pages/races/races.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/lib/shared/utils/httpInterceptor.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/shared/utils/httpInterceptor.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/notes.db" beforeDir="false" afterPath="$PROJECT_DIR$/notes.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,31 +28,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "cidr.known.project.marker": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "io.flutter.reload.alreadyRun": "true",
-    "last_opened_file_path": "/Users/joeyclapton/dev/puc/plf-es-2023-1-ti5-5104100-race-engineering/codigo/mobile/app/assets",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "show.migrate.to.gradle.popup": "false"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/joeyclapton/dev/puc/plf-es-2023-1-ti5-5104100-race-engineering/codigo/mobile/app/assets&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/assets" />
       <recent name="$PROJECT_DIR$/app/lib/pages/register" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/test" />
+      <recent name="$PROJECT_DIR$/app/test/home" />
       <recent name="$PROJECT_DIR$/app/assets" />
       <recent name="$PROJECT_DIR$/app" />
       <recent name="$PROJECT_DIR$/app/lib/assets" />
-      <recent name="$PROJECT_DIR$/app/lib/pages/login/components" />
     </key>
   </component>
   <component name="RunManager">
@@ -100,8 +94,7 @@
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/app/lib/pages/laps/laps.dart</url>
-          <line>38</line>
+          <url>file://$PROJECT_DIR$/app/test/notes/notesForm_test.dart</url>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
