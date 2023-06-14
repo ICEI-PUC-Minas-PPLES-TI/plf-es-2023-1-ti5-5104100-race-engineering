@@ -1,6 +1,6 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { runSeeders, SeederOptions } from 'typeorm-extension';
-import { config } from '../database.providers';
+import { config } from '../db.config';
 
 (async () => {
   const options: DataSourceOptions & SeederOptions = config;

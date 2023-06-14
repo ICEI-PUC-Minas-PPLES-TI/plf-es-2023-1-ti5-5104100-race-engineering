@@ -1,13 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import {
-  CreateLapDto,
-  LapSearchParams,
-  SendTimerDto,
-  UpdateLapDto,
-} from './models/lap.dto';
-import { Lap } from '@/api/lap/models/lap.entity';
-import { RaceService } from '@/api/race/race.service';
-import { DriverService } from '@/api/driver/driver.service';
+import { CreateLapDto, SendTimerDto, UpdateLapDto } from './models/lap.dto';
+import { Lap } from '../lap/models/lap.entity';
+import { RaceService } from '../race/race.service';
+import { DriverService } from '../driver/driver.service';
 import { TeamService } from '../team/team.service';
 import * as parse from 'postgres-interval';
 
@@ -28,9 +23,9 @@ export class LapService {
       tyreType,
       isAdditional,
     } = createLapDto;
-    const race = await this.raceService.findOneRace(id);
+    const race = await this.raceService.findOneOrFail(id);
     let driver;
-    if (driverId) driver = await this.driverService.findOne(driverId);
+    if (driverId) driver = await this.driverService.findOneOrFail(driverId);
 
     const lap = new Lap();
     lap.lapNumber = lapNumber;
@@ -47,7 +42,7 @@ export class LapService {
   }
 
   async findByRaceId(id: number) {
-    const race = await this.raceService.findOneRace(id);
+    const race = await this.raceService.findOneOrFail(id);
     return await Lap.find({
       where: {
         race: { id: race.id },
@@ -66,7 +61,7 @@ export class LapService {
   }
 
   async findByTeamId(id: number) {
-    const team = await this.teamService.findOne(id);
+    const team = await this.teamService.findOneOrFail(id);
     return await Lap.find({
       where: {
         driver: { team: { id: team.id } },
@@ -77,7 +72,7 @@ export class LapService {
 
   async findByRaceIdAndDriverId(raceId: number, driverId: number) {
     const driver = await this.driverService.findOneDetailed(driverId);
-    const race = await this.raceService.findOneRace(raceId);
+    const race = await this.raceService.findOneOrFail(raceId);
     const laps = await Lap.find({
       where: {
         driver: { id: driver.id },
@@ -93,8 +88,8 @@ export class LapService {
   }
 
   async findByRaceIdAndTeamId(raceId: number, teamId: number) {
-    const team = await this.teamService.findOne(teamId);
-    const race = await this.raceService.findOneRace(raceId);
+    const team = await this.teamService.findOneOrFail(teamId);
+    const race = await this.raceService.findOneOrFail(raceId);
     const laps = await Lap.find({
       where: {
         driver: { team: { id: team.id } },
@@ -136,7 +131,7 @@ export class LapService {
     const lap = await this.findOne(id);
     if (lapTime) lap.lapTime = parse(lapTime);
     if (lapNumber) lap.lapNumber = lapNumber;
-    if (driverId) lap.driver = await this.driverService.findOne(driverId);
+    if (driverId) lap.driver = await this.driverService.findOneOrFail(driverId);
     if (remainingGas) lap.remainingGas = remainingGas;
     if (tyreType) lap.tyreType = tyreType;
     if (isAdditional) lap.isAdditional = isAdditional;

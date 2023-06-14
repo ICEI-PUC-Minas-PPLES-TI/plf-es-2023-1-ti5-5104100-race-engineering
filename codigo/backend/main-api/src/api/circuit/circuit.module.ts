@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { CircuitService } from './circuit.service';
 import { CircuitController } from './circuit.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Circuit } from '@/api/circuit/models/circuit.entity';
+import { Circuit } from '../circuit/models/circuit.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Circuit])],

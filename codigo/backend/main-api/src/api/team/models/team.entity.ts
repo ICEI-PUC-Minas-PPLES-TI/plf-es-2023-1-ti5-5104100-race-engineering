@@ -13,7 +13,7 @@ import {
 import { Car } from '../../car/models/car.entity';
 import { Driver } from '../../driver/models/driver.entity';
 import { Exclude } from 'class-transformer';
-import { Race } from '@/api/race/models/race.entity';
+import { Race } from '../../race/models/race.entity';
 
 @Index('Team_pkey', ['id'], { unique: true })
 @Entity('Team', { schema: 'public' })
@@ -47,4 +47,9 @@ export class Team extends BaseEntity {
 
   @ManyToMany(() => Race, (race) => race.teams)
   races: Race[];
+
+  constructor(partial?: Partial<Team>) {
+    super();
+    Object.assign(this, partial);
+  }
 }

@@ -13,12 +13,12 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Lap } from '@/api/lap/models/lap.entity';
+import { Lap } from '../../lap/models/lap.entity';
 import { User } from '../../user/models/user.entity';
 import { Circuit } from '../../circuit/models/circuit.entity';
 import { Driver } from '../../driver/models/driver.entity';
 import { Exclude } from 'class-transformer';
-import { Team } from '@/api/team/models/team.entity';
+import { Team } from '../../team/models/team.entity';
 
 @Index('Race_pkey', ['id'], { unique: true })
 @Entity('Race', { schema: 'public' })
@@ -82,4 +82,9 @@ export class Race extends BaseEntity {
     schema: 'public',
   })
   teams: Team[];
+
+  constructor(partial?: Partial<Race>) {
+    super();
+    Object.assign(this, partial);
+  }
 }

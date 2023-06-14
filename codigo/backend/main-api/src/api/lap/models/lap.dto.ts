@@ -1,7 +1,7 @@
 import { PartialType } from '@nestjs/mapped-types';
-import {IsBoolean, IsNumber, IsOptional, IsString} from 'class-validator';
+import { IsBoolean, IsNumber, IsOptional, IsString } from 'class-validator';
 import { ApiPropertyOptional } from '@nestjs/swagger';
-import { TyreType } from '@/api/lap/models/lap.entity';
+import { TyreType } from '../../lap/models/lap.entity';
 
 export class CreateLapDto {
   @IsNumber()

@@ -15,8 +15,7 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger';
 @Controller('drivers')
 @ApiTags('Drivers')
 export class DriverController {
-  @Inject(DriverService)
-  private readonly driverService: DriverService;
+  constructor(private readonly driverService: DriverService) {}
 
   @Get()
   @ApiOperation({ summary: 'List drivers' })

@@ -68,15 +68,15 @@ export class UpdateRaceDto extends PartialType(CreateRaceDTO) {}
 export class RaceSearchParams {
   @IsOptional()
   @IsString()
-  search: string;
+  search?: string;
 
   @IsOptional()
   @IsString()
-  sort: string;
+  sort?: string;
 
   @IsOptional()
   @IsString()
-  sortDirection: string;
+  sortDirection?: string;
 
   @IsOptional()
   @IsInt()
@@ -84,5 +84,5 @@ export class RaceSearchParams {
 
   @IsOptional()
   @IsNumberString()
-  limit: number;
+  limit?: number;
 }

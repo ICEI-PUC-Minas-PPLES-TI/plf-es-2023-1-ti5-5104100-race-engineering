@@ -14,12 +14,12 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Team } from '@/api/team/models/team.entity';
+import { Team } from '../../team/models/team.entity';
 import { User } from '../../user/models/user.entity';
 import { Race } from '../../race/models/race.entity';
 import { Exclude } from 'class-transformer';
-import { Car } from '@/api/car/models/car.entity';
-import { Lap } from '@/api/lap/models/lap.entity';
+import { Car } from '../../car/models/car.entity';
+import { Lap } from '../../lap/models/lap.entity';
 
 @Index('Driver_pkey', ['id'], { unique: true })
 @Entity('Driver', { schema: 'public' })
@@ -85,4 +85,9 @@ export class Driver extends BaseEntity {
     schema: 'public',
   })
   races: Race[];
+
+  constructor(partial?: Partial<Driver>) {
+    super();
+    Object.assign(this, partial);
+  }
 }

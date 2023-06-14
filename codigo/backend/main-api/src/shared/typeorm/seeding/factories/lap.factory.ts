@@ -1,6 +1,6 @@
 import { setSeederFactory } from 'typeorm-extension';
 import { faker } from '@faker-js/faker/locale/pt_BR';
-import { Lap, TyreType } from '@/api/lap/models/lap.entity';
+import { Lap, TyreType } from '../../../../api/lap/models/lap.entity';
 import * as parse from 'postgres-interval';
 
 export const LapFactory = setSeederFactory(Lap, () => {

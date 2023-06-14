@@ -16,8 +16,8 @@ import {
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { Exclude } from 'class-transformer';
-import { Driver } from '@/api/driver/models/driver.entity';
-import { Race } from '@/api/race/models/race.entity';
+import { Driver } from '../../driver/models/driver.entity';
+import { Race } from '../../race/models/race.entity';
 
 export enum Role {
   Admin = 'ADMIN',
@@ -83,4 +83,9 @@ export class User extends BaseEntity {
     schema: 'public',
   })
   mechanicRaces: Race[];
+
+  constructor(partial?: Partial<User>) {
+    super();
+    Object.assign(this, partial);
+  }
 }

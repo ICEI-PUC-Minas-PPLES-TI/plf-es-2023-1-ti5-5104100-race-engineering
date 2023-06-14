@@ -6,49 +6,46 @@ import {
   Patch,
   Param,
   Delete,
-  Inject,
 } from '@nestjs/common';
 import { CircuitService } from './circuit.service';
-import {
-  CreateCircuitDto,
-  ListedCircuit,
-  UpdateCircuitDto,
-} from './models/circuit.dto';
-import { Circuit } from '@/api/circuit/models/circuit.entity';
+import { CreateCircuitDto, UpdateCircuitDto } from './models/circuit.dto';
+import { Circuit } from '../circuit/models/circuit.entity';
 import { ApiBody, ApiOkResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @Controller('circuits')
 @ApiTags('Circuits')
 export class CircuitController {
-  @Inject(CircuitService)
-  private readonly circuitService: CircuitService;
+  constructor(private readonly circuitService: CircuitService) {}
 
   @Post()
   @ApiBody({ type: CreateCircuitDto })
   @ApiOkResponse({ description: 'The circuit was created successfully' })
-  private create(@Body() body: CreateCircuitDto): Promise<Circuit | never> {
+  create(@Body() body: CreateCircuitDto): Promise<Circuit | never> {
     return this.circuitService.create(body);
   }
 
   @Get()
-  @ApiResponse({ type: [ListedCircuit], description: 'Successful operation' })
-  private async findAll(): Promise<ListedCircuit[]> {
+  @ApiResponse({ type: [Circuit], description: 'Successful operation' })
+  findAll(): Promise<Circuit[]> {
     return this.circuitService.findAll();
   }
 
   @Get(':id')
   @ApiResponse({ type: Circuit, description: 'Successful operation' })
-  private async findOne(@Param('id') id: string): Promise<Circuit> {
-    return this.circuitService.findOne(+id);
+  findOne(@Param('id') id: string): Promise<Circuit> {
+    return this.circuitService.findOneOrFail(+id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCircuitDto: UpdateCircuitDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateCircuitDto: UpdateCircuitDto,
+  ): Promise<Circuit> {
     return this.circuitService.update(+id, updateCircuitDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id') id: string): Promise<void> {
     return this.circuitService.remove(+id);
   }
 }

@@ -1,6 +1,6 @@
 import { setSeederFactory } from 'typeorm-extension';
 import { faker } from '@faker-js/faker/locale/pt_BR';
-import { Circuit } from '@/api/circuit/models/circuit.entity';
+import { Circuit } from '../../../../api/circuit/models/circuit.entity';
 
 export const CircuitFactory = setSeederFactory(Circuit, () => {
   const circuit = new Circuit();

@@ -1,14 +1,13 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
+  Controller,
   Delete,
-  Inject,
-  UseGuards,
+  Get,
   Param,
+  Patch,
+  Post,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import {
   ApiBody,
@@ -23,21 +22,21 @@ import {
   RaceSearchParams,
   UpdateRaceDto,
 } from './models/race.dto';
-import { UserService } from '@/api/user/user.service';
-import { Race } from '@/api/race/models/race.entity';
-import { JwtGuard } from '@/api/user/auth/guards/auth.guard';
-import { RoleGuard } from '@/api/user/auth/guards/role.guard';
-import { Roles } from '@/api/user/auth/decorators/role.decorator';
-import { Role, User } from '@/api/user/models/user.entity';
-import { CurrentUser } from '@/api/user/auth/decorators/user.decorator';
+import { UserService } from '../user/user.service';
+import { Race } from '../race/models/race.entity';
+import { JwtGuard } from '../user/auth/guards/auth.guard';
+import { RoleGuard } from '../user/auth/guards/role.guard';
+import { Roles } from '../user/auth/decorators/role.decorator';
+import { Role, User } from '../user/models/user.entity';
+import { CurrentUser } from '../user/auth/decorators/user.decorator';
 
 @Controller('races')
 @ApiTags('Races')
 export class RaceController {
-  @Inject(UserService)
-  private readonly userService: UserService;
-  @Inject(RaceService)
-  private readonly raceService: RaceService;
+  constructor(
+    private readonly raceService: RaceService,
+    private readonly userService: UserService,
+  ) {}
 
   @Post()
   @ApiOperation({ summary: 'Create a new race' })
@@ -46,44 +45,41 @@ export class RaceController {
   @ApiBody({ type: CreateRaceDTO })
   @ApiOkResponse({ description: 'The race was created successfully' })
   @ApiNotFoundResponse({ description: 'The driver or mechanic does not exist' })
-  private create(@Body() createRaceDto: CreateRaceDTO): Promise<Race> {
-    return this.raceService.createRace(createRaceDto);
+  create(@Body() createRaceDto: CreateRaceDTO): Promise<Race> {
+    return this.raceService.create(createRaceDto);
   }
 
   @Get()
   @ApiOperation({ summary: 'List races' })
   @UseGuards(JwtGuard)
-  private findAll(
-    @CurrentUser() user: User,
-    @Query() searchParams: RaceSearchParams,
-  ) {
-    return this.raceService.findAllRaces(user, searchParams);
+  findAll(@CurrentUser() user: User, @Query() searchParams?: RaceSearchParams) {
+    return this.raceService.findAll(user, searchParams);
   }
 
   @Get(':id')
   @ApiOperation({ summary: 'Find one race' })
-  private findOne(@Param('id') id: string) {
-    return this.raceService.findOneRace(+id);
+  findOne(@Param('id') id: string) {
+    return this.raceService.findOneOrFail(+id);
   }
 
   @Patch(':id')
   @ApiOperation({ summary: 'Edit one race' })
   update(@Param('id') id: string, @Body() updateRaceDto: UpdateRaceDto) {
-    return this.raceService.updateRace(+id, updateRaceDto);
+    return this.raceService.update(+id, updateRaceDto);
   }
 
   @Delete(':id')
   @ApiOperation({ summary: 'Remove one race' })
   remove(@Param('id') id: string) {
-    return this.raceService.removeRace(+id);
+    return this.raceService.remove(+id);
   }
 
   @Post(':id/set-main')
   @ApiOperation({ summary: 'Set a race as main-race (analyst only)' })
   @Roles(Role.Analyst)
   @UseGuards(JwtGuard, RoleGuard)
-  private async setMain(@Param('id') id: string, @CurrentUser() user: User) {
-    const race = await this.raceService.findOneRace(+id);
+  async setMain(@Param('id') id: string, @CurrentUser() user: User) {
+    const race = await this.raceService.findOneOrFail(+id);
     return this.userService.setAnalystMainRace(race, user.id);
   }
 

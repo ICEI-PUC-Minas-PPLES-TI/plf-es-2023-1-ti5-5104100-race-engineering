@@ -1,6 +1,6 @@
 import { setSeederFactory } from 'typeorm-extension';
 import { faker } from '@faker-js/faker/locale/pt_BR';
-import { Car } from '@/api/car/models/car.entity';
+import { Car } from '../../../../api/car/models/car.entity';
 
 export const CarFactory = setSeederFactory(Car, () => {
   const car = new Car();

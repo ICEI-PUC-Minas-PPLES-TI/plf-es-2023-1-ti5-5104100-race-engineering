@@ -5,14 +5,14 @@ import {
 } from 'typeorm-extension';
 import { DataSource } from 'typeorm';
 import { faker } from '@faker-js/faker/locale/pt_BR';
-import { config } from '@/shared/typeorm/database.providers';
-import { Role, User } from '@/api/user/models/user.entity';
-import { Driver } from '@/api/driver/models/driver.entity';
-import { Car } from '@/api/car/models/car.entity';
-import { Circuit } from '@/api/circuit/models/circuit.entity';
-import { Lap } from '@/api/lap/models/lap.entity';
-import { Race } from '@/api/race/models/race.entity';
-import { Team } from '@/api/team/models/team.entity';
+import { config } from '../../db.config';
+import { Role, User } from '../../../../api/user/models/user.entity';
+import { Driver } from '../../../../api/driver/models/driver.entity';
+import { Car } from '../../../../api/car/models/car.entity';
+import { Circuit } from '../../../../api/circuit/models/circuit.entity';
+import { Lap } from '../../../../api/lap/models/lap.entity';
+import { Race } from '../../../../api/race/models/race.entity';
+import { Team } from '../../../../api/team/models/team.entity';
 
 setDataSourceOptions(config, 'default');
 
@@ -30,7 +30,10 @@ export class MainSeeder implements Seeder {
     const driverFactory = factoryManager.get(Driver);
 
     // User Seeder
-    await userFactory.save({ role: Role.Admin, email: 'admin@email.com' });
+    await userFactory.save({
+      role: Role.Admin,
+      email: 'admin../../../..email.com',
+    });
     const mechanics = await userFactory.saveMany(5, { role: Role.Mechanic });
     const analysts = await userFactory.saveMany(3, { role: Role.Analyst });
 

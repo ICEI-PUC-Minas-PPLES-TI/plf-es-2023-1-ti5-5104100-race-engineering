@@ -6,40 +6,38 @@ import {
   Patch,
   Param,
   Delete,
-  Inject,
 } from '@nestjs/common';
 import { TeamService } from './team.service';
 import { CreateTeamDto, UpdateTeamDto } from './models/team.dto';
 import { ApiTags } from '@nestjs/swagger';
-import { Team } from '@/api/team/models/team.entity';
+import { Team } from '../team/models/team.entity';
 
 @Controller('teams')
 @ApiTags('Teams')
 export class TeamController {
-  @Inject(TeamService)
-  private readonly teamService: TeamService;
+  constructor(private readonly teamService: TeamService) {}
 
   @Post()
-  private create(@Body() createTeamDto: CreateTeamDto): Promise<Team> {
+  create(@Body() createTeamDto: CreateTeamDto): Promise<Team> {
     return this.teamService.create(createTeamDto);
   }
 
   @Get()
-  private findAll(): Promise<Team[]> {
+  findAll(): Promise<Team[]> {
     return this.teamService.findAll();
   }
 
   @Get(':id')
-  private findOne(@Param('id') id: string): Promise<Team> {
+  findOne(@Param('id') id: string): Promise<Team> {
     return this.teamService.findOneDetailed(+id);
   }
 
   @Patch(':teamId/add-driver/:driverId')
-  private addDriver(
+  addDriver(
     @Param('teamId') teamId: string,
     @Param('driverId') driverId: string,
   ): Promise<Team> {
-    return this.teamService.addDriver(teamId, driverId);
+    return this.teamService.addDriver(+teamId, +driverId);
   }
 
   @Patch(':id')

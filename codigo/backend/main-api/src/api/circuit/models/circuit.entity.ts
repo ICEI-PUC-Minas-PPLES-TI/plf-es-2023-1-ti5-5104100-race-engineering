@@ -1,5 +1,4 @@
 import {
-  BaseEntity,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
@@ -12,10 +11,11 @@ import {
 import { Race } from '../../race/models/race.entity';
 import { ApiProperty } from '@nestjs/swagger';
 import { Exclude } from 'class-transformer';
+import { CircuitService } from '@/api/circuit/circuit.service';
 
 @Index('Circuit_pkey', ['id'], { unique: true })
 @Entity('Circuit', { schema: 'public' })
-export class Circuit extends BaseEntity {
+export class Circuit {
   @PrimaryGeneratedColumn({ type: 'integer', name: 'id' })
   @ApiProperty({ type: 'number', example: 1 })
   id: number;
@@ -50,4 +50,15 @@ export class Circuit extends BaseEntity {
 
   @OneToMany(() => Race, (race) => race.circuit)
   races: Race[];
+
+  constructor(circuit?: Partial<Circuit>) {
+    this.id = circuit?.id;
+    this.name = circuit?.name;
+    this.local = circuit?.local;
+    this.trackSize = circuit?.trackSize;
+    this.safetyMargin = circuit?.safetyMargin;
+    this.createdAt = circuit?.createdAt;
+    this.updatedAt = circuit?.updatedAt;
+    this.deletedAt = circuit?.deletedAt;
+  }
 }

@@ -1,5 +1,5 @@
 import { setSeederFactory } from 'typeorm-extension';
-import { Driver } from '@/api/driver/models/driver.entity';
+import { Driver } from '../../../../api/driver/models/driver.entity';
 import { Faker } from '@faker-js/faker';
 
 export const DriversFactory = setSeederFactory(Driver, (faker: Faker) => {

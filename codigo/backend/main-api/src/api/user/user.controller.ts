@@ -1,12 +1,12 @@
 import {
+  Body,
   ClassSerializerInterceptor,
   Controller,
+  Get,
+  Inject,
+  Patch,
   UseGuards,
   UseInterceptors,
-  Body,
-  Inject,
-  Get,
-  Patch,
 } from '@nestjs/common';
 import { ListedUser, UpdateNameDto } from './models/user.dto';
 import { Role, User } from './models/user.entity';
@@ -14,14 +14,14 @@ import { UserService } from './user.service';
 import {
   ApiBody,
   ApiOkResponse,
+  ApiOperation,
   ApiResponse,
   ApiTags,
-  ApiOperation,
 } from '@nestjs/swagger';
-import { Roles } from '@/api/user/auth/decorators/role.decorator';
-import { JwtGuard } from '@/api/user/auth/guards/auth.guard';
-import { RoleGuard } from '@/api/user/auth/guards/role.guard';
-import { CurrentUser } from '@/api/user/auth/decorators/user.decorator';
+import { Roles } from '../user/auth/decorators/role.decorator';
+import { JwtGuard } from '../user/auth/guards/auth.guard';
+import { RoleGuard } from '../user/auth/guards/role.guard';
+import { CurrentUser } from '../user/auth/decorators/user.decorator';
 
 @Controller('users')
 @ApiTags('Users')
@@ -43,7 +43,7 @@ export class UserController {
   @ApiOkResponse({ description: 'The user name was updated successfully' })
   @UseGuards(JwtGuard)
   @UseInterceptors(ClassSerializerInterceptor)
-  private updateUser(
+  updateUser(
     @Body() body: UpdateNameDto,
     @CurrentUser() user: User,
   ): Promise<User> {

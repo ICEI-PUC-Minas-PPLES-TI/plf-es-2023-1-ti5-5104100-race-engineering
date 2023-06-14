@@ -1,5 +1,5 @@
 import { setSeederFactory } from 'typeorm-extension';
-import { User } from '@/api/user/models/user.entity';
+import { User } from '../../../../api/user/models/user.entity';
 import { faker } from '@faker-js/faker/locale/pt_BR';
 import * as bcrypt from 'bcryptjs';
 

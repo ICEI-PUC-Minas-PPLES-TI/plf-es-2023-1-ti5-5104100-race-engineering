@@ -6,12 +6,12 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User, Role } from '@/api/user/models/user.entity';
+import { User, Role } from '../../user/models/user.entity';
 import { Repository } from 'typeorm';
 import { RegisterDto, LoginDto } from './models/auth.dto';
 import { AuthHelper } from './auth.helper';
-import { AuthResponse } from '@/api/user/auth/models/auth.interface';
-import { Driver } from '@/api/driver/models/driver.entity';
+import { AuthResponse } from '../../user/auth/models/auth.interface';
+import { Driver } from '../../driver/models/driver.entity';
 
 @Injectable()
 export class AuthService {

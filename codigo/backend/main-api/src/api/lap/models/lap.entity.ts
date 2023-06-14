@@ -12,7 +12,7 @@ import {
 } from 'typeorm';
 import { Race } from '../../race/models/race.entity';
 import { Exclude } from 'class-transformer';
-import { Driver } from '@/api/driver/models/driver.entity';
+import { Driver } from '../../driver/models/driver.entity';
 import { IPostgresInterval } from 'postgres-interval';
 
 @Index('Lap_pkey', ['id'], { unique: true })

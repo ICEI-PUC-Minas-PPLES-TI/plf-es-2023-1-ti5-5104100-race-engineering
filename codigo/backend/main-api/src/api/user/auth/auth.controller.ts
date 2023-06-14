@@ -8,10 +8,10 @@ import {
   UseGuards,
   Req,
 } from '@nestjs/common';
-import { User } from '@/api/user/models/user.entity';
+import { User } from '../../user/models/user.entity';
 import { RegisterDto, LoginDto } from './models/auth.dto';
 import { AuthService } from './auth.service';
-import { IRequest } from '@/api/user/models/user.dto';
+import { IRequest } from '../../user/models/user.dto';
 import {
   ApiBody,
   ApiConflictResponse,
@@ -19,7 +19,7 @@ import {
   ApiOkResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { AuthResponse } from '@/api/user/auth/models/auth.interface';
+import { AuthResponse } from '../../user/auth/models/auth.interface';
 import { AuthGuard } from '@nestjs/passport';
 
 @Controller('auth')

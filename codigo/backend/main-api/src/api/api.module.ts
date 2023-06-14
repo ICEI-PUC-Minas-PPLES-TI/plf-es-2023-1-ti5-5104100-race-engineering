@@ -7,7 +7,7 @@ import { CircuitModule } from './circuit/circuit.module';
 import { LapModule } from './lap/lap.module';
 import { TeamModule } from './team/team.module';
 import { CarModule } from './car/car.module';
-import { ProxyModule } from '@/api/notifications/proxy/proxy.module';
+import { ProxyModule } from '../notifications/proxy/proxy.module';
 
 @Module({
   imports: [

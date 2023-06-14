@@ -1,5 +1,5 @@
 import { setSeederFactory } from 'typeorm-extension';
-import { Race } from '@/api/race/models/race.entity';
+import { Race } from '../../../../api/race/models/race.entity';
 import { faker } from '@faker-js/faker/locale/pt_BR';
 
 export const RaceFactory = setSeederFactory(Race, () => {

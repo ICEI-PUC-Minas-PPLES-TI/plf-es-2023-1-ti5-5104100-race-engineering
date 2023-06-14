@@ -11,9 +11,9 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Team } from '@/api/team/models/team.entity';
+import { Team } from '../../team/models/team.entity';
 import { Exclude } from 'class-transformer';
-import { Driver } from '@/api/driver/models/driver.entity';
+import { Driver } from '../../driver/models/driver.entity';
 
 @Index('Car_pkey', ['id'], { unique: true })
 @Entity('Car', { schema: 'public' })
@@ -46,4 +46,9 @@ export class Car extends BaseEntity {
   @OneToOne(() => Driver, (driver) => driver.car)
   @JoinColumn([{ name: 'driverId', referencedColumnName: 'id' }])
   driver: Driver;
+
+  constructor(partial?: Partial<Car>) {
+    super();
+    Object.assign(this, partial);
+  }
 }

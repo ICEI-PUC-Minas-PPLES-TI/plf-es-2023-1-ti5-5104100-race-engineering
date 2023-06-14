@@ -5,19 +5,22 @@ import {
   SelectDriverDTO,
   UpdateRaceDto,
 } from './models/race.dto';
-import { UserService } from '@/api/user/user.service';
-import { CircuitService } from '@/api/circuit/circuit.service';
-import { DriverService } from '@/api/driver/driver.service';
-import { Driver } from '@/api/driver/models/driver.entity';
-import { Race } from '@/api/race/models/race.entity';
-import { User, Role } from '@/api/user/models/user.entity';
-import { TeamService } from '@/api/team/team.service';
-import { Team } from '@/api/team/models/team.entity';
-import { ProxyService } from '@/api/notifications/proxy/proxy.service';
+import { UserService } from '../user/user.service';
+import { CircuitService } from '../circuit/circuit.service';
+import { DriverService } from '../driver/driver.service';
+import { Driver } from '../driver/models/driver.entity';
+import { Race } from '../race/models/race.entity';
+import { Role, User } from '../user/models/user.entity';
+import { TeamService } from '../team/team.service';
+import { Team } from '../team/models/team.entity';
+import { ProxyService } from '../../notifications/proxy/proxy.service';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class RaceService {
   constructor(
+    @InjectRepository(Race) private readonly raceRepository: Repository<Race>,
     public readonly userService: UserService,
     public readonly circuitService: CircuitService,
     public readonly driverService: DriverService,
@@ -25,7 +28,7 @@ export class RaceService {
     public readonly proxyService: ProxyService,
   ) {}
 
-  async createRace(createRaceDto: CreateRaceDTO) {
+  async create(createRaceDto: CreateRaceDTO) {
     const {
       name,
       startDate,
@@ -38,7 +41,7 @@ export class RaceService {
       teams,
     } = createRaceDto;
 
-    const circuit = await this.circuitService.findOne(circuitId);
+    const circuit = await this.circuitService.findOneOrFail(circuitId);
     const analyst = await this.userService.findOne(analystId);
     const foundMechanics = await this.findMechanics(mechanics);
     const foundDrivers = await this.findDrivers(drivers);
@@ -68,13 +71,10 @@ export class RaceService {
     race.createdAt = new Date();
     race.updatedAt = new Date();
 
-    return await race.save();
+    return await this.raceRepository.save(race);
   }
 
-  async findAllRaces(
-    user: User,
-    searchParams: RaceSearchParams,
-  ): Promise<Race[]> {
+  async findAll(user: User, searchParams?: RaceSearchParams): Promise<Race[]> {
     const { search, sort, sortDirection, page, limit } = searchParams;
     const foundUser = await this.userService.findOneDetailed(user.id);
 
@@ -86,7 +86,7 @@ export class RaceService {
       case Role.Analyst:
         return await this.findByAnalyst(foundUser.id);
       case Role.Admin:
-        const builder = await Race.createQueryBuilder('Race');
+        const builder = await this.raceRepository.createQueryBuilder('Race');
         if (search) {
           builder.where('LOWER(Race.name) LIKE :search', {
             search: `%${search.toLowerCase()}%`,
@@ -107,10 +107,12 @@ export class RaceService {
     }
   }
 
-  async findOneRace(id: number) {
-    const race = await Race.findOne({ where: { id } });
-    if (!race) throw new NotFoundException({ message: 'Race not found' });
-    return race;
+  async findOneOrFail(id: number) {
+    try {
+      return await this.raceRepository.findOneOrFail({ where: { id } });
+    } catch (error) {
+      throw new NotFoundException({ message: 'Race not found' });
+    }
   }
 
   async findByDriver(id: number): Promise<Race[]> {
@@ -128,8 +130,8 @@ export class RaceService {
     return analyst.analystRaces;
   }
 
-  async updateRace(id: number, updateRaceDto: UpdateRaceDto) {
-    const race = await this.findOneRace(id);
+  async update(id: number, updateRaceDto: UpdateRaceDto) {
+    const race = await this.findOneOrFail(id);
     const {
       name,
       startDate,
@@ -145,22 +147,23 @@ export class RaceService {
     if (startDate) race.startDate = startDate;
     if (endDate) race.endDate = endDate;
     if (totalLaps) race.totalLaps = totalLaps;
-    if (circuitId) race.circuit = await this.circuitService.findOne(circuitId);
+    if (circuitId)
+      race.circuit = await this.circuitService.findOneOrFail(circuitId);
     if (analystId)
       race.analyst = await this.userService.findOneDetailed(analystId);
     if (mechanics) race.mechanics = await this.findMechanics(mechanics);
     if (drivers) race.drivers = await this.findDrivers(drivers);
     race.updatedAt = new Date();
 
-    return await race.save();
+    return await this.raceRepository.save(race);
   }
 
-  async removeRace(id: number) {
-    const race = await this.findOneRace(id);
+  async remove(id: number) {
+    const race = await this.findOneOrFail(id);
     return await race.softRemove();
   }
 
-  private async findMechanics(mechanics: SelectDriverDTO[]): Promise<User[]> {
+  async findMechanics(mechanics: SelectDriverDTO[]): Promise<User[]> {
     const foundMechanics: User[] = [];
     for (let i = 0; i < mechanics.length; i++) {
       const foundMechanic = await this.userService.findOne(mechanics[i].id);
@@ -169,19 +172,19 @@ export class RaceService {
     return foundMechanics;
   }
 
-  private async findDrivers(drivers: SelectDriverDTO[]): Promise<Driver[]> {
+  async findDrivers(drivers: SelectDriverDTO[]): Promise<Driver[]> {
     const foundDrivers: Driver[] = [];
     for (let i = 0; i < drivers.length; i++) {
-      const foundDriver = await this.driverService.findOne(drivers[i].id);
+      const foundDriver = await this.driverService.findOneOrFail(drivers[i].id);
       foundDrivers.push(foundDriver);
     }
     return foundDrivers;
   }
 
-  private async findTeams(teams: SelectDriverDTO[]): Promise<Team[]> {
+  async findTeams(teams: SelectDriverDTO[]): Promise<Team[]> {
     const foundTeams: Team[] = [];
     for (let i = 0; i < teams.length; i++) {
-      const foundTeam = await this.teamService.findOne(teams[i].id);
+      const foundTeam = await this.teamService.findOneOrFail(teams[i].id);
       foundTeams.push(foundTeam);
     }
     return foundTeams;

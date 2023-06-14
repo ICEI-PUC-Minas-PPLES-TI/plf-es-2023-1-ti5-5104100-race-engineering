@@ -1,17 +1,24 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { UpdateDriverDTO } from './models/driver.dto';
-import { Driver } from '@/api/driver/models/driver.entity';
+import { Driver } from '../driver/models/driver.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class DriverService {
+  constructor(
+    @InjectRepository(Driver)
+    private readonly driverRepository: Repository<Driver>,
+  ) {}
+
   async findAll(page?: number) {
     if (!page) page = 1;
-    const drivers = await Driver.createQueryBuilder('Driver')
-      .where({ isActive: true })
-      .offset((page - 1) * 10)
-      .limit(10)
-      .innerJoinAndSelect('Driver.user', 'User')
-      .getMany();
+    const drivers = await this.driverRepository.find({
+      where: { isActive: true },
+      skip: (page - 1) * 25,
+      take: 25,
+      relations: ['user'],
+    });
     return drivers.map((driver) => {
       return {
         id: driver.id,
@@ -24,7 +31,7 @@ export class DriverService {
   }
 
   async findByTeamId(id: number) {
-    const drivers = await Driver.find({
+    const drivers = await this.driverRepository.find({
       where: { team: { id } },
       relations: ['user'],
     });
@@ -40,30 +47,35 @@ export class DriverService {
   }
 
   public async findOneDetailed(id: number) {
-    const driver = await Driver.findOne({
-      where: { id },
-      relations: ['team', 'user', 'firstPlaceRaces', 'races'],
-    });
-    if (!driver) throw new NotFoundException('Driver not found');
-    return driver;
+    try {
+      return await this.driverRepository.findOneOrFail({
+        where: { id },
+        relations: ['team', 'user', 'firstPlaceRaces', 'races'],
+      });
+    } catch (error) {
+      throw new NotFoundException('Driver not found');
+    }
   }
 
   async update(id: number, body: UpdateDriverDTO) {
-    const driver = await this.findOne(id);
-    driver.number = body.number || driver.number;
-    driver.isActive = body.isActive || driver.isActive;
-    driver.nationality = body.nationality || driver.nationality;
-    return await driver.save();
+    const driver = await this.findOneOrFail(id);
+    await this.driverRepository.merge(driver, body);
+    return await this.driverRepository.save(driver);
   }
 
   async remove(id: number) {
-    const driver = await this.findOne(id);
-    await driver.softRemove();
+    await this.findOneOrFail(id);
+    await this.driverRepository.softDelete(id);
   }
 
-  async findOne(id: number) {
-    const driver = await Driver.findOne({ where: { id }, relations: ['user'] });
-    if (!driver) throw new NotFoundException('Driver not found');
-    return driver;
+  async findOneOrFail(id: number) {
+    try {
+      return await this.driverRepository.findOneOrFail({
+        where: { id },
+        relations: ['user'],
+      });
+    } catch (error) {
+      throw new NotFoundException('Driver not found');
+    }
   }
 }

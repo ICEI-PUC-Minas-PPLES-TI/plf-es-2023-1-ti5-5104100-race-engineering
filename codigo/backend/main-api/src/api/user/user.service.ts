@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { IRequest, ListedUser, UpdateNameDto } from './models/user.dto';
 import { Role, User } from './models/user.entity';
-import { Race } from '@/api/race/models/race.entity';
-import { DriverService } from '@/api/driver/driver.service';
+import { Race } from '../race/models/race.entity';
+import { DriverService } from '../driver/driver.service';
 
 @Injectable()
 export class UserService {

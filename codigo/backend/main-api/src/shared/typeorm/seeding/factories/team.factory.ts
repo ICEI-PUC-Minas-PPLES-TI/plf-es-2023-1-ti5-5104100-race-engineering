@@ -1,4 +1,4 @@
-import { Team } from '@/api/team/models/team.entity';
+import { Team } from '../../../../api/team/models/team.entity';
 import { setSeederFactory } from 'typeorm-extension';
 import { faker } from '@faker-js/faker/locale/pt_BR';
 

@@ -9,14 +9,13 @@ import {
   Inject,
 } from '@nestjs/common';
 import { CarService } from './car.service';
-import { CreateCarDto, UpdateCarDto } from '@/api/car/models/car.dto';
+import { CreateCarDto, UpdateCarDto } from '../car/models/car.dto';
 import { ApiTags } from '@nestjs/swagger';
 
 @Controller('cars')
 @ApiTags('Cars')
 export class CarController {
-  @Inject(CarService)
-  private readonly carService: CarService;
+  constructor(private readonly carService: CarService) {}
 
   @Post()
   create(@Body() createCarDto: CreateCarDto) {
@@ -30,7 +29,7 @@ export class CarController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.carService.findOne(+id);
+    return this.carService.findOneOrFail(+id);
   }
 
   @Patch(':id')

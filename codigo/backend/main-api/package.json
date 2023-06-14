@@ -9,7 +9,7 @@
     "prebuild": "rimraf build",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "nest start",
+    "start": "node dist/main",
     "start:dev": "npm run prebuild && nest start --watch",
     "start:debug": "npm run prebuild && nest start --debug --watch",
     "start:prod": "node dist/main",
@@ -95,6 +95,14 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
+    "coveragePathIgnorePatterns": [
+      ".module.ts",
+      ".entity.ts",
+      "/src/shared",
+      "/src/common",
+      "/src/notifications",
+      "/src/main.ts"
+    ],
     "testEnvironment": "node"
   }
 }
