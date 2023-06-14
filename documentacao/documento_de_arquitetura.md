@@ -438,6 +438,10 @@ _Apresente as medidas registradas na coleta de dados. O que não for possível q
 | **Pontos de Sensibilidade:** | Não existe |
 | _ **Tradeoff** _ **:** | Não existe |
 <br />
+
+![Diagrama de classes](./imagens/seguranca-1.jpeg)
+![Diagrama de classes](./imagens/seguranca-2.jpeg)
+![Diagrama de classes](./imagens/suguranca-3.jpeg)
 	
 	
 | **Atributo de Qualidade:** | Acessibilidade |
