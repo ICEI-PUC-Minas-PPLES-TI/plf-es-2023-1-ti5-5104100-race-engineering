@@ -9,18 +9,18 @@ class Note {
   final Color color;
 
   Note({
-    required String id,
+    String? id,
     required this.title,
     required this.description,
-    required this.color
+    required this.color,
   }) : id = id ?? Uuid().v4();
 
   Map<String, dynamic> toMap() {
     return {
-      'id': Uuid().v4(),
+      'id': id,
       'title': title,
       'description': description,
-      'color': color.value
+      'color': color.value,
     };
   }
 
@@ -29,7 +29,7 @@ class Note {
       id: map['id'],
       title: map['title'],
       description: map['description'],
-      color: Color(map['color'])
+      color: Color(map['color']),
     );
   }
 
@@ -38,5 +38,3 @@ class Note {
     return 'Note(id: $id, title: $title, description: $description, color: $color)';
   }
 }
-
-

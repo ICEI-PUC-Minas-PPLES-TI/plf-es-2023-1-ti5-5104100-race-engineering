@@ -5,6 +5,8 @@ import 'components/notesForm.dart';
 import 'components/stickyNotes.dart';
 
 class StickyNotesPage extends StatefulWidget {
+  get notes => null;
+
   @override
   _StickyNotesPageState createState() => _StickyNotesPageState();
 }
