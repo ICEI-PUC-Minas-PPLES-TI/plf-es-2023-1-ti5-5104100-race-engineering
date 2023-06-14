@@ -21,6 +21,5 @@ describe("ListPage component", () => {
     
 
     
-
   });
 });

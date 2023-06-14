@@ -54,7 +54,8 @@ type Props = {
   };
 };
 
-export default function Home() {
+export default function Previsao() {
+
   const [city, setCity] = useState("");
   const [date, setDate] = useState("");
   const [weather, setWeather] = useState<Props["data"] | null>(null);
@@ -315,8 +316,8 @@ export default function Home() {
       </Box>
     </div>
   );
-}
 
+}
 const descriptionTranslations = {
   "clear sky": "Céu Limpo",
   "few clouds": "Algumas Nuvens",
