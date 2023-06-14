@@ -441,7 +441,7 @@ _Apresente as medidas registradas na coleta de dados. O que não for possível q
 
 ![Diagrama de classes](./imagens/seguranca-1.jpeg)
 ![Diagrama de classes](./imagens/seguranca-2.jpeg)
-![Diagrama de classes](./imagens/suguranca-3.jpeg)
+![Diagrama de classes](./imagens/seguranca-3.jpeg)
 	
 	
 | **Atributo de Qualidade:** | Acessibilidade |
