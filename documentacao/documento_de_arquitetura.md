@@ -415,7 +415,7 @@ _Apresente as medidas registradas na coleta de dados. O que não for possível q
 | **Pontos de Sensibilidade:** | Não existe |
 | _ **Tradeoff** _ **:** | Não existe |
 	
-![Diagrama de classes](Estratégia/edge.jpeg )
+![Diagrama de classes](imagens/Estratégia.jpeg )
 	
 	
 | **Atributo de Qualidade:** | Disponibilidade |
