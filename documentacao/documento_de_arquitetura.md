@@ -362,8 +362,8 @@ _Apresente as medidas registradas na coleta de dados. O que não for possível q
 | **Cenários(s):** | Cenário 1 |
 | **Ambiente:** | Sistemas operacionais Android e IOS|
 | **Estímulo:** | Emulação da aplicação nos ambientes requiridos |
-| **Mecanismo:** |  |
-| **Medida de Resposta:** |  |
+| **Mecanismo:** | Input nos campos de login |
+| **Medida de Resposta:** | Login efetuado |
 
 **Considerações sobre a arquitetura:**
 
@@ -372,16 +372,19 @@ _Apresente as medidas registradas na coleta de dados. O que não for possível q
 | **Pontos de Sensibilidade:** | Não existe |
 | _ **Tradeoff** _ **:** | Não existe |
 	
+
+![Diagrama de classes](./imagens/login.jpeg)
+	
 	
 | **Atributo de Qualidade:** | Adaptabilidade |
 | --- | --- |
 | **Requisito de Qualidade** | O sistema deve estar disponível nas modalidades mobile e web |
 | **Preocupação:** | O sistema deve ser acessível nos navegadores Google Chrome, Edge e Firefox |
 | **Cenários(s):** | Cenário 2 |
-| **Ambiente:** | Plataforma Mobile e Web |
+| **Ambiente:** | Plataforma Web |
 | **Estímulo:** | Acessar o sistema em diferentes navegadores |
-| **Mecanismo:** | Cadastro corridas na plataforma web e visualização dessa informação no web e no mobile. |
-| **Medida de Resposta:** | A corrida  cadastrada no Web pode ser visualizada no mobile  |
+| **Mecanismo:** | Acesso via web a aplicação |
+| **Medida de Resposta:** | Vizualização de tela inicial |
 
 **Considerações sobre a arquitetura:**
 
@@ -403,9 +406,9 @@ _Apresente as medidas registradas na coleta de dados. O que não for possível q
 | **Preocupação:** | Os acessos de usuários devem ser controlados de forma que cada um tenha acesso apenas aos recursos condizentes as suas atuações. |
 | **Cenários(s):** | Cenário 3|
 | **Ambiente:** | Plataforma web e mobile |
-| **Estímulo:** | Acesso do analista de corridas para cadastro de corridas. |
-| **Mecanismo:** |  |
-| **Medida de Resposta:** |  |
+| **Estímulo:** | Acesso do analista a página de estratégia. |
+| **Mecanismo:** | Login como analista do Web |
+| **Medida de Resposta:** | Criação de estratégia  |
 	
 
 **Considerações sobre a arquitetura:**
@@ -455,6 +458,10 @@ _Apresente as medidas registradas na coleta de dados. O que não for possível q
 | _ **Tradeoff** _ **:** | Não existe |
 
 Evidências dos testes realizados
+	
+![Diagrama de classes](./imagens/tela_inicial.jpeg)
+![Diagrama de classes](./imagens/tempo_voltas.jpeg)
+![Diagrama de classes](./imagens/suporte.jpeg)
 
 _Apresente imagens, descreva os testes de tal forma que se comprove a realização da avaliação._
 
