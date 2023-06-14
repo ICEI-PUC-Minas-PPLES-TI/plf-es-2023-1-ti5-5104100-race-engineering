@@ -5,19 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4c4a502c-b19e-4505-95bc-bb87637afc44" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/test/model/note_test.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/test/notes/notesForm_test.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/test/notes/stickyNotes_test.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/test/register/header_test.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/test/services/http_test.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/test/validators/email.validator_test.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/test/validators/form_field.validator_test.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/lib/model/note/note.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/model/note/note.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/lib/pages/notes/notes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/pages/notes/notes.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/app/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/app/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/lib/pages/laps/laps.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/pages/laps/laps.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/lib/pages/races/races.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/pages/races/races.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/lib/shared/utils/httpInterceptor.dart" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/shared/utils/httpInterceptor.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/notes.db" beforeDir="false" afterPath="$PROJECT_DIR$/notes.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

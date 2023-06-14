@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'dart:math';
 
+import '../../shared/utils/httpInterceptor.dart';
+
 class Race {
   final int id;
   final String name;
@@ -29,6 +31,10 @@ class _RacesView extends State<RacesView> {
   List<dynamic> _races = [];
 
   @override
+  bool get wantKeepAlive => true;
+
+
+  @override
   void initState() {
     super.initState();
     print('init state');
@@ -36,26 +42,26 @@ class _RacesView extends State<RacesView> {
   }
 
   void fetchRaces() async {
-    try {
-      Response response =
-          await Dio().get('http://localhost:8000/api/races');
+    String? token = await HttpInterceptor().getToken();
+    if (token != null) {
+      Dio dio = Dio();
+      dio.options.headers['Authorization'] = 'Bearer $token';
+      Response response = await dio.get('https://race-engineering-api.azurewebsites.net/api/races');
       dynamic driverInfo = response.data;
 
-      dynamic races = driverInfo['races']
-          .map((item) => Race(
-                id: item['id'],
-                name: item['name'],
-                startDate: DateTime.parse(item['startDate']),
-                endDate: DateTime.parse(item['endDate']),
-                totalLaps: item['totalLaps'],
-              ))
-          .toList();
+      dynamic races = driverInfo.map((item) {
+        return Race(
+          id: item['id'],
+          name: item['name'],
+          startDate: DateTime.parse(item['startDate']),
+          endDate: DateTime.parse(item['endDate']),
+          totalLaps: item['totalLaps'],
+        );
+      }).toList();
 
       setState(() {
         _races = races;
       });
-    } catch (error) {
-      print('Erro ao carregar as corridas: $error');
     }
   }
 

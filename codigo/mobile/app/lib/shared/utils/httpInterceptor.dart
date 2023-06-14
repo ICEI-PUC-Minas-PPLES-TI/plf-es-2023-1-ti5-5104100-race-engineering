@@ -5,7 +5,6 @@ class HttpInterceptor {
   final Dio dio = Dio();
 
   Future<void> setupInterceptors(String token) async {
-
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) {
@@ -15,6 +14,11 @@ class HttpInterceptor {
         },
       ),
     );
+  }
+
+  Future<String?> getToken() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('token');
   }
 
   Future<void> saveToken(String token) async {
