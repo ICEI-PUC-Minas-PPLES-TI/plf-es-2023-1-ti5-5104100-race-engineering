@@ -232,14 +232,7 @@ const RegisterPage = () => {
                     Senha deve ter no máximo 20 caracteres{" "}
                   </ListItem>
                 </List>
-                {/* <FormErrorMessage>
-                  {errors.password?.type === "required" &&
-                    "A Senha é obrigatória"}
-                  {errors.password?.type === "minLength" &&
-                    "Senha deve ter pelo menos 8 caracteres"}
-                  {errors.password?.type === "maxLength" &&
-                    "Senha deve ter no máximo 20 caracteres"}
-                </FormErrorMessage> */}
+
               </FormControl>
             </Box>
 

@@ -23,7 +23,8 @@ import {
 } from "@chakra-ui/react";
 
 
-const CircuitPage = () => {
+const TeamPage = () => {
+  
   const router = useRouter();
   const { register, handleSubmit } = useForm<RegisterTeam>();
   const toast = useToast();
@@ -124,4 +125,4 @@ const CircuitPage = () => {
   );
 };
 
-export default CircuitPage;
+export default TeamPage;

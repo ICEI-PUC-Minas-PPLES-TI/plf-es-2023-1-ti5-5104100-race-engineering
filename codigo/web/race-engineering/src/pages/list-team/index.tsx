@@ -18,7 +18,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 
-export default function Index() {
+const ListTeam = () => {
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
   const [selectedTeamId, setSelectedTeamId] = useState<number | null>(null);
   const [teams, setTeams] = useState<any[]>([]);
@@ -254,3 +254,5 @@ export default function Index() {
     </Box>
   );
 }
+
+export default ListTeam;
