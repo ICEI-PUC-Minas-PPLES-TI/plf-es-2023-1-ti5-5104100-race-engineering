@@ -14,11 +14,11 @@ class DatabaseHelper {
   Future<Database> get database async {
     if (_database != null) return _database!;
 
-    _database = await initDB('notes.db');
+    _database = await _initDB('notes.db');
     return _database!;
   }
 
-  Future<Database> initDB(String filePath) async {
+  Future<Database> _initDB(String filePath) async {
     final path = await getDatabasesPath();
     final dbPath = join("/Users/joeyclapton/dev/puc/plf-es-2023-1-ti5-5104100-race-engineering/codigo/mobile/", filePath);
     print(path);
