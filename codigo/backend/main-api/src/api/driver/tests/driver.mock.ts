@@ -1,18 +1,19 @@
 import { userDriverListMock } from '../../user/tests/user.mock';
 import { Driver } from '../models/driver.entity';
+import { User } from '../../user/models/user.entity';
 
 export const driverListMock = [
   new Driver({
     id: 1,
     number: 12,
     isActive: true,
-    user: userDriverListMock[0],
+    user: new User(userDriverListMock[0]),
   }),
   new Driver({
     id: 2,
     number: 13,
     isActive: true,
-    user: userDriverListMock[1],
+    user: new User(userDriverListMock[1]),
   }),
 ];
 

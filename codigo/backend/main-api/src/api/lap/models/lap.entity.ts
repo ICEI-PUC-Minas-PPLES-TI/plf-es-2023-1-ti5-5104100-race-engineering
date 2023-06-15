@@ -55,6 +55,11 @@ export class Lap extends BaseEntity {
   @Exclude()
   @DeleteDateColumn({ name: 'deletedAt', type: 'timestamp', default: null })
   deletedAt: Date | null;
+
+  constructor(partial?: Partial<Lap>) {
+    super();
+    Object.assign(this, partial);
+  }
 }
 
 export enum TyreType {

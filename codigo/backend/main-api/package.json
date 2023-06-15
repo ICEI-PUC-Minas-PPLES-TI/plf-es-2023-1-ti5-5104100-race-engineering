@@ -101,8 +101,10 @@
       "/src/shared",
       "/src/common",
       "/src/notifications",
-      "/src/main.ts"
+      "/src/main.ts",
+      ".helper.ts"
     ],
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "timers": "real"
   }
 }

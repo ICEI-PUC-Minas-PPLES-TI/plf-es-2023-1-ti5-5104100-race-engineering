@@ -7,6 +7,7 @@ import {
   mechanicsListMock,
 } from '../../user/tests/user.mock';
 import { circuitListMock } from '../../circuit/tests/circuit.mock';
+import { User } from '../../user/models/user.entity';
 
 // Mock USERS
 
@@ -30,8 +31,8 @@ export const raceListMock = [
     endDate: new Date('2023-04-03T08:00:00.000Z'),
     totalLaps: 50,
     circuit: circuitListMock[0],
-    analyst: analystsListMock[0],
-    mechanics: mechanicsListMock,
+    analyst: new User(analystsListMock[0]),
+    mechanics: [new User(mechanicsListMock[0])],
     drivers: driverListMock,
     teams: teamListMock,
   }),
@@ -42,8 +43,8 @@ export const raceListMock = [
     endDate: new Date('2023-04-03T08:00:00.000Z'),
     totalLaps: 50,
     circuit: circuitListMock[0],
-    analyst: analystsListMock[0],
-    mechanics: mechanicsListMock,
+    analyst: new User(analystsListMock[0]),
+    mechanics: [new User(mechanicsListMock[0])],
     drivers: driverListMock,
     teams: teamListMock,
   }),
@@ -68,7 +69,7 @@ export const updatedRaceMock = {
 };
 
 export const searchParamsMock = {
-  search: 'First',
+  search: '',
   sort: '',
   page: 10,
 };

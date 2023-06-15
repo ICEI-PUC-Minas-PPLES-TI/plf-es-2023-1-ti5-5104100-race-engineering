@@ -14,7 +14,7 @@ export class LapService {
     private readonly teamService: TeamService,
   ) {}
 
-  async createLap(id: number, createLapDto: CreateLapDto) {
+  async create(raceId: number, createLapDto: CreateLapDto) {
     const {
       lapNumber,
       driverId,
@@ -23,7 +23,7 @@ export class LapService {
       tyreType,
       isAdditional,
     } = createLapDto;
-    const race = await this.raceService.findOneOrFail(id);
+    const race = await this.raceService.findOneOrFail(raceId);
     let driver;
     if (driverId) driver = await this.driverService.findOneOrFail(driverId);
 

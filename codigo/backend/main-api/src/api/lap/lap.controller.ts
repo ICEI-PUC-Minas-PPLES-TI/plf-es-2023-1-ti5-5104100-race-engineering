@@ -1,13 +1,12 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
+  Get,
   Inject,
-  Query,
+  Param,
+  Patch,
+  Post,
 } from '@nestjs/common';
 import { LapService } from './lap.service';
 import { CreateLapDto, SendTimerDto, UpdateLapDto } from './models/lap.dto';
@@ -21,11 +20,8 @@ export class LapController {
 
   @Post('race/:raceId')
   @ApiOperation({ summary: 'Create a new Lap for a Race' })
-  createLap(
-    @Param('raceId') raceId: string,
-    @Body() createLapDto: CreateLapDto,
-  ) {
-    return this.lapService.createLap(+raceId, createLapDto);
+  create(@Param('raceId') raceId: string, @Body() createLapDto: CreateLapDto) {
+    return this.lapService.create(+raceId, createLapDto);
   }
 
   @Get('race/:raceId')
