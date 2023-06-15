@@ -128,9 +128,7 @@ As seguintes ferramentas serão utilizadas no teste:
 | --- | --- | --- |
 | Postman | Qualidade | Ferramenta para realização de testes de API |
 | Jest | Desenvolvimento | Framework utilizada para testes unitários |
-| Cypress | Qualidade | Ferramenta para testes end-to-end |
-| Lighthouse | Desenvolvimento | Avaliação de performance e acessibilidade da aplicação |
-| Gravador de Passos | Desenvolvimento | Prover evidências dos testes |
+| Flutter tests | Desenvolvimento | Framework utilizada para testes unitários |
 
 
 
