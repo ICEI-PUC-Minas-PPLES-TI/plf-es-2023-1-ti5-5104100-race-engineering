@@ -10,7 +10,7 @@ Este projeto busca soluções para o gerenciamento estratégico de corridas de c
 ## 2 Arquitetura
 
 
-A arquitetura do projeto é baseada na utilização do React e Flutter no Front-End, usando o React para o desenvolvimento web e o Flutter para a parte mobile. O Node.js é escolhido para o desenvolvimento do Back-End, enquanto a comunicação entre as camadas é feita através do protocolo gRPC com Rest API. O Middleware é utilizado como intermediário para melhor eficiência e simplificação da manutenção do sistema. O PostgreSQL fora escolhido como o banco de dados devido à sua robustez, flexibilidade e confiabilidade, suportando grandes volumes de dados e alta demanda de acesso simultâneo, além de oferecer recursos avançados e ter uma comunidade ativa de desenvolvedores.
+A arquitetura do projeto é baseada na utilização do React e Flutter no Front-End, usando o React para o desenvolvimento web e o Flutter para a parte mobile. O Node.js é escolhido para o desenvolvimento do Back-End, enquanto a comunicação entre as camadas é feita através do protocolo MQTT com Rest API. O Middleware é utilizado como intermediário para melhor eficiência e simplificação da manutenção do sistema. O PostgreSQL fora escolhido como o banco de dados devido à sua robustez, flexibilidade e confiabilidade, suportando grandes volumes de dados e alta demanda de acesso simultâneo, além de oferecer recursos avançados e ter uma comunidade ativa de desenvolvedores.
 Funcionalidades
 
 
