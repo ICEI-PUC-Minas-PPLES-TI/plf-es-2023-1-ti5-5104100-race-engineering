@@ -150,5 +150,18 @@ Os Bugs serão classificados com as seguintes severidades:
 ## 6 Definição de Pronto 
 
 Serão consideradas prontas as funcionalidades que passarem pelas verificações e testes descritas nestes TestPlan, não apresentarem bugs com a severidade acima de Minor, e passarem por uma validação de negócio de responsabilidade do time de produto.
-      
+
+## 07 Deverão indicar quantos arquivos/classes e métodos/funções o software possui e quantos foram testados.
+
+### ****************Back-end****************
+
+![Screenshot 2023-06-14 at 22.32.26.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/509c35eb-0c57-4d1d-ab5a-3b7a7f6b28c4/Screenshot_2023-06-14_at_22.32.26.png)
+
+### ************Mobile************
+
+![Screenshot 2023-06-14 at 22.30.45.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/491e7351-0e87-4fe7-8b66-8fe0325bcb2b/Screenshot_2023-06-14_at_22.30.45.png)
+
+### ******Front-end******
+
+![Screenshot 2023-06-14 at 22.29.31.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b7432837-8a18-400a-844d-206187cdb089/Screenshot_2023-06-14_at_22.29.31.png)
  </div>
